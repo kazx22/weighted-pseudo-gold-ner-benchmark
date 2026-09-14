@@ -1,0 +1,284 @@
+﻿MEDGEMMA BC5CDR PIPELINE
+Started: 2026-08-05 16:32:35
+Model: medgemma1.5:4b-it-q4_K_M
+This extension uses existing five-model predictions and does not rerun them.
+
+============================================================
+RUNNING: python -m src.medgemma_smoke_test
+============================================================
+  scispaCy           8471 entities
+  BioBERT           15072 entities
+  PubMedBERT        16472 entities
+  ClinicalBERT      15262 entities
+  BioELECTRA        11926 entities
+Smoke test succeeded. Saved: C:\University\Projects\spatial-human-anatomy\results\dev\medgemma_smoke_test.json
+Zero-shot accepted entities: 12
+Tie-break decision: ACCEPT
+
+============================================================
+RUNNING: python -m src.medgemma_bc5cdr --split dev
+============================================================
+MedGemma model: medgemma1.5:4b-it-q4_K_M
+Split: dev
+Documents requested: 500
+Chunk target: 450 characters
+Already completed in chunked cache: 0
+Cache: C:\University\Projects\spatial-human-anatomy\results\dev\medgemma\zero_shot_doc_results_chunked_v2.jsonl
+Processed 1/500 documents; row_id=6794356; segments=2; accepted entities=12
+Processed 10/500 documents; row_id=2339463; segments=2; accepted entities=7
+Processed 20/500 documents; row_id=16192988; segments=4; accepted entities=13
+Processed 30/500 documents; row_id=9321531; segments=6; accepted entities=2
+Processed 40/500 documents; row_id=1300436; segments=4; accepted entities=6
+Processed 50/500 documents; row_id=7596955; segments=5; accepted entities=6
+Processed 60/500 documents; row_id=10539815; segments=9; accepted entities=35
+Processed 70/500 documents; row_id=9270571; segments=7; accepted entities=28
+Processed 80/500 documents; row_id=18674790; segments=6; accepted entities=12
+Processed 90/500 documents; row_id=9799166; segments=4; accepted entities=3
+Processed 100/500 documents; row_id=1535072; segments=4; accepted entities=10
+Processed 110/500 documents; row_id=12481039; segments=4; accepted entities=6
+Processed 120/500 documents; row_id=3708922; segments=2; accepted entities=2
+Processed 130/500 documents; row_id=3535719; segments=3; accepted entities=3
+Processed 140/500 documents; row_id=18086064; segments=3; accepted entities=9
+Processed 150/500 documents; row_id=11705128; segments=5; accepted entities=11
+Processed 160/500 documents; row_id=2322844; segments=3; accepted entities=1
+Processed 170/500 documents; row_id=15579441; segments=4; accepted entities=7
+Processed 180/500 documents; row_id=11063349; segments=4; accepted entities=24
+Processed 190/500 documents; row_id=8492347; segments=2; accepted entities=6
+Processed 200/500 documents; row_id=15814210; segments=5; accepted entities=4
+Processed 210/500 documents; row_id=7007443; segments=3; accepted entities=9
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 220/500 documents; row_id=1355091; segments=7; accepted entities=11
+Processed 230/500 documents; row_id=6892185; segments=4; accepted entities=9
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 240/500 documents; row_id=16960342; segments=4; accepted entities=7
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 250/500 documents; row_id=16710500; segments=3; accepted entities=7
+Processed 260/500 documents; row_id=16634859; segments=7; accepted entities=0
+Processed 270/500 documents; row_id=9867728; segments=4; accepted entities=11
+Processed 280/500 documents; row_id=3969369; segments=3; accepted entities=0
+Processed 290/500 documents; row_id=18627295; segments=5; accepted entities=11
+Processed 300/500 documents; row_id=9514561; segments=4; accepted entities=3
+Processed 310/500 documents; row_id=3311455; segments=3; accepted entities=0
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 320/500 documents; row_id=9121607; segments=5; accepted entities=11
+Processed 330/500 documents; row_id=8958188; segments=5; accepted entities=16
+Processed 340/500 documents; row_id=133615; segments=4; accepted entities=5
+Processed 350/500 documents; row_id=2907585; segments=2; accepted entities=6
+Processed 360/500 documents; row_id=17702969; segments=5; accepted entities=9
+Processed 370/500 documents; row_id=10533019; segments=2; accepted entities=5
+Processed 380/500 documents; row_id=3780697; segments=1; accepted entities=4
+Processed 390/500 documents; row_id=19996135; segments=5; accepted entities=2
+Processed 400/500 documents; row_id=9549528; segments=4; accepted entities=6
+Processed 410/500 documents; row_id=48362; segments=2; accepted entities=7
+Processed 420/500 documents; row_id=2594614; segments=4; accepted entities=17
+Processed 430/500 documents; row_id=8841157; segments=6; accepted entities=16
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 440/500 documents; row_id=11009181; segments=5; accepted entities=6
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 450/500 documents; row_id=12600698; segments=2; accepted entities=6
+Processed 460/500 documents; row_id=7053705; segments=2; accepted entities=12
+Processed 470/500 documents; row_id=804391; segments=2; accepted entities=4
+Processed 480/500 documents; row_id=11302406; segments=5; accepted entities=12
+Processed 490/500 documents; row_id=7650771; segments=1; accepted entities=3
+Processed 500/500 documents; row_id=803783; segments=4; accepted entities=2
+Saved 3939 MedGemma entities to C:\University\Projects\spatial-human-anatomy\data\processed\bc5cdr\medgemma_dev_entities_bc5cdr.jsonl
+Saved summary to C:\University\Projects\spatial-human-anatomy\results\dev\medgemma\zero_shot_summary.json
+
+============================================================
+RUNNING: python -m src.medgemma_hybrid --split dev
+============================================================
+  scispaCy           8471 entities
+  BioBERT           15072 entities
+  PubMedBERT        16472 entities
+  ClinicalBERT      15262 entities
+  BioELECTRA        11926 entities
+Split: dev
+Candidates: 46161
+Automatic reject: 39168
+MedGemma routed: 658
+Automatic accept: 6335
+Low threshold: 1.08738697
+High threshold: 1.19452979
+Cached tie-break decisions: 0
+Tie-break 1/658: ACCEPT; score=1.16884495; text='tachyarrhythmias'
+Tie-break 25/658: ACCEPT; score=1.16884495; text='heparin'
+Tie-break 50/658: ACCEPT; score=1.16884495; text='malignancy'
+Tie-break 75/658: ACCEPT; score=1.16884495; text='ascitis'
+MedGemma response was incomplete or invalid on attempt 1/3 (num_predict=160, done_reason='length', eval_count=160). Retrying with num_predict=320...
+Tie-break 100/658: ACCEPT; score=1.08738697; text='respiratory paralysis'
+Tie-break 125/658: REJECT; score=1.08738697; text='to'
+Tie-break 150/658: ACCEPT; score=1.16884495; text='benzodiazepines'
+Tie-break 175/658: ACCEPT; score=1.16884495; text='cyanosis'
+Tie-break 200/658: ACCEPT; score=1.16884495; text='DX'
+Tie-break 225/658: ACCEPT; score=1.16884495; text='vincristine'
+Tie-break 250/658: ACCEPT; score=1.16884495; text='creatinine'
+Tie-break 275/658: ACCEPT; score=1.08738697; text='pupillary oscillation'
+Tie-break 300/658: ACCEPT; score=1.16884495; text='pilocarpine'
+Tie-break 325/658: ACCEPT; score=1.16884495; text='death'
+Tie-break 350/658: REJECT; score=1.08738697; text='en'
+Tie-break 375/658: ACCEPT; score=1.16884495; text='CsA'
+Tie-break 400/658: REJECT; score=1.08738697; text='lo'
+Tie-break 425/658: ACCEPT; score=1.16884495; text='Torsade'
+Tie-break 450/658: ACCEPT; score=1.16884495; text='glutamate'
+Tie-break 475/658: ACCEPT; score=1.16884495; text='icterus'
+Tie-break 500/658: ACCEPT; score=1.16884495; text='hypertensive'
+Tie-break 525/658: REJECT; score=1.08738697; text='to'
+Tie-break 550/658: ACCEPT; score=1.08738697; text='tiapine'
+Tie-break 575/658: ACCEPT; score=1.16884495; text='immunodeficiency syndrome'
+Tie-break 600/658: ACCEPT; score=1.16884495; text='tacrolimus'
+Tie-break 625/658: REJECT; score=1.08738697; text='h'
+Tie-break 650/658: ACCEPT; score=1.16884495; text='olanzapine'
+Tie-break 658/658: ACCEPT; score=1.16884495; text='tumour'
+Saved 6908 hybrid entities to C:\University\Projects\spatial-human-anatomy\data\gold\medgemma_hybrid_dev_entities_bc5cdr.jsonl
+Saved routing summary to C:\University\Projects\spatial-human-anatomy\results\dev\medgemma_hybrid\hybrid_summary.json
+
+============================================================
+RUNNING: python -m src.medgemma_evaluation --split dev
+============================================================
+Majority Pseudo-Gold               P=0.9550 R=0.5618 F1=0.7074
+Weighted Pseudo-Gold               P=0.9589 R=0.6886 F1=0.8016
+scispaCy                           P=0.8098 R=0.7153 F1=0.7596
+MedGemma Zero-Shot                 P=0.6078 R=0.2496 F1=0.3539
+Weighted + MedGemma Tie-Breaker    P=0.9586 R=0.6904 F1=0.8027
+Saved MedGemma evaluation to C:\University\Projects\spatial-human-anatomy\results\dev
+
+============================================================
+RUNNING: python -m src.medgemma_bc5cdr --split test
+============================================================
+MedGemma model: medgemma1.5:4b-it-q4_K_M
+Split: test
+Documents requested: 500
+Chunk target: 450 characters
+Already completed in chunked cache: 0
+Cache: C:\University\Projects\spatial-human-anatomy\results\test\medgemma\zero_shot_doc_results_chunked_v2.jsonl
+Processed 1/500 documents; row_id=8701013; segments=2; accepted entities=3
+Processed 10/500 documents; row_id=23872883; segments=5; accepted entities=10
+Processed 20/500 documents; row_id=24100055; segments=5; accepted entities=8
+Processed 30/500 documents; row_id=24275640; segments=5; accepted entities=13
+Processed 40/500 documents; row_id=24459006; segments=3; accepted entities=3
+Processed 50/500 documents; row_id=24618873; segments=3; accepted entities=11
+Processed 60/500 documents; row_id=24691439; segments=5; accepted entities=20
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 70/500 documents; row_id=24802403; segments=4; accepted entities=21
+Processed 80/500 documents; row_id=24923469; segments=5; accepted entities=2
+Processed 90/500 documents; row_id=25054547; segments=6; accepted entities=14
+Processed 100/500 documents; row_id=26033014; segments=5; accepted entities=3
+Processed 110/500 documents; row_id=7248895; segments=4; accepted entities=19
+Processed 120/500 documents; row_id=20431083; segments=6; accepted entities=15
+Processed 130/500 documents; row_id=612112; segments=4; accepted entities=4
+Processed 140/500 documents; row_id=1117341; segments=1; accepted entities=12
+Processed 150/500 documents; row_id=1423336; segments=3; accepted entities=4
+Processed 160/500 documents; row_id=1756784; segments=8; accepted entities=4
+Processed 170/500 documents; row_id=2173761; segments=5; accepted entities=3
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 180/500 documents; row_id=2553470; segments=5; accepted entities=3
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 190/500 documents; row_id=2904523; segments=3; accepted entities=8
+Processed 200/500 documents; row_id=3125850; segments=4; accepted entities=3
+Processed 210/500 documents; row_id=3409843; segments=2; accepted entities=2
+Processed 220/500 documents; row_id=3812624; segments=2; accepted entities=3
+MedGemma response was incomplete or invalid on attempt 1/2 (num_predict=1536, done_reason='length', eval_count=1536). Retrying with num_predict=3072...
+Processed 230/500 documents; row_id=4010471; segments=3; accepted entities=5
+Processed 240/500 documents; row_id=6453500; segments=1; accepted entities=2
+Processed 250/500 documents; row_id=6806735; segments=3; accepted entities=5
+Processed 260/500 documents; row_id=7315949; segments=3; accepted entities=0
+Processed 270/500 documents; row_id=7671401; segments=3; accepted entities=9
+Processed 280/500 documents; row_id=8188982; segments=5; accepted entities=0
+Processed 290/500 documents; row_id=8748050; segments=2; accepted entities=9
+Processed 300/500 documents; row_id=9071336; segments=5; accepted entities=19
+Processed 310/500 documents; row_id=9538487; segments=2; accepted entities=15
+Processed 320/500 documents; row_id=10087562; segments=3; accepted entities=13
+Processed 330/500 documents; row_id=10713017; segments=6; accepted entities=11
+Processed 340/500 documents; row_id=11026989; segments=4; accepted entities=0
+Processed 350/500 documents; row_id=11401944; segments=5; accepted entities=9
+Processed 360/500 documents; row_id=11988250; segments=2; accepted entities=4
+Processed 370/500 documents; row_id=12523489; segments=6; accepted entities=22
+Processed 380/500 documents; row_id=12948256; segments=3; accepted entities=12
+Processed 390/500 documents; row_id=15282950; segments=2; accepted entities=3
+Processed 400/500 documents; row_id=15815446; segments=5; accepted entities=13
+Processed 410/500 documents; row_id=16112787; segments=6; accepted entities=8
+Processed 420/500 documents; row_id=16876986; segments=3; accepted entities=0
+Processed 430/500 documents; row_id=17159032; segments=5; accepted entities=2
+Processed 440/500 documents; row_id=17484470; segments=6; accepted entities=7
+Processed 450/500 documents; row_id=18189308; segments=5; accepted entities=2
+Processed 460/500 documents; row_id=19139825; segments=3; accepted entities=9
+Processed 470/500 documents; row_id=19515070; segments=4; accepted entities=10
+Processed 480/500 documents; row_id=19920070; segments=5; accepted entities=14
+Processed 490/500 documents; row_id=20495512; segments=5; accepted entities=3
+Processed 500/500 documents; row_id=24055495; segments=5; accepted entities=7
+Saved 4313 MedGemma entities to C:\University\Projects\spatial-human-anatomy\data\processed\bc5cdr\medgemma_test_entities_bc5cdr.jsonl
+Saved summary to C:\University\Projects\spatial-human-anatomy\results\test\medgemma\zero_shot_summary.json
+
+============================================================
+RUNNING: python -m src.medgemma_hybrid --split test
+============================================================
+  scispaCy           8762 entities
+  BioBERT           16247 entities
+  PubMedBERT        17529 entities
+  ClinicalBERT      15829 entities
+  BioELECTRA        12368 entities
+Split: test
+Candidates: 48671
+Automatic reject: 41446
+MedGemma routed: 632
+Automatic accept: 6593
+Low threshold: 1.08738697
+High threshold: 1.19452979
+Cached tie-break decisions: 0
+Tie-break 1/632: ACCEPT; score=1.16884495; text='clonidine'
+Tie-break 25/632: ACCEPT; score=1.16884495; text='seizures'
+Tie-break 50/632: ACCEPT; score=1.16884495; text='creatine'
+Tie-break 75/632: REJECT; score=1.08738697; text='h'
+Tie-break 100/632: ACCEPT; score=1.16884495; text='norepinephrine'
+Tie-break 125/632: ACCEPT; score=1.16884495; text='pilocarpine'
+Tie-break 150/632: REJECT; score=1.08738697; text='prop'
+Tie-break 175/632: ACCEPT; score=1.16884495; text='hypotension'
+Tie-break 200/632: ACCEPT; score=1.16884495; text='hypertensive'
+Tie-break 225/632: ACCEPT; score=1.16884495; text='NMDA'
+Tie-break 250/632: ACCEPT; score=1.16884495; text='fluid insufficiency'
+Tie-break 275/632: ACCEPT; score=1.16884495; text='TdP'
+Tie-break 300/632: ACCEPT; score=1.16884495; text='leukocyturia'
+Tie-break 325/632: ACCEPT; score=1.08738697; text='laucoma'
+Tie-break 350/632: ACCEPT; score=1.16884495; text='fibrosis'
+Tie-break 375/632: ACCEPT; score=1.16884495; text='Tdp'
+Tie-break 400/632: ACCEPT; score=1.16884495; text='quinidine'
+Tie-break 425/632: ACCEPT; score=1.16884495; text='retinal vein occlusion'
+Tie-break 450/632: ACCEPT; score=1.16884495; text='remifentanil'
+Tie-break 475/632: ACCEPT; score=1.16884495; text='MDA'
+Tie-break 500/632: ACCEPT; score=1.16884495; text='paralysis'
+Tie-break 525/632: REJECT; score=1.16884495; text='MDA'
+Tie-break 550/632: ACCEPT; score=1.08738697; text='psychological distress'
+Tie-break 575/632: ACCEPT; score=1.16884495; text='hypotension'
+Tie-break 600/632: ACCEPT; score=1.08738697; text='EA'
+Tie-break 625/632: ACCEPT; score=1.16884495; text='apnea'
+Tie-break 632/632: ACCEPT; score=1.16884495; text='arsenic'
+Saved 7153 hybrid entities to C:\University\Projects\spatial-human-anatomy\data\gold\medgemma_hybrid_test_entities_bc5cdr.jsonl
+Saved routing summary to C:\University\Projects\spatial-human-anatomy\results\test\medgemma_hybrid\hybrid_summary.json
+
+============================================================
+RUNNING: python -m src.medgemma_evaluation --split test
+============================================================
+Majority Pseudo-Gold               P=0.9170 R=0.5482 F1=0.6861
+Weighted Pseudo-Gold               P=0.9204 R=0.6676 F1=0.7739
+scispaCy                           P=0.7962 R=0.7112 F1=0.7513
+MedGemma Zero-Shot                 P=0.5776 R=0.2540 F1=0.3528
+Weighted + MedGemma Tie-Breaker    P=0.9172 R=0.6689 F1=0.7736
+Saved MedGemma evaluation to C:\University\Projects\spatial-human-anatomy\results\test
+
+============================================================
+RUNNING: python -m src.medgemma_bootstrap --split test --resamples 1000
+============================================================
+Completed 200/1000 resamples
+Completed 400/1000 resamples
+Completed 600/1000 resamples
+Completed 800/1000 resamples
+Completed 1000/1000 resamples
+Weighted + MedGemma Tie-Breaker vs Weighted Pseudo-Gold: diff=-0.0002, raw p=0.6773, Holm p=0.6773
+MedGemma Zero-Shot vs scispaCy: diff=-0.3985, raw p=0.0020, Holm p=0.0060
+Weighted + MedGemma Tie-Breaker vs MedGemma Zero-Shot: diff=+0.4208, raw p=0.0020, Holm p=0.0060
+
+MEDGEMMA BC5CDR PIPELINE COMPLETED SUCCESSFULLY.
+Finished: 2026-08-05 22:32:38
+Main results: results\test\medgemma_evaluation.json
+Bootstrap: results\test\medgemma_bootstrap_results.json

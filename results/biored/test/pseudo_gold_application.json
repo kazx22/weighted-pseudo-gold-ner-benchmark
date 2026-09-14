@@ -1,0 +1,20 @@
+{
+  "dataset": "BioRED",
+  "task_scope": [
+    "DISEASE",
+    "CHEMICAL"
+  ],
+  "applied_split": "test",
+  "source_config": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\dev\\frozen_pseudo_gold_config.json",
+  "weights": {
+    "scispacy": 0.66222093,
+    "biobert": 0.47078715,
+    "pubmedbert": 0.3312263,
+    "clinicalbert": 0.25735678,
+    "bioelectra": 0.15794872
+  },
+  "selected_threshold": 0.82016965,
+  "weighted_entity_count": 1330,
+  "majority_entity_count": 978,
+  "test_gold_was_not_read": true
+}

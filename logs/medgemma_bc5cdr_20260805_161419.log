@@ -1,0 +1,39 @@
+﻿MEDGEMMA BC5CDR PIPELINE
+Started: 2026-08-05 16:14:19
+Model: medgemma1.5:4b-it-q4_K_M
+This extension uses existing five-model predictions and does not rerun them.
+
+============================================================
+RUNNING: python -m src.medgemma_smoke_test
+============================================================
+  scispaCy           8471 entities
+  BioBERT           15072 entities
+  PubMedBERT        16472 entities
+  ClinicalBERT      15262 entities
+  BioELECTRA        11926 entities
+Smoke test succeeded. Saved: C:\University\Projects\spatial-human-anatomy\results\dev\medgemma_smoke_test.json
+Zero-shot accepted entities: 11
+Tie-break decision: ACCEPT
+
+============================================================
+RUNNING: python -m src.medgemma_bc5cdr --split dev
+============================================================
+MedGemma model: medgemma1.5:4b-it-q4_K_M
+Split: dev
+Documents requested: 500
+Already completed: 26
+Cache: C:\University\Projects\spatial-human-anatomy\results\dev\medgemma\zero_shot_doc_results.jsonl
+ERROR while processing document 27/500 (row_id=11573852): RuntimeError: MedGemma API/JSON response failed after 3 attempts: MedGemma returned invalid JSON: {"entities": [{"text": "Amphotericin B", "label": "CHEMICAL", "start_char": 103, "end_char": 112}, {"text": "seizures", "label": "DISEASE", "start_char": 145, "end_char": 152}, {"text": "AIDS", "label": "DISEASE", "start_char": 306, "end_char": 311}, {"text": "amphotericin B", "label": "CHEMICAL", "start_char": 478, "end_char": 492}, {"text": "seizures", "label": "DISEASE", "start_char": 560, "end_char": 567}, {"text": "amphotercin B", "label": "CHEMICAL", "start_char": 631, "end_char": 642}, {"
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\University\Projects\spatial-human-anatomy\src\medgemma_bc5cdr.py", line 236, in <module>
+    main()
+  File "C:\University\Projects\spatial-human-anatomy\src\medgemma_bc5cdr.py", line 119, in main
+    api_response, parsed, attempts_used = chat_and_parse_with_retries(
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\University\Projects\spatial-human-anatomy\src\medgemma_common.py", line 503, in chat_and_parse_with_retries
+    raise RuntimeError(
+RuntimeError: MedGemma API/JSON response failed after 3 attempts: MedGemma returned invalid JSON: {"entities": [{"text": "Amphotericin B", "label": "CHEMICAL", "start_char": 103, "end_char": 112}, {"text": "seizures", "label": "DISEASE", "start_char": 145, "end_char": 152}, {"text": "AIDS", "label": "DISEASE", "start_char": 306, "end_char": 311}, {"text": "amphotericin B", "label": "CHEMICAL", "start_char": 478, "end_char": 492}, {"text": "seizures", "label": "DISEASE", "start_char": 560, "end_char": 567}, {"text": "amphotercin B", "label": "CHEMICAL", "start_char": 631, "end_char": 642}, {"
+FAILED: python -m src.medgemma_bc5cdr --split dev
+Resume by running 05_RUN_MEDGEMMA_BC5CDR.cmd again.

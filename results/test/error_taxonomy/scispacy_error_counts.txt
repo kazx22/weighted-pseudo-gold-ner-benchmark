@@ -1,0 +1,21 @@
+ERROR COUNTS - SCISPACY
+============================================================
+
+Grand total errors: 3564
+
+FALSE_POSITIVE  (n=720)
+    CHEMICAL                          352  (48.9%)
+    DISEASE                           368  (51.1%)
+
+FALSE_NEGATIVE  (n=1778)
+    CHEMICAL                         1170  (65.8%)
+    DISEASE                           608  (34.2%)
+
+BOUNDARY_ERROR  (n=1010)
+    CHEMICAL                          365  (36.1%)
+    DISEASE                           645  (63.9%)
+
+TYPE_CONFUSION  (n=56)
+    CHEMICAL->DISEASE                  18  (32.1%)
+    DISEASE->CHEMICAL                  38  (67.9%)
+

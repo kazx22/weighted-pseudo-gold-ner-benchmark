@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "dataset": "BioRED",
+  "task_scope": [
+    "DISEASE",
+    "CHEMICAL"
+  ],
+  "fit_split": "dev",
+  "primary_metric": "exact_character_span_and_label_micro_f1",
+  "weight_definition": "raw BioRED development exact-span F1",
+  "threshold_selection_rule": "highest F1, then highest precision, then highest threshold",
+  "weights": {
+    "scispacy": 0.66222093,
+    "biobert": 0.47078715,
+    "pubmedbert": 0.3312263,
+    "clinicalbert": 0.25735678,
+    "bioelectra": 0.15794872
+  },
+  "selected_threshold": 0.82016965,
+  "selected_threshold_metrics": {
+    "threshold": 0.82016965,
+    "precision": 0.82054891,
+    "recall": 0.64634146,
+    "f1": 0.72310078,
+    "tp": 1166,
+    "fp": 255,
+    "fn": 638,
+    "entity_count": 1421
+  },
+  "development_model_metrics": {
+    "scispacy": {
+      "precision": 0.6942249240121581,
+      "recall": 0.6330376940133038,
+      "f1": 0.6622209336039432,
+      "tp": 1142,
+      "fp": 503,
+      "fn": 662,
+      "support": 1804
+    },
+    "biobert": {
+      "precision": 0.3560670645069622,
+      "recall": 0.6945676274944568,
+      "f1": 0.4707871501033252,
+      "tp": 1253,
+      "fp": 2266,
+      "fn": 551,
+      "support": 1804
+    },
+    "pubmedbert": {
+      "precision": 0.24564693276185373,
+      "recall": 0.5083148558758315,
+      "f1": 0.33122629582806573,
+      "tp": 917,
+      "fp": 2816,
+      "fn": 887,
+      "support": 1804
+    },
+    "clinicalbert": {
+      "precision": 0.18761106879918762,
+      "recall": 0.40964523281596454,
+      "f1": 0.2573567821695978,
+      "tp": 739,
+      "fp": 3200,
+      "fn": 1065,
+      "support": 1804
+    },
+    "bioelectra": {
+      "precision": 0.14694656488549618,
+      "recall": 0.17073170731707318,
+      "f1": 0.15794871794871793,
+      "tp": 308,
+      "fp": 1788,
+      "fn": 1496,
+      "support": 1804
+    }
+  },
+  "threshold_results": [
+    {
+      "threshold": 0.15794872,
+      "precision": 0.15224555,
+      "recall": 0.89634146,
+      "f1": 0.26028169,
+      "tp": 1617,
+      "fp": 9004,
+      "fn": 187,
+      "entity_count": 10621
+    },
+    {
+      "threshold": 0.25735678,
+      "precision": 0.17560336,
+      "recall": 0.89135255,
+      "f1": 0.29340389,
+      "tp": 1608,
+      "fp": 7549,
+      "fn": 196,
+      "entity_count": 9157
+    },
+    {
+      "threshold": 0.3312263,
+      "precision": 0.25157538,
+      "recall": 0.86308204,
+      "f1": 0.38959089,
+      "tp": 1557,
+      "fp": 4632,
+      "fn": 247,
+      "entity_count": 6189
+    },
+    {
+      "threshold": 0.4153055,
+      "precision": 0.33881135,
+      "recall": 0.83425721,
+      "f1": 0.48190842,
+      "tp": 1505,
+      "fp": 2937,
+      "fn": 299,
+      "entity_count": 4442
+    },
+    {
+      "threshold": 0.47078715,
+      "precision": 0.34981343,
+      "recall": 0.83148559,
+      "f1": 0.49244911,
+      "tp": 1500,
+      "fp": 2788,
+      "fn": 304,
+      "entity_count": 4288
+    },
+    {
+      "threshold": 0.48917502,
+      "precision": 0.48130684,
+      "recall": 0.7921286,
+      "f1": 0.59878483,
+      "tp": 1429,
+      "fp": 1540,
+      "fn": 375,
+      "entity_count": 2969
+    },
+    {
+      "threshold": 0.58858308,
+      "precision": 0.4968663,
+      "recall": 0.79101996,
+      "f1": 0.61035073,
+      "tp": 1427,
+      "fp": 1445,
+      "fn": 377,
+      "entity_count": 2872
+    },
+    {
+      "threshold": 0.62873587,
+      "precision": 0.49824438,
+      "recall": 0.78658537,
+      "f1": 0.61006019,
+      "tp": 1419,
+      "fp": 1429,
+      "fn": 385,
+      "entity_count": 2848
+    },
+    {
+      "threshold": 0.66222093,
+      "precision": 0.50502152,
+      "recall": 0.7804878,
+      "f1": 0.61324042,
+      "tp": 1408,
+      "fp": 1380,
+      "fn": 396,
+      "entity_count": 2788
+    },
+    {
+      "threshold": 0.72814393,
+      "precision": 0.54799514,
+      "recall": 0.75,
+      "f1": 0.63327873,
+      "tp": 1353,
+      "fp": 1116,
+      "fn": 451,
+      "entity_count": 2469
+    },
+    {
+      "threshold": 0.7465318,
+      "precision": 0.54217373,
+      "recall": 0.71618625,
+      "f1": 0.61714832,
+      "tp": 1292,
+      "fp": 1091,
+      "fn": 512,
+      "entity_count": 2383
+    },
+    {
+      "threshold": 0.80201345,
+      "precision": 0.54422915,
+      "recall": 0.71618625,
+      "f1": 0.61847774,
+      "tp": 1292,
+      "fp": 1082,
+      "fn": 512,
+      "entity_count": 2374
+    },
+    {
+      "threshold": 0.82016965,
+      "precision": 0.82054891,
+      "recall": 0.64634146,
+      "f1": 0.72310078,
+      "tp": 1166,
+      "fp": 255,
+      "fn": 638,
+      "entity_count": 1421
+    },
+    {
+      "threshold": 0.88609265,
+      "precision": 0.82076814,
+      "recall": 0.63968958,
+      "f1": 0.71900312,
+      "tp": 1154,
+      "fp": 252,
+      "fn": 650,
+      "entity_count": 1406
+    },
+    {
+      "threshold": 0.91957771,
+      "precision": 0.82517986,
+      "recall": 0.63580931,
+      "f1": 0.71822167,
+      "tp": 1147,
+      "fp": 243,
+      "fn": 657,
+      "entity_count": 1390
+    },
+    {
+      "threshold": 0.95996217,
+      "precision": 0.84456355,
+      "recall": 0.61141907,
+      "f1": 0.70932476,
+      "tp": 1103,
+      "fp": 203,
+      "fn": 701,
+      "entity_count": 1306
+    },
+    {
+      "threshold": 0.99344723,
+      "precision": 0.84423676,
+      "recall": 0.60088692,
+      "f1": 0.70207254,
+      "tp": 1084,
+      "fp": 200,
+      "fn": 720,
+      "entity_count": 1284
+    },
+    {
+      "threshold": 1.05937023,
+      "precision": 0.89705882,
+      "recall": 0.5748337,
+      "f1": 0.70067568,
+      "tp": 1037,
+      "fp": 119,
+      "fn": 767,
+      "entity_count": 1156
+    },
+    {
+      "threshold": 1.07752643,
+      "precision": 0.89521229,
+      "recall": 0.54933481,
+      "f1": 0.68086568,
+      "tp": 991,
+      "fp": 116,
+      "fn": 813,
+      "entity_count": 1107
+    },
+    {
+      "threshold": 1.13300808,
+      "precision": 0.89717925,
+      "recall": 0.54656319,
+      "f1": 0.67929728,
+      "tp": 986,
+      "fp": 113,
+      "fn": 818,
+      "entity_count": 1099
+    },
+    {
+      "threshold": 1.15139595,
+      "precision": 0.89160468,
+      "recall": 0.46507761,
+      "f1": 0.61129326,
+      "tp": 839,
+      "fp": 102,
+      "fn": 965,
+      "entity_count": 941
+    },
+    {
+      "threshold": 1.21731895,
+      "precision": 0.89479393,
+      "recall": 0.45731707,
+      "f1": 0.60528247,
+      "tp": 825,
+      "fp": 97,
+      "fn": 979,
+      "entity_count": 922
+    },
+    {
+      "threshold": 1.25080401,
+      "precision": 0.89496718,
+      "recall": 0.45343681,
+      "f1": 0.60191317,
+      "tp": 818,
+      "fp": 96,
+      "fn": 986,
+      "entity_count": 914
+    },
+    {
+      "threshold": 1.2909568,
+      "precision": 0.89534884,
+      "recall": 0.42682927,
+      "f1": 0.57807808,
+      "tp": 770,
+      "fp": 90,
+      "fn": 1034,
+      "entity_count": 860
+    },
+    {
+      "threshold": 1.39036486,
+      "precision": 0.89371981,
+      "recall": 0.41019956,
+      "f1": 0.56231003,
+      "tp": 740,
+      "fp": 88,
+      "fn": 1064,
+      "entity_count": 828
+    },
+    {
+      "threshold": 1.40875273,
+      "precision": 0.88954345,
+      "recall": 0.33481153,
+      "f1": 0.48650826,
+      "tp": 604,
+      "fp": 75,
+      "fn": 1200,
+      "entity_count": 679
+    },
+    {
+      "threshold": 1.46423438,
+      "precision": 0.88755622,
+      "recall": 0.32815965,
+      "f1": 0.47915824,
+      "tp": 592,
+      "fp": 75,
+      "fn": 1212,
+      "entity_count": 667
+    },
+    {
+      "threshold": 1.54831358,
+      "precision": 0.96111111,
+      "recall": 0.19179601,
+      "f1": 0.31977819,
+      "tp": 346,
+      "fp": 14,
+      "fn": 1458,
+      "entity_count": 360
+    },
+    {
+      "threshold": 1.6221831,
+      "precision": 0.95394737,
+      "recall": 0.16075388,
+      "f1": 0.27514231,
+      "tp": 290,
+      "fp": 14,
+      "fn": 1514,
+      "entity_count": 304
+    },
+    {
+      "threshold": 1.72159116,
+      "precision": 0.96564885,
+      "recall": 0.1402439,
+      "f1": 0.24491772,
+      "tp": 253,
+      "fp": 9,
+      "fn": 1551,
+      "entity_count": 262
+    },
+    {
+      "threshold": 1.87953988,
+      "precision": 1.0,
+      "recall": 0.04545455,
+      "f1": 0.08695652,
+      "tp": 82,
+      "fp": 0,
+      "fn": 1722,
+      "entity_count": 82
+    }
+  ],
+  "majority_rule": "at least 3 of 5 models"
+}

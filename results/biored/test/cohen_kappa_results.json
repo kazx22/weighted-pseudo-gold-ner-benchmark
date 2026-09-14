@@ -1,0 +1,100 @@
+{
+  "dataset": "BioRED",
+  "task_scope": [
+    "DISEASE",
+    "CHEMICAL"
+  ],
+  "split": "test",
+  "level": "token-level BIO labels",
+  "caution": "The frequent O class can inflate agreement; primary evaluation is exact span and label.",
+  "pairwise": [
+    {
+      "model_1": "scispaCy",
+      "model_2": "BioBERT",
+      "kappa": 0.043884602063354095,
+      "interpretation": "Slight"
+    },
+    {
+      "model_1": "scispaCy",
+      "model_2": "PubMedBERT",
+      "kappa": 0.03645415068944613,
+      "interpretation": "Slight"
+    },
+    {
+      "model_1": "scispaCy",
+      "model_2": "ClinicalBERT",
+      "kappa": 0.2877508639620293,
+      "interpretation": "Fair"
+    },
+    {
+      "model_1": "scispaCy",
+      "model_2": "BioELECTRA",
+      "kappa": 0.39187554406278025,
+      "interpretation": "Fair"
+    },
+    {
+      "model_1": "BioBERT",
+      "model_2": "PubMedBERT",
+      "kappa": 0.8165789779609165,
+      "interpretation": "Almost perfect"
+    },
+    {
+      "model_1": "BioBERT",
+      "model_2": "ClinicalBERT",
+      "kappa": 0.025488345699678838,
+      "interpretation": "Slight"
+    },
+    {
+      "model_1": "BioBERT",
+      "model_2": "BioELECTRA",
+      "kappa": 0.028700621803076753,
+      "interpretation": "Slight"
+    },
+    {
+      "model_1": "PubMedBERT",
+      "model_2": "ClinicalBERT",
+      "kappa": 0.017995792430198998,
+      "interpretation": "Slight"
+    },
+    {
+      "model_1": "PubMedBERT",
+      "model_2": "BioELECTRA",
+      "kappa": 0.027502406863325612,
+      "interpretation": "Slight"
+    },
+    {
+      "model_1": "ClinicalBERT",
+      "model_2": "BioELECTRA",
+      "kappa": 0.2385807924199984,
+      "interpretation": "Fair"
+    }
+  ],
+  "versus_human_gold": [
+    {
+      "model": "scispaCy",
+      "kappa": 0.7023620631225505,
+      "interpretation": "Substantial"
+    },
+    {
+      "model": "BioBERT",
+      "kappa": 0.05340815246006447,
+      "interpretation": "Slight"
+    },
+    {
+      "model": "PubMedBERT",
+      "kappa": 0.04108719960535556,
+      "interpretation": "Slight"
+    },
+    {
+      "model": "ClinicalBERT",
+      "kappa": 0.33195499888328217,
+      "interpretation": "Fair"
+    },
+    {
+      "model": "BioELECTRA",
+      "kappa": 0.44474670734693,
+      "interpretation": "Moderate"
+    }
+  ],
+  "mean_pairwise_kappa": 0.1914812097954805
+}

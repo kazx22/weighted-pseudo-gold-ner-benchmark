@@ -13,10 +13,19 @@ Pipeline position: runs after parse_bc5cdr.py; output feeds candidate_gold.py
 and bc5cdr_evaluation.py.
 """
 
+import argparse
 import json
 import time
 from pathlib import Path
 import spacy
+
+from src.experiment_config import (
+    docs_file,
+    normalize_split,
+    prediction_file,
+    record_runtime,
+    require_file,
+)
 
 MODEL_NAME = "en_ner_bc5cdr_md"
 
@@ -83,26 +92,44 @@ def run_scispacy(docs):
     print(f"Total time taken: {total_time:.2f} seconds")
     print(f"Average time per document: {avg_time:.4f} seconds")
 
-    return all_entities
+    return all_entities, total_time, avg_time
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Run SciSpacy on one BC5CDR split.")
+    parser.add_argument(
+        "--split",
+        required=True,
+        choices=["dev", "test", "development"],
+        help="Use dev for weight/threshold fitting and test for final evaluation.",
+    )
+    args = parser.parse_args()
+    split = normalize_split(args.split, allow_train=False)
+
+    input_file = require_file(docs_file(split), "parsed document file")
+    output_file = prediction_file("scispacy", split)
+
+    print(f"Loading BC5CDR {split} documents from {input_file}...")
+    docs = load_jsonl(input_file)
+    if not docs:
+        raise ValueError(f"No documents found in {input_file}")
+    print(f"Loaded {len(docs)} documents")
+    print("Running SciSpacy BC5CDR pipeline...")
+
+    entities, total_time, avg_time = run_scispacy(docs)
+    save_jsonl(entities, output_file)
+    record_runtime(
+        split,
+        "scispacy",
+        total_seconds=total_time,
+        average_seconds=avg_time,
+        document_count=len(docs),
+        entity_count=len(entities),
+    )
+
+    print(f"Saved {len(entities)} SciSpacy entities to {output_file}")
+    print(f"Saved runtime metadata to results/{split}/runtime.json")
 
 
 if __name__ == "__main__":
-    input_file = Path("data/processed/bc5cdr/bc5cdr_train_docs.jsonl")
-    output_file = Path("data/processed/bc5cdr/scispacy_train_entities_bc5cdr.jsonl")
-
-    print("Loading BC5CDR train docs...")
-    docs = load_jsonl(input_file)
-    print(f"Loaded {len(docs)} documents")
-
-    print(f"Running SciSpacy model: {MODEL_NAME}")
-    entities = run_scispacy(docs)
-
-    print(f"Predicted {len(entities)} entities")
-    save_jsonl(entities, output_file)
-
-    print(f"Saved SciSpacy entities to {output_file}")
-
-
-# Total time taken: 11.92 seconds
-# Average time per document: 0.0238 seconds
-# Predicted 8597 entities
+    main()

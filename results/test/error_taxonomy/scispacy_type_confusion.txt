@@ -1,0 +1,204 @@
+ERROR TYPE: TYPE_CONFUSION
+Total instances: 56  |  Showing: 40
+================================================================================
+
+--- Sample 1 ---
+  PRED : [CHEMICAL]  'AGC'
+  GOLD : [DISEASE]  'AGC'
+  CTX  : ...U/FA and 3-weekly bolus MMC. PATIENTS AND METHODS: From February, 1998 to September, 2000 we recruited 33 patients with >>>AGC<<< to receive weekly 24-hour 5-FU 2,600 mg/m(2) preceded by 2-hour FA 500 mg/m(2) for 6 weeks, followed by a 2-week rest p...
+
+--- Sample 2 ---
+  PRED : [DISEASE]  'CAN'
+  GOLD : [CHEMICAL]  'CAN'
+  CTX  : ...Quality Index, and Wechsler Memory Scale-Revised which, in total, provided 13 psychometric measures. RESULTS: While the >>>CAN<<< and PD groups tended to record greater deficits than the non-drug controls, the MDMA and EX-MDMA groups recorded greate...
+
+--- Sample 3 ---
+  PRED : [CHEMICAL]  'RRMM'
+  GOLD : [DISEASE]  'RRMM'
+  CTX  : ...yeloma Study Group. Lenalidomide and dexamethasone (RD) is a standard of care for relapsed/refractory multiple myeloma (>>>RRMM<<<), but there is limited published data on its efficacy and safety in the "real world" (RW), according to the Internation...
+
+--- Sample 4 ---
+  PRED : [CHEMICAL]  'hepatitis B'
+  GOLD : [DISEASE]  'hepatitis B'
+  CTX  : Intramuscular >>>hepatitis B<<< immune globulin combined with lamivudine in prevention of hepatitis B recurrence after liver transplantation. BACKGROUN...
+
+--- Sample 5 ---
+  PRED : [CHEMICAL]  'OIH'
+  GOLD : [DISEASE]  'OIH'
+  CTX  : ...nduced writhing test. Our data suggested that the ginsenoside Re, but not Rg1 or Rb1, may contribute toward reversal of >>>OIH<<<.
+
+--- Sample 6 ---
+  PRED : [CHEMICAL]  'OIH'
+  GOLD : [DISEASE]  'OIH'
+  CTX  : ...mal sensitivity test and the acetic acid-induced writhing test. However, the Rg1 and Rb1 ginsenosides failed to prevent >>>OIH<<< in either test. Furthermore, Rg1 showed a tendency to aggravate OIH in the acetic acid-induced writhing test. Our data ...
+
+--- Sample 7 ---
+  PRED : [CHEMICAL]  'OIH'
+  GOLD : [DISEASE]  'OIH'
+  CTX  : ...mice were subjected to the thermal sensitivity test and the acetic acid-induced writhing test. Re (300 mg/kg) inhibited >>>OIH<<< in both the thermal sensitivity test and the acetic acid-induced writhing test. However, the Rg1 and Rb1 ginsenosides f...
+
+--- Sample 8 ---
+  PRED : [CHEMICAL]  'HL'
+  GOLD : [DISEASE]  'HL'
+  CTX  : ...re inpatient administration and can be difficult to deliver due to toxicity. Gemcitabine and cisplatin have activity in >>>HL<<<, non-overlapping toxicity with first-line chemotherapeutics, and may be delivered in an outpatient setting. In this ret...
+
+--- Sample 9 ---
+  PRED : [DISEASE]  'CM'
+  GOLD : [CHEMICAL]  'CM'
+  CTX  : ...xicity after renal artery and coronary angioplasty. BACKGROUND: Renal dysfunction induced by iodinated contrast medium (>>>CM<<<) administration can minimize the benefit of the interventional procedure in patients undergoing renal angioplasty (PTRA...
+
+--- Sample 10 ---
+  PRED : [DISEASE]  'CAN'
+  GOLD : [CHEMICAL]  'CAN'
+  CTX  : ...ants (52 % male) was recruited to four control groups (non-drug (ND), alcohol/nicotine (AN), cannabis/alcohol/nicotine (>>>CAN<<<), non-ecstasy polydrug (PD)), and two ecstasy polydrug groups (present (MDMA) and past users (EX-MDMA). Participants co...
+
+--- Sample 11 ---
+  PRED : [CHEMICAL]  'AIN'
+  GOLD : [DISEASE]  'AIN'
+  CTX  : Acute interstitial nephritis due to nicergoline (Sermion). We report a case of acute interstitial nephritis (>>>AIN<<<) due to nicergoline (Sermion). A 50-year-old patient admitted to our hospital for fever and acute renal failure. Before...
+
+--- Sample 12 ---
+  PRED : [DISEASE]  'PDN'
+  GOLD : [CHEMICAL]  'PDN'
+  CTX  : ...es and microglia cells were assessed by immunohistochemical analyses. RESULTS: Anxiety was documented in both groups of >>>PDN<<< treated rats compared with controls. The magnitude of transformation of the microglia assessed by the number of interse...
+
+--- Sample 13 ---
+  PRED : [CHEMICAL]  'HIT type II'
+  GOLD : [DISEASE]  'HIT type II'
+  CTX  : ...S: The incidence of HIT in patients with end-stage hepatic failure is, with about 1.95%, rare. For further reduction of >>>HIT type II<<<, the use of intravenous heparin should be avoided and the prophylactic anticoagulation should be performed with low-mol...
+
+--- Sample 14 ---
+  PRED : [DISEASE]  'PDN'
+  GOLD : [CHEMICAL]  'PDN'
+  CTX  : ...ly more numerous striatum and hippocampus in the high-dose group compared to controls. CONCLUSION: Subacute exposure to >>>PDN<<< induced anxiety and reactivity of microglia. The relevance of these features for patients using PDN remains to be eluci...
+
+--- Sample 15 ---
+  PRED : [CHEMICAL]  'APL'
+  GOLD : [DISEASE]  'APL'
+  CTX  : ... associated with ATRA therapy in APL patients. The patients, a 43-year-old man, presented all the signs and symptoms of >>>APL<<< and was included in a treatment protocol with ATRA. After 10 days of treatment, he developed acute renal failure that w...
+
+--- Sample 16 ---
+  PRED : [CHEMICAL]  'RRMM'
+  GOLD : [DISEASE]  'RRMM'
+  CTX  : ...rld" (RW), according to the International Society of Pharmacoeconomics and Outcomes Research definition. We studied 212 >>>RRMM<<< patients who received RD in RW. Objective response (>PR (partial response)) rate was 77.4 % (complete response (CR), 20...
+
+--- Sample 17 ---
+  PRED : [DISEASE]  'CM'
+  GOLD : [CHEMICAL]  'CM'
+  CTX  : ...cedure in patients undergoing renal angioplasty (PTRA). PURPOSE: To compare the susceptibility to nephrotoxic effect of >>>CM<<< in patients undergoing PTRA with that of patients submitted to percutaneous coronary intervention (PCI). MATERIAL AND M...
+
+--- Sample 18 ---
+  PRED : [DISEASE]  'domperione'
+  GOLD : [CHEMICAL]  'domperione'
+  CTX  : ...tionship between the use of mirtazapine and the symptoms of RLS in our patient did not support a potentiating effect of >>>domperione<<< on mirtazapine-associated RLS. However, physicians should be aware of the possibility that mirtazapine can be associate...
+
+--- Sample 19 ---
+  PRED : [CHEMICAL]  'OIH'
+  GOLD : [DISEASE]  'OIH'
+  CTX  : ... this study, we investigated the effects of Re, Rg1, and Rb1 ginsenosides, the bioactive components of ginseng, on OIH. >>>OIH<<< was achieved in mice after subcutaneous administration of morphine for 7 consecutive days three times per day. During w...
+
+--- Sample 20 ---
+  PRED : [CHEMICAL]  'AMI'
+  GOLD : [DISEASE]  'AMI'
+  CTX  : ...non-selective (NS) non-steroidal anti-inflammatory drugs (NSAIDs). We aimed to compare the risks of hospitalization for >>>AMI<<< and GI bleeding among elderly patients using COX-2 inhibitors, NS-NSAIDs and acetaminophen. METHODS: We conducted a ret...
+
+--- Sample 21 ---
+  PRED : [DISEASE]  'PDN'
+  GOLD : [CHEMICAL]  'PDN'
+  CTX  : ...e-dose group received 5 mg/kg/day PDN released from a subcutaneous implant. In the high-dose group, implants containing >>>PDN<<< equivalent to 60 mg/kg/day were applied. In the control group implants contained no PDN. Anxiety was assessed using an ...
+
+--- Sample 22 ---
+  PRED : [CHEMICAL]  'AGC'
+  GOLD : [DISEASE]  'AGC'
+  CTX  : ...ouracil (5-FU) and folinic acid (FA) as part of several new multidrug chemotherapy regimens in advanced gastric cancer (>>>AGC<<<) has shown to be effective, with low toxicity. In a previous phase II study with 3-weekly bolus 5-FU, FA and mitomycin ...
+
+--- Sample 23 ---
+  PRED : [CHEMICAL]  'OIH'
+  GOLD : [DISEASE]  'OIH'
+  CTX  : ...n. In this study, we investigated the effects of Re, Rg1, and Rb1 ginsenosides, the bioactive components of ginseng, on >>>OIH<<<. OIH was achieved in mice after subcutaneous administration of morphine for 7 consecutive days three times per day. Dur...
+
+--- Sample 24 ---
+  PRED : [CHEMICAL]  'APL'
+  GOLD : [DISEASE]  'APL'
+  CTX  : ...h ATRA alone. This case further supports the concern about thromboembolic complications associated with ATRA therapy in >>>APL<<< patients. The patients, a 43-year-old man, presented all the signs and symptoms of APL and was included in a treatment ...
+
+--- Sample 25 ---
+  PRED : [DISEASE]  'PDN'
+  GOLD : [CHEMICAL]  'PDN'
+  CTX  : ...controls 18.9; p < 0.01), but not in hippocampus. The number of stained microglia cells was significantly higher in the >>>PDN<<< treated groups in the prefrontal cortex than in controls (moderate-dose, 29.1; high-dose, 28.4; control, 17.7 cells per...
+
+--- Sample 26 ---
+  PRED : [DISEASE]  'PDN'
+  GOLD : [CHEMICAL]  'PDN'
+  CTX  : ...Male Wistar rats were studied and 3 groups were formed (8 rats per group). The moderate-dose group received 5 mg/kg/day >>>PDN<<< released from a subcutaneous implant. In the high-dose group, implants containing PDN equivalent to 60 mg/kg/day were a...
+
+--- Sample 27 ---
+  PRED : [CHEMICAL]  'IUGR'
+  GOLD : [DISEASE]  'IUGR'
+  CTX  : ...e induction to glomerulosclerosis in adult offspring by PCE and its intrauterine programming mechanisms. A rat model of >>>IUGR<<< was established by PCE, male fetuses and adult offspring at the age of postnatal week 24 were euthanized. The results r...
+
+--- Sample 28 ---
+  PRED : [CHEMICAL]  'AMI'
+  GOLD : [DISEASE]  'AMI'
+  CTX  : ...ceed their gastrointestinal benefit? A retrospective cohort study. OBJECTIVES: The risk of acute myocardial infarction (>>>AMI<<<) with COX-2 inhibitors may offset their gastrointestinal (GI) benefit compared with non-selective (NS) non-steroidal an...
+
+--- Sample 29 ---
+  PRED : [CHEMICAL]  'hepatitis B'
+  GOLD : [DISEASE]  'hepatitis B'
+  CTX  : ...hemically, and serologically up to 4 weeks after drug treatment. All 36 patients receiving lamivudine had a decrease in >>>hepatitis B<<< virus (HBV) DNA values of >90% (P < .001 compared with placebo). Although 25 mg of lamivudine was slightly less effecti...
+
+--- Sample 30 ---
+  PRED : [CHEMICAL]  'SRC'
+  GOLD : [DISEASE]  'SRC'
+  CTX  : ...thrombotic microangiopathy precipitated by cyclosporine in patients with SSc. In this article, we report a patient with >>>SRC<<< induced by tacrolimus and corticosteroids. The aim of this work is to call attention to the risk of tacrolimus use in p...
+
+--- Sample 31 ---
+  PRED : [CHEMICAL]  'hepatitis B'
+  GOLD : [DISEASE]  'hepatitis B'
+  CTX  : Lamivudine is effective in suppressing >>>hepatitis B<<< virus DNA in Chinese hepatitis B surface antigen carriers: a placebo-controlled trial. Lamivudine is a novel 2',3'-dide...
+
+--- Sample 32 ---
+  PRED : [DISEASE]  'PDN'
+  GOLD : [CHEMICAL]  'PDN'
+  CTX  : ...ubacute exposure to PDN induced anxiety and reactivity of microglia. The relevance of these features for patients using >>>PDN<<< remains to be elucidated.
+
+--- Sample 33 ---
+  PRED : [CHEMICAL]  'serotonin syndrome'
+  GOLD : [DISEASE]  'serotonin syndrome'
+  CTX  : Encephalopathy during amitriptyline therapy: are neuroleptic malignant syndrome and >>>serotonin syndrome<<< spectrum disorders? This report describes a case of encephalopathy developed in the course of amitriptyline therapy, du...
+
+--- Sample 34 ---
+  PRED : [CHEMICAL]  'AGC'
+  GOLD : [DISEASE]  'AGC'
+  CTX  : ...tic-uremic syndrome (HUS). CONCLUSIONS: High-dose 5-FU/FA/MMC is an effective and well-tolerated outpatient regimen for >>>AGC<<< (objective response rate 54.6%). It may serve as an alternative to cisplatin-containing regimens; however, it has to be...
+
+--- Sample 35 ---
+  PRED : [CHEMICAL]  'OIH'
+  GOLD : [DISEASE]  'OIH'
+  CTX  : Effects of ginsenosides on opioid-induced hyperalgesia in mice. Opioid-induced hyperalgesia (>>>OIH<<<) is characterized by nociceptive sensitization caused by the cessation of chronic opioid use. OIH can limit the clinica...
+
+--- Sample 36 ---
+  PRED : [CHEMICAL]  'APL'
+  GOLD : [DISEASE]  'APL'
+  CTX  : ...After 10 days of treatment, he developed acute renal failure that was completely reversible after complete remission of >>>APL<<< was achieved and therapy discontinued. We conclude that ATRA is a valid therapeutic choice for patients with APL, altho...
+
+--- Sample 37 ---
+  PRED : [CHEMICAL]  'HIT type II'
+  GOLD : [DISEASE]  'HIT type II'
+  CTX  : ..., low levels of thrombopoetin, and endotoxemia. The impact of immune-mediated heparin-induced thrombocytopenia type II (>>>HIT type II<<<) as a cause of thrombocytopenia after liver transplantation is not yet understood, with few literature citations report...
+
+--- Sample 38 ---
+  PRED : [DISEASE]  'TG'
+  GOLD : [CHEMICAL]  'TG'
+  CTX  : ...er. MATERIALS AND METHODS: We studied with a 2.5 years follow-up the changes in plasma cholesterols (C), triglycerides (>>>TG<<<), lipoproteins (LP), and apolipoproteins (Apo) B-100, A-I, and A-II pro fi les in 24 patients of mean age 60 years with...
+
+--- Sample 39 ---
+  PRED : [DISEASE]  'MP'
+  GOLD : [CHEMICAL]  'MP'
+  CTX  : ...one therapy. In 5 consecutive patients with rheumatoid arthritis who received intravenous high-dose methylprednisolone (>>>MP<<<) therapy (1 g daily for 2 or 3 consecutive days), a decline in pulse rate was observed, most pronounced on day 4. In on...
+
+--- Sample 40 ---
+  PRED : [CHEMICAL]  'RRMM'
+  GOLD : [DISEASE]  'RRMM'
+  CTX  : ...ntinuation. Extra-medullary relapses occurred in 3.8 % of patients. Our study confirms that RD is effective and safe in >>>RRMM<<< in the RW; it produces durable responses especially in patients who continue on treatment till progression and improves...
+

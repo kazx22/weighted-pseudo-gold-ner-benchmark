@@ -1,0 +1,21 @@
+{
+  "source_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\raw\\biored\\_extracted\\BioRED\\Dev.PubTator",
+  "document_count": 100,
+  "target_entity_count": 1804,
+  "target_labels": {
+    "CHEMICAL": 822,
+    "DISEASE": 982
+  },
+  "ignored_entity_labels": {
+    "CellLine": 22,
+    "GeneOrGeneProduct": 1087,
+    "OrganismTaxon": 370,
+    "SequenceVariant": 250
+  },
+  "ignored_relation_lines": 1162,
+  "task_scope": [
+    "DISEASE",
+    "CHEMICAL"
+  ],
+  "note": "Only DiseaseOrPhenotypicFeature and ChemicalEntity annotations are used as gold targets. Other BioRED entity classes are outside this study."
+}

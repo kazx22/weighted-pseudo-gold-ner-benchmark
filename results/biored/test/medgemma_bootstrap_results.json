@@ -1,0 +1,78 @@
+{
+  "dataset": "BioRED",
+  "task_scope": [
+    "DISEASE",
+    "CHEMICAL"
+  ],
+  "split": "test",
+  "metric": "exact_character_span_and_label_micro_f1",
+  "resamples": 1000,
+  "seed": 42,
+  "confidence_intervals": [
+    {
+      "system": "Weighted Pseudo-Gold",
+      "precision": 0.8135338345864662,
+      "recall": 0.6475164572112507,
+      "f1": 0.7210929690103299,
+      "ci_low": 0.6822715679772862,
+      "ci_high": 0.7556839606219503
+    },
+    {
+      "system": "scispaCy",
+      "precision": 0.6586121437422553,
+      "recall": 0.6361460203470976,
+      "f1": 0.6471841704718417,
+      "ci_low": 0.6033494568607375,
+      "ci_high": 0.6875773631917316
+    },
+    {
+      "system": "MedGemma Zero-Shot",
+      "precision": 0.3191116306253653,
+      "recall": 0.3267504488330341,
+      "f1": 0.3228858663512715,
+      "ci_low": 0.2849032984787711,
+      "ci_high": 0.3614198223555482
+    },
+    {
+      "system": "Weighted + MedGemma Tie-Breaker",
+      "precision": 0.6492942453854506,
+      "recall": 0.7157390783961699,
+      "f1": 0.6808995160831198,
+      "ci_low": 0.6447166062444437,
+      "ci_high": 0.7145207337943426
+    }
+  ],
+  "comparisons": [
+    {
+      "system_1": "Weighted + MedGemma Tie-Breaker",
+      "system_2": "Weighted Pseudo-Gold",
+      "f1_system_1": 0.6808995160831198,
+      "f1_system_2": 0.7210929690103299,
+      "f1_difference": -0.040193452927210105,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.005994005994005994,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "MedGemma Zero-Shot",
+      "system_2": "scispaCy",
+      "f1_system_1": 0.3228858663512715,
+      "f1_system_2": 0.6471841704718417,
+      "f1_difference": -0.32429830412057026,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.005994005994005994,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "Weighted + MedGemma Tie-Breaker",
+      "system_2": "MedGemma Zero-Shot",
+      "f1_system_1": 0.6808995160831198,
+      "f1_system_2": 0.3228858663512715,
+      "f1_difference": 0.35801364973184835,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.005994005994005994,
+      "significant_holm_0.05": true
+    }
+  ],
+  "multiple_testing_family": "Holm correction across 3 BioRED MedGemma comparisons"
+}

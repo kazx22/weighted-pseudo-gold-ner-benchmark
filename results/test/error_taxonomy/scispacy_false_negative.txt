@@ -1,0 +1,204 @@
+ERROR TYPE: FALSE_NEGATIVE
+Total instances: 1778  |  Showing: 40
+================================================================================
+
+--- Sample 1 ---
+  GOLD : [DISEASE]  'insulin resistance'  (chars 2377-2395)
+  PRED : (missed)
+  CTX  : ...(33) = -4.29; P<.001; olanzapine vs risperidone, t(33) = -3.62; P = .001 [P<.001]). The homeostasis model assessment of >>>insulin resistance<<< also differed significantly among groups (F(33) = 4.92; P = .01) (clozapine>olanzapine>risperidone) (clozapine vs rispe...
+
+--- Sample 2 ---
+  GOLD : [CHEMICAL]  'amphetamine'  (chars 946-957)
+  PRED : (missed)
+  CTX  : ...out using Kruskal-Wallis test for hyper locomotion, and one-way ANOVA for climbing and catalepsy tests. RESULTS: In the >>>amphetamine<<<-induced locomotion test, there were significant increases in all movements compared with the amphetamine-free group. Bo...
+
+--- Sample 3 ---
+  GOLD : [CHEMICAL]  'IFO'  (chars 339-342)
+  PRED : (missed)
+  CTX  : ...plasmic agent. It is characterized by its intense urotoxic action, leading to hemorrhagic cystitis. This side effect of >>>IFO<<< raises the requirement for the co-administration with sodium 2-sulfanylethanesulfonate (Mesna) aiming to avoid or minim...
+
+--- Sample 4 ---
+  GOLD : [CHEMICAL]  'Piperacillin/tazobactam'  (chars 0-23)
+  PRED : (missed)
+  CTX  : >>>Piperacillin/tazobactam<<<-induced seizure rapidly reversed by high flux hemodialysis in a patient on peritoneal dialysis. Despite popular use of ...
+
+--- Sample 5 ---
+  GOLD : [DISEASE]  'burn'  (chars 296-300)
+  PRED : (missed)
+  CTX  : ... patients. Chlorhexidine phosphanilate (CHP), a new broad-spectrum antimicrobial agent, has been evaluated as a topical >>>burn<<< wound dressing in cream form, but preliminary clinical trials reported that it was painful upon application. This study...
+
+--- Sample 6 ---
+  GOLD : [CHEMICAL]  '[35S]TBPS'  (chars 1303-1312)
+  PRED : (missed)
+  CTX  : ...ortex. Moreover, both drugs at the dose of 0.5 mg/kg antagonized completely the convulsant activity and the increase of >>>[35S]TBPS<<< binding induced by isoniazide (350 mg/kg s.c.) as well as the increase of [35S]TBPS binding induced by foot-shock stres...
+
+--- Sample 7 ---
+  GOLD : [CHEMICAL]  'cephalothin'  (chars 162-173)
+  PRED : (missed)
+  CTX  : ...a. A patient with renal disease developed Coombs-positive hemolytic anemia while receiving cephalothin therapy. An anti->>>cephalothin<<< IgG antibody was detected in the patient's serum and in the eluates from her erythrocytes. In addition, nonimmunologic ...
+
+--- Sample 8 ---
+  GOLD : [CHEMICAL]  'STZ'  (chars 141-144)
+  PRED : (missed)
+  CTX  : ...tes streptozotocin-induced memory impairment in male rats. AIM: To study the effects of testosterone on streptozotocin (>>>STZ<<<)-induced memory impairment in male rats. METHODS: Adult male Wistar rats were intracerebroventricularly (icv) infused w...
+
+--- Sample 9 ---
+  GOLD : [DISEASE]  'MDP'  (chars 1076-1079)
+  PRED : (missed)
+  CTX  : ...cts had a panic attack after the 480-mg caffeine challenge test (chi(2)(3) = 16.22, P = .001). The patients with PD and >>>MDP<<< were more sensitive to caffeine than were patients with MD and healthy volunteers. No panic attack was observed after t...
+
+--- Sample 10 ---
+  GOLD : [CHEMICAL]  'doxorubicin'  (chars 77-88)
+  PRED : (missed)
+  CTX  : Hydroxytyrosol ameliorates oxidative stress and mitochondrial dysfunction in >>>doxorubicin<<<-induced cardiotoxicity in rats with breast cancer. Oxidative stress is involved in several processes including cancer, ...
+
+--- Sample 11 ---
+  GOLD : [CHEMICAL]  'triglycerides'  (chars 264-277)
+  PRED : (missed)
+  CTX  : ...h prostate cancer. MATERIALS AND METHODS: We studied with a 2.5 years follow-up the changes in plasma cholesterols (C), >>>triglycerides<<< (TG), lipoproteins (LP), and apolipoproteins (Apo) B-100, A-I, and A-II pro fi les in 24 patients of mean age 60 years ...
+
+--- Sample 12 ---
+  GOLD : [DISEASE]  'MR'  (chars 1068-1070)
+  PRED : (missed)
+  CTX  : ...te heart failure was induced by propranolol and volume loading after weaning from cardiopulmonary bypass; an absence of >>>MR<<< was confirmed by echocardiography. MAP was accomplished by cinching the tourniquets. Data were acquired at baseline, af...
+
+--- Sample 13 ---
+  GOLD : [DISEASE]  'preterm infants'  (chars 355-370)
+  PRED : (missed)
+  CTX  : ...ates born at term. We sought to determine if prenatal cocaine exposure increases the incidence of subependymal cysts in >>>preterm infants<<<. METHODS: We retrospectively reviewed the medical records and cranial sonograms obtained during a 1-year period on 122 ...
+
+--- Sample 14 ---
+  GOLD : [DISEASE]  'Baboon syndrome'  (chars 370-385)
+  PRED : (missed)
+  CTX  : ...tory, which included prior sensitivity to topical ketoconazole, a physical examination, and histopathological findings. >>>Baboon syndrome<<< is a drug- or contact allergen-related maculopapular eruption that typically involves the flexural and gluteal areas. T...
+
+--- Sample 15 ---
+  GOLD : [CHEMICAL]  'Indomethacin'  (chars 0-12)
+  PRED : (missed)
+  CTX  : >>>Indomethacin<<<-induced morphologic changes in the rat urinary bladder epithelium. OBJECTIVES: To evaluate the morphologic changes in r...
+
+--- Sample 16 ---
+  GOLD : [CHEMICAL]  'Phe'  (chars 885-888)
+  PRED : (missed)
+  CTX  : ...ne was determined from relationships between systolic arterial pressure (SAP) and HR period (HRp) during phenylephrine (>>>Phe<<<)-induced hypertension and sodium nitroprusside (SN)-induced hypotension. CCB was measured before and after administrati...
+
+--- Sample 17 ---
+  GOLD : [DISEASE]  'depressive'  (chars 885-895)
+  PRED : (missed)
+  CTX  : ...METH significantly increased the immobility time in the tail suspension test at 3 and 49 days post-administration. This >>>depressive<<<-like profile induced by METH was accompanied by a marked depletion of frontostriatal dopaminergic and serotonergic neur...
+
+--- Sample 18 ---
+  GOLD : [DISEASE]  'AL'  (chars 96-98)
+  PRED : (missed)
+  CTX  : An unexpected diagnosis in a renal-transplant patient with proteinuria treated with everolimus: >>>AL<<< amyloidosis. Proteinuria is an expected complication in transplant patients treated with mammalian target of rapamycin ...
+
+--- Sample 19 ---
+  GOLD : [CHEMICAL]  'Valproate'  (chars 0-9)
+  PRED : (missed)
+  CTX  : >>>Valproate<<<-induced hyperammonemic encephalopathy in a renal transplanted patient. Neurological complications after renal transplan...
+
+--- Sample 20 ---
+  GOLD : [DISEASE]  'Pure red cell aplasia'  (chars 0-21)
+  PRED : (missed)
+  CTX  : >>>Pure red cell aplasia<<<, toxic dermatitis and lymphadenopathy in a patient taking diphenylhydantoin. A patient taking diphenylhydantoin for 3 w...
+
+--- Sample 21 ---
+  GOLD : [DISEASE]  'enlargement of pulse pressure'  (chars 493-522)
+  PRED : (missed)
+  CTX  : ...conversely, potentiated by i.v. desmethylimipramine (0.3 mg), while propranolol (0.5 mg) i.v. selectively inhibited the >>>enlargement of pulse pressure<<< and the tachycardia following i.c. carbachol (1 mug). On the other hand, the pressor response to i.c. carbachol (1 mug)...
+
+--- Sample 22 ---
+  GOLD : [CHEMICAL]  'nocistatin'  (chars 314-324)
+  PRED : (missed)
+  CTX  : ...ceptor-like receptor 1 (ORL1) and involves in various functions in the central nervous system (CNS). On the other hand, >>>nocistatin<<< is recently isolated from the same precursor as nociceptin and blocks nociceptin-induced allodynia and hyperalgesia. 2....
+
+--- Sample 23 ---
+  GOLD : [CHEMICAL]  'Vinorelbine'  (chars 0-11)
+  PRED : (missed)
+  CTX  : >>>Vinorelbine<<<-related cardiac events: a meta-analysis of randomized clinical trials. Several cases of cardiac adverse reactions relat...
+
+--- Sample 24 ---
+  GOLD : [CHEMICAL]  'IFO'  (chars 840-843)
+  PRED : (missed)
+  CTX  : ...a's action, in conjunction with IFO reduces the frequency of SCEs, in comparison with the SCEs recordings obtained when >>>IFO<<< is administered alone. In addition to this, when high concentrations of Mesna were administered alone significant reduc...
+
+--- Sample 25 ---
+  GOLD : [DISEASE]  'haemorrhagic'  (chars 605-617)
+  PRED : (missed)
+  CTX  : ...ifferent staining procedures, and after 30 days by conventional electron microscopy. Early CY toxicity caused a typical >>>haemorrhagic<<< cystitis in both strains that was completely repaired in about 7-10 days. After 30 days of CY injection ulcerous and no...
+
+--- Sample 26 ---
+  GOLD : [DISEASE]  'corneal ulcers'  (chars 987-1001)
+  PRED : (missed)
+  CTX  : ...for persistent epithelial defects. CONCLUSIONS: Aerosolized crack cocaine use can be associated with the development of >>>corneal ulcers<<<. Drug abuse provides additional challenges for management. Not only treatment of their infections but also the overall ...
+
+--- Sample 27 ---
+  GOLD : [DISEASE]  'PVC'  (chars 961-964)
+  PRED : (missed)
+  CTX  : ...infusion the patient felt palpitation and electrocardiography (ECG) recording showed premature ventricular contraction (>>>PVC<<<) > 5 x/minute, trigemini, constant type--sinoatrial block, positive U wave. He was treated with lidocaine 50 mg intrave...
+
+--- Sample 28 ---
+  GOLD : [CHEMICAL]  'P'  (chars 215-216)
+  PRED : (missed)
+  CTX  : ...nimesulide associated or not with common non-steroidal anti-inflammatory drugs. BACKGROUND: Acetaminophen (paracetamol-->>>P<<<) and Nimesulide (N) are widely used analgesic-antipyretic/anti-inflammatory drugs. The rate of adverse hypersensitivity...
+
+--- Sample 29 ---
+  GOLD : [CHEMICAL]  'cysteine'  (chars 820-828)
+  PRED : (missed)
+  CTX  : ...in, induced a loss in free intracellular thiols and an increase in necrosis markers. CAA but not acrolein inhibited the >>>cysteine<<< proteases caspase-3, caspase-8 and cathepsin B. Caspase activation by cisplatin was inhibited by CAA. In cells stained ...
+
+--- Sample 30 ---
+  GOLD : [CHEMICAL]  'GM'  (chars 718-720)
+  PRED : (missed)
+  CTX  : ...o observed in GM-mediated nephropathy. Superoxide dismutase (SOD) or dimethylthiourea (DMTU) significantly lessened the >>>GM<<<-induced decrement in CIn. The SOD-induced increase in glomerular filtration rate was associated with a marked improveme...
+
+--- Sample 31 ---
+  GOLD : [DISEASE]  'consumption coagulopathies'  (chars 856-882)
+  PRED : (missed)
+  CTX  : ...t be implicated in the pathogenesis of fibrin thrombi in patients with disseminated intravascular coagulation or other ">>>consumption coagulopathies<<<." This report describes subtotal infarction of the kidney due to thrombosis of a normal renal artery. This occlusion oc...
+
+--- Sample 32 ---
+  GOLD : [CHEMICAL]  'corticotropin'  (chars 135-148)
+  PRED : (missed)
+  CTX  : ...opin-releasing hormone and thyrotropin-releasing hormone modulate the hypercapnic ventilatory response in humans. Human >>>corticotropin<<<-releasing hormone (hCRH) and thyrotropin-releasing hormone (TRH) are known to stimulate ventilation after i.v. administ...
+
+--- Sample 33 ---
+  GOLD : [DISEASE]  'MI'  (chars 725-727)
+  PRED : (missed)
+  CTX  : ...ith a new diagnosis of AF was identified from a provincewide database of Quebec residents with a myocardial infarction (>>>MI<<<) between 1991 and 1999. Using a nested case-control design, 477 cases of bradyarrhythmia requiring a permanent pacemake...
+
+--- Sample 34 ---
+  GOLD : [CHEMICAL]  'busulfan'  (chars 1724-1732)
+  PRED : (missed)
+  CTX  : ...al fluid:plasma ratio previously defined in children receiving a 16-mg/kg total dose of busulfan. This study shows that >>>busulfan<<< neurotoxicity is dose-dependent in children and efficiently prevented by clonazepam. A busulfan dose calculated on the ...
+
+--- Sample 35 ---
+  GOLD : [CHEMICAL]  'cocaine'  (chars 1450-1457)
+  PRED : (missed)
+  CTX  : ...harged. The main outcome was 30-day cardiovascular death or myocardial infarction. RESULTS: A total of 59 patients with >>>cocaine<<<-associated chest pain were evaluated. Patients had a mean age of 45.6 +/- 6.6 yrs and were 86% black, 66% male. Seventy...
+
+--- Sample 36 ---
+  GOLD : [CHEMICAL]  'methamphetamine'  (chars 201-216)
+  PRED : (missed)
+  CTX  : ...ependent patients in Malaysia. OBJECTIVE: The objective of this study was to determine the risk of lifetime and current >>>methamphetamine<<<-induced psychosis in patients with methamphetamine dependence. The association between psychiatric co-morbidity and met...
+
+--- Sample 37 ---
+  GOLD : [CHEMICAL]  'bupivacaine'  (chars 947-958)
+  PRED : (missed)
+  CTX  : ...on, a microdialysis probe was placed at the surgical site for PGE2 and thromboxane B2 (TXB2) measurements. RESULTS: The >>>bupivacaine<<</rofecoxib group reported significantly less pain, as assessed by a visual analog scale, compared with the other three t...
+
+--- Sample 38 ---
+  GOLD : [CHEMICAL]  'RAD001'  (chars 593-599)
+  PRED : (missed)
+  CTX  : ... (stratum 1) or both chemotherapy and epidermal growth factor receptor tyrosine kinase inhibitors (stratum 2), received >>>RAD001<<< 10 mg/day until progression or unacceptable toxicity. Primary objective was overall response rate (ORR). Analyses of ma...
+
+--- Sample 39 ---
+  GOLD : [CHEMICAL]  'Lithium'  (chars 1082-1089)
+  PRED : (missed)
+  CTX  : ...ed in PKCa KO. Similar results were observed with UT-A1 expression. Animals were also treated with lithium for 6 weeks. >>>Lithium<<<-treated WT mice had 19-fold increased urine output whereas treated PKCa KO animals had a 4-fold increase in output. AQP...
+
+--- Sample 40 ---
+  GOLD : [CHEMICAL]  'sulfhydryl'  (chars 24-34)
+  PRED : (missed)
+  CTX  : Chloroacetaldehyde as a >>>sulfhydryl<<< reagent: the role of critical thiol groups in ifosfamide nephropathy. Chloroacetaldehyde (CAA) is a metabolite of the a...
+

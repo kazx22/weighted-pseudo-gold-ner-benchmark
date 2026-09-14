@@ -1,229 +1,162 @@
-"""
-cohen_kappa.py — pairwise Cohen's kappa between all five NER models and
-between each model and human gold.
+"""Token-level BIO Cohen's kappa for a selected BC5CDR split.
 
-Kappa is computed over flat token-level BIO label sequences rather than
-entity spans.  This is intentional: span-level agreement would ignore
-disagreements within an entity boundary (e.g. two models agreeing on the
-B- tag but disagreeing on I- continuation), whereas token-level kappa
-captures the full label distribution.
-
-The Landis & Koch (1977) scale is used for interpretation:
-  < 0.00  Poor
-  0.00–0.20  Slight
-  0.21–0.40  Fair
-  0.41–0.60  Moderate
-  0.61–0.80  Substantial
-  0.81–1.00  Almost perfect
-
-Run from the project root:
-    python -m src.cohen_kappa
+Kappa is a secondary agreement analysis. Because the O label is frequent, it
+must be interpreted alongside exact span precision, recall and F1.
 """
 
-import sys
+from __future__ import annotations
+
+import argparse
 import itertools
-from pathlib import Path
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.metrics import cohen_kappa_score
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-from src.utils import load_jsonl, group_by_row, span_to_bio
-
-# ------------------------------------------------------------------
-# File paths
-# ------------------------------------------------------------------
-DATA_DIR = PROJECT_ROOT / "data" / "processed" / "bc5cdr"
-
-DOCS_FILE = DATA_DIR / "bc5cdr_train_docs.jsonl"
-GOLD_FILE = DATA_DIR / "bc5cdr_train_entities.jsonl"
-
-MODEL_FILES = {
-    "SciSpacy": DATA_DIR / "scispacy_train_entities_bc5cdr.jsonl",
-    "BioBERT": DATA_DIR / "biobert_train_entities_bc5cdr.jsonl",
-    "PubMedBERT": DATA_DIR / "pubmedbert_train_entities_bc5cdr.jsonl",
-    "ClinicalBERT": DATA_DIR / "clinicalbert_train_entities_bc5cdr.jsonl",
-    "BioELECTRA": DATA_DIR / "bioelectra_train_entities_bc5cdr.jsonl",
-}
+from src.experiment_config import (
+    MODEL_DISPLAY_NAMES,
+    MODEL_KEYS,
+    docs_file,
+    figures_dir,
+    gold_entities_file,
+    normalize_split,
+    prediction_file,
+    require_file,
+    results_dir,
+    save_json,
+)
+from src.utils import group_by_row, load_jsonl, span_to_bio
 
 
-def build_flat_labels(docs, pred_by_row):
-    """
-    Flatten all per-document BIO label sequences into a single list.
-
-    The flat sequence is what cohen_kappa_score expects: one label per token
-    across the entire corpus, in document order.  Both sequences being
-    compared must be built from the same docs list to guarantee alignment.
-    """
-    flat = []
+def build_flat_labels(docs: list[dict], entities_by_row: dict[int, list[dict]]) -> list[str]:
+    flat: list[str] = []
     for doc in docs:
-        row_id = doc["row_id"]
-        text = doc["full_text"]
-        entities = pred_by_row.get(row_id, [])
-        _, labels = span_to_bio(text, entities)
+        row_id = int(doc["row_id"])
+        _, labels = span_to_bio(
+            str(doc["full_text"]), entities_by_row.get(row_id, [])
+        )
         flat.extend(labels)
     return flat
 
 
-def interpret_kappa(k):
-    """Landis & Koch (1977) verbal interpretation of a kappa value."""
-    if k < 0:
-        return "Poor (< 0)"
-    elif k < 0.20:
+def interpret_kappa(value: float) -> str:
+    if value < 0:
+        return "Poor"
+    if value < 0.20:
         return "Slight"
-    elif k < 0.40:
+    if value < 0.40:
         return "Fair"
-    elif k < 0.60:
+    if value < 0.60:
         return "Moderate"
-    elif k < 0.80:
+    if value < 0.80:
         return "Substantial"
-    else:
-        return "Almost perfect"
+    return "Almost perfect"
 
 
-def print_matrix(names, matrix):
-    """Print the upper-triangle kappa values as a symmetric matrix."""
-    col_w = 14
-    header = " " * col_w + "".join(f"{n:>{col_w}}" for n in names)
-    print(header)
-    for i, name in enumerate(names):
-        row = f"{name:<{col_w}}"
-        for j in range(len(names)):
-            if i == j:
-                row += f"{'1.0000':>{col_w}}"
-            elif j < i:
-                # Symmetric: mirror the upper-triangle value
-                row += f"{matrix[j][i]:>{col_w}.4f}"
-            else:
-                row += f"{matrix[i][j]:>{col_w}.4f}"
-        print(row)
+def plot_heatmap(names: list[str], matrix: np.ndarray, output_file) -> None:
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    fig, ax = plt.subplots(figsize=(8, 6.5))
+    image = ax.imshow(matrix, cmap="YlGnBu", vmin=0, vmax=1)
+    ax.set_xticks(np.arange(len(names)))
+    ax.set_yticks(np.arange(len(names)))
+    ax.set_xticklabels(names, rotation=45, ha="right")
+    ax.set_yticklabels(names)
+
+    for row in range(len(names)):
+        for column in range(len(names)):
+            ax.text(
+                column,
+                row,
+                f"{matrix[row, column]:.2f}",
+                ha="center",
+                va="center",
+                color="black",
+                fontsize=9,
+            )
+
+    colorbar = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
+    colorbar.set_label("Cohen's kappa", rotation=270, labelpad=18)
+    ax.set_title("Pairwise Inter-Model Agreement\nToken-level BIO labels")
+    fig.tight_layout()
+    fig.savefig(output_file, dpi=300, bbox_inches="tight")
+    plt.close(fig)
 
 
-def plot_kappa_heatmap(model_names, matrix, output_file="figure/kappa_heatmap.png"):
-    """
-    Render the pairwise kappa matrix as a heatmap. The matrix passed in only
-    has the upper triangle filled (that's how I build it in main), so here I
-    mirror it into a full symmetric matrix and set the diagonal to 1.0 before
-    plotting. I find the heatmap far easier to read than the text matrix for
-    the paper — the BioBERT/PubMedBERT cluster is obvious at a glance.
-    """
-    import os
-
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
-
-    n = len(model_names)
-    full = np.eye(n)  # diagonal = 1.0 (a model agrees perfectly with itself)
-    for i in range(n):
-        for j in range(i + 1, n):
-            full[i][j] = matrix[i][j]
-            full[j][i] = matrix[i][j]  # mirror
-
-    fig, ax = plt.subplots(figsize=(7.5, 6.5))
-    im = ax.imshow(full, cmap="YlGnBu", vmin=0, vmax=1)
-
-    ax.set_xticks(np.arange(n))
-    ax.set_yticks(np.arange(n))
-    ax.set_xticklabels(model_names, rotation=45, ha="right")
-    ax.set_yticklabels(model_names)
-
-    # Annotate each cell; switch text colour so it stays readable on dark cells
-    for i in range(n):
-        for j in range(n):
-            val = full[i][j]
-            color = "white" if val > 0.6 else "black"
-            ax.text(j, i, f"{val:.2f}", ha="center", va="center", color=color)
-
-    cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    cbar.set_label("Cohen's $\\kappa$", rotation=270, labelpad=18)
-
-    ax.set_title(
-        "Pairwise Inter-Model Agreement (Cohen's $\\kappa$)\n"
-        "BC5CDR, token-level BIO labels",
-        fontsize=13,
-        pad=12,
+def main() -> None:
+    parser = argparse.ArgumentParser(description="BC5CDR Cohen's kappa analysis.")
+    parser.add_argument(
+        "--split",
+        default="test",
+        choices=["dev", "test", "development"],
     )
+    args = parser.parse_args()
+    split = normalize_split(args.split, allow_train=False)
 
-    plt.tight_layout()
-    plt.savefig(output_file, dpi=300, bbox_inches="tight")
-    plt.close()
-    print(f"\nSaved kappa heatmap -> {output_file}")
+    docs = load_jsonl(require_file(docs_file(split), "parsed documents"))
+    human_gold = load_jsonl(require_file(gold_entities_file(split), "human gold"))
 
+    labels: dict[str, list[str]] = {
+        "Human Gold": build_flat_labels(docs, group_by_row(human_gold))
+    }
+    for model_key in MODEL_KEYS:
+        predictions = load_jsonl(
+            require_file(prediction_file(model_key, split), f"{model_key} predictions")
+        )
+        labels[MODEL_DISPLAY_NAMES[model_key]] = build_flat_labels(
+            docs, group_by_row(predictions)
+        )
 
-def main():
-    print("Loading documents...")
-    docs = load_jsonl(DOCS_FILE)
-    print(f"Loaded {len(docs)} documents.\n")
-
-    # Build flat label lists for every model and for human gold
-    flat_labels = {}
-    all_sources = dict(MODEL_FILES)
-    all_sources["HumanGold"] = GOLD_FILE
-
-    for name, path in all_sources.items():
-        entities = load_jsonl(path)
-        by_row = group_by_row(entities)
-        flat = build_flat_labels(docs, by_row)
-        flat_labels[name] = flat
-        print(f"  {name:15} {len(flat)} tokens")
-
-    # All sources must produce the same number of tokens — if not, the
-    # flat sequences are misaligned and kappa is meaningless.
-    lengths = {name: len(labels) for name, labels in flat_labels.items()}
+    lengths = {name: len(values) for name, values in labels.items()}
     if len(set(lengths.values())) != 1:
-        print("\n[ERROR] Token count mismatch:")
-        for name, l in lengths.items():
-            print(f"  {name}: {l}")
-        raise ValueError("All sources must produce the same number of tokens.")
+        raise ValueError(f"Token-length mismatch: {lengths}")
 
-    model_names = list(MODEL_FILES.keys())
-    n = len(model_names)
-    matrix = [[None] * n for _ in range(n)]
+    model_names = [MODEL_DISPLAY_NAMES[key] for key in MODEL_KEYS]
+    matrix = np.eye(len(model_names), dtype=float)
+    pairwise: list[dict] = []
 
-    # 1. Pairwise inter-model kappa
-    print("\n" + "=" * 60)
-    print("PAIRWISE COHEN'S KAPPA — INTER-MODEL AGREEMENT")
-    print("=" * 60)
-    for i, j in itertools.combinations(range(n), 2):
-        a, b = model_names[i], model_names[j]
-        k = cohen_kappa_score(flat_labels[a], flat_labels[b])
-        matrix[i][j] = k
-        print(f"  {a:15} vs {b:15}  k = {k:.4f}  ({interpret_kappa(k)})")
+    print("Pairwise inter-model Cohen's kappa:")
+    for first_index, second_index in itertools.combinations(range(len(model_names)), 2):
+        first = model_names[first_index]
+        second = model_names[second_index]
+        value = float(cohen_kappa_score(labels[first], labels[second]))
+        matrix[first_index, second_index] = value
+        matrix[second_index, first_index] = value
+        pairwise.append(
+            {
+                "model_1": first,
+                "model_2": second,
+                "kappa": value,
+                "interpretation": interpret_kappa(value),
+            }
+        )
+        print(f"  {first:15} vs {second:15} k={value:.4f}")
 
-    print("\nPairwise kappa matrix:")
-    print_matrix(model_names, matrix)
+    versus_gold: list[dict] = []
+    print("\nModel versus human gold Cohen's kappa:")
+    for model_name in model_names:
+        value = float(cohen_kappa_score(labels[model_name], labels["Human Gold"]))
+        versus_gold.append(
+            {
+                "model": model_name,
+                "kappa": value,
+                "interpretation": interpret_kappa(value),
+            }
+        )
+        print(f"  {model_name:15} k={value:.4f} ({interpret_kappa(value)})")
 
-    # 2. Each model vs human gold
-    print("\n" + "=" * 60)
-    print("MODEL vs HUMAN GOLD — COHEN'S KAPPA")
-    print("=" * 60)
-    gold = flat_labels["HumanGold"]
-    vs_gold = []
-    for name in model_names:
-        k = cohen_kappa_score(flat_labels[name], gold)
-        vs_gold.append(k)
-        print(f"  {name:15} vs HumanGold  k = {k:.4f}  ({interpret_kappa(k)})")
-
-    # 3. Summary statistics
-    print("\n" + "=" * 60)
-    print("SUMMARY")
-    print("=" * 60)
-    inter = [matrix[i][j] for i, j in itertools.combinations(range(n), 2)]
-    print(f"  Inter-model kappa mean : {np.mean(inter):.4f}")
-    print(f"  Inter-model kappa std  : {np.std(inter):.4f}")
-    print(f"  Inter-model kappa min  : {np.min(inter):.4f}")
-    print(f"  Inter-model kappa max  : {np.max(inter):.4f}")
-    print(f"\n  Model-vs-gold mean     : {np.mean(vs_gold):.4f}")
-    print(
-        f"  Best vs gold           : {model_names[int(np.argmax(vs_gold))]} "
-        f"(k = {np.max(vs_gold):.4f})"
-    )
-
-    # Render the heatmap version of the pairwise matrix for the paper
-    plot_kappa_heatmap(model_names, matrix)
+    output = {
+        "split": split,
+        "level": "token-level BIO labels",
+        "caution": "The frequent O class can inflate agreement; interpret with exact span metrics.",
+        "pairwise": pairwise,
+        "versus_human_gold": versus_gold,
+        "mean_pairwise_kappa": float(np.mean([row["kappa"] for row in pairwise])),
+    }
+    save_json(output, results_dir(split) / "cohen_kappa_results.json")
+    heatmap_path = figures_dir(split) / "kappa_heatmap.png"
+    plot_heatmap(model_names, matrix, heatmap_path)
+    print(f"\nSaved kappa results to {results_dir(split)}")
+    print(f"Saved heatmap to {heatmap_path}")
 
 
 if __name__ == "__main__":

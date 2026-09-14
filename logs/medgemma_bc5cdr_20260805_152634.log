@@ -1,0 +1,20 @@
+﻿MEDGEMMA BC5CDR PIPELINE
+Started: 2026-08-05 15:26:34
+Model: medgemma1.5:4b-it-q4_K_M
+This extension uses existing five-model predictions and does not rerun them.
+
+============================================================
+RUNNING: python -m src.medgemma_smoke_test
+============================================================
+  scispaCy           8471 entities
+  BioBERT           15072 entities
+  PubMedBERT        16472 entities
+  ClinicalBERT      15262 entities
+  BioELECTRA        11926 entities
+Smoke test succeeded. Saved: C:\University\Projects\spatial-human-anatomy\results\dev\medgemma_smoke_test.json
+Zero-shot accepted entities: 11
+Tie-break decision: ACCEPT
+
+============================================================
+RUNNING: python -m src.medgemma_bc5cdr --split dev
+============================================================

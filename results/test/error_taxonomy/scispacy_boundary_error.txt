@@ -1,0 +1,204 @@
+ERROR TYPE: BOUNDARY_ERROR
+Total instances: 1010  |  Showing: 40
+================================================================================
+
+--- Sample 1 ---
+  PRED : [DISEASE]  'pointes'  (chars 330-337)
+  GOLD : [DISEASE]  'torsade de pointes'  (chars 319-337)
+  CTX  : ... BACKGROUND: This study examined the role of phase 2 early afterdepolarization (EAD) in producing a trigger to initiate >>>torsade de pointes<<< (TdP) with QT prolongation induced by dl-sotalol and azimilide. The contribution of transmural dispersion of repolariza...
+
+--- Sample 2 ---
+  PRED : [CHEMICAL]  'acetic acid-induced'  (chars 730-749)
+  GOLD : [CHEMICAL]  'acetic acid'  (chars 730-741)
+  CTX  : ...tragastrically two times per day. On the test day (day 10), mice were subjected to the thermal sensitivity test and the >>>acetic acid-induced<<< writhing test. Re (300 mg/kg) inhibited OIH in both the thermal sensitivity test and the acetic acid-induced writhing t...
+
+--- Sample 3 ---
+  PRED : [DISEASE]  'immune-mediated heparin-induced thrombocytopenia'  (chars 348-396)
+  GOLD : [DISEASE]  'thrombocytopenia type II'  (chars 380-404)
+  CTX  : ... is a common disorder caused mainly by portal hypertension, low levels of thrombopoetin, and endotoxemia. The impact of >>>immune-mediated heparin-induced thrombocytopenia type II<<< (HIT type II) as a cause of thrombocytopenia after liver transplantation is not yet understood, with few literature cit...
+
+--- Sample 4 ---
+  PRED : [CHEMICAL]  '4HNE-protein'  (chars 1221-1233)
+  GOLD : [CHEMICAL]  '4HNE'  (chars 1221-1225)
+  CTX  : ...increased in all subcellular compartments at 6 hours and subsequently declined at 24 hours. Our data showed ADR induced >>>4HNE-protein<<< adducts in mitochondria at the same time point as when mitochondrial injury initially appeared. These results document ...
+
+--- Sample 5 ---
+  PRED : [DISEASE]  'trimethaphan-induced hypotension'  (chars 1079-1111)
+  GOLD : [CHEMICAL]  'trimethaphan'  (chars 1079-1091)
+  CTX  : ...r trimethaphan (5 mg/kg i.v.) caused similar reductions in mean arterial pressure in both lesioned and sham groups. The >>>trimethaphan-induced hypotension<<< was accompanied by a significant bradycardia in lesioned rats (-32 +/- 13 beats per minute) but a tachycardia in sham r...
+
+--- Sample 6 ---
+  PRED : [CHEMICAL]  'preservative-free methotrexate'  (chars 1276-1306)
+  GOLD : [CHEMICAL]  'methotrexate'  (chars 1294-1306)
+  CTX  : ...resence of central nervous system leukemia, in older children and adults, and in the presence of epidural leakage. Only >>>preservative-free methotrexate<<< in Elliott's B Solution at a concentration of not more than 1 mg/ml should be used for intrathecal administration. Peri...
+
+--- Sample 7 ---
+  PRED : [DISEASE]  'thrombosis'  (chars 99-109)
+  GOLD : [DISEASE]  'acute renal artery thrombosis'  (chars 80-109)
+  CTX  : Recurrent subarachnoid hemorrhage associated with aminocaproic acid therapy and >>>acute renal artery thrombosis<<<. Case report. Epsilon aminocaproic acid (EACA) has been used to prevent rebleeding in patients with subarachnoid hemorr...
+
+--- Sample 8 ---
+  PRED : [DISEASE]  'Optochiasmatic and peripheral neuropathy'  (chars 0-40)
+  GOLD : [DISEASE]  'peripheral neuropathy'  (chars 19-40)
+  CTX  : >>>Optochiasmatic and peripheral neuropathy<<< due to ethambutol overtreatment. Ethambutol is known to cause optic neuropathy and, more rarely, axonal polyneuropathy....
+
+--- Sample 9 ---
+  PRED : [DISEASE]  'brain injury'  (chars 307-319)
+  GOLD : [DISEASE]  'traumatic brain injury'  (chars 297-319)
+  CTX  : ...te health history. The case discussed herein initially appeared to be neurogenic diabetes insipidus (DI) secondary to a >>>traumatic brain injury<<<. The nursing staff, by reviewing the patient's health history with his family, discovered a history of polydipsia and l...
+
+--- Sample 10 ---
+  PRED : [DISEASE]  'hypertension'  (chars 145-157)
+  GOLD : [DISEASE]  'ocular hypertension'  (chars 138-157)
+  CTX  : ... stress reduction rescues glaucoma in murine glucocorticoid-induced glaucoma. Administration of glucocorticoids induces >>>ocular hypertension<<< in some patients. If untreated, these patients can develop a secondary glaucoma that resembles primary open-angle glauc...
+
+--- Sample 11 ---
+  PRED : [CHEMICAL]  'High-dose 5-fluorouracil'  (chars 0-24)
+  GOLD : [CHEMICAL]  '5-fluorouracil'  (chars 10-24)
+  CTX  : >>>High-dose 5-fluorouracil<<< / folinic acid in combination with three-weekly mitomycin C in the treatment of advanced gastric cancer. A phase II stu...
+
+--- Sample 12 ---
+  PRED : [DISEASE]  'adriamycin-induced cardiac mitochondrial injury'  (chars 46-93)
+  GOLD : [DISEASE]  'mitochondrial injury'  (chars 73-93)
+  CTX  : Oxidative damage precedes nitrative damage in >>>adriamycin-induced cardiac mitochondrial injury<<<. The purpose of the present study was to determine if elevated reactive oxygen (ROS)/nitrogen species (RNS) reported to...
+
+--- Sample 13 ---
+  PRED : [CHEMICAL]  '(-)-propranolol'  (chars 358-373)
+  GOLD : [CHEMICAL]  'propranolol'  (chars 362-373)
+  CTX  : ...sitive inotropic and chronotropic responses to isoprenaline, (+)-propranolol had less than one hundredth the potency of >>>(-)-propranolol<<<. At dose levels of (+)-propranolol which attenuated the responses to isoprenaline, there was a significant prolongation...
+
+--- Sample 14 ---
+  PRED : [CHEMICAL]  'l-sotalol'  (chars 1239-1248)
+  GOLD : [CHEMICAL]  'd,l-sotalol'  (chars 1237-1248)
+  CTX  : ...40 mg of d,l-sotalol once daily. Four (5%) patients had from torsades de pointes during the initial oral treatment with >>>d,l-sotalol<<<. Neither ECG [sinus-cycle length (SCL), QT or QTc interval, or U wave] nor clinical parameters identified patients at r...
+
+--- Sample 15 ---
+  PRED : [DISEASE]  'Valproate-induced hyperammonemic encephalopathy'  (chars 287-334)
+  GOLD : [DISEASE]  'hyperammonemic'  (chars 305-319)
+  CTX  : ...f morbidity and mortality. Their differential diagnosis is difficult and essential for subsequent patient's management. >>>Valproate-induced hyperammonemic encephalopathy<<< is an uncommon but serious effect of valproate treatment. Here, we describe the case of a 15-year-old girl who was on a...
+
+--- Sample 16 ---
+  PRED : [CHEMICAL]  'L-NOARG-treated'  (chars 1619-1634)
+  GOLD : [CHEMICAL]  'L-NOARG'  (chars 1619-1626)
+  CTX  : ...t, there was a decrease in NADPH-d neuron number in the substantia nigra, pars compacta in both haloperidol-treated and >>>L-NOARG-treated<<< animals. CONCLUSIONS: The results give further support to the hypothesis that NO plays a role in motor behavior control...
+
+--- Sample 17 ---
+  PRED : [DISEASE]  'intrathoracic infections'  (chars 1080-1104)
+  GOLD : [DISEASE]  'infections'  (chars 1094-1104)
+  CTX  : ...the fewest bacteremias. Analysis of site of infection showed a preponderance of abdominal infections in liver patients, >>>intrathoracic infections<<< in heart patients, and urinary tract infections in renal patients. Pulmonary infections were less common in cyclosporin...
+
+--- Sample 18 ---
+  PRED : [CHEMICAL]  'organophosphorus insecticides'  (chars 159-188)
+  GOLD : [CHEMICAL]  'organophosphorus'  (chars 159-175)
+  CTX  : ...subacute diazinon exposure through ERK1/2 pathway in rat liver. INTRODUCTION: Diazinon Yis one of the most broadly used >>>organophosphorus insecticides<<< in agriculture. It has been shown that exposure to diazinon may interfere with lipid metabolism. Moreover, the hypolipi...
+
+--- Sample 19 ---
+  PRED : [CHEMICAL]  'alcohol/nicotine'  (chars 731-747)
+  GOLD : [CHEMICAL]  'nicotine'  (chars 739-747)
+  CTX  : ...onal substances. METHODS: A sample of 997 participants (52 % male) was recruited to four control groups (non-drug (ND), >>>alcohol/nicotine<<< (AN), cannabis/alcohol/nicotine (CAN), non-ecstasy polydrug (PD)), and two ecstasy polydrug groups (present (MDMA) and ...
+
+--- Sample 20 ---
+  PRED : [CHEMICAL]  'high-dose dexamethasone'  (chars 576-599)
+  GOLD : [CHEMICAL]  'dexamethasone'  (chars 586-599)
+  CTX  : ...roglobulinaemia who suffered necrotising fasciitis without neutropenia after the combination treatment with bortezomib, >>>high-dose dexamethasone<<< and rituximab. Despite immediate intravenous antimicrobial therapy, he succumbed 23 h after the onset. Physicians shoul...
+
+--- Sample 21 ---
+  PRED : [CHEMICAL]  'low-dose oestrogen'  (chars 710-728)
+  GOLD : [CHEMICAL]  'oestrogen'  (chars 719-728)
+  CTX  : ...upervised unopposed oestrogen therapy and the difficulty in distinguishing severe hyperplasia from malignancy. Cyclical >>>low-dose oestrogen<<< therapy with 7--13 days of progestagen does not seem to increase the risk of endometrial hyperplasia or carcinoma.
+
+--- Sample 22 ---
+  PRED : [DISEASE]  'Coombs-positive hemolytic anemia'  (chars 84-116)
+  GOLD : [DISEASE]  'hemolytic anemia'  (chars 100-116)
+  CTX  : Cephalothin-induced immune hemolytic anemia. A patient with renal disease developed >>>Coombs-positive hemolytic anemia<<< while receiving cephalothin therapy. An anti-cephalothin IgG antibody was detected in the patient's serum and in the el...
+
+--- Sample 23 ---
+  PRED : [DISEASE]  'intercerebral hematoma'  (chars 112-134)
+  GOLD : [DISEASE]  'hematoma'  (chars 126-134)
+  CTX  : Cutaneous exposure to warfarin-like anticoagulant causing an intracerebral hemorrhage: a case report. A case of >>>intercerebral hematoma<<< due to warfarin-induced coagulopathy is presented. The 39-year-old woman had spread a warfarin-type rat poison around h...
+
+--- Sample 24 ---
+  PRED : [DISEASE]  'lithium-treated bipolar normocalcemic'  (chars 915-952)
+  GOLD : [CHEMICAL]  'lithium'  (chars 915-922)
+  CTX  : ...g multiple pharmacotherapies. Thus, two control groups were generated: group C1, which included age- and sex-comparable >>>lithium-treated bipolar normocalcemic<<< patients, and group C2, which included bipolar normocalcemic patients treated with anticonvulsant mood stabilizers. The...
+
+--- Sample 25 ---
+  PRED : [DISEASE]  'HIT'  (chars 1038-1041)
+  GOLD : [DISEASE]  'HIT type II'  (chars 1038-1049)
+  CTX  : ...stage or malignant liver disease. Preoperative platelet count, postoperative course of platelets, and clinical signs of >>>HIT type II<<< were analyzed. RESULTS: A total of 155 (75.6%) of 205 patients had thrombocytopenia before transplantation, significant...
+
+--- Sample 26 ---
+  PRED : [DISEASE]  'lithium-induced nephrogenic diabetes insipidus'  (chars 45-91)
+  GOLD : [DISEASE]  'nephrogenic diabetes insipidus'  (chars 61-91)
+  CTX  : Hyperosmolar nonketotic coma precipitated by >>>lithium-induced nephrogenic diabetes insipidus<<<. A 45-year-old man, with a 10-year history of manic depression treated with lithium, was admitted with hyperosmolar, no...
+
+--- Sample 27 ---
+  PRED : [CHEMICAL]  'cocaine'  (chars 933-940)
+  GOLD : [CHEMICAL]  'crack cocaine'  (chars 927-940)
+  CTX  : ...iotic treatment. Two patients needed a lateral tarsorrhaphy for persistent epithelial defects. CONCLUSIONS: Aerosolized >>>crack cocaine<<< use can be associated with the development of corneal ulcers. Drug abuse provides additional challenges for management....
+
+--- Sample 28 ---
+  PRED : [CHEMICAL]  'tacrolimus ointment'  (chars 92-111)
+  GOLD : [CHEMICAL]  'tacrolimus'  (chars 92-102)
+  CTX  : Induction of rosaceiform dermatitis during treatment of facial inflammatory dermatoses with >>>tacrolimus ointment<<<. BACKGROUND: Tacrolimus ointment is increasingly used for anti-inflammatory treatment of sensitive areas such as the fa...
+
+--- Sample 29 ---
+  PRED : [CHEMICAL]  'copper/zinc-superoxide'  (chars 18-40)
+  GOLD : [CHEMICAL]  'superoxide'  (chars 30-40)
+  CTX  : Overexpression of >>>copper/zinc-superoxide<<< dismutase protects from kanamycin-induced hearing loss. The participation of reactive oxygen species in aminoglycoside-...
+
+--- Sample 30 ---
+  PRED : [CHEMICAL]  'paracetamol overdose'  (chars 72-92)
+  GOLD : [CHEMICAL]  'paracetamol'  (chars 72-83)
+  CTX  : Increased serum soluble Fas in patients with acute liver failure due to >>>paracetamol overdose<<<. BACKGROUND/AIMS: Experimental studies have suggested that apoptosis via the Fas/Fas Ligand signaling system may play a...
+
+--- Sample 31 ---
+  PRED : [CHEMICAL]  'FZP toxocity'  (chars 572-584)
+  GOLD : [DISEASE]  'toxocity'  (chars 576-584)
+  CTX  : ...t did not first cause loss of consciousness, while cats most clearly showed marked central excitatory actions. Signs of >>>FZP toxocity<<< in cats included excessive salivation, extreme apprehensive behavior, retching, muscle tremors and convulsions. An inte...
+
+--- Sample 32 ---
+  PRED : [DISEASE]  'rash'  (chars 706-710)
+  GOLD : [DISEASE]  'skin rash'  (chars 701-710)
+  CTX  : ...ts is not known. In this patient the time relation between the ingestion of diphenylhydantoin and the occurrence of the >>>skin rash<<<, lymphadenopathy and pure red cell aplasia is very suggestive of a direct connection.
+
+--- Sample 33 ---
+  PRED : [CHEMICAL]  'polyvidone'  (chars 54-64)
+  GOLD : [CHEMICAL]  'Vasurix polyvidone'  (chars 46-64)
+  CTX  : Comparative study: Endografine (diatrizoate), >>>Vasurix polyvidone<<< (acetrizoate), Dimer-X (iocarmate) and Hexabrix (ioxaglate) in hysterosalpingography. Side effects of hysterosalpingogr...
+
+--- Sample 34 ---
+  PRED : [CHEMICAL]  'nicotinamide adenine'  (chars 964-984)
+  GOLD : [CHEMICAL]  'nicotinamide adenine dinucleotide phosphate'  (chars 964-1007)
+  CTX  : ...kg i.p.) or haloperidol (1 mg/kg i.p.). Catalepsy was evaluated at the beginning and the end of the treatments. Reduced >>>nicotinamide adenine dinucleotide phosphate<<<-diaphorase (NADPH-d) histochemistry was also employed to visualize NOS as an index of enzyme expression in mice brain r...
+
+--- Sample 35 ---
+  PRED : [CHEMICAL]  'HPMA) copolymer'  (chars 342-357)
+  GOLD : [CHEMICAL]  'HPMA'  (chars 342-346)
+  CTX  : ...icity of 4 mg/kg doxorubicin (DOX) given either as free drug or in the form of three N-(2-hydroxypropyl)methacrylamide (>>>HPMA) copolymer<<< conjugates. In these HPMA copolymers, DOX was covalently bound via peptide linkages that were either non-biodegradable ...
+
+--- Sample 36 ---
+  PRED : [DISEASE]  'paracentral visual field loss'  (chars 6-35)
+  GOLD : [DISEASE]  'visual field loss'  (chars 18-35)
+  CTX  : Early >>>paracentral visual field loss<<< in patients taking hydroxychloroquine. OBJECTIVE: To review the natural history and ocular and systemic adverse effects...
+
+--- Sample 37 ---
+  PRED : [DISEASE]  'cyclophosphamide-induced cystitis'  (chars 78-111)
+  GOLD : [CHEMICAL]  'cyclophosphamide'  (chars 78-94)
+  CTX  : p75NTR expression in rat urinary bladder sensory neurons and spinal cord with >>>cyclophosphamide-induced cystitis<<<. A role for nerve growth factor (NGF) in contributing to increased voiding frequency and altered sensation from the uri...
+
+--- Sample 38 ---
+  PRED : [DISEASE]  'cyclophosphamide-induced cystitis'  (chars 62-95)
+  GOLD : [CHEMICAL]  'cyclophosphamide'  (chars 62-78)
+  CTX  : The function of P2X3 receptor and NK1 receptor antagonists on >>>cyclophosphamide-induced cystitis<<< in rats. PURPOSE: The purpose of the study is to explore the function of P2X3 and NK1 receptors antagonists on cyclopho...
+
+--- Sample 39 ---
+  PRED : [DISEASE]  'major hemorrhage'  (chars 1224-1240)
+  GOLD : [DISEASE]  'hemorrhage'  (chars 1230-1240)
+  CTX  : ...ing and five (9.4%) fatal bleeds. The annual stroke rate after initiation of warfarin was 2.6%. CONCLUSION: The rate of >>>major hemorrhage<<< was high in this old, frail group, but excluding fatalities, resulted in no long-term sequelae, and the stroke rate on ...
+
+--- Sample 40 ---
+  PRED : [DISEASE]  'first-episode schizophrenia spectrum disorders'  (chars 233-279)
+  GOLD : [DISEASE]  'schizophrenia'  (chars 247-260)
+  CTX  : ...outcomes. OBJECTIVE: The authors compared 4-month treatment outcomes for olanzapine versus risperidone in patients with >>>first-episode schizophrenia spectrum disorders<<<. METHOD: One hundred twelve subjects (70% male; mean age=23.3 years [SD = 5.1]) with first-episode schizophrenia (75%),...
+

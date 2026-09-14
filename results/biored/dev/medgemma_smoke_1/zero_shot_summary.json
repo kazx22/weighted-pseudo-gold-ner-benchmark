@@ -1,0 +1,28 @@
+{
+  "split": "dev",
+  "model": "medgemma1.5:4b-it-q4_K_M",
+  "prompt_version": "biored-disease-chemical-medgemma-v1",
+  "chunking_version": "chunked-v2",
+  "chunk_target_chars": 450,
+  "prompt_hash": "90f9fe63d081df49bf85179ba647d2f0b2adce09c5419ecc7da7acdd667dc515",
+  "document_count": 1,
+  "completed_segment_count": 6,
+  "entity_count": 10,
+  "summed_request_seconds": 65.1176,
+  "average_seconds_per_document": 65.1176,
+  "current_process_wall_seconds": 65.127995,
+  "diagnostics": {
+    "returned_entities": 10,
+    "accepted_entities": 10,
+    "exact_offset_matches": 0,
+    "repaired_exact_occurrences": 9,
+    "repaired_casefold_occurrences": 1,
+    "rejected_invalid_label": 0,
+    "rejected_missing_text": 0,
+    "rejected_unmapped_text": 0,
+    "rejected_ambiguous_occurrence": 0
+  },
+  "prediction_file": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\dev\\medgemma_smoke_1\\medgemma_dev_entities_smoke.jsonl",
+  "cache_file": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\dev\\medgemma_smoke_1\\zero_shot_doc_results_chunked_v2.jsonl",
+  "is_smoke_run": true
+}

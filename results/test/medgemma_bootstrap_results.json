@@ -1,0 +1,73 @@
+{
+  "split": "test",
+  "metric": "exact_character_span_and_label_micro_f1",
+  "resamples": 1000,
+  "seed": 42,
+  "confidence_intervals": [
+    {
+      "system": "Weighted Pseudo-Gold",
+      "precision": 0.920438571830194,
+      "recall": 0.6675502089917422,
+      "f1": 0.7738580629911954,
+      "ci_low": 0.7601343144777442,
+      "ci_high": 0.7870304457007473
+    },
+    {
+      "system": "scispaCy",
+      "precision": 0.796165259073271,
+      "recall": 0.7111836068916302,
+      "f1": 0.7512788756663615,
+      "ci_low": 0.7377448435083226,
+      "ci_high": 0.7646622871842372
+    },
+    {
+      "system": "MedGemma Zero-Shot",
+      "precision": 0.577556225365175,
+      "recall": 0.2539504536650015,
+      "f1": 0.35278289194165124,
+      "ci_low": 0.3380923322603983,
+      "ci_high": 0.36754450284315243
+    },
+    {
+      "system": "Weighted + MedGemma Tie-Breaker",
+      "precision": 0.9172375227177408,
+      "recall": 0.6688755224793557,
+      "f1": 0.7736116024053769,
+      "ci_low": 0.7598828745693917,
+      "ci_high": 0.786428149145676
+    }
+  ],
+  "comparisons": [
+    {
+      "system_1": "Weighted + MedGemma Tie-Breaker",
+      "system_2": "Weighted Pseudo-Gold",
+      "f1_system_1": 0.7736116024053769,
+      "f1_system_2": 0.7738580629911954,
+      "f1_difference": -0.0002464605858185642,
+      "raw_p": 0.6773226773226774,
+      "holm_p": 0.6773226773226774,
+      "significant_holm_0.05": false
+    },
+    {
+      "system_1": "MedGemma Zero-Shot",
+      "system_2": "scispaCy",
+      "f1_system_1": 0.35278289194165124,
+      "f1_system_2": 0.7512788756663615,
+      "f1_difference": -0.3984959837247103,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.005994005994005994,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "Weighted + MedGemma Tie-Breaker",
+      "system_2": "MedGemma Zero-Shot",
+      "f1_system_1": 0.7736116024053769,
+      "f1_system_2": 0.35278289194165124,
+      "f1_difference": 0.4208287104637256,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.005994005994005994,
+      "significant_holm_0.05": true
+    }
+  ],
+  "multiple_testing_family": "Holm correction across 3 MedGemma comparisons"
+}
