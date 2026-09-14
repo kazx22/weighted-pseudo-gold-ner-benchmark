@@ -1,0 +1,25 @@
+MedGemma BC5CDR Patch Manifest
+
+ADDED:
+- src/medgemma_common.py
+- src/medgemma_bc5cdr.py
+- src/medgemma_hybrid.py
+- src/medgemma_evaluation.py
+- src/medgemma_bootstrap.py
+- src/medgemma_smoke_test.py
+- tests/test_medgemma_extension.py
+- 04_SMOKE_TEST_MEDGEMMA.cmd
+- 05_RUN_MEDGEMMA_BC5CDR.cmd
+- RUN_MEDGEMMA_BC5CDR.ps1
+- README_MEDGEMMA_BC5CDR.md
+
+MODIFIED:
+- src/experiment_config.py
+  Adds MedGemma as an optional prediction source without changing the original
+  five-model ensemble MODEL_KEYS.
+
+NOT MODIFIED:
+- candidate_gold.py and the original weighted ensemble
+- original development/test results
+- original RUN_PIPELINE.ps1
+- original paper figures and statistics

@@ -1,0 +1,204 @@
+ERROR TYPE: BOUNDARY_ERROR
+Total instances: 8615  |  Showing: 40
+================================================================================
+
+--- Sample 1 ---
+  PRED : [CHEMICAL]  'met'  (chars 717-720)
+  GOLD : [CHEMICAL]  'metolachlor'  (chars 717-728)
+  CTX  : ...s, 53% of whom reported ever using metolachlor. We used Poisson regression to evaluate relations between two metrics of >>>metolachlor<<< use (lifetime days, intensity-weighted lifetime days) and cancer incidence. We saw no association between metolachlor u...
+
+--- Sample 2 ---
+  PRED : [CHEMICAL]  'n'  (chars 716-717)
+  GOLD : [CHEMICAL]  'diazinon'  (chars 709-717)
+  CTX  : ...ERK and LDLr expression in the liver of rats exposed to subacute diazinon. Furthermore ameliorating effect of crocin on >>>diazinon<<< induced disturbed cholesterol homeostasis was studied. METHODS: 24 Rats were divided into 4 groups and received followi...
+
+--- Sample 3 ---
+  PRED : [CHEMICAL]  'DM'  (chars 1001-1003)
+  GOLD : [CHEMICAL]  'DMTU'  (chars 1001-1005)
+  CTX  : ...cretion, and a decrease in renal renin and endothelin-1 content. SOD did not attenuate the tubular damage. In contrast, >>>DMTU<<< significantly reduced the tubular damage and lipid peroxidation, but it did not affect renal hemodynamics and vasoactiv...
+
+--- Sample 4 ---
+  PRED : [CHEMICAL]  'des'  (chars 607-610)
+  GOLD : [CHEMICAL]  'desipramine'  (chars 607-618)
+  CTX  : ... of amphetamine hyperactivity induced by DSP4 was blocked by pretreatment with the noradrenaline-uptake blocking agent, >>>desipramine<<<, which prevents the neurotoxic action of DSP4. The present results suggest a selective involvement of central noradrene...
+
+--- Sample 5 ---
+  PRED : [DISEASE]  'damage'  (chars 1876-1882)
+  GOLD : [DISEASE]  'brain damage'  (chars 1870-1882)
+  CTX  : ...izures produced by pilocarpine, 380 mg/kg. This treatment was also sufficient to protect animals from the occurrence of >>>brain damage<<<. Microinjections of gamma-vinyl-GABA, 5 micrograms, into the dorsal striatum, bilaterally, failed to prevent the develo...
+
+--- Sample 6 ---
+  PRED : [CHEMICAL]  'diphenyl'  (chars 541-549)
+  GOLD : [CHEMICAL]  'diphenylhydantoin'  (chars 541-558)
+  CTX  : ...cell aplasia associated with diphenylhydantoin medication has been reported in 3 patients. The exact mechanism by which >>>diphenylhydantoin<<< exerts its toxic effects is not known. In this patient the time relation between the ingestion of diphenylhydantoin and...
+
+--- Sample 7 ---
+  PRED : [CHEMICAL]  'pine'  (chars 100-104)
+  GOLD : [CHEMICAL]  'Quetiapine'  (chars 94-104)
+  CTX  : Quetiapine-induced neutropenia in a bipolar patient with hepatocellular carcinoma. OBJECTIVE: >>>Quetiapine<<< is a dibenzothiazepine derivative, similar to clozapine, which has the highest risk of causing blood dyscrasias, especi...
+
+--- Sample 8 ---
+  PRED : [DISEASE]  'status'  (chars 1574-1580)
+  GOLD : [DISEASE]  'status epilepticus'  (chars 1574-1592)
+  CTX  : ...lts indicate that GFC can exert anticonvulsant activity and reduce the frequency of installation of pilocarpine-induced >>>status epilepticus<<<, as demonstrated by increase in latency to first seizure and decrease in mortality rate of animals. In conclusion, our ...
+
+--- Sample 9 ---
+  PRED : [CHEMICAL]  's'  (chars 257-258)
+  GOLD : [CHEMICAL]  'cholesterols'  (chars 246-258)
+  CTX  : ...py in patients with prostate cancer. MATERIALS AND METHODS: We studied with a 2.5 years follow-up the changes in plasma >>>cholesterols<<< (C), triglycerides (TG), lipoproteins (LP), and apolipoproteins (Apo) B-100, A-I, and A-II pro fi les in 24 patients of...
+
+--- Sample 10 ---
+  PRED : [CHEMICAL]  'ven'  (chars 205-208)
+  GOLD : [CHEMICAL]  'desvenlafaxine'  (chars 202-216)
+  CTX  : ...axine. OBJECTIVE: To report a case of syndrome of inappropriate anti-diuretic hormone (SIADH) secretion associated with >>>desvenlafaxine<<<. CASE SUMMARY: A 57-year old female with hyponatraemia. Her medications included desvenlafaxine, and symptoms included ...
+
+--- Sample 11 ---
+  PRED : [CHEMICAL]  'osfamide'  (chars 87-95)
+  GOLD : [CHEMICAL]  'Ifosfamide'  (chars 85-95)
+  CTX  : Ifosfamide related encephalopathy: the need for a timely EEG evaluation. BACKGROUND: >>>Ifosfamide<<< is an alkylating agent useful in the treatment of a wide range of cancers including sarcomas, lymphoma, gynecologic and...
+
+--- Sample 12 ---
+  PRED : [DISEASE]  'ocular'  (chars 2042-2048)
+  GOLD : [DISEASE]  'ocular hypertension'  (chars 2042-2061)
+  CTX  : ...atment-refractory cases of birdshot retinochoroidopathy. It is associated with significant side effects of cataract and >>>ocular hypertension<<< requiring treatment.
+
+--- Sample 13 ---
+  PRED : [CHEMICAL]  'asone'  (chars 616-621)
+  GOLD : [CHEMICAL]  'beclomethasone'  (chars 607-621)
+  CTX  : ... recur, but 60% (3/5) of patients with hoarseness had recurrence. We conclude that patients may be restarted on inhaled >>>beclomethasone<<< when clinically indicated; however, because of the high recurrence rate, patients who develop hoarseness should not be ...
+
+--- Sample 14 ---
+  PRED : [DISEASE]  'renal'  (chars 1603-1608)
+  GOLD : [DISEASE]  'renal tubular necrosis'  (chars 1603-1625)
+  CTX  : ...bition of APAP deacetylation. It is concluded that PAP formation, in vivo, accounts, at least in part, for APAP-induced >>>renal tubular necrosis<<<.
+
+--- Sample 15 ---
+  PRED : [CHEMICAL]  'NU'  (chars 1330-1332)
+  GOLD : [CHEMICAL]  'BCNU'  (chars 1328-1332)
+  CTX  : ...accompanied with decreased hippocampal glutathione reductase (GR) activity and reduced glutathione (GSH) content. Also, >>>BCNU<<< administration increased serum tumor necrosis factor-alpha (TNFalpha), hippocampal MT and malondialdehyde (MDA) content...
+
+--- Sample 16 ---
+  PRED : [DISEASE]  'GEM-P chemotherapy is active in the treatment of relapsed'  (chars 0-57)
+  GOLD : [CHEMICAL]  'GEM'  (chars 0-3)
+  CTX  : >>>GEM-P chemotherapy is active in the treatment of relapsed<<< Hodgkin lymphoma. Hodgkin lymphoma (HL) is a relatively chemosensitive malignancy. However, for those who relapse, high...
+
+--- Sample 17 ---
+  PRED : [CHEMICAL]  'hi'  (chars 268-270)
+  GOLD : [CHEMICAL]  'alkylxanthines'  (chars 259-273)
+  CTX  : ...nefit in some ischaemic and nephrotoxic models of acute renal failure (ARF). In the present study, the effects of three >>>alkylxanthines<<< with different potencies as adenosine antagonists 8-phenyltheophylline, theophylline and enprofylline, were examined in...
+
+--- Sample 18 ---
+  PRED : [CHEMICAL]  'ta'  (chars 793-795)
+  GOLD : [CHEMICAL]  'mirtazapine'  (chars 790-801)
+  CTX  : ... publications. The authors report here a depressed patient comorbid with postprandial dyspepsia who developed RLS after >>>mirtazapine<<< had been added to his domperidone therapy. Our patient started to have symptoms of RLS only after he had been treated w...
+
+--- Sample 19 ---
+  PRED : [CHEMICAL]  'Flu'  (chars 0-3)
+  GOLD : [CHEMICAL]  'Flurothyl'  (chars 0-9)
+  CTX  : >>>Flurothyl<<< seizure thresholds in mice treated neonatally with a single injection of monosodium glutamate (MSG): evaluation of expe...
+
+--- Sample 20 ---
+  PRED : [CHEMICAL]  'arabine'  (chars 574-581)
+  GOLD : [CHEMICAL]  'cytarabine'  (chars 571-581)
+  CTX  : ...ided weakness with diffuse cerebral vasospasm on magnetic resonance angiography after the administration of intrathecal >>>cytarabine<<<. Vincristine, dexamethasone, and polyethylene glycol-asparaginase were also administered before the episode as part of ...
+
+--- Sample 21 ---
+  PRED : [CHEMICAL]  'oxetine'  (chars 783-790)
+  GOLD : [CHEMICAL]  'desmethylfluoxetine'  (chars 771-790)
+  CTX  : ...t, we describe a patient with acute hyperkinetic delirium connected with a high serum total fluoxetine (fluoxetine plus >>>desmethylfluoxetine<<<) concentration.
+
+--- Sample 22 ---
+  PRED : [DISEASE]  'Study Group. Lenalidomide and dexamethasone (RD) is a standard of care for'  (chars 224-298)
+  GOLD : [CHEMICAL]  'dexamethasone'  (chars 254-267)
+  CTX  : .../refractory multiple myeloma who were treated according to the standard clinical practice: a study of the Greek Myeloma >>>Study Group. Lenalidomide and dexamethasone (RD) is a standard of care for<<< relapsed/refractory multiple myeloma (RRMM), but there is limited published data on its efficacy and safety in the "rea...
+
+--- Sample 23 ---
+  PRED : [CHEMICAL]  'l'  (chars 1682-1683)
+  GOLD : [CHEMICAL]  'abecarnil'  (chars 1674-1683)
+  CTX  : ...nding, exploratory motility and on isoniazid-induced biochemical and pharmacological effects in mice. In these animals, >>>abecarnil<<< produced a paralleled dose-dependent (0.05-1 mg/kg i.p.) reduction of both motor behavior and cortical [35S]TBPS bindin...
+
+--- Sample 24 ---
+  PRED : [DISEASE]  'unresectable colon'  (chars 352-370)
+  GOLD : [DISEASE]  'colon cancer'  (chars 365-377)
+  CTX  : ...duced cardiotoxicity, in whom a high serum level of alpha-fluoro-beta-alanine (FBAL) was observed. The patient, who had >>>unresectable colon cancer<<< metastases to the liver and lung, was referred to us for chemotherapy from an affiliated hospital; he had no cardiac hi...
+
+--- Sample 25 ---
+  PRED : [CHEMICAL]  'l'  (chars 936-937)
+  GOLD : [CHEMICAL]  'lisinopril'  (chars 927-937)
+  CTX  : ...le-blind trial in which patients with or without previous ACE inhibitor treatment were stabilized receiving medium-dose >>>lisinopril<<< (12.5 or 15.0 mg once daily [OD]) for 2 to 4 weeks and then randomized to high- (35.0 or 32.5 mg OD) or low-dose (5.0 o...
+
+--- Sample 26 ---
+  PRED : [DISEASE]  'hyper'  (chars 687-692)
+  GOLD : [DISEASE]  'hyperkinetic'  (chars 687-699)
+  CTX  : ...rium, have not been previously linked with high blood levels of SSRIs. In this report, we describe a patient with acute >>>hyperkinetic<<< delirium connected with a high serum total fluoxetine (fluoxetine plus desmethylfluoxetine) concentration.
+
+--- Sample 27 ---
+  PRED : [CHEMICAL]  'rio'  (chars 883-886)
+  GOLD : [CHEMICAL]  'desferrioxamine'  (chars 877-892)
+  CTX  : ...haemodialysis can therefore be suggested as a useful therapy in rare cases of progressive acute renal failure caused by >>>desferrioxamine<<<.
+
+--- Sample 28 ---
+  PRED : [DISEASE]  'renal'  (chars 363-368)
+  GOLD : [DISEASE]  'renal disease'  (chars 363-376)
+  CTX  : ...m were caused by both indomethacin and naproxen, without major decline in renal function. It is likely that preexisting >>>renal disease<<< predisposed this patient to type IV renal tubular acidosis with prostaglandin synthetase inhibitors. Because he was una...
+
+--- Sample 29 ---
+  PRED : [DISEASE]  'no'  (chars 1755-1757)
+  GOLD : [DISEASE]  'somnolence'  (chars 1752-1762)
+  CTX  : ...an placebo-treated patients (2.1 +/- 2.8 vs 0.45 +/- 2.3 kg, respectively) and also experienced more treatment-emergent >>>somnolence<<< (21 patients [38.2%] vs 5 [8.3% ], respectively). CONCLUSION: Olanzapine demonstrated greater efficacy than placebo in ...
+
+--- Sample 30 ---
+  PRED : [CHEMICAL]  'Que'  (chars 0-3)
+  GOLD : [CHEMICAL]  'Quetiapine'  (chars 0-10)
+  CTX  : >>>Quetiapine<<<-induced neutropenia in a bipolar patient with hepatocellular carcinoma. OBJECTIVE: Quetiapine is a dibenzothiazepine de...
+
+--- Sample 31 ---
+  PRED : [DISEASE]  'kidney injury'  (chars 1314-1327)
+  GOLD : [DISEASE]  'acute kidney injury'  (chars 1308-1327)
+  CTX  : ...urea after cisplatin administration. Thus, our data suggest that the kinin B2 receptor is involved in cisplatin-induced >>>acute kidney injury<<< by mediating the necrotic process and the expression of inflammatory cytokines, thus resulting in declined renal functi...
+
+--- Sample 32 ---
+  PRED : [CHEMICAL]  'amb'  (chars 534-537)
+  GOLD : [CHEMICAL]  'ethambutol'  (chars 531-541)
+  CTX  : ...ine visual outcome. RESULTS: All patients had optic neuropathy between 1 to 6 months (mean = 2.9 months) after starting >>>ethambutol<<< therapy at a dosage ranging from 13 to 20 mg/kg/day (mean = 17 mg/kg/day). Seven (54%) of the 13 patients experienced v...
+
+--- Sample 33 ---
+  PRED : [CHEMICAL]  'succinyl'  (chars 1412-1420)
+  GOLD : [CHEMICAL]  'succinylcholine'  (chars 1412-1427)
+  CTX  : ...increasing the amount of precurarizing dose of rocuronium, but there was no significance (P = 0.072). The onset time of >>>succinylcholine<<< was significantly longer with increasing the amount of precurarizing dose of rocuronium (P < 0.001). CONCLUSIONS: Precu...
+
+--- Sample 34 ---
+  PRED : [DISEASE]  'after ibuprofen prophylaxis in very preterm infants. We report three cases of severe'  (chars 23-107)
+  GOLD : [CHEMICAL]  'ibuprofen'  (chars 29-38)
+  CTX  : Pulmonary hypertension >>>after ibuprofen prophylaxis in very preterm infants. We report three cases of severe<<< hypoxaemia after ibuprofen administration during a randomised controlled trial of prophylactic treatment of patent duct...
+
+--- Sample 35 ---
+  PRED : [CHEMICAL]  'pt'  (chars 255-257)
+  GOLD : [CHEMICAL]  'Viracept'  (chars 249-257)
+  CTX  : ...egular heart beat, known as bradycardia, in people with HIV. Bradycardia occurred in a 45-year-old male patient who was >>>Viracept<<< in combination with other anti-HIV drugs. The symptoms ceased after switching to another drug combination.
+
+--- Sample 36 ---
+  PRED : [DISEASE]  'heart failure'  (chars 337-350)
+  GOLD : [DISEASE]  'congestive heart failure'  (chars 326-350)
+  CTX  : ... or chronic urticaria, and angio-oedema. Angiotensin-converting enzyme (ACE) inhibitors, used to treat hypertension and >>>congestive heart failure<<<, were introduced in Europe in the middle of the eighties, and the use of these drugs has increased progressively. Soon ...
+
+--- Sample 37 ---
+  PRED : [CHEMICAL]  'yellow phosphorus'  (chars 185-202)
+  GOLD : [CHEMICAL]  'phosphorus'  (chars 192-202)
+  CTX  : ...hosphorus, a component of certain pesticide pastes and fireworks, is well known to cause hepatotoxicity. Poisoning with >>>yellow phosphorus<<< classically manifests with acute hepatitis leading to acute liver failure which may need liver transplantation. We pres...
+
+--- Sample 38 ---
+  PRED : [CHEMICAL]  'BC'  (chars 1515-1517)
+  GOLD : [CHEMICAL]  'BCNU'  (chars 1515-1519)
+  CTX  : ...observed, indicating a delayed maturation, and melatonin significantly reversed these changes. Malondialdehyde level in >>>BCNU<<<-exposed group was higher than those in control groups and melatonin decreased malondialdehyde levels in BCNU group (P<0...
+
+--- Sample 39 ---
+  PRED : [DISEASE]  'injury'  (chars 1649-1655)
+  GOLD : [DISEASE]  'tubular injury'  (chars 1641-1655)
+  CTX  : ...survival (P = 0.03). CONCLUSION: The timing of renal injury strongly suggests melphalan as the causative agent. Ongoing >>>tubular injury<<< may be a prerequisite for renal injury by melphalan as evidenced by the active urinary sediment. Development of ARI adv...
+
+--- Sample 40 ---
+  PRED : [DISEASE]  'optic'  (chars 457-462)
+  GOLD : [DISEASE]  'optic neuropathy'  (chars 457-473)
+  CTX  : ...haracteristics and initial and final visual acuity were analyzed to determine visual outcome. RESULTS: All patients had >>>optic neuropathy<<< between 1 to 6 months (mean = 2.9 months) after starting ethambutol therapy at a dosage ranging from 13 to 20 mg/kg/day...
+

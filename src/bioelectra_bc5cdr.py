@@ -23,11 +23,20 @@ Pipeline position: runs after parse_bc5cdr.py; output feeds candidate_gold.py
 and bc5cdr_evaluation.py.
 """
 
+import argparse
 import json
 import re
 import time
 from pathlib import Path
 from transformers import pipeline
+
+from src.experiment_config import (
+    docs_file,
+    normalize_split,
+    prediction_file,
+    record_runtime,
+    require_file,
+)
 
 MODEL_NAME = "d4data/biomedical-ner-all"
 
@@ -229,23 +238,44 @@ def run_bioelectra(docs):
             f"({100*aligned/checked:.1f}%) predicted words found in their slice"
         )
 
-    return all_entities
+    return all_entities, total_time, avg_time
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Run BioELECTRA on one BC5CDR split.")
+    parser.add_argument(
+        "--split",
+        required=True,
+        choices=["dev", "test", "development"],
+        help="Use dev for weight/threshold fitting and test for final evaluation.",
+    )
+    args = parser.parse_args()
+    split = normalize_split(args.split, allow_train=False)
+
+    input_file = require_file(docs_file(split), "parsed document file")
+    output_file = prediction_file("bioelectra", split)
+
+    print(f"Loading BC5CDR {split} documents from {input_file}...")
+    docs = load_jsonl(input_file)
+    if not docs:
+        raise ValueError(f"No documents found in {input_file}")
+    print(f"Loaded {len(docs)} documents")
+    print("Running BioELECTRA checkpoint...")
+
+    entities, total_time, avg_time = run_bioelectra(docs)
+    save_jsonl(entities, output_file)
+    record_runtime(
+        split,
+        "bioelectra",
+        total_seconds=total_time,
+        average_seconds=avg_time,
+        document_count=len(docs),
+        entity_count=len(entities),
+    )
+
+    print(f"Saved {len(entities)} BioELECTRA entities to {output_file}")
+    print(f"Saved runtime metadata to results/{split}/runtime.json")
 
 
 if __name__ == "__main__":
-    input_file = Path("data/processed/bc5cdr/bc5cdr_train_docs.jsonl")
-    output_file = Path("data/processed/bc5cdr/bioelectra_train_entities_bc5cdr.jsonl")
-
-    print("Loading BC5CDR train docs...")
-    docs = load_jsonl(input_file)
-    print(f"Loaded {len(docs)} documents")
-
-    print(f"Running model: {MODEL_NAME} with chunking...")
-    entities = run_bioelectra(docs)
-
-    save_jsonl(entities, output_file)
-    print(f"Saved BioELECTRA entities to {output_file}")
-
-
-# Total time taken: 67.66 seconds
-# Average time per document: 0.1353 seconds
+    main()

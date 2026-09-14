@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "fit_split": "dev",
+  "model": "medgemma1.5:4b-it-q4_K_M",
+  "prompt_version": "bc5cdr-medgemma-v1",
+  "prompt_hash": "f4b8e5b26ee4975435c9629daeceac326c669771950e122d34155a84d622946b",
+  "base_weighted_threshold": 1.16884495,
+  "low_threshold": 1.08738697,
+  "high_threshold": 1.19452979,
+  "levels_below": 1,
+  "levels_above": 1,
+  "band_rule": "score < low: reject; low <= score < high: MedGemma; score >= high: accept",
+  "weights": {
+    "scispacy": 0.7596058,
+    "biobert": 0.60041357,
+    "pubmedbert": 0.40923915,
+    "clinicalbert": 0.30209633,
+    "bioelectra": 0.18487707
+  },
+  "source_ensemble_models": [
+    "scispacy",
+    "biobert",
+    "pubmedbert",
+    "clinicalbert",
+    "bioelectra"
+  ],
+  "threshold_origin": "Adjacent achievable weighted-score levels around the frozen development-selected threshold."
+}

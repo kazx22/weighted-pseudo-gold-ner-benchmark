@@ -1,0 +1,95 @@
+{
+  "split": "test",
+  "level": "token-level BIO labels",
+  "caution": "The frequent O class can inflate agreement; interpret with exact span metrics.",
+  "pairwise": [
+    {
+      "model_1": "SciSpacy",
+      "model_2": "BioBERT",
+      "kappa": 0.36245275393598364,
+      "interpretation": "Fair"
+    },
+    {
+      "model_1": "SciSpacy",
+      "model_2": "PubMedBERT",
+      "kappa": 0.3716919761028443,
+      "interpretation": "Fair"
+    },
+    {
+      "model_1": "SciSpacy",
+      "model_2": "ClinicalBERT",
+      "kappa": 0.42035867631319945,
+      "interpretation": "Moderate"
+    },
+    {
+      "model_1": "SciSpacy",
+      "model_2": "BioELECTRA",
+      "kappa": 0.5446357722262172,
+      "interpretation": "Moderate"
+    },
+    {
+      "model_1": "BioBERT",
+      "model_2": "PubMedBERT",
+      "kappa": 0.7574320890762589,
+      "interpretation": "Substantial"
+    },
+    {
+      "model_1": "BioBERT",
+      "model_2": "ClinicalBERT",
+      "kappa": 0.2566400159295271,
+      "interpretation": "Fair"
+    },
+    {
+      "model_1": "BioBERT",
+      "model_2": "BioELECTRA",
+      "kappa": 0.2516956596547558,
+      "interpretation": "Fair"
+    },
+    {
+      "model_1": "PubMedBERT",
+      "model_2": "ClinicalBERT",
+      "kappa": 0.2510207612527092,
+      "interpretation": "Fair"
+    },
+    {
+      "model_1": "PubMedBERT",
+      "model_2": "BioELECTRA",
+      "kappa": 0.273475992554162,
+      "interpretation": "Fair"
+    },
+    {
+      "model_1": "ClinicalBERT",
+      "model_2": "BioELECTRA",
+      "kappa": 0.36515931967892834,
+      "interpretation": "Fair"
+    }
+  ],
+  "versus_human_gold": [
+    {
+      "model": "SciSpacy",
+      "kappa": 0.790866568876107,
+      "interpretation": "Substantial"
+    },
+    {
+      "model": "BioBERT",
+      "kappa": 0.4167465342473473,
+      "interpretation": "Moderate"
+    },
+    {
+      "model": "PubMedBERT",
+      "kappa": 0.42421747289908873,
+      "interpretation": "Moderate"
+    },
+    {
+      "model": "ClinicalBERT",
+      "kappa": 0.4324165211041796,
+      "interpretation": "Moderate"
+    },
+    {
+      "model": "BioELECTRA",
+      "kappa": 0.5687256369574809,
+      "interpretation": "Moderate"
+    }
+  ],
+  "mean_pairwise_kappa": 0.3854563016724586
+}

@@ -1,0 +1,541 @@
+{
+  "split": "test",
+  "primary_metric": "exact_character_span_and_label",
+  "results": {
+    "pseudo_gold_vs_human": [
+      {
+        "name": "Majority Pseudo-Gold",
+        "precision": 0.9169508867667121,
+        "recall": 0.54817004791518,
+        "f1": 0.68614815287437,
+        "tp": 5377,
+        "fp": 487,
+        "fn": 4432,
+        "runtime_seconds_per_document": null,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.8826102807145462,
+            "recall": 0.5472423146473779,
+            "f1-score": 0.6755964838844705,
+            "support": 4424,
+            "tp": 2421,
+            "fp": 322,
+            "fn": 2003
+          },
+          "CHEMICAL": {
+            "precision": 0.9471323293816084,
+            "recall": 0.5489322191272052,
+            "f1-score": 0.6950387961438985,
+            "support": 5385,
+            "tp": 2956,
+            "fp": 165,
+            "fn": 2429
+          }
+        },
+        "comparison": "pseudo_gold_vs_human"
+      },
+      {
+        "name": "Weighted Pseudo-Gold",
+        "precision": 0.920438571830194,
+        "recall": 0.6675502089917422,
+        "f1": 0.7738580629911954,
+        "tp": 6548,
+        "fp": 566,
+        "fn": 3261,
+        "runtime_seconds_per_document": null,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.8728938811705587,
+            "recall": 0.6674954792043399,
+            "f1-score": 0.7565005764057897,
+            "support": 4424,
+            "tp": 2953,
+            "fp": 430,
+            "fn": 1471
+          },
+          "CHEMICAL": {
+            "precision": 0.9635486464754758,
+            "recall": 0.6675951717734447,
+            "f1-score": 0.7887231241772709,
+            "support": 5385,
+            "tp": 3595,
+            "fp": 136,
+            "fn": 1790
+          }
+        },
+        "comparison": "pseudo_gold_vs_human"
+      }
+    ],
+    "models_vs_human": [
+      {
+        "name": "SciSpacy",
+        "precision": 0.796165259073271,
+        "recall": 0.7111836068916302,
+        "f1": 0.7512788756663615,
+        "tp": 6976,
+        "fp": 1786,
+        "fn": 2833,
+        "runtime_seconds_per_document": 0.024772,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.7531130268199234,
+            "recall": 0.7108951175406871,
+            "f1-score": 0.7313953488372092,
+            "support": 4424,
+            "tp": 3145,
+            "fp": 1031,
+            "fn": 1279
+          },
+          "CHEMICAL": {
+            "precision": 0.835368512865242,
+            "recall": 0.7114206128133704,
+            "f1-score": 0.7684284424832013,
+            "support": 5385,
+            "tp": 3831,
+            "fp": 755,
+            "fn": 1554
+          }
+        },
+        "comparison": "models_vs_human"
+      },
+      {
+        "name": "BioBERT",
+        "precision": 0.4317104696251616,
+        "recall": 0.7150576001631155,
+        "f1": 0.5383788762665028,
+        "tp": 7014,
+        "fp": 9233,
+        "fn": 2795,
+        "runtime_seconds_per_document": 0.485112,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.3208572290974947,
+            "recall": 0.7208408679927667,
+            "f1-score": 0.444057648123651,
+            "support": 4424,
+            "tp": 3189,
+            "fp": 6750,
+            "fn": 1235
+          },
+          "CHEMICAL": {
+            "precision": 0.6063728598604946,
+            "recall": 0.7103064066852368,
+            "f1-score": 0.6542375780381425,
+            "support": 5385,
+            "tp": 3825,
+            "fp": 2483,
+            "fn": 1560
+          }
+        },
+        "comparison": "models_vs_human"
+      },
+      {
+        "name": "PubMedBERT",
+        "precision": 0.30817502424553594,
+        "recall": 0.550718727699052,
+        "f1": 0.3952008193723023,
+        "tp": 5402,
+        "fp": 12127,
+        "fn": 4407,
+        "runtime_seconds_per_document": 3.834136,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.2023565019997838,
+            "recall": 0.4231464737793852,
+            "f1-score": 0.27378427787934184,
+            "support": 4424,
+            "tp": 1872,
+            "fp": 7379,
+            "fn": 2552
+          },
+          "CHEMICAL": {
+            "precision": 0.4264315051944914,
+            "recall": 0.6555246053853296,
+            "f1-score": 0.5167239991217156,
+            "support": 5385,
+            "tp": 3530,
+            "fp": 4748,
+            "fn": 1855
+          }
+        },
+        "comparison": "models_vs_human"
+      },
+      {
+        "name": "ClinicalBERT",
+        "precision": 0.24657274622528272,
+        "recall": 0.3978998878580895,
+        "f1": 0.3044699274514393,
+        "tp": 3903,
+        "fp": 11926,
+        "fn": 5906,
+        "runtime_seconds_per_document": 0.223074,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.22935255090368337,
+            "recall": 0.4532097649186257,
+            "f1-score": 0.3045723834118183,
+            "support": 4424,
+            "tp": 2005,
+            "fp": 6737,
+            "fn": 2419
+          },
+          "CHEMICAL": {
+            "precision": 0.2678143078876817,
+            "recall": 0.35246053853296194,
+            "f1-score": 0.304361770365619,
+            "support": 5385,
+            "tp": 1898,
+            "fp": 5189,
+            "fn": 3487
+          }
+        },
+        "comparison": "models_vs_human"
+      },
+      {
+        "name": "BioELECTRA",
+        "precision": 0.17229948253557567,
+        "recall": 0.21724946477724538,
+        "f1": 0.19218108851512827,
+        "tp": 2131,
+        "fp": 10237,
+        "fn": 7678,
+        "runtime_seconds_per_document": 0.123983,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.17669517409896152,
+            "recall": 0.26152802893309224,
+            "f1-score": 0.2109004739336493,
+            "support": 4424,
+            "tp": 1157,
+            "fp": 5391,
+            "fn": 3267
+          },
+          "CHEMICAL": {
+            "precision": 0.16735395189003435,
+            "recall": 0.1808727948003714,
+            "f1-score": 0.17385095939312806,
+            "support": 5385,
+            "tp": 974,
+            "fp": 4846,
+            "fn": 4411
+          }
+        },
+        "comparison": "models_vs_human"
+      }
+    ],
+    "models_vs_majority_pseudo_gold": [
+      {
+        "name": "SciSpacy vs Majority Pseudo-Gold",
+        "precision": 0.6172106824925816,
+        "recall": 0.922237380627558,
+        "f1": 0.7395049911117189,
+        "tp": 5408,
+        "fp": 3354,
+        "fn": 456,
+        "runtime_seconds_per_document": 0.024772,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.5955459770114943,
+            "recall": 0.9066715275246081,
+            "f1-score": 0.7188900130076601,
+            "support": 2743,
+            "tp": 2487,
+            "fp": 1689,
+            "fn": 256
+          },
+          "CHEMICAL": {
+            "precision": 0.636938508504143,
+            "recall": 0.9359179750080102,
+            "f1-score": 0.7580121967042948,
+            "support": 3121,
+            "tp": 2921,
+            "fp": 1665,
+            "fn": 200
+          }
+        },
+        "comparison": "models_vs_majority_pseudo_gold"
+      },
+      {
+        "name": "BioBERT vs Majority Pseudo-Gold",
+        "precision": 0.3180279436203607,
+        "recall": 0.8811391541609823,
+        "f1": 0.4673691827597124,
+        "tp": 5167,
+        "fp": 11080,
+        "fn": 697,
+        "runtime_seconds_per_document": 0.485112,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.24660428614548746,
+            "recall": 0.8935472110827561,
+            "f1-score": 0.38653209272985334,
+            "support": 2743,
+            "tp": 2451,
+            "fp": 7488,
+            "fn": 292
+          },
+          "CHEMICAL": {
+            "precision": 0.43056436271401394,
+            "recall": 0.8702338993912208,
+            "f1-score": 0.5760950259836674,
+            "support": 3121,
+            "tp": 2716,
+            "fp": 3592,
+            "fn": 405
+          }
+        },
+        "comparison": "models_vs_majority_pseudo_gold"
+      },
+      {
+        "name": "PubMedBERT vs Majority Pseudo-Gold",
+        "precision": 0.2320725654629471,
+        "recall": 0.6937244201909959,
+        "f1": 0.3477963493352712,
+        "tp": 4068,
+        "fp": 13461,
+        "fn": 1796,
+        "runtime_seconds_per_document": 3.834136,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.16484704356285806,
+            "recall": 0.5559606270506744,
+            "f1-score": 0.2542938135734534,
+            "support": 2743,
+            "tp": 1525,
+            "fp": 7726,
+            "fn": 1218
+          },
+          "CHEMICAL": {
+            "precision": 0.3071998067165982,
+            "recall": 0.8148029477731497,
+            "f1-score": 0.4461794894288973,
+            "support": 3121,
+            "tp": 2543,
+            "fp": 5735,
+            "fn": 578
+          }
+        },
+        "comparison": "models_vs_majority_pseudo_gold"
+      },
+      {
+        "name": "ClinicalBERT vs Majority Pseudo-Gold",
+        "precision": 0.23021037336534209,
+        "recall": 0.621418826739427,
+        "f1": 0.33596090904900194,
+        "tp": 3644,
+        "fp": 12185,
+        "fn": 2220,
+        "runtime_seconds_per_document": 0.223074,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.21642644703729125,
+            "recall": 0.6897557418884434,
+            "f1-score": 0.32947322594688727,
+            "support": 2743,
+            "tp": 1892,
+            "fp": 6850,
+            "fn": 851
+          },
+          "CHEMICAL": {
+            "precision": 0.24721320728093693,
+            "recall": 0.5613585389298302,
+            "f1-score": 0.3432601880877743,
+            "support": 3121,
+            "tp": 1752,
+            "fp": 5335,
+            "fn": 1369
+          }
+        },
+        "comparison": "models_vs_majority_pseudo_gold"
+      },
+      {
+        "name": "BioELECTRA vs Majority Pseudo-Gold",
+        "precision": 0.1714909443725744,
+        "recall": 0.36169849931787174,
+        "f1": 0.23266783677051342,
+        "tp": 2121,
+        "fp": 10247,
+        "fn": 3743,
+        "runtime_seconds_per_document": 0.123983,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.169975565058033,
+            "recall": 0.4057601166605906,
+            "f1-score": 0.2395866968033581,
+            "support": 2743,
+            "tp": 1113,
+            "fp": 5435,
+            "fn": 1630
+          },
+          "CHEMICAL": {
+            "precision": 0.1731958762886598,
+            "recall": 0.3229734059596283,
+            "f1-score": 0.22547813443686388,
+            "support": 3121,
+            "tp": 1008,
+            "fp": 4812,
+            "fn": 2113
+          }
+        },
+        "comparison": "models_vs_majority_pseudo_gold"
+      }
+    ],
+    "models_vs_weighted_pseudo_gold": [
+      {
+        "name": "SciSpacy vs Weighted Pseudo-Gold",
+        "precision": 0.7771056836338736,
+        "recall": 0.9571267922406522,
+        "f1": 0.8577727387251197,
+        "tp": 6809,
+        "fp": 1953,
+        "fn": 305,
+        "runtime_seconds_per_document": 0.024772,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.7696360153256705,
+            "recall": 0.9500443393437777,
+            "f1-score": 0.8503770339992062,
+            "support": 3383,
+            "tp": 3214,
+            "fp": 962,
+            "fn": 169
+          },
+          "CHEMICAL": {
+            "precision": 0.7839075447012647,
+            "recall": 0.9635486464754758,
+            "f1-score": 0.8644944090417218,
+            "support": 3731,
+            "tp": 3595,
+            "fp": 991,
+            "fn": 136
+          }
+        },
+        "comparison": "models_vs_weighted_pseudo_gold"
+      },
+      {
+        "name": "BioBERT vs Weighted Pseudo-Gold",
+        "precision": 0.3653597587246876,
+        "recall": 0.8344110205229126,
+        "f1": 0.50819742305552,
+        "tp": 5936,
+        "fp": 10311,
+        "fn": 1178,
+        "runtime_seconds_per_document": 0.485112,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.2873528523996378,
+            "recall": 0.8442211055276382,
+            "f1-score": 0.4287644497823149,
+            "support": 3383,
+            "tp": 2856,
+            "fp": 7083,
+            "fn": 527
+          },
+          "CHEMICAL": {
+            "precision": 0.48826886493341787,
+            "recall": 0.8255159474671669,
+            "f1-score": 0.6136069329614503,
+            "support": 3731,
+            "tp": 3080,
+            "fp": 3228,
+            "fn": 651
+          }
+        },
+        "comparison": "models_vs_weighted_pseudo_gold"
+      },
+      {
+        "name": "PubMedBERT vs Weighted Pseudo-Gold",
+        "precision": 0.2595128073478236,
+        "recall": 0.6394433511386,
+        "f1": 0.3691920626547093,
+        "tp": 4549,
+        "fp": 12980,
+        "fn": 2565,
+        "runtime_seconds_per_document": 3.834136,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.1902497027348395,
+            "recall": 0.5202483003251552,
+            "f1-score": 0.27861326579072343,
+            "support": 3383,
+            "tp": 1760,
+            "fp": 7491,
+            "fn": 1623
+          },
+          "CHEMICAL": {
+            "precision": 0.33691712974148347,
+            "recall": 0.7475207719110158,
+            "f1-score": 0.46448496960612884,
+            "support": 3731,
+            "tp": 2789,
+            "fp": 5489,
+            "fn": 942
+          }
+        },
+        "comparison": "models_vs_weighted_pseudo_gold"
+      },
+      {
+        "name": "ClinicalBERT vs Weighted Pseudo-Gold",
+        "precision": 0.22067092046244235,
+        "recall": 0.4910036547652516,
+        "f1": 0.30449374536895785,
+        "tp": 3493,
+        "fp": 12336,
+        "fn": 3621,
+        "runtime_seconds_per_document": 0.223074,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.20647449096316633,
+            "recall": 0.5335501034584688,
+            "f1-score": 0.29773195876288666,
+            "support": 3383,
+            "tp": 1805,
+            "fp": 6937,
+            "fn": 1578
+          },
+          "CHEMICAL": {
+            "precision": 0.23818258783688442,
+            "recall": 0.4524256231573305,
+            "f1-score": 0.3120724718062488,
+            "support": 3731,
+            "tp": 1688,
+            "fp": 5399,
+            "fn": 2043
+          }
+        },
+        "comparison": "models_vs_weighted_pseudo_gold"
+      },
+      {
+        "name": "BioELECTRA vs Weighted Pseudo-Gold",
+        "precision": 0.15928201811125486,
+        "recall": 0.2769187517570987,
+        "f1": 0.2022379632481265,
+        "tp": 1970,
+        "fp": 10398,
+        "fn": 5144,
+        "runtime_seconds_per_document": 0.123983,
+        "per_label": {
+          "DISEASE": {
+            "precision": 0.15668906536346977,
+            "recall": 0.3032811114395507,
+            "f1-score": 0.2066257174504078,
+            "support": 3383,
+            "tp": 1026,
+            "fp": 5522,
+            "fn": 2357
+          },
+          "CHEMICAL": {
+            "precision": 0.16219931271477664,
+            "recall": 0.2530152774055213,
+            "f1-score": 0.19767563605905142,
+            "support": 3731,
+            "tp": 944,
+            "fp": 4876,
+            "fn": 2787
+          }
+        },
+        "comparison": "models_vs_weighted_pseudo_gold"
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+BioRED Disease/Chemical External Validation Patch
+Generated: 2026-08-08
+
+Adds only new BioRED files. Existing BC5CDR source/results are not overwritten.
+
+Core modules:
+- src/biored_config.py
+- src/parse_biored.py
+- src/biored_models.py
+- src/biored_candidate_gold.py
+- src/biored_threshold_sensitivity.py
+- src/biored_evaluation.py
+- src/biored_bootstrap.py
+- src/biored_kappa.py
+
+MedGemma modules:
+- src/biored_medgemma_common.py
+- src/biored_medgemma.py
+- src/biored_medgemma_hybrid.py
+- src/biored_medgemma_evaluation.py
+- src/biored_medgemma_bootstrap.py
+- src/biored_report.py
+
+Windows runners:
+- 07_RUN_BIORED_CORE.cmd
+- 08_RUN_BIORED_MEDGEMMA.cmd
+- 09_RUN_BIORED_ALL.cmd
+- RUN_BIORED.ps1
+
+Validation performed before packaging:
+- Python compileall: passed.
+- 4 focused unit tests: passed.
+- Synthetic PubTator parser test: passed.
+- Synthetic development fit/test apply/evaluation: passed.
+- Synthetic bootstrap and Cohen kappa: passed.
+- Synthetic MedGemma post-processing/evaluation/bootstrap/report: passed.
+- No real BioRED model inference was claimed or performed in this environment.

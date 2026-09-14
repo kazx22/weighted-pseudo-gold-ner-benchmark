@@ -1,0 +1,15 @@
+{
+  "applied_split": "test",
+  "source_config": "C:\\University\\Projects\\spatial-human-anatomy\\results\\dev\\frozen_pseudo_gold_config.json",
+  "weights": {
+    "scispacy": 0.7596058,
+    "biobert": 0.60041357,
+    "pubmedbert": 0.40923915,
+    "clinicalbert": 0.30209633,
+    "bioelectra": 0.18487707
+  },
+  "selected_threshold": 1.16884495,
+  "weighted_entity_count": 7114,
+  "majority_entity_count": 5864,
+  "test_gold_was_not_read": true
+}

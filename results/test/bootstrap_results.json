@@ -1,0 +1,316 @@
+{
+  "split": "test",
+  "metric": "exact_character_span_and_label_micro_f1",
+  "resamples": 1000,
+  "seed": 42,
+  "confidence_intervals": [
+    {
+      "system": "scispaCy",
+      "precision": 0.796165259073271,
+      "recall": 0.7111836068916302,
+      "f1": 0.7512788756663615,
+      "ci_low": 0.7377448435083226,
+      "ci_high": 0.7646622871842372
+    },
+    {
+      "system": "BioBERT",
+      "precision": 0.4317104696251616,
+      "recall": 0.7150576001631155,
+      "f1": 0.5383788762665028,
+      "ci_low": 0.5231568205976643,
+      "ci_high": 0.5530579286705809
+    },
+    {
+      "system": "PubMedBERT",
+      "precision": 0.30817502424553594,
+      "recall": 0.550718727699052,
+      "f1": 0.3952008193723023,
+      "ci_low": 0.3766695471714159,
+      "ci_high": 0.4144263016960622
+    },
+    {
+      "system": "ClinicalBERT",
+      "precision": 0.24657274622528272,
+      "recall": 0.3978998878580895,
+      "f1": 0.3044699274514393,
+      "ci_low": 0.2896315287900828,
+      "ci_high": 0.3174666700817315
+    },
+    {
+      "system": "BioELECTRA",
+      "precision": 0.17229948253557567,
+      "recall": 0.21724946477724538,
+      "f1": 0.19218108851512827,
+      "ci_low": 0.1815479251864025,
+      "ci_high": 0.2026690348597514
+    },
+    {
+      "system": "Majority Pseudo-Gold",
+      "precision": 0.9169508867667121,
+      "recall": 0.54817004791518,
+      "f1": 0.68614815287437,
+      "ci_low": 0.6719478122089285,
+      "ci_high": 0.7003800001226443
+    },
+    {
+      "system": "Weighted Pseudo-Gold",
+      "precision": 0.920438571830194,
+      "recall": 0.6675502089917422,
+      "f1": 0.7738580629911954,
+      "ci_low": 0.7601343144777442,
+      "ci_high": 0.7870304457007473
+    }
+  ],
+  "pairwise_tests": [
+    {
+      "system_1": "scispaCy",
+      "system_2": "BioBERT",
+      "f1_system_1": 0.7512788756663615,
+      "f1_system_2": 0.5383788762665028,
+      "f1_difference": 0.2128999993998587,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "scispaCy",
+      "system_2": "PubMedBERT",
+      "f1_system_1": 0.7512788756663615,
+      "f1_system_2": 0.3952008193723023,
+      "f1_difference": 0.35607805629405925,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "scispaCy",
+      "system_2": "ClinicalBERT",
+      "f1_system_1": 0.7512788756663615,
+      "f1_system_2": 0.3044699274514393,
+      "f1_difference": 0.44680894821492223,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "scispaCy",
+      "system_2": "BioELECTRA",
+      "f1_system_1": 0.7512788756663615,
+      "f1_system_2": 0.19218108851512827,
+      "f1_difference": 0.5590977871512333,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "BioBERT",
+      "system_2": "PubMedBERT",
+      "f1_system_1": 0.5383788762665028,
+      "f1_system_2": 0.3952008193723023,
+      "f1_difference": 0.14317805689420054,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "BioBERT",
+      "system_2": "ClinicalBERT",
+      "f1_system_1": 0.5383788762665028,
+      "f1_system_2": 0.3044699274514393,
+      "f1_difference": 0.23390894881506352,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "BioBERT",
+      "system_2": "BioELECTRA",
+      "f1_system_1": 0.5383788762665028,
+      "f1_system_2": 0.19218108851512827,
+      "f1_difference": 0.34619778775137455,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "PubMedBERT",
+      "system_2": "ClinicalBERT",
+      "f1_system_1": 0.3952008193723023,
+      "f1_system_2": 0.3044699274514393,
+      "f1_difference": 0.09073089192086298,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "PubMedBERT",
+      "system_2": "BioELECTRA",
+      "f1_system_1": 0.3952008193723023,
+      "f1_system_2": 0.19218108851512827,
+      "f1_difference": 0.203019730857174,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "ClinicalBERT",
+      "system_2": "BioELECTRA",
+      "f1_system_1": 0.3044699274514393,
+      "f1_system_2": 0.19218108851512827,
+      "f1_difference": 0.11228883893631103,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    }
+  ],
+  "model_pairwise_tests": [
+    {
+      "system_1": "scispaCy",
+      "system_2": "BioBERT",
+      "f1_system_1": 0.7512788756663615,
+      "f1_system_2": 0.5383788762665028,
+      "f1_difference": 0.2128999993998587,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "scispaCy",
+      "system_2": "PubMedBERT",
+      "f1_system_1": 0.7512788756663615,
+      "f1_system_2": 0.3952008193723023,
+      "f1_difference": 0.35607805629405925,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "scispaCy",
+      "system_2": "ClinicalBERT",
+      "f1_system_1": 0.7512788756663615,
+      "f1_system_2": 0.3044699274514393,
+      "f1_difference": 0.44680894821492223,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "scispaCy",
+      "system_2": "BioELECTRA",
+      "f1_system_1": 0.7512788756663615,
+      "f1_system_2": 0.19218108851512827,
+      "f1_difference": 0.5590977871512333,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "BioBERT",
+      "system_2": "PubMedBERT",
+      "f1_system_1": 0.5383788762665028,
+      "f1_system_2": 0.3952008193723023,
+      "f1_difference": 0.14317805689420054,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "BioBERT",
+      "system_2": "ClinicalBERT",
+      "f1_system_1": 0.5383788762665028,
+      "f1_system_2": 0.3044699274514393,
+      "f1_difference": 0.23390894881506352,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "BioBERT",
+      "system_2": "BioELECTRA",
+      "f1_system_1": 0.5383788762665028,
+      "f1_system_2": 0.19218108851512827,
+      "f1_difference": 0.34619778775137455,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "PubMedBERT",
+      "system_2": "ClinicalBERT",
+      "f1_system_1": 0.3952008193723023,
+      "f1_system_2": 0.3044699274514393,
+      "f1_difference": 0.09073089192086298,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "PubMedBERT",
+      "system_2": "BioELECTRA",
+      "f1_system_1": 0.3952008193723023,
+      "f1_system_2": 0.19218108851512827,
+      "f1_difference": 0.203019730857174,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "ClinicalBERT",
+      "system_2": "BioELECTRA",
+      "f1_system_1": 0.3044699274514393,
+      "f1_system_2": 0.19218108851512827,
+      "f1_difference": 0.11228883893631103,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.01998001998001998,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    }
+  ],
+  "primary_pseudo_gold_tests": [
+    {
+      "system_1": "Weighted Pseudo-Gold",
+      "system_2": "Majority Pseudo-Gold",
+      "f1_system_1": 0.7738580629911954,
+      "f1_system_2": 0.68614815287437,
+      "f1_difference": 0.08770991011682538,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.003996003996003996,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    },
+    {
+      "system_1": "Weighted Pseudo-Gold",
+      "system_2": "scispaCy",
+      "f1_system_1": 0.7738580629911954,
+      "f1_system_2": 0.7512788756663615,
+      "f1_difference": 0.022579187324833883,
+      "raw_p": 0.001998001998001998,
+      "holm_p": 0.003996003996003996,
+      "significant_raw_0.05": true,
+      "significant_holm_0.05": true
+    }
+  ],
+  "multiple_testing_families": {
+    "model_pairwise_tests": "Holm correction across 10 model comparisons",
+    "primary_pseudo_gold_tests": "Holm correction across 2 prespecified central comparisons"
+  }
+}

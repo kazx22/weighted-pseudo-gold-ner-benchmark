@@ -29,6 +29,7 @@ plotting code, kept for reference.  The active code starts at the second
 # Replaced by the active code below.
 #
 # import os
+from pathlib import Path
 # import numpy as np
 # import matplotlib.pyplot as plt
 # from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
@@ -69,6 +70,23 @@ COLOURS = {
 MODEL_RESULTS_HUMAN = []
 MODEL_RESULTS_CANDIDATE = []
 HUMAN_COMPARISON_RESULTS = []
+FIGURE_DIR = Path("figure")
+
+
+def set_figure_dir(path):
+    global FIGURE_DIR
+    FIGURE_DIR = Path(path)
+
+
+def reset_results():
+    MODEL_RESULTS_HUMAN.clear()
+    MODEL_RESULTS_CANDIDATE.clear()
+    HUMAN_COMPARISON_RESULTS.clear()
+
+
+def figure_path(filename):
+    FIGURE_DIR.mkdir(parents=True, exist_ok=True)
+    return FIGURE_DIR / filename
 
 
 # ---------------------------------------------------------------------------
@@ -152,7 +170,7 @@ def add_human_comparison_result(
 
 
 def ensure_figure_dir():
-    os.makedirs("figure", exist_ok=True)
+    FIGURE_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # ---------------------------------------------------------------------------
@@ -231,7 +249,7 @@ def plot_models_vs_human_gold():
     ax.set_xticklabels(models, rotation=0)
     ax.set_ylabel("Score")
     ax.set_ylim(0, 1.08)
-    ax.set_title("Model Performance Against Human Gold Annotations (BC5CDR)")
+    ax.set_title("Exact-Span Model Performance Against Human Gold (BC5CDR)")
     ax.legend(loc="upper right", framealpha=0.9)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -239,9 +257,10 @@ def plot_models_vs_human_gold():
     ax.set_axisbelow(True)
 
     plt.tight_layout()
-    plt.savefig("figure/fig1_models_vs_human_gold.png")
+    out = figure_path("fig1_models_vs_human_gold.png")
+    plt.savefig(out)
     plt.close()
-    print("Saved: figure/fig1_models_vs_human_gold.png")
+    print(f"Saved: {out}")
 
 
 # ---------------------------------------------------------------------------
@@ -318,7 +337,7 @@ def plot_candidate_gold_comparison():
     )
     ax.set_ylabel("Score")
     ax.set_ylim(0, 1.08)
-    ax.set_title("Pseudo-Gold Annotation Quality Against Human Gold (BC5CDR)")
+    ax.set_title("Exact-Span Pseudo-Gold Quality Against Human Gold (BC5CDR)")
     ax.legend(loc="upper right", framealpha=0.9)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -326,9 +345,10 @@ def plot_candidate_gold_comparison():
     ax.set_axisbelow(True)
 
     plt.tight_layout()
-    plt.savefig("figure/fig2_candidate_gold_comparison.png")
+    out = figure_path("fig2_candidate_gold_comparison.png")
+    plt.savefig(out)
     plt.close()
-    print("Saved: figure/fig2_candidate_gold_comparison.png")
+    print(f"Saved: {out}")
 
 
 # ---------------------------------------------------------------------------
@@ -404,9 +424,10 @@ def plot_per_label_performance():
     ax.set_axisbelow(True)
 
     plt.tight_layout()
-    plt.savefig("figure/fig3_per_label_f1.png")
+    out = figure_path("fig3_per_label_f1.png")
+    plt.savefig(out)
     plt.close()
-    print("Saved: figure/fig3_per_label_f1.png")
+    print(f"Saved: {out}")
 
 
 # ---------------------------------------------------------------------------
@@ -438,9 +459,10 @@ def plot_scispacy_confusion_matrix():
 
     ax.set_title("SciSpacy — Confusion Matrix vs Human Gold (BC5CDR)")
     plt.tight_layout()
-    plt.savefig("figure/fig4_scispacy_confusion_matrix.png")
+    out = figure_path("fig4_scispacy_confusion_matrix.png")
+    plt.savefig(out)
     plt.close()
-    print("Saved: figure/fig4_scispacy_confusion_matrix.png")
+    print(f"Saved: {out}")
 
 
 # ---------------------------------------------------------------------------
@@ -471,9 +493,10 @@ def plot_weighted_gold_confusion_matrix():
 
     ax.set_title("Weighted Candidate Gold — Confusion Matrix vs Human Gold (BC5CDR)")
     plt.tight_layout()
-    plt.savefig("figure/fig5_weighted_gold_confusion_matrix.png")
+    out = figure_path("fig5_weighted_gold_confusion_matrix.png")
+    plt.savefig(out)
     plt.close()
-    print("Saved: figure/fig5_weighted_gold_confusion_matrix.png")
+    print(f"Saved: {out}")
 
 
 # ---------------------------------------------------------------------------
@@ -532,9 +555,10 @@ def plot_all_model_confusion_matrices():
         y=0.99,
     )
     plt.tight_layout(rect=[0, 0, 1, 0.97])
-    plt.savefig("figure/fig6_all_model_confusion_matrices.png")
+    out = figure_path("fig6_all_model_confusion_matrices.png")
+    plt.savefig(out)
     plt.close()
-    print("Saved: figure/fig6_all_model_confusion_matrices.png")
+    print(f"Saved: {out}")
 
 
 # ---------------------------------------------------------------------------
@@ -557,7 +581,8 @@ def plot_separate_model_confusion_matrices():
         return
 
     labels = ["O", "B-DISEASE", "I-DISEASE", "B-CHEMICAL", "I-CHEMICAL"]
-    os.makedirs("figure/confusion", exist_ok=True)
+    confusion_dir = figure_path("confusion")
+    confusion_dir.mkdir(parents=True, exist_ok=True)
 
     for r in results:
         if r["y_true"] is None or r["y_pred"] is None:
@@ -574,7 +599,7 @@ def plot_separate_model_confusion_matrices():
         plt.tight_layout()
 
         safe_name = r["model"].lower().replace(" ", "_")
-        out = f"figure/confusion/cm_{safe_name}.png"
+        out = confusion_dir / f"cm_{safe_name}.png"
         plt.savefig(out)
         plt.close()
         print(f"Saved: {out}")

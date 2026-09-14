@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "fit_split": "dev",
+  "model": "medgemma1.5:4b-it-q4_K_M",
+  "prompt_version": "biored-disease-chemical-medgemma-v1",
+  "prompt_hash": "b6dc7c67e5ee21e5e660d2493409140bc918c43793caadef3af316d34f6e4420",
+  "base_weighted_threshold": 0.82016965,
+  "low_threshold": 0.80201345,
+  "high_threshold": 0.88609265,
+  "levels_below": 1,
+  "levels_above": 1,
+  "band_rule": "score < low: reject; low <= score < high: MedGemma; score >= high: accept",
+  "weights": {
+    "scispacy": 0.66222093,
+    "biobert": 0.47078715,
+    "pubmedbert": 0.3312263,
+    "clinicalbert": 0.25735678,
+    "bioelectra": 0.15794872
+  },
+  "source_ensemble_models": [
+    "scispacy",
+    "biobert",
+    "pubmedbert",
+    "clinicalbert",
+    "bioelectra"
+  ],
+  "threshold_origin": "Adjacent achievable weighted-score levels around the frozen development-selected threshold."
+}

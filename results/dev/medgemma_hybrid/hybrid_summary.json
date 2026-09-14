@@ -1,0 +1,23 @@
+{
+  "split": "dev",
+  "model": "medgemma1.5:4b-it-q4_K_M",
+  "prompt_version": "bc5cdr-medgemma-v1",
+  "base_weighted_threshold": 1.16884495,
+  "low_threshold": 1.08738697,
+  "high_threshold": 1.19452979,
+  "total_unique_candidates": 46161,
+  "auto_reject_count": 39168,
+  "routed_count": 658,
+  "auto_accept_count": 6335,
+  "medgemma_accept_count": 573,
+  "medgemma_reject_count": 85,
+  "invalid_default_reject_count": 0,
+  "final_entity_count": 6908,
+  "routing_rate_over_all_candidates": 0.014254457225796668,
+  "tie_break_request_seconds": 2607.49428,
+  "current_process_wall_seconds": 2609.486764,
+  "construction_used_human_gold": false,
+  "test_gold_was_not_read": null,
+  "decision_cache": "C:\\University\\Projects\\spatial-human-anatomy\\results\\dev\\medgemma_hybrid\\candidate_decisions.jsonl",
+  "output_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\gold\\medgemma_hybrid_dev_entities_bc5cdr.jsonl"
+}

@@ -1,0 +1,23 @@
+{
+  "split": "test",
+  "model": "medgemma1.5:4b-it-q4_K_M",
+  "prompt_version": "biored-disease-chemical-medgemma-v1",
+  "base_weighted_threshold": 0.82016965,
+  "low_threshold": 0.80201345,
+  "high_threshold": 0.88609265,
+  "total_unique_candidates": 10425,
+  "auto_reject_count": 8151,
+  "routed_count": 956,
+  "auto_accept_count": 1318,
+  "medgemma_accept_count": 524,
+  "medgemma_reject_count": 432,
+  "invalid_default_reject_count": 0,
+  "final_entity_count": 1842,
+  "routing_rate_over_all_candidates": 0.09170263788968824,
+  "tie_break_request_seconds": 3554.310156,
+  "current_process_wall_seconds": 3555.226824,
+  "construction_used_human_gold": false,
+  "test_gold_was_not_read": true,
+  "decision_cache": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\test\\medgemma_hybrid\\candidate_decisions.jsonl",
+  "output_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\gold\\biored\\medgemma_hybrid_test_entities_biored.jsonl"
+}

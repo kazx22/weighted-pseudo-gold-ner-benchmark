@@ -1,0 +1,204 @@
+ERROR TYPE: FALSE_POSITIVE
+Total instances: 720  |  Showing: 40
+================================================================================
+
+--- Sample 1 ---
+  PRED : [DISEASE]  'Motor impairment'  (chars 134-150)
+  GOLD : (nothing)
+  CTX  : ...erability to 6-hydroxydopamine lesion and reduced development of dyskinesias in mice lacking CB1 cannabinoid receptors. >>>Motor impairment<<<, dopamine (DA) neuronal activity and proenkephalin (PENK) gene expression in the caudate-putamen (CPu) were measured in...
+
+--- Sample 2 ---
+  PRED : [DISEASE]  'cardiac dysfunction'  (chars 1700-1719)
+  GOLD : (nothing)
+  CTX  : ...rmin, slightly by 50mg/kg, but not by 100mg/kg. Chronic pre-treatment with metformin reduces post-myocardial infarction >>>cardiac dysfunction<<< and suppresses inflammatory responses, possibly through inhibition of TLR4 activities. This mechanism can be considered...
+
+--- Sample 3 ---
+  PRED : [DISEASE]  'confusion'  (chars 1101-1110)
+  GOLD : (nothing)
+  CTX  : ...incidence risk factors were then assessed through three different multiple regression models. RESULTS: According to the >>>confusion<<< assessment method for the ICU scale, 28 % of patients were diagnosed with early postoperative delirium. The use of thio...
+
+--- Sample 4 ---
+  PRED : [CHEMICAL]  'insulin'  (chars 6-13)
+  GOLD : (nothing)
+  CTX  : Acute >>>insulin<<< treatment normalizes the resistance to the cardiotoxic effect of isoproterenol in streptozotocin diabetic rats. A morph...
+
+--- Sample 5 ---
+  PRED : [DISEASE]  'acute renal failure'  (chars 405-424)
+  GOLD : (nothing)
+  CTX  : ...he developed untoward side effects like nausea, vomiting and fever with chills and rigors. The last such episode was of >>>acute renal failure<<< at which stage the patient was seen by the authors of this report. The patient, however, made a full recovery.
+
+--- Sample 6 ---
+  PRED : [DISEASE]  'atheromatous'  (chars 174-186)
+  GOLD : (nothing)
+  CTX  : ...t receiving bromocriptine. Myocardial infarction in puerperium is infrequently reported. Spasm, coronary dissection, or >>>atheromatous<<< etiology has been described. Bromocriptine has been implicated in several previous case reports of myocardial infarctio...
+
+--- Sample 7 ---
+  PRED : [CHEMICAL]  'uM'  (chars 1279-1281)
+  GOLD : (nothing)
+  CTX  : ...0Gly-p.Ala539Thr BChE displays a pure Michaelian behavior with BTC as the substrate. Both catalytic parameters Km = 265 >>>uM<<< for BTC, two times higher than that of the atypical enzyme, and a low Vmax are consistent with the absence of activity ...
+
+--- Sample 8 ---
+  PRED : [CHEMICAL]  'concentration-dependently'  (chars 841-866)
+  GOLD : (nothing)
+  CTX  : ...ed for 2min every 10min for 30min after drug exposure for the vehicle and each drug concentration. IKr and IKs blockers >>>concentration-dependently<<< prolonged corrected FPD (FPDc), whereas Ca(2+) channel blockers concentration-dependently shortened FPDc. Also, the mul...
+
+--- Sample 9 ---
+  PRED : [CHEMICAL]  'mg/kg'  (chars 1349-1354)
+  GOLD : (nothing)
+  CTX  : ...e less than the maximum nonsedating dose: 0.56 (1.55) in the carrageenan model and 1.37 (1.23) in the neuropathy model (>>>mg/kg<<<; mean, SEM). The antinociception after morphine (3.2 mg/kg) was increased by co-administration with CNSB002 from 28.0 a...
+
+--- Sample 10 ---
+  PRED : [CHEMICAL]  'antidepressant'  (chars 600-614)
+  GOLD : (nothing)
+  CTX  : ...ntagonist, can also induce or aggravate symptoms of RLS. Mirtazapine, the first noradrenergic and specific serotonergic >>>antidepressant<<< (NaSSA), has been associated with RLS in several recent publications. The authors report here a depressed patient comor...
+
+--- Sample 11 ---
+  PRED : [DISEASE]  'numbness'  (chars 1003-1011)
+  GOLD : (nothing)
+  CTX  : ...second cycle of nelarabine without additional IT prophylaxis one month later. A week after this second cycle, she noted >>>numbness<<< in her lower extremities. Predominantly sensory, though also motor and autonomic, peripheral neuropathy started in her ...
+
+--- Sample 12 ---
+  PRED : [CHEMICAL]  'NS-NSAIDs'  (chars 1029-1038)
+  GOLD : (nothing)
+  CTX  : ...lecoxib, and 37,495 to NS-NSAIDs. Among users of aspirin, they were: 14,671 to rofecoxib, 22,875 to celecoxib, 9,832 to >>>NS-NSAIDs<<< and 38,048 to acetaminophen. Among non-users of aspirin, the adjusted hazard ratios (95% confidence interval) of hospit...
+
+--- Sample 13 ---
+  PRED : [CHEMICAL]  'Anorexigens'  (chars 0-11)
+  GOLD : (nothing)
+  CTX  : >>>Anorexigens<<< and pulmonary hypertension in the United States: results from the surveillance of North American pulmonary hypertension...
+
+--- Sample 14 ---
+  PRED : [DISEASE]  'ROSC'  (chars 779-783)
+  GOLD : (nothing)
+  CTX  : ... Intralipd plus epinephrine. Resuscitation continued for 30 min or until there was a return of spontaneous circulation (>>>ROSC<<<) accompanied by a mean arterial pressure at or superior to the baseline pressure and normal sinus rhythm for a period o...
+
+--- Sample 15 ---
+  PRED : [DISEASE]  'painless'  (chars 526-534)
+  GOLD : (nothing)
+  CTX  : ...lous drugs including linezolid and ethambutol for extensively drug-resistant tuberculosis (XDR-TB) presented to us with >>>painless<<< progressive loss of vision in both eyes. Color vision was defective and fundus examination revealed optic disc edema in...
+
+--- Sample 16 ---
+  PRED : [DISEASE]  'Frey gauges'  (chars 1437-1448)
+  GOLD : (nothing)
+  CTX  : ...k hyperalgesia was detected with all von Frey gauges (P < 0.001). Glutamate evoked reproducible VAS response to all von >>>Frey gauges<<< (ICC > 0.60) and brush strokes (ICC > 0.83). Capsaicin injection was reproducible for secondary hyperalgesia (ICC > 0.7...
+
+--- Sample 17 ---
+  PRED : [DISEASE]  'death'  (chars 220-225)
+  GOLD : (nothing)
+  CTX  : ...y given intrathecally to a child with leukaemia, producing sensory and motor dysfunction followed by encephalopathy and >>>death<<<. Separate times for administering vincristine and intrathecal therapy is recommended.
+
+--- Sample 18 ---
+  PRED : [CHEMICAL]  'serum-proteins'  (chars 1905-1919)
+  GOLD : (nothing)
+  CTX  : ...ged in the central SNR indicating neuronal damage, and Nissl-staining visualized some neuronal distortion. Staining for >>>serum-proteins<<< occurred in a patchy manner throughout the forebrain during the first hours. By 6 h, vasogenic edema covered the lesion...
+
+--- Sample 19 ---
+  PRED : [DISEASE]  'telangiectatic'  (chars 1034-1048)
+  GOLD : (nothing)
+  CTX  : ..., rosaceiform periocular dermatitis gradually appeared after 3 weeks of treatment. In 1 patient with atopic dermatitis, >>>telangiectatic<<< and papular rosacea insidiously appeared after 5 months of treatment. CONCLUSIONS: Our observations suggest that the sp...
+
+--- Sample 20 ---
+  PRED : [DISEASE]  'hyperreactivity'  (chars 1556-1571)
+  GOLD : (nothing)
+  CTX  : ....026). Our data suggest that there is an association between panic attacks, no matter if associated with PD or MDP, and >>>hyperreactivity<<< to an oral caffeine challenge test.
+
+--- Sample 21 ---
+  PRED : [DISEASE]  'ocular adverse'  (chars 95-109)
+  GOLD : (nothing)
+  CTX  : Linezolid-induced optic neuropathy. Many systemic antimicrobials have been implicated to cause >>>ocular adverse<<< effects. This is especially relevant in multidrug therapy where more than one drug can cause a similar ocular adverse e...
+
+--- Sample 22 ---
+  PRED : [CHEMICAL]  'S-1'  (chars 1497-1500)
+  GOLD : (nothing)
+  CTX  : ...eafter, no cardiac symptoms were observed. The patient achieved a partial response 6 months after the initiation of the >>>S-1<<< treatment. The experience of this case, together with a review of the literature, suggests that FBAL is related to 5-FU...
+
+--- Sample 23 ---
+  PRED : [DISEASE]  'fibrinolytic disorders'  (chars 698-720)
+  GOLD : (nothing)
+  CTX  : ...ed with EACA, or other thromboembolic phenomena. Since intravascular fibrin thrombi are often observed in patients with >>>fibrinolytic disorders<<<, EACA should not be implicated in the pathogenesis of fibrin thrombi in patients with disseminated intravascular coagul...
+
+--- Sample 24 ---
+  PRED : [CHEMICAL]  'smoke'  (chars 1811-1816)
+  GOLD : (nothing)
+  CTX  : ... drug users. This finding points to the urgent need for evidence-based public health initiatives targeted at people who >>>smoke<<< crack cocaine.
+
+--- Sample 25 ---
+  PRED : [CHEMICAL]  'sAD'  (chars 230-233)
+  GOLD : (nothing)
+  CTX  : ...ularly with streptozotocin. Basic and clinical research has demonstrated that dementia of sporadic Alzheimer's disease (>>>sAD<<<) type is associated with dysfunction of the insulin-receptor (IR) system followed by decreased glucose transport via gl...
+
+--- Sample 26 ---
+  PRED : [DISEASE]  'impairments of spontaneous alternation'  (chars 1741-1779)
+  GOLD : (nothing)
+  CTX  : ...assive avoidance behaviours. 6. These results indicated that nocistatin, a new biologically active peptide, ameliorates >>>impairments of spontaneous alternation<<< and passive avoidance induced by scopolamine, and suggested that these peptides play opposite roles in learning and mem...
+
+--- Sample 27 ---
+  PRED : [DISEASE]  'psychiatric'  (chars 92-103)
+  GOLD : (nothing)
+  CTX  : Neuroleptic-associated hyperprolactinemia. Can it be treated with bromocriptine? Six stable >>>psychiatric<<< outpatients with hyperprolactinemia and amenorrhea/oligomenorrhea associated with their neuroleptic medications were tr...
+
+--- Sample 28 ---
+  PRED : [CHEMICAL]  'C+E'  (chars 1113-1116)
+  GOLD : (nothing)
+  CTX  : ...ained at baseline, and then at fixed time intervals after each drug was administered. RESULTS: Two of eight dogs in the >>>C+E<<< group experienced cardiovascular collapse. The most dramatic hemodynamic changes occurred after each cocaine bolus in t...
+
+--- Sample 29 ---
+  PRED : [CHEMICAL]  'NS-NSAIDs'  (chars 932-941)
+  GOLD : (nothing)
+  CTX  : ...posure among non-users of aspirin were: 75,761 to acetaminophen, 42,671 to rofecoxib 65,860 to celecoxib, and 37,495 to >>>NS-NSAIDs<<<. Among users of aspirin, they were: 14,671 to rofecoxib, 22,875 to celecoxib, 9,832 to NS-NSAIDs and 38,048 to acetamin...
+
+--- Sample 30 ---
+  PRED : [CHEMICAL]  'insulin'  (chars 682-689)
+  GOLD : (nothing)
+  CTX  : ... 7 days later, a highly significant correlation (r = 0.83, 2 p = 0.006) to the slope of the fall in blood glucose after >>>insulin<<< treatment appeared. The myocardial content of catecholamines was estimated in these 8 day diabetic rats. The norepineph...
+
+--- Sample 31 ---
+  PRED : [CHEMICAL]  'NK1'  (chars 178-181)
+  GOLD : (nothing)
+  CTX  : ... on cyclophosphamide-induced cystitis in rats. PURPOSE: The purpose of the study is to explore the function of P2X3 and >>>NK1<<< receptors antagonists on cyclophosphamide (CYP)-induced cystitis in rats. METHODS: Sixty female Sprague-Dawley (SD) rat...
+
+--- Sample 32 ---
+  PRED : [DISEASE]  'tissue injury'  (chars 2063-2076)
+  GOLD : (nothing)
+  CTX  : ...field, where high dosage cannot be carried out continuously because of the effects of the drug on virility; because the >>>tissue injury<<< too often occurs at an irreversible stage vis-a-vis the "regeneration" of the muscle tissue; and finally because the dy...
+
+--- Sample 33 ---
+  PRED : [DISEASE]  'MSSA'  (chars 1537-1541)
+  GOLD : (nothing)
+  CTX  : ...ely, prior to the third dose. Lumbar puncture results were inconclusive and no further blood cultures were positive for >>>MSSA<<<. Creatine kinase levels were normal prior to daptomycin therapy and were not reassessed. DISCUSSION: Daptomycin was ini...
+
+--- Sample 34 ---
+  PRED : [DISEASE]  'AV dissociation'  (chars 245-260)
+  GOLD : (nothing)
+  CTX  : ...ociation and accelerated junctional rhythms in 59 patients receiving oral verapamil. Accelerated junctional rhythms and >>>AV dissociation<<< were frequent in patients with supraventricular tachyarrhythmias, particularly AV nodal reentry. Verapamil administrati...
+
+--- Sample 35 ---
+  PRED : [CHEMICAL]  'NC/IA'  (chars 569-574)
+  GOLD : (nothing)
+  CTX  : ...l pesticide applicators in Iowa and North Carolina enrolled 1993-1997. We evaluated cancer incidence through 2010/2011 (>>>NC/IA<<<) for 49,616 applicators, 53% of whom reported ever using metolachlor. We used Poisson regression to evaluate relations ...
+
+--- Sample 36 ---
+  PRED : [DISEASE]  'abnormal cerebrospinal fluid dynamics'  (chars 554-591)
+  GOLD : (nothing)
+  CTX  : ...system leukemia, and epidural cerebrospinal leakage; elevated cerebrospinal fluid methothexate concentration related to >>>abnormal cerebrospinal fluid dynamics<<< and to inappropriately high methotrexate doses based on body surface area calculations in older children and adults; th...
+
+--- Sample 37 ---
+  PRED : [DISEASE]  'non-alcoholic'  (chars 108-121)
+  GOLD : (nothing)
+  CTX  : Toxic hepatitis induced by disulfiram in a non-alcoholic. A reversible toxic liver damage was observed in a >>>non-alcoholic<<< woman treated with disulfiram. The causative relationship was proven by challenge.
+
+--- Sample 38 ---
+  PRED : [DISEASE]  'Frey gauges (P < 0.001)'  (chars 1358-1381)
+  GOLD : (nothing)
+  CTX  : ...d 100 g (P < 0.001) after glutamate injection. For capsaicin, secondary pinprick hyperalgesia was detected with all von >>>Frey gauges (P < 0.001)<<<. Glutamate evoked reproducible VAS response to all von Frey gauges (ICC > 0.60) and brush strokes (ICC > 0.83). Capsaic...
+
+--- Sample 39 ---
+  PRED : [DISEASE]  'adverse drug'  (chars 497-509)
+  GOLD : (nothing)
+  CTX  : ...pathy, reported three times in the past, is a significant risk if protective measures, such as gloves, are not used. An >>>adverse drug<<< interaction with piroxicam, which she took occasionally, may have exacerbated the coagulopathy.
+
+--- Sample 40 ---
+  PRED : [CHEMICAL]  'glucocorticoids'  (chars 114-129)
+  GOLD : (nothing)
+  CTX  : Ocular-specific ER stress reduction rescues glaucoma in murine glucocorticoid-induced glaucoma. Administration of >>>glucocorticoids<<< induces ocular hypertension in some patients. If untreated, these patients can develop a secondary glaucoma that resemb...
+

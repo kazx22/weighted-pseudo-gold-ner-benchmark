@@ -1,510 +1,272 @@
+"""Split-aware BC5CDR evaluation with exact character-span primary metrics.
+
+Primary precision, recall and F1 require an exact match on:
+(row_id, start_char, end_char, label).
+BIO labels are generated only for secondary token-level confusion matrices.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
 from pathlib import Path
 
-from seqeval.metrics import (
-    precision_score,
-    recall_score,
-    f1_score,
-    classification_report,
+from src.experiment_config import (
+    MODEL_DISPLAY_NAMES,
+    MODEL_KEYS,
+    docs_file,
+    figures_dir,
+    gold_entities_file,
+    load_json,
+    normalize_split,
+    prediction_file,
+    pseudo_gold_file,
+    require_file,
+    results_dir,
+    runtime_file,
+    save_json,
 )
-
 from src.graph import (
-    add_model_result_human,
-    add_model_result_candidate,
     add_human_comparison_result,
+    add_model_result_candidate,
+    add_model_result_human,
     plot_all,
+    reset_results,
+    set_figure_dir,
 )
-
 from src.utils import (
-    load_jsonl,
+    exact_per_label_report,
+    exact_span_metrics,
     group_by_row,
+    load_jsonl,
     span_to_bio,
-    build_gold_bio,
 )
 
 
-def print_per_label_summary(report_dict):
-    print("\nPer-label performance:")
+def build_flat_bio(
+    docs: list[dict],
+    reference_by_row: dict[int, list[dict]],
+    prediction_by_row: dict[int, list[dict]],
+) -> tuple[list[str], list[str]]:
+    flat_true: list[str] = []
+    flat_pred: list[str] = []
 
-    for label in ["DISEASE", "CHEMICAL"]:
-        if label in report_dict:
-            print(
-                f"{label:<10} "
-                f"Precision: {report_dict[label]['precision']:.4f}  "
-                f"Recall: {report_dict[label]['recall']:.4f}  "
-                f"F1: {report_dict[label]['f1-score']:.4f}  "
-                f"Support: {report_dict[label]['support']}"
-            )
-
-
-def evaluate_model_against_human_gold(
-    notes,
-    gold_bio_map,
-    pred_by_row,
-    model_name,
-    runtime,
-):
-    y_true = []
-    y_pred = []
-
-    total_docs = 0
-    used_docs = 0
-    skipped_missing_gold = 0
-    skipped_token_mismatch = 0
-
-    for row_id, text in notes.items():
-        total_docs += 1
-
-        gold_record = gold_bio_map.get(row_id)
-        pred_entities = pred_by_row.get(row_id, [])
-
-        if gold_record is None:
-            print(f"[WARNING] Missing human gold BIO for row_id {row_id}")
-            skipped_missing_gold += 1
-            continue
-
-        gold_tokens = gold_record["tokens"]
-        gold_labels = gold_record["bio_labels"]
-
-        pred_tokens, pred_labels = span_to_bio(text, pred_entities)
-
-        if pred_tokens != gold_tokens:
-            print(f"[WARNING] Token mismatch at row_id {row_id} for {model_name}")
-            skipped_token_mismatch += 1
-            continue
-
-        if len(pred_labels) != len(gold_labels):
-            print(
-                f"[WARNING] Label length mismatch at row_id {row_id} for {model_name}"
-            )
-            skipped_token_mismatch += 1
-            continue
-
-        y_true.append(gold_labels)
-        y_pred.append(pred_labels)
-        used_docs += 1
-
-    print(f"\n{model_name} evaluation summary vs Human Gold")
-    print(f"Total docs:               {total_docs}")
-    print(f"Used docs:                {used_docs}")
-    print(f"Skipped missing gold:     {skipped_missing_gold}")
-    print(f"Skipped token mismatches: {skipped_token_mismatch}")
-
-    if not y_true or not y_pred:
-        print(f"[ERROR] No valid evaluation rows for {model_name}")
-        return
-
-    precision = precision_score(y_true, y_pred)
-    recall = recall_score(y_true, y_pred)
-    f1 = f1_score(y_true, y_pred)
-
-    print(f"\n{model_name} vs Human Gold")
-    print(f"Precision: {precision:.4f}")
-    print(f"Recall:    {recall:.4f}")
-    print(f"F1-score:  {f1:.4f}")
-    print(classification_report(y_true, y_pred, digits=4))
-
-    report_dict = classification_report(
-        y_true,
-        y_pred,
-        digits=4,
-        output_dict=True,
-    )
-
-    print_per_label_summary(report_dict)
-
-    flat_y_true = [label for row in y_true for label in row]
-    flat_y_pred = [label for row in y_pred for label in row]
-
-    add_model_result_human(
-        model_name,
-        precision,
-        recall,
-        f1,
-        report_dict,
-        runtime,
-        y_true=flat_y_true,
-        y_pred=flat_y_pred,
-    )
-
-
-def evaluate_model_against_candidate_gold(
-    notes,
-    candidate_gold_bio_map,
-    pred_by_row,
-    model_name,
-    runtime,
-):
-    y_true = []
-    y_pred = []
-
-    total_docs = 0
-    used_docs = 0
-    skipped_missing_gold = 0
-    skipped_token_mismatch = 0
-
-    for row_id, text in notes.items():
-        total_docs += 1
-
-        gold_record = candidate_gold_bio_map.get(row_id)
-        pred_entities = pred_by_row.get(row_id, [])
-
-        if gold_record is None:
-            print(f"[WARNING] Missing candidate gold BIO for row_id {row_id}")
-            skipped_missing_gold += 1
-            continue
-
-        gold_tokens = gold_record["tokens"]
-        gold_labels = gold_record["bio_labels"]
-
-        pred_tokens, pred_labels = span_to_bio(text, pred_entities)
-
-        if pred_tokens != gold_tokens:
-            print(
-                f"[WARNING] Token mismatch at row_id {row_id} "
-                f"for {model_name} vs candidate gold"
-            )
-            skipped_token_mismatch += 1
-            continue
-
-        if len(pred_labels) != len(gold_labels):
-            print(
-                f"[WARNING] Label length mismatch at row_id {row_id} "
-                f"for {model_name} vs candidate gold"
-            )
-            skipped_token_mismatch += 1
-            continue
-
-        y_true.append(gold_labels)
-        y_pred.append(pred_labels)
-        used_docs += 1
-
-    print(f"\n{model_name} evaluation summary vs Candidate Gold")
-    print(f"Total docs:               {total_docs}")
-    print(f"Used docs:                {used_docs}")
-    print(f"Skipped missing gold:     {skipped_missing_gold}")
-    print(f"Skipped token mismatches: {skipped_token_mismatch}")
-
-    if not y_true or not y_pred:
-        print(f"[ERROR] No valid evaluation rows for {model_name} vs candidate gold")
-        return
-
-    precision = precision_score(y_true, y_pred)
-    recall = recall_score(y_true, y_pred)
-    f1 = f1_score(y_true, y_pred)
-
-    print(f"\n{model_name} vs Candidate Gold")
-    print(f"Precision: {precision:.4f}")
-    print(f"Recall:    {recall:.4f}")
-    print(f"F1-score:  {f1:.4f}")
-    print(classification_report(y_true, y_pred, digits=4))
-
-    report_dict = classification_report(
-        y_true,
-        y_pred,
-        digits=4,
-        output_dict=True,
-    )
-
-    print_per_label_summary(report_dict)
-
-    flat_y_true = [label for row in y_true for label in row]
-    flat_y_pred = [label for row in y_pred for label in row]
-
-    add_model_result_candidate(
-        model_name,
-        precision,
-        recall,
-        f1,
-        report_dict,
-        runtime,
-        y_true=flat_y_true,
-        y_pred=flat_y_pred,
-    )
-
-
-def evaluate_candidate_vs_human(
-    notes,
-    human_gold_bio_map,
-    candidate_by_row,
-    runtime=0.0,
-    candidate_name="Candidate Gold vs Human Gold",
-):
-    y_true = []
-    y_pred = []
-
-    total_docs = 0
-    used_docs = 0
-    skipped_missing_gold = 0
-    skipped_token_mismatch = 0
-
-    for row_id, text in notes.items():
-        total_docs += 1
-
-        gold_record = human_gold_bio_map.get(row_id)
-        candidate_entities = candidate_by_row.get(row_id, [])
-
-        if gold_record is None:
-            print(f"[WARNING] Missing human gold BIO for row_id {row_id}")
-            skipped_missing_gold += 1
-            continue
-
-        gold_tokens = gold_record["tokens"]
-        gold_labels = gold_record["bio_labels"]
-
-        pred_tokens, pred_labels = span_to_bio(text, candidate_entities)
-
-        if pred_tokens != gold_tokens:
-            print(f"[WARNING] Token mismatch at row_id {row_id} for {candidate_name}")
-            skipped_token_mismatch += 1
-            continue
-
-        if len(pred_labels) != len(gold_labels):
-            print(
-                f"[WARNING] Label length mismatch at row_id {row_id} for {candidate_name}"
-            )
-            skipped_token_mismatch += 1
-            continue
-
-        y_true.append(gold_labels)
-        y_pred.append(pred_labels)
-        used_docs += 1
-
-    print(f"\n{candidate_name} evaluation summary")
-    print(f"Total docs:               {total_docs}")
-    print(f"Used docs:                {used_docs}")
-    print(f"Skipped missing gold:     {skipped_missing_gold}")
-    print(f"Skipped token mismatches: {skipped_token_mismatch}")
-
-    if not y_true or not y_pred:
-        print(f"[ERROR] No valid evaluation rows for {candidate_name}")
-        return
-
-    precision = precision_score(y_true, y_pred)
-    recall = recall_score(y_true, y_pred)
-    f1 = f1_score(y_true, y_pred)
-
-    print(f"\n{candidate_name}")
-    print(f"Precision: {precision:.4f}")
-    print(f"Recall:    {recall:.4f}")
-    print(f"F1-score:  {f1:.4f}")
-    print(classification_report(y_true, y_pred, digits=4))
-
-    report_dict = classification_report(
-        y_true,
-        y_pred,
-        digits=4,
-        output_dict=True,
-    )
-
-    print_per_label_summary(report_dict)
-
-    flat_y_true = [label for row in y_true for label in row]
-    flat_y_pred = [label for row in y_pred for label in row]
-
-    add_human_comparison_result(
-        candidate_name,
-        precision,
-        recall,
-        f1,
-        report_dict,
-        runtime,
-        y_true=flat_y_true,
-        y_pred=flat_y_pred,
-    )
-
-
-def main():
-    docs_path = Path("data/processed/bc5cdr/bc5cdr_train_docs.jsonl")
-    human_gold_bio_path = Path("data/gold/bc5cdr_train_gold_bio.jsonl")
-
-    candidate_gold_path = Path("data/gold/candidate_gold_train_entities_bc5cdr.jsonl")
-    weighted_candidate_gold_path = Path(
-        "data/gold/weighted_candidate_gold_train_entities_bc5cdr.jsonl"
-    )
-
-    scispacy_path = Path("data/processed/bc5cdr/scispacy_train_entities_bc5cdr.jsonl")
-    biobert_path = Path("data/processed/bc5cdr/biobert_train_entities_bc5cdr.jsonl")
-    pubmedbert_path = Path(
-        "data/processed/bc5cdr/pubmedbert_train_entities_bc5cdr.jsonl"
-    )
-    clinicalbert_path = Path(
-        "data/processed/bc5cdr/clinicalbert_train_entities_bc5cdr.jsonl"
-    )
-    bioelectra_path = Path(
-        "data/processed/bc5cdr/bioelectra_train_entities_bc5cdr.jsonl"
-    )
-
-    docs = load_jsonl(docs_path)
-
-    notes = {}
     for doc in docs:
-        notes[doc["row_id"]] = doc["full_text"]
+        row_id = int(doc["row_id"])
+        text = str(doc["full_text"])
+        true_tokens, true_labels = span_to_bio(text, reference_by_row.get(row_id, []))
+        pred_tokens, pred_labels = span_to_bio(text, prediction_by_row.get(row_id, []))
+        if true_tokens != pred_tokens or len(true_labels) != len(pred_labels):
+            raise ValueError(f"BIO token alignment failed for row_id {row_id}")
+        flat_true.extend(true_labels)
+        flat_pred.extend(pred_labels)
 
-    human_gold_bio = load_jsonl(human_gold_bio_path)
+    return flat_true, flat_pred
 
-    candidate_gold_entities = load_jsonl(candidate_gold_path)
-    weighted_candidate_gold_entities = load_jsonl(weighted_candidate_gold_path)
 
-    scispacy_entities = load_jsonl(scispacy_path)
-    biobert_entities = load_jsonl(biobert_path)
-    pubmedbert_entities = load_jsonl(pubmedbert_path)
-    clinicalbert_entities = load_jsonl(clinicalbert_path)
-    bioelectra_entities = load_jsonl(bioelectra_path)
+def print_metrics(name: str, metrics: dict, report: dict) -> None:
+    print(f"\n{name}")
+    print(f"  Precision: {metrics['precision']:.4f}")
+    print(f"  Recall:    {metrics['recall']:.4f}")
+    print(f"  F1-score:  {metrics['f1']:.4f}")
+    print(f"  TP/FP/FN:  {metrics['tp']}/{metrics['fp']}/{metrics['fn']}")
+    for label in ("DISEASE", "CHEMICAL"):
+        item = report[label]
+        print(
+            f"  {label:<8} P={item['precision']:.4f} "
+            f"R={item['recall']:.4f} F1={item['f1-score']:.4f} "
+            f"support={item['support']}"
+        )
 
-    human_gold_bio_map = {}
-    for record in human_gold_bio:
-        human_gold_bio_map[record["row_id"]] = record
 
-    candidate_by_row = group_by_row(candidate_gold_entities)
-    weighted_candidate_by_row = group_by_row(weighted_candidate_gold_entities)
+def evaluate_source(
+    *,
+    name: str,
+    docs: list[dict],
+    reference_entities: list[dict],
+    predicted_entities: list[dict],
+    runtime: float | None,
+    graph_group: str,
+) -> dict:
+    metrics = exact_span_metrics(reference_entities, predicted_entities)
+    report = exact_per_label_report(reference_entities, predicted_entities)
+    print_metrics(name, metrics, report)
 
-    candidate_gold_bio = build_gold_bio(docs, candidate_by_row)
-    weighted_candidate_gold_bio = build_gold_bio(docs, weighted_candidate_by_row)
+    reference_by_row = group_by_row(reference_entities)
+    prediction_by_row = group_by_row(predicted_entities)
+    flat_true, flat_pred = build_flat_bio(docs, reference_by_row, prediction_by_row)
 
-    candidate_gold_bio_map = {}
-    for record in candidate_gold_bio:
-        candidate_gold_bio_map[record["row_id"]] = record
+    graph_args = (
+        name,
+        metrics["precision"],
+        metrics["recall"],
+        metrics["f1"],
+        report,
+        runtime,
+    )
+    if graph_group == "human_model":
+        add_model_result_human(*graph_args, y_true=flat_true, y_pred=flat_pred)
+    elif graph_group == "pseudo_model":
+        add_model_result_candidate(*graph_args, y_true=flat_true, y_pred=flat_pred)
+    elif graph_group == "pseudo_human":
+        add_human_comparison_result(*graph_args, y_true=flat_true, y_pred=flat_pred)
+    else:
+        raise ValueError(f"Unknown graph group: {graph_group}")
 
-    weighted_candidate_gold_bio_map = {}
-    for record in weighted_candidate_gold_bio:
-        weighted_candidate_gold_bio_map[record["row_id"]] = record
+    return {
+        "name": name,
+        "precision": metrics["precision"],
+        "recall": metrics["recall"],
+        "f1": metrics["f1"],
+        "tp": metrics["tp"],
+        "fp": metrics["fp"],
+        "fn": metrics["fn"],
+        "runtime_seconds_per_document": runtime,
+        "per_label": report,
+    }
 
-    scispacy_by_row = group_by_row(scispacy_entities)
 
-    biobert_by_row = group_by_row(biobert_entities)
-    pubmedbert_by_row = group_by_row(pubmedbert_entities)
-    clinicalbert_by_row = group_by_row(clinicalbert_entities)
-    bioelectra_by_row = group_by_row(bioelectra_entities)
+def write_summary_csv(rows: list[dict], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fields = [
+        "comparison",
+        "name",
+        "precision",
+        "recall",
+        "f1",
+        "tp",
+        "fp",
+        "fn",
+        "runtime_seconds_per_document",
+    ]
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({field: row.get(field) for field in fields})
 
-    print("\n" + "=" * 60)
-    print("MAJORITY CANDIDATE GOLD VS HUMAN GOLD")
-    print("=" * 60)
 
-    evaluate_candidate_vs_human(
-        notes,
-        human_gold_bio_map,
-        candidate_by_row,
-        runtime=0.0,
-        candidate_name="Majority Candidate Gold vs Human Gold",
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Evaluate one BC5CDR split.")
+    parser.add_argument(
+        "--split",
+        required=True,
+        choices=["dev", "test", "development"],
+    )
+    parser.add_argument(
+        "--skip-model-vs-pseudo",
+        action="store_true",
+        help="Skip secondary model-to-pseudo-gold agreement results.",
+    )
+    args = parser.parse_args()
+    split = normalize_split(args.split, allow_train=False)
+
+    reset_results()
+    set_figure_dir(figures_dir(split))
+
+    docs = load_jsonl(require_file(docs_file(split), "parsed documents"))
+    human_gold = load_jsonl(require_file(gold_entities_file(split), "human gold entities"))
+    majority_gold = load_jsonl(
+        require_file(pseudo_gold_file("majority", split), "majority pseudo-gold")
+    )
+    weighted_gold = load_jsonl(
+        require_file(pseudo_gold_file("weighted", split), "weighted pseudo-gold")
     )
 
-    print("\n" + "=" * 60)
-    print("WEIGHTED CANDIDATE GOLD VS HUMAN GOLD")
-    print("=" * 60)
+    runtimes = load_json(runtime_file(split), default={}) or {}
+    predictions: dict[str, list[dict]] = {}
+    for model_key in MODEL_KEYS:
+        predictions[model_key] = load_jsonl(
+            require_file(
+                prediction_file(model_key, split),
+                f"{MODEL_DISPLAY_NAMES[model_key]} predictions",
+            )
+        )
 
-    evaluate_candidate_vs_human(
-        notes,
-        human_gold_bio_map,
-        weighted_candidate_by_row,
-        runtime=0.0,
-        candidate_name="Weighted Candidate Gold vs Human Gold",
+    all_rows: list[dict] = []
+    detailed: dict[str, list[dict]] = {
+        "pseudo_gold_vs_human": [],
+        "models_vs_human": [],
+        "models_vs_majority_pseudo_gold": [],
+        "models_vs_weighted_pseudo_gold": [],
+    }
+
+    print("\n" + "=" * 72)
+    print(f"{split.upper()} — PSEUDO-GOLD VS HUMAN GOLD (EXACT SPAN + LABEL)")
+    print("=" * 72)
+    for name, entities in (
+        ("Majority Pseudo-Gold", majority_gold),
+        ("Weighted Pseudo-Gold", weighted_gold),
+    ):
+        row = evaluate_source(
+            name=name,
+            docs=docs,
+            reference_entities=human_gold,
+            predicted_entities=entities,
+            runtime=None,
+            graph_group="pseudo_human",
+        )
+        row["comparison"] = "pseudo_gold_vs_human"
+        detailed["pseudo_gold_vs_human"].append(row)
+        all_rows.append(row)
+
+    print("\n" + "=" * 72)
+    print(f"{split.upper()} — MODELS VS HUMAN GOLD (EXACT SPAN + LABEL)")
+    print("=" * 72)
+    for model_key in MODEL_KEYS:
+        display = MODEL_DISPLAY_NAMES[model_key]
+        runtime = (runtimes.get(model_key) or {}).get("average_seconds_per_document")
+        row = evaluate_source(
+            name=display,
+            docs=docs,
+            reference_entities=human_gold,
+            predicted_entities=predictions[model_key],
+            runtime=runtime,
+            graph_group="human_model",
+        )
+        row["comparison"] = "models_vs_human"
+        detailed["models_vs_human"].append(row)
+        all_rows.append(row)
+
+    if not args.skip_model_vs_pseudo:
+        for reference_name, reference_entities, key in (
+            ("Majority Pseudo-Gold", majority_gold, "models_vs_majority_pseudo_gold"),
+            ("Weighted Pseudo-Gold", weighted_gold, "models_vs_weighted_pseudo_gold"),
+        ):
+            print("\n" + "=" * 72)
+            print(f"{split.upper()} — MODELS VS {reference_name.upper()}")
+            print("=" * 72)
+            for model_key in MODEL_KEYS:
+                display = MODEL_DISPLAY_NAMES[model_key]
+                runtime = (runtimes.get(model_key) or {}).get(
+                    "average_seconds_per_document"
+                )
+                row = evaluate_source(
+                    name=f"{display} vs {reference_name}",
+                    docs=docs,
+                    reference_entities=reference_entities,
+                    predicted_entities=predictions[model_key],
+                    runtime=runtime,
+                    graph_group="pseudo_model",
+                )
+                row["comparison"] = key
+                detailed[key].append(row)
+                all_rows.append(row)
+
+    output_dir = results_dir(split)
+    save_json(
+        {
+            "split": split,
+            "primary_metric": "exact_character_span_and_label",
+            "results": detailed,
+        },
+        output_dir / "evaluation_results.json",
     )
-
-    print("\n" + "=" * 60)
-    print("MODELS VS HUMAN GOLD")
-    print("=" * 60)
-
-    evaluate_model_against_human_gold(
-        notes, human_gold_bio_map, scispacy_by_row, "SciSpacy", runtime=0.0238
-    )
-
-    evaluate_model_against_human_gold(
-        notes, human_gold_bio_map, biobert_by_row, "BioBERT", runtime=0.4634
-    )
-
-    evaluate_model_against_human_gold(
-        notes, human_gold_bio_map, pubmedbert_by_row, "PubMedBERT", runtime=3.4778
-    )
-
-    evaluate_model_against_human_gold(
-        notes, human_gold_bio_map, clinicalbert_by_row, "ClinicalBERT", runtime=0.2107
-    )
-
-    evaluate_model_against_human_gold(
-        notes, human_gold_bio_map, bioelectra_by_row, "BioELECTRA", runtime=0.1267
-    )
-
-    print("\n" + "=" * 60)
-    print("MODELS VS MAJORITY CANDIDATE GOLD")
-    print("=" * 60)
-
-    evaluate_model_against_candidate_gold(
-        notes, candidate_gold_bio_map, scispacy_by_row, "SciSpacy vs Majority", 0.0238
-    )
-
-    evaluate_model_against_candidate_gold(
-        notes, candidate_gold_bio_map, biobert_by_row, "BioBERT vs Majority", 0.4634
-    )
-
-    evaluate_model_against_candidate_gold(
-        notes,
-        candidate_gold_bio_map,
-        pubmedbert_by_row,
-        "PubMedBERT vs Majority",
-        3.4778,
-    )
-
-    evaluate_model_against_candidate_gold(
-        notes,
-        candidate_gold_bio_map,
-        clinicalbert_by_row,
-        "ClinicalBERT vs Majority",
-        0.2107,
-    )
-
-    evaluate_model_against_candidate_gold(
-        notes,
-        candidate_gold_bio_map,
-        bioelectra_by_row,
-        "BioELECTRA vs Majority",
-        0.1267,
-    )
-
-    print("\n" + "=" * 60)
-    print("MODELS VS WEIGHTED CANDIDATE GOLD")
-    print("=" * 60)
-
-    evaluate_model_against_candidate_gold(
-        notes,
-        weighted_candidate_gold_bio_map,
-        scispacy_by_row,
-        "SciSpacy vs Weighted",
-        0.0238,
-    )
-
-    evaluate_model_against_candidate_gold(
-        notes,
-        weighted_candidate_gold_bio_map,
-        biobert_by_row,
-        "BioBERT vs Weighted",
-        0.4634,
-    )
-
-    evaluate_model_against_candidate_gold(
-        notes,
-        weighted_candidate_gold_bio_map,
-        pubmedbert_by_row,
-        "PubMedBERT vs Weighted",
-        3.4778,
-    )
-
-    evaluate_model_against_candidate_gold(
-        notes,
-        weighted_candidate_gold_bio_map,
-        clinicalbert_by_row,
-        "ClinicalBERT vs Weighted",
-        0.2107,
-    )
-
-    evaluate_model_against_candidate_gold(
-        notes,
-        weighted_candidate_gold_bio_map,
-        bioelectra_by_row,
-        "BioELECTRA vs Weighted",
-        0.1267,
-    )
-
+    write_summary_csv(all_rows, output_dir / "evaluation_summary.csv")
     plot_all()
+
+    print(f"\nSaved results to {output_dir}")
+    print(f"Saved figures to {figures_dir(split)}")
 
 
 if __name__ == "__main__":

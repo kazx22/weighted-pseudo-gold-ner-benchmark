@@ -1,204 +1,341 @@
-"""
-bootstrap_significance.py — paired bootstrap significance testing for the
-comparative NER evaluation.
+"""Paired document-level bootstrap tests using exact entity-span counts.
 
-For each pair of models, reports whether the observed F1 difference is
-statistically significant at p < 0.05.  Also reports 95% bootstrap confidence
-intervals on each model's F1 score.
+This version evaluates both the five individual NER systems and the two
+pseudo-gold references.  It keeps the original ten model-vs-model tests as one
+Holm-corrected family and adds the paper's two central pseudo-gold comparisons
+as a separate Holm-corrected family:
 
-Method:
-  1. Build aligned per-document (gold, pred) BIO label lists for each model.
-  2. Resample documents with replacement N_BOOTSTRAP times (default 1000).
-  3. For each resample, recompute entity-level F1 for every model.
-  4. For each model pair, the p-value is the fraction of resamples where the
-     F1 difference reverses sign relative to the observed difference.
+1. Weighted Pseudo-Gold vs Majority Pseudo-Gold
+2. Weighted Pseudo-Gold vs scispaCy
 
-The test is "paired" in the sense that each resample draws the same document
-indices for all models, so the comparison is on matched observations rather
-than independent samples.
-
-Run from the project root:
-    python -m src.bootstrap_significance
+No model inference is performed.  The script only reads the existing test
+prediction and pseudo-gold JSONL files and resamples the 500 test documents.
 """
 
-import sys
+from __future__ import annotations
+
+import argparse
+import csv
 import itertools
 from pathlib import Path
 
 import numpy as np
-from seqeval.metrics import f1_score
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+from src.experiment_config import (
+    MODEL_DISPLAY_NAMES,
+    MODEL_KEYS,
+    docs_file,
+    gold_entities_file,
+    normalize_split,
+    prediction_file,
+    pseudo_gold_file,
+    require_file,
+    results_dir,
+    save_json,
+)
+from src.utils import group_by_row, load_jsonl, metrics_from_counts, per_document_exact_counts
 
-from src.utils import load_jsonl, group_by_row, span_to_bio, build_gold_bio
+N_BOOTSTRAP = 1000
+SEED = 42
 
-# ------------------------------------------------------------------
-# Config
-# ------------------------------------------------------------------
-DATA_DIR = PROJECT_ROOT / "data" / "processed" / "bc5cdr"
-
-DOCS_FILE = DATA_DIR / "bc5cdr_train_docs.jsonl"
-GOLD_FILE = DATA_DIR / "bc5cdr_train_entities.jsonl"
-
-MODEL_FILES = {
-    "SciSpacy": DATA_DIR / "scispacy_train_entities_bc5cdr.jsonl",
-    "BioBERT": DATA_DIR / "biobert_train_entities_bc5cdr.jsonl",
-    "PubMedBERT": DATA_DIR / "pubmedbert_train_entities_bc5cdr.jsonl",
-    "ClinicalBERT": DATA_DIR / "clinicalbert_train_entities_bc5cdr.jsonl",
-    "BioELECTRA": DATA_DIR / "bioelectra_train_entities_bc5cdr.jsonl",
+# Use the publication spelling in newly generated outputs.
+DISPLAY_NAMES = {
+    **MODEL_DISPLAY_NAMES,
+    "scispacy": "scispaCy",
+    "majority_pseudo_gold": "Majority Pseudo-Gold",
+    "weighted_pseudo_gold": "Weighted Pseudo-Gold",
 }
 
-N_BOOTSTRAP = 1000  # standard for NLP significance testing
-SEED = 42  # fixed for reproducibility
+
+def aggregate_metrics(counts: list[dict], indices: np.ndarray) -> dict:
+    """Aggregate exact-span TP/FP/FN over a sampled set of documents."""
+    tp = sum(counts[int(index)]["tp"] for index in indices)
+    fp = sum(counts[int(index)]["fp"] for index in indices)
+    fn = sum(counts[int(index)]["fn"] for index in indices)
+    return metrics_from_counts(tp, fp, fn)
 
 
-def build_per_doc_labels(docs, gold_by_row, pred_by_row):
+def aggregate_f1(counts: list[dict], indices: np.ndarray) -> float:
+    return float(aggregate_metrics(counts, indices)["f1"])
+
+
+def holm_adjust(raw_p_values: list[float]) -> list[float]:
+    """Holm step-down family-wise error correction."""
+    number = len(raw_p_values)
+    if number == 0:
+        return []
+
+    order = sorted(range(number), key=lambda index: raw_p_values[index])
+    adjusted = [0.0] * number
+    running_max = 0.0
+
+    for rank, original_index in enumerate(order):
+        value = min(1.0, (number - rank) * raw_p_values[original_index])
+        running_max = max(running_max, value)
+        adjusted[original_index] = running_max
+
+    return adjusted
+
+
+def paired_bootstrap_p_value(
+    first_bootstrap: np.ndarray,
+    second_bootstrap: np.ndarray,
+    *,
+    resamples: int,
+) -> float:
+    """Two-sided paired-bootstrap sign-reversal probability.
+
+    A +1 finite-sample correction prevents a reported p-value of exactly zero.
     """
-    Build parallel per-document gold and predicted BIO label lists.
+    difference = first_bootstrap - second_bootstrap
 
-    Only documents where the tokenisation is consistent between gold and
-    prediction are kept.  Mismatches are silently skipped rather than
-    raising an error because they typically affect a small number of docs
-    and the bootstrap operates on the retained set.
+    lower_tail = (np.count_nonzero(difference <= 0) + 1) / (resamples + 1)
+    upper_tail = (np.count_nonzero(difference >= 0) + 1) / (resamples + 1)
 
-    Returns:
-      gold_per_doc  — list of gold BIO label sequences, one per document
-      pred_per_doc  — matching list of predicted BIO label sequences
-    """
-    gold_per_doc = []
-    pred_per_doc = []
-
-    for doc in docs:
-        row_id = doc["row_id"]
-        text = doc["full_text"]
-
-        gold_entities = gold_by_row.get(row_id, [])
-        pred_entities = pred_by_row.get(row_id, [])
-
-        gold_tokens, gold_labels = span_to_bio(text, gold_entities)
-        pred_tokens, pred_labels = span_to_bio(text, pred_entities)
-
-        if gold_tokens != pred_tokens:
-            continue
-        if len(gold_labels) != len(pred_labels):
-            continue
-
-        gold_per_doc.append(gold_labels)
-        pred_per_doc.append(pred_labels)
-
-    return gold_per_doc, pred_per_doc
+    return float(min(1.0, 2.0 * min(lower_tail, upper_tail)))
 
 
-def f1_on_indices(gold_per_doc, pred_per_doc, indices):
-    """Compute entity-level F1 over a selected subset of document indices."""
-    y_true = [gold_per_doc[i] for i in indices]
-    y_pred = [pred_per_doc[i] for i in indices]
-    return f1_score(y_true, y_pred)
+def load_system_counts(split: str, docs: list[dict], gold_by_row: dict) -> dict[str, list[dict]]:
+    """Load existing predictions and produce per-document exact-span counts."""
+    system_files: dict[str, Path] = {
+        model_key: prediction_file(model_key, split) for model_key in MODEL_KEYS
+    }
+    system_files["majority_pseudo_gold"] = pseudo_gold_file("majority", split)
+    system_files["weighted_pseudo_gold"] = pseudo_gold_file("weighted", split)
 
+    per_system_counts: dict[str, list[dict]] = {}
 
-def main():
-    rng = np.random.default_rng(SEED)
-
-    print("Loading documents and gold...")
-    docs = load_jsonl(DOCS_FILE)
-    gold_entities = load_jsonl(GOLD_FILE)
-    gold_by_row = group_by_row(gold_entities)
-    print(f"Loaded {len(docs)} documents.\n")
-
-    # Build aligned per-doc label lists for each model
-    model_doc_labels = {}
-    n_docs_aligned = None
-
-    for name, path in MODEL_FILES.items():
-        pred_entities = load_jsonl(path)
-        pred_by_row = group_by_row(pred_entities)
-        gold_per_doc, pred_per_doc = build_per_doc_labels(
-            docs, gold_by_row, pred_by_row
+    for system_key, path in system_files.items():
+        predictions = load_jsonl(
+            require_file(path, f"{DISPLAY_NAMES[system_key]} predictions")
         )
-        model_doc_labels[name] = (gold_per_doc, pred_per_doc)
-        print(f"  {name:15} aligned docs: {len(gold_per_doc)}")
-        if n_docs_aligned is None:
-            n_docs_aligned = len(gold_per_doc)
-
-    # All models must be paired on the same documents for a valid paired test.
-    # If counts differ, fall back to the minimum and warn — the pairing
-    # assumption (shared document order) still holds for the shared subset.
-    aligned_counts = {n: len(v[0]) for n, v in model_doc_labels.items()}
-    if len(set(aligned_counts.values())) != 1:
-        print("\n[WARNING] Models aligned on different doc counts:")
-        for n, c in aligned_counts.items():
-            print(f"  {n}: {c}")
-        print("Using per-model document sets; pairing assumes shared order.\n")
-
-    model_names = list(MODEL_FILES.keys())
-    n_docs = min(aligned_counts.values())
-    all_idx = list(range(n_docs))
-
-    # Observed F1 on the full aligned set
-    observed_f1 = {}
-    for name in model_names:
-        gold_pd, pred_pd = model_doc_labels[name]
-        observed_f1[name] = f1_on_indices(gold_pd, pred_pd, all_idx)
-
-    print("\n" + "=" * 60)
-    print("OBSERVED F1 (full document set)")
-    print("=" * 60)
-    for name in model_names:
-        print(f"  {name:15} F1 = {observed_f1[name]:.4f}")
-
-    # Bootstrap: resample with replacement, recompute F1 for each model
-    print("\n" + "=" * 60)
-    print(f"RUNNING {N_BOOTSTRAP} BOOTSTRAP RESAMPLES (seed={SEED})")
-    print("=" * 60)
-
-    boot_f1 = {name: np.zeros(N_BOOTSTRAP) for name in model_names}
-
-    for b in range(N_BOOTSTRAP):
-        sample_idx = rng.integers(0, n_docs, size=n_docs)
-        for name in model_names:
-            gold_pd, pred_pd = model_doc_labels[name]
-            boot_f1[name][b] = f1_on_indices(gold_pd, pred_pd, sample_idx)
-        if (b + 1) % 200 == 0:
-            print(f"  ...{b + 1} resamples done")
-
-    # 95% confidence intervals via percentile method
-    print("\n" + "=" * 60)
-    print("95% BOOTSTRAP CONFIDENCE INTERVALS ON F1")
-    print("=" * 60)
-    for name in model_names:
-        lo = np.percentile(boot_f1[name], 2.5)
-        hi = np.percentile(boot_f1[name], 97.5)
+        per_system_counts[system_key] = per_document_exact_counts(
+            docs,
+            gold_by_row,
+            group_by_row(predictions),
+        )
         print(
-            f"  {name:15} F1 = {observed_f1[name]:.4f}  " f"95% CI [{lo:.4f}, {hi:.4f}]"
+            f"Loaded {DISPLAY_NAMES[system_key]:22} "
+            f"from {path.name}"
         )
 
-    # Pairwise significance: p = fraction of resamples where the sign of
-    # the F1 difference flips relative to the observed difference.
-    # A one-sided test: if model A beats B overall, p is the fraction of
-    # resamples where B actually matches or beats A.
-    print("\n" + "=" * 60)
-    print("PAIRWISE SIGNIFICANCE (paired bootstrap)")
-    print("=" * 60)
-    for a, b in itertools.combinations(model_names, 2):
-        obs_diff = observed_f1[a] - observed_f1[b]
-        boot_diff = boot_f1[a] - boot_f1[b]
+    return per_system_counts
 
-        if obs_diff >= 0:
-            p = np.mean(boot_diff <= 0)
-        else:
-            p = np.mean(boot_diff >= 0)
 
-        sig = "significant" if p < 0.05 else "NOT significant"
-        better = a if obs_diff > 0 else b
+def build_pairwise_rows(
+    comparisons: list[tuple[str, str]],
+    observed_f1: dict[str, float],
+    bootstrap_f1: dict[str, np.ndarray],
+    *,
+    resamples: int,
+) -> list[dict]:
+    rows: list[dict] = []
+    raw_p_values: list[float] = []
+
+    for first, second in comparisons:
+        observed_difference = observed_f1[first] - observed_f1[second]
+        raw_p = paired_bootstrap_p_value(
+            bootstrap_f1[first],
+            bootstrap_f1[second],
+            resamples=resamples,
+        )
+        raw_p_values.append(raw_p)
+        rows.append(
+            {
+                "system_1": DISPLAY_NAMES[first],
+                "system_2": DISPLAY_NAMES[second],
+                "f1_system_1": observed_f1[first],
+                "f1_system_2": observed_f1[second],
+                "f1_difference": observed_difference,
+                "raw_p": raw_p,
+            }
+        )
+
+    adjusted_values = holm_adjust(raw_p_values)
+
+    for row, adjusted_p in zip(rows, adjusted_values):
+        row["holm_p"] = adjusted_p
+        row["significant_raw_0.05"] = row["raw_p"] < 0.05
+        row["significant_holm_0.05"] = adjusted_p < 0.05
+
+    return rows
+
+
+def write_csv(path: Path, rows: list[dict]) -> None:
+    if not rows:
+        return
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def print_pairwise_section(title: str, rows: list[dict]) -> None:
+    print("\n" + title)
+    print("=" * len(title))
+
+    for row in rows:
         print(
-            f"  {a:13} vs {b:13}  "
-            f"obs diff = {obs_diff:+.4f}  p = {p:.4f}  "
-            f"({sig}; better: {better})"
+            f"  {row['system_1']:22} vs {row['system_2']:22} "
+            f"diff={row['f1_difference']:+.4f} "
+            f"raw p={row['raw_p']:.4f} "
+            f"Holm p={row['holm_p']:.4f}"
         )
 
-    print("\nDone.")
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Paired exact-span bootstrap for BC5CDR models and pseudo-gold."
+    )
+    parser.add_argument(
+        "--split",
+        default="test",
+        choices=["dev", "test", "development"],
+    )
+    parser.add_argument("--resamples", type=int, default=N_BOOTSTRAP)
+    parser.add_argument("--seed", type=int, default=SEED)
+    args = parser.parse_args()
+
+    split = normalize_split(args.split, allow_train=False)
+    if args.resamples < 100:
+        raise ValueError("Use at least 100 bootstrap resamples.")
+
+    docs = load_jsonl(require_file(docs_file(split), "parsed documents"))
+    gold = load_jsonl(require_file(gold_entities_file(split), "human gold"))
+    gold_by_row = group_by_row(gold)
+
+    per_system_counts = load_system_counts(split, docs, gold_by_row)
+    system_keys = list(MODEL_KEYS) + ["majority_pseudo_gold", "weighted_pseudo_gold"]
+
+    n_docs = len(docs)
+    full_indices = np.arange(n_docs)
+
+    observed_metrics = {
+        system_key: aggregate_metrics(per_system_counts[system_key], full_indices)
+        for system_key in system_keys
+    }
+    observed_f1 = {
+        system_key: float(observed_metrics[system_key]["f1"])
+        for system_key in system_keys
+    }
+
+    print("\nObserved exact-span scores")
+    print("==========================")
+    for system_key in system_keys:
+        metrics = observed_metrics[system_key]
+        print(
+            f"  {DISPLAY_NAMES[system_key]:22} "
+            f"P={metrics['precision']:.4f} "
+            f"R={metrics['recall']:.4f} "
+            f"F1={metrics['f1']:.4f}"
+        )
+
+    rng = np.random.default_rng(args.seed)
+    bootstrap_f1 = {
+        system_key: np.zeros(args.resamples, dtype=float)
+        for system_key in system_keys
+    }
+
+    for iteration in range(args.resamples):
+        sample = rng.integers(0, n_docs, size=n_docs)
+
+        for system_key in system_keys:
+            bootstrap_f1[system_key][iteration] = aggregate_f1(
+                per_system_counts[system_key],
+                sample,
+            )
+
+        if (iteration + 1) % 200 == 0:
+            print(f"Completed {iteration + 1}/{args.resamples} resamples")
+
+    confidence_intervals: list[dict] = []
+
+    print("\n95% bootstrap confidence intervals")
+    print("==================================")
+    for system_key in system_keys:
+        low, high = np.percentile(bootstrap_f1[system_key], [2.5, 97.5])
+        row = {
+            "system": DISPLAY_NAMES[system_key],
+            "precision": float(observed_metrics[system_key]["precision"]),
+            "recall": float(observed_metrics[system_key]["recall"]),
+            "f1": observed_f1[system_key],
+            "ci_low": float(low),
+            "ci_high": float(high),
+        }
+        confidence_intervals.append(row)
+        print(
+            f"  {row['system']:22} F1={row['f1']:.4f} "
+            f"95% CI [{row['ci_low']:.4f}, {row['ci_high']:.4f}]"
+        )
+
+    # Existing benchmark family: all ten comparisons among the five models.
+    model_comparisons = list(itertools.combinations(MODEL_KEYS, 2))
+    model_pairwise = build_pairwise_rows(
+        model_comparisons,
+        observed_f1,
+        bootstrap_f1,
+        resamples=args.resamples,
+    )
+
+    # Paper's central claims: treated as a separate two-comparison family.
+    primary_comparisons = [
+        ("weighted_pseudo_gold", "majority_pseudo_gold"),
+        ("weighted_pseudo_gold", "scispacy"),
+    ]
+    primary_pairwise = build_pairwise_rows(
+        primary_comparisons,
+        observed_f1,
+        bootstrap_f1,
+        resamples=args.resamples,
+    )
+
+    print_pairwise_section(
+        "Model-vs-model paired bootstrap tests (Holm over 10 comparisons)",
+        model_pairwise,
+    )
+    print_pairwise_section(
+        "Primary pseudo-gold paired bootstrap tests (Holm over 2 comparisons)",
+        primary_pairwise,
+    )
+
+    output_dir = results_dir(split)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    output_payload = {
+        "split": split,
+        "metric": "exact_character_span_and_label_micro_f1",
+        "resamples": args.resamples,
+        "seed": args.seed,
+        "confidence_intervals": confidence_intervals,
+        # Kept under the old key for compatibility with the existing manuscript workflow.
+        "pairwise_tests": model_pairwise,
+        "model_pairwise_tests": model_pairwise,
+        "primary_pseudo_gold_tests": primary_pairwise,
+        "multiple_testing_families": {
+            "model_pairwise_tests": "Holm correction across 10 model comparisons",
+            "primary_pseudo_gold_tests": "Holm correction across 2 prespecified central comparisons",
+        },
+    }
+
+    save_json(output_payload, output_dir / "bootstrap_results.json")
+    write_csv(
+        output_dir / "bootstrap_confidence_intervals.csv",
+        confidence_intervals,
+    )
+    write_csv(
+        output_dir / "bootstrap_pairwise.csv",
+        model_pairwise,
+    )
+    write_csv(
+        output_dir / "bootstrap_primary_comparisons.csv",
+        primary_pairwise,
+    )
+
+    print(f"\nSaved updated bootstrap results to {output_dir}")
+    print("New central-comparison file:")
+    print(f"  {output_dir / 'bootstrap_primary_comparisons.csv'}")
 
 
 if __name__ == "__main__":

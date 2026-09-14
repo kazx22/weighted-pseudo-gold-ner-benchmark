@@ -25,11 +25,20 @@ Pipeline position: runs after parse_bc5cdr.py; output feeds candidate_gold.py
 and bc5cdr_evaluation.py.
 """
 
+import argparse
 import json
 import re
 import time
 from pathlib import Path
 from transformers import pipeline
+
+from src.experiment_config import (
+    docs_file,
+    normalize_split,
+    prediction_file,
+    record_runtime,
+    require_file,
+)
 
 MODEL_NAME = "samrawal/bert-base-uncased_clinical-ner"
 
@@ -194,26 +203,47 @@ def run_clinicalbert(docs):
     print(f"Predicted {len(all_entities)} entities")
     print(
         f"OFFSET SELF-TEST: {aligned}/{checked} "
-        f"({100*aligned/checked:.1f}%) entities free of ## fragments"
+        f"({(100 * aligned / checked) if checked else 100.0:.1f}%) entities free of ## fragments"
     )
 
-    return all_entities
+    return all_entities, total_time, avg_time
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Run ClinicalBERT on one BC5CDR split.")
+    parser.add_argument(
+        "--split",
+        required=True,
+        choices=["dev", "test", "development"],
+        help="Use dev for weight/threshold fitting and test for final evaluation.",
+    )
+    args = parser.parse_args()
+    split = normalize_split(args.split, allow_train=False)
+
+    input_file = require_file(docs_file(split), "parsed document file")
+    output_file = prediction_file("clinicalbert", split)
+
+    print(f"Loading BC5CDR {split} documents from {input_file}...")
+    docs = load_jsonl(input_file)
+    if not docs:
+        raise ValueError(f"No documents found in {input_file}")
+    print(f"Loaded {len(docs)} documents")
+    print("Running ClinicalBERT checkpoint...")
+
+    entities, total_time, avg_time = run_clinicalbert(docs)
+    save_jsonl(entities, output_file)
+    record_runtime(
+        split,
+        "clinicalbert",
+        total_seconds=total_time,
+        average_seconds=avg_time,
+        document_count=len(docs),
+        entity_count=len(entities),
+    )
+
+    print(f"Saved {len(entities)} ClinicalBERT entities to {output_file}")
+    print(f"Saved runtime metadata to results/{split}/runtime.json")
 
 
 if __name__ == "__main__":
-    input_file = Path("data/processed/bc5cdr/bc5cdr_train_docs.jsonl")
-    output_file = Path("data/processed/bc5cdr/clinicalbert_train_entities_bc5cdr.jsonl")
-
-    print("Loading BC5CDR train docs...")
-    docs = load_jsonl(input_file)
-    print(f"Loaded {len(docs)} documents")
-
-    print(f"Running ClinicalBERT model: {MODEL_NAME} with chunking...")
-    entities = run_clinicalbert(docs)
-
-    save_jsonl(entities, output_file)
-    print(f"Saved ClinicalBERT entities to {output_file}")
-
-
-# Total time taken: 112.17 seconds
-# Average time per document: 0.2243 seconds
+    main()

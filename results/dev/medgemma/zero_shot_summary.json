@@ -1,0 +1,28 @@
+{
+  "split": "dev",
+  "model": "medgemma1.5:4b-it-q4_K_M",
+  "prompt_version": "bc5cdr-medgemma-v1",
+  "chunking_version": "chunked-v2",
+  "chunk_target_chars": 450,
+  "prompt_hash": "1404753dfb27459c8c20354d40a1c86450fe8757e524506aab8c4aae44212155",
+  "document_count": 500,
+  "completed_segment_count": 1915,
+  "entity_count": 3939,
+  "summed_request_seconds": 8232.679072,
+  "average_seconds_per_document": 16.465358,
+  "current_process_wall_seconds": 8233.768295,
+  "diagnostics": {
+    "returned_entities": 4409,
+    "accepted_entities": 4376,
+    "exact_offset_matches": 7,
+    "repaired_exact_occurrences": 4344,
+    "repaired_casefold_occurrences": 25,
+    "rejected_invalid_label": 0,
+    "rejected_missing_text": 0,
+    "rejected_unmapped_text": 29,
+    "rejected_ambiguous_occurrence": 4
+  },
+  "prediction_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\processed\\bc5cdr\\medgemma_dev_entities_bc5cdr.jsonl",
+  "cache_file": "C:\\University\\Projects\\spatial-human-anatomy\\results\\dev\\medgemma\\zero_shot_doc_results_chunked_v2.jsonl",
+  "is_smoke_run": false
+}

@@ -1,0 +1,44 @@
+{
+  "scispacy": {
+    "model": "SciSpacy",
+    "total_seconds": 11.735422,
+    "average_seconds_per_document": 0.023471,
+    "document_count": 500,
+    "entity_count": 8471
+  },
+  "biobert": {
+    "model": "BioBERT",
+    "total_seconds": 236.232355,
+    "average_seconds_per_document": 0.472465,
+    "document_count": 500,
+    "entity_count": 15072
+  },
+  "pubmedbert": {
+    "model": "PubMedBERT",
+    "total_seconds": 1788.337168,
+    "average_seconds_per_document": 3.576674,
+    "document_count": 500,
+    "entity_count": 16472
+  },
+  "clinicalbert": {
+    "model": "ClinicalBERT",
+    "total_seconds": 107.665556,
+    "average_seconds_per_document": 0.215331,
+    "document_count": 500,
+    "entity_count": 15262
+  },
+  "bioelectra": {
+    "model": "BioELECTRA",
+    "total_seconds": 58.711815,
+    "average_seconds_per_document": 0.117424,
+    "document_count": 500,
+    "entity_count": 11926
+  },
+  "medgemma": {
+    "model": "MedGemma 1.5 4B",
+    "total_seconds": 8232.679072,
+    "average_seconds_per_document": 16.465358,
+    "document_count": 500,
+    "entity_count": 3939
+  }
+}

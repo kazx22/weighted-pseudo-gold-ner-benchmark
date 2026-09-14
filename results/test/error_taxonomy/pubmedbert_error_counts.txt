@@ -1,0 +1,21 @@
+ERROR COUNTS - PUBMEDBERT
+============================================================
+
+Grand total errors: 13196
+
+FALSE_POSITIVE  (n=3314)
+    CHEMICAL                          255  (7.7%)
+    DISEASE                          3059  (92.3%)
+
+FALSE_NEGATIVE  (n=1069)
+    CHEMICAL                          277  (25.9%)
+    DISEASE                           792  (74.1%)
+
+BOUNDARY_ERROR  (n=8615)
+    CHEMICAL                         4491  (52.1%)
+    DISEASE                          4124  (47.9%)
+
+TYPE_CONFUSION  (n=198)
+    CHEMICAL->DISEASE                 196  (99.0%)
+    DISEASE->CHEMICAL                   2  (1.0%)
+

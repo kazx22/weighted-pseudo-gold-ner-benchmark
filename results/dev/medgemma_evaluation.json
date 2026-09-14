@@ -1,0 +1,202 @@
+{
+  "split": "dev",
+  "primary_metric": "exact_character_span_and_label",
+  "results": [
+    {
+      "system": "Majority Pseudo-Gold",
+      "precision": 0.9549805033676001,
+      "recall": 0.5617766656240225,
+      "f1": 0.707411540733933,
+      "tp": 5388,
+      "fp": 254,
+      "fn": 4203,
+      "per_label": {
+        "DISEASE": {
+          "precision": 0.9538203190596137,
+          "recall": 0.5353440150801131,
+          "f1-score": 0.6857832779957742,
+          "support": 4244,
+          "tp": 2272,
+          "fp": 110,
+          "fn": 1972
+        },
+        "CHEMICAL": {
+          "precision": 0.9558282208588957,
+          "recall": 0.5827566859921451,
+          "f1-score": 0.7240618101545254,
+          "support": 5347,
+          "tp": 3116,
+          "fp": 144,
+          "fn": 2231
+        }
+      }
+    },
+    {
+      "system": "Weighted Pseudo-Gold",
+      "precision": 0.9589080877014665,
+      "recall": 0.6885621937232822,
+      "f1": 0.8015535866003156,
+      "tp": 6604,
+      "fp": 283,
+      "fn": 2987,
+      "per_label": {
+        "DISEASE": {
+          "precision": 0.9408689970597843,
+          "recall": 0.6786050895381716,
+          "f1-score": 0.7885010266940452,
+          "support": 4244,
+          "tp": 2880,
+          "fp": 181,
+          "fn": 1364
+        },
+        "CHEMICAL": {
+          "precision": 0.9733403031887088,
+          "recall": 0.696465307649149,
+          "f1-score": 0.8119481085795268,
+          "support": 5347,
+          "tp": 3724,
+          "fp": 102,
+          "fn": 1623
+        }
+      }
+    },
+    {
+      "system": "scispaCy",
+      "precision": 0.8098217447762956,
+      "recall": 0.7152538838494422,
+      "f1": 0.7596058022367401,
+      "tp": 6860,
+      "fp": 1611,
+      "fn": 2731,
+      "per_label": {
+        "DISEASE": {
+          "precision": 0.7645705521472392,
+          "recall": 0.7047596606974552,
+          "f1-score": 0.7334477685139774,
+          "support": 4244,
+          "tp": 2991,
+          "fp": 921,
+          "fn": 1253
+        },
+        "CHEMICAL": {
+          "precision": 0.8486510199605176,
+          "recall": 0.72358331774827,
+          "f1-score": 0.7811427417726631,
+          "support": 5347,
+          "tp": 3869,
+          "fp": 690,
+          "fn": 1478
+        }
+      }
+    },
+    {
+      "system": "MedGemma Zero-Shot",
+      "precision": 0.6077684691546078,
+      "recall": 0.24960900844541759,
+      "f1": 0.3538802660753881,
+      "tp": 2394,
+      "fp": 1545,
+      "fn": 7197,
+      "per_label": {
+        "DISEASE": {
+          "precision": 0.5815677966101694,
+          "recall": 0.2587181903864279,
+          "f1-score": 0.3581213307240705,
+          "support": 4244,
+          "tp": 1098,
+          "fp": 790,
+          "fn": 3146
+        },
+        "CHEMICAL": {
+          "precision": 0.6318868844466115,
+          "recall": 0.24237890405835047,
+          "f1-score": 0.3503649635036496,
+          "support": 5347,
+          "tp": 1296,
+          "fp": 755,
+          "fn": 4051
+        }
+      }
+    },
+    {
+      "system": "Weighted + MedGemma Tie-Breaker",
+      "precision": 0.9585987261146497,
+      "recall": 0.6904389531852778,
+      "f1": 0.8027153160797623,
+      "tp": 6622,
+      "fp": 286,
+      "fn": 2969,
+      "per_label": {
+        "DISEASE": {
+          "precision": 0.9413480233311731,
+          "recall": 0.6844957587181904,
+          "f1-score": 0.7926330150068213,
+          "support": 4244,
+          "tp": 2905,
+          "fp": 181,
+          "fn": 1339
+        },
+        "CHEMICAL": {
+          "precision": 0.9725274725274725,
+          "recall": 0.6951561623340191,
+          "f1-score": 0.8107754389791689,
+          "support": 5347,
+          "tp": 3717,
+          "fp": 105,
+          "fn": 1630
+        }
+      }
+    }
+  ],
+  "zero_shot_diagnostics": {
+    "split": "dev",
+    "model": "medgemma1.5:4b-it-q4_K_M",
+    "prompt_version": "bc5cdr-medgemma-v1",
+    "chunking_version": "chunked-v2",
+    "chunk_target_chars": 450,
+    "prompt_hash": "1404753dfb27459c8c20354d40a1c86450fe8757e524506aab8c4aae44212155",
+    "document_count": 500,
+    "completed_segment_count": 1915,
+    "entity_count": 3939,
+    "summed_request_seconds": 8232.679072,
+    "average_seconds_per_document": 16.465358,
+    "current_process_wall_seconds": 8233.768295,
+    "diagnostics": {
+      "returned_entities": 4409,
+      "accepted_entities": 4376,
+      "exact_offset_matches": 7,
+      "repaired_exact_occurrences": 4344,
+      "repaired_casefold_occurrences": 25,
+      "rejected_invalid_label": 0,
+      "rejected_missing_text": 0,
+      "rejected_unmapped_text": 29,
+      "rejected_ambiguous_occurrence": 4
+    },
+    "prediction_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\processed\\bc5cdr\\medgemma_dev_entities_bc5cdr.jsonl",
+    "cache_file": "C:\\University\\Projects\\spatial-human-anatomy\\results\\dev\\medgemma\\zero_shot_doc_results_chunked_v2.jsonl",
+    "is_smoke_run": false
+  },
+  "hybrid_routing": {
+    "split": "dev",
+    "model": "medgemma1.5:4b-it-q4_K_M",
+    "prompt_version": "bc5cdr-medgemma-v1",
+    "base_weighted_threshold": 1.16884495,
+    "low_threshold": 1.08738697,
+    "high_threshold": 1.19452979,
+    "total_unique_candidates": 46161,
+    "auto_reject_count": 39168,
+    "routed_count": 658,
+    "auto_accept_count": 6335,
+    "medgemma_accept_count": 573,
+    "medgemma_reject_count": 85,
+    "invalid_default_reject_count": 0,
+    "final_entity_count": 6908,
+    "routing_rate_over_all_candidates": 0.014254457225796668,
+    "tie_break_request_seconds": 2607.49428,
+    "current_process_wall_seconds": 2609.486764,
+    "construction_used_human_gold": false,
+    "test_gold_was_not_read": null,
+    "decision_cache": "C:\\University\\Projects\\spatial-human-anatomy\\results\\dev\\medgemma_hybrid\\candidate_decisions.jsonl",
+    "output_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\gold\\medgemma_hybrid_dev_entities_bc5cdr.jsonl"
+  }
+}

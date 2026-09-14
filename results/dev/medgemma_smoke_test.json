@@ -1,0 +1,159 @@
+{
+  "model": "medgemma1.5:4b-it-q4_K_M",
+  "zero_shot_row_id": 6794356,
+  "zero_shot_entities": [
+    {
+      "row_id": 6794356,
+      "text": "Tricuspid valve regurgitation",
+      "start_char": 0,
+      "end_char": 29,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "lithium carbonate toxicity",
+      "start_char": 34,
+      "end_char": 60,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "newborn infant",
+      "start_char": 66,
+      "end_char": 80,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "tricuspid regurgitation",
+      "start_char": 105,
+      "end_char": 128,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "atrial flutter",
+      "start_char": 130,
+      "end_char": 144,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "congestive heart failure",
+      "start_char": 146,
+      "end_char": 170,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "high serum lithium level",
+      "start_char": 178,
+      "end_char": 202,
+      "label": "CHEMICAL",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "lithium compounds",
+      "start_char": 386,
+      "end_char": 403,
+      "label": "CHEMICAL",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "Lithium carbonate",
+      "start_char": 511,
+      "end_char": 528,
+      "label": "CHEMICAL",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "neurologic depression",
+      "start_char": 651,
+      "end_char": 672,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "cyanosis",
+      "start_char": 674,
+      "end_char": 682,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    },
+    {
+      "row_id": 6794356,
+      "text": "cardiac arrhythmia",
+      "start_char": 688,
+      "end_char": 706,
+      "label": "DISEASE",
+      "confidence": null,
+      "model": "medgemma1.5:4b-it-q4_K_M",
+      "source": "medgemma_zero_shot",
+      "mapping_method": "repaired_exact_occurrence"
+    }
+  ],
+  "zero_shot_diagnostics": {
+    "returned_entities": 12,
+    "accepted_entities": 12,
+    "exact_offset_matches": 0,
+    "repaired_exact_occurrences": 12,
+    "repaired_casefold_occurrences": 0,
+    "rejected_invalid_label": 0,
+    "rejected_missing_text": 0,
+    "rejected_unmapped_text": 0,
+    "rejected_ambiguous_occurrence": 0
+  },
+  "zero_shot_rejected_outputs": [],
+  "tie_break_candidate": {
+    "row_id": 6794356,
+    "text": "valve regurgitation",
+    "label": "DISEASE"
+  },
+  "tie_break_response": {
+    "decision": "ACCEPT",
+    "reason": "The marked text 'valve regurgitation' is a clear biomedical entity representing a specific medical condition (tricuspid valve regurgitation) in the context of the sentence. The label DISEASE is appropriate for this entity."
+  }
+}

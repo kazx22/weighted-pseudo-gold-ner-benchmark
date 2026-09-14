@@ -1,0 +1,708 @@
+{
+  "split": "test",
+  "postprocessing_only": true,
+  "ollama_called": false,
+  "primary_metric": "exact_character_span_and_label",
+  "evaluation_source": "C:\\University\\Projects\\spatial-human-anatomy\\results\\test\\medgemma_evaluation.json",
+  "bootstrap_source": "C:\\University\\Projects\\spatial-human-anatomy\\results\\test\\medgemma_bootstrap_results.json",
+  "candidate_decision_audit": {
+    "definition": "A routed candidate is correct only if row_id, start_char, end_char, and entity label exactly match BC5CDR human gold.",
+    "counts": {
+      "tp": 451,
+      "fp": 109,
+      "tn": 49,
+      "fn": 23
+    },
+    "accuracy": 0.7911392405063291,
+    "accept_precision": 0.8053571428571429,
+    "accept_recall": 0.9514767932489452,
+    "accept_f1": 0.8723404255319149,
+    "reject_specificity": 0.310126582278481,
+    "by_label": {
+      "CHEMICAL": {
+        "tp": 260,
+        "fp": 17,
+        "tn": 18,
+        "fn": 15
+      },
+      "DISEASE": {
+        "tp": 191,
+        "fp": 92,
+        "tn": 31,
+        "fn": 8
+      }
+    },
+    "by_weighted_score": {
+      "1.16884495": {
+        "tp": 417,
+        "fp": 76,
+        "tn": 7,
+        "fn": 21
+      },
+      "1.08738697": {
+        "tp": 34,
+        "fp": 33,
+        "tn": 42,
+        "fn": 2
+      }
+    },
+    "false_accept_examples": [
+      {
+        "row_id": 146391,
+        "start_char": 181,
+        "end_char": 182,
+        "text": "l",
+        "label": "DISEASE",
+        "weighted_score": 1.08738697,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'l' is a complete word and explicitly mentioned in the context as a disease (diphenylhydantoin)."
+      },
+      {
+        "row_id": 146391,
+        "start_char": 706,
+        "end_char": 710,
+        "text": "rash",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'rash' is a clear biomedical entity representing a skin condition, fitting the DISEASE label. It is explicitly mentioned in the context of patient symptoms."
+      },
+      {
+        "row_id": 573555,
+        "start_char": 765,
+        "end_char": 770,
+        "text": "apnea",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'apnea' is a recognized biomedical entity, specifically a neurological condition. The proposed label 'DISEASE' is appropriate for this entity. The boundary is complete and contains only the relevant term. The candidate is not merely a broken word-piece or incomplete fragment."
+      },
+      {
+        "row_id": 851038,
+        "start_char": 574,
+        "end_char": 585,
+        "text": "hypokalemic",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'hypokalemic' is a recognized medical term referring to a condition characterized by low potassium levels, fitting the DISEASE label. It is explicitly mentioned in the context of L-Dopa intake and its effect on electrolyte excretion."
+      },
+      {
+        "row_id": 946593,
+        "start_char": 1175,
+        "end_char": 1198,
+        "text": "nervous system leukemia",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'nervous system leukemia' is a recognized biomedical entity, specifically a type of cancer affecting the nervous system. The context explicitly links it to neurotoxicity and methotrexate dosage adjustments in specific patient populations (older children/adults with epidural leakage). Therefore, the proposed label DISEASE is appropriate."
+      },
+      {
+        "row_id": 978847,
+        "start_char": 325,
+        "end_char": 336,
+        "text": "xamethonium",
+        "label": "CHEMICAL",
+        "weighted_score": 1.08738697,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'xamethonium' is a specific chemical compound used in medicine, fitting the CHEMICAL label. It is explicitly mentioned as an option for treatment or counteraction in the context of guanethidine and phentolamine administration."
+      },
+      {
+        "row_id": 978847,
+        "start_char": 445,
+        "end_char": 452,
+        "text": "ranolol",
+        "label": "CHEMICAL",
+        "weighted_score": 1.08738697,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The proposed text 'ranolol' is a chemical entity mentioned in the context of drug dosage and administration. It fits the CHEMICAL label."
+      },
+      {
+        "row_id": 1395192,
+        "start_char": 174,
+        "end_char": 186,
+        "text": "atheromatous",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'atheromatous' is a recognized biomedical term, specifically referring to the buildup of plaque in arteries. It fits the context of discussing potential etiologies for spasm or coronary dissection."
+      },
+      {
+        "row_id": 1451544,
+        "start_char": 833,
+        "end_char": 844,
+        "text": "hypotension",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'hypotension' is a recognized biomedical entity representing a condition, specifically related to blood pressure. The label 'DISEASE' is appropriate for this context."
+      },
+      {
+        "row_id": 1655018,
+        "start_char": 303,
+        "end_char": 311,
+        "text": "aplastic",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'aplastic' is a biomedical entity in the context of describing a medical condition, specifically related to bone marrow failure. The label 'DISEASE' is appropriate for this term."
+      },
+      {
+        "row_id": 1837756,
+        "start_char": 403,
+        "end_char": 413,
+        "text": "depressive",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'depressive' is a clear biomedical entity representing a type of mood disorder, fitting the DISEASE label. It is explicitly mentioned in the context of psychiatric symptoms."
+      },
+      {
+        "row_id": 2131034,
+        "start_char": 473,
+        "end_char": 476,
+        "text": "met",
+        "label": "CHEMICAL",
+        "weighted_score": 1.08738697,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'met' is a chemical entity in the context of drug toxicity descriptions."
+      },
+      {
+        "row_id": 2818777,
+        "start_char": 315,
+        "end_char": 331,
+        "text": "hypersensitivity",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'hypersensitivity' is a recognized biomedical entity representing a type of adverse reaction, fitting the DISEASE label. It is explicitly mentioned in the context of drug-induced liver damage."
+      },
+      {
+        "row_id": 2931989,
+        "start_char": 300,
+        "end_char": 316,
+        "text": "lens intolerance",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'lens intolerance' is a recognized biomedical entity representing a side effect of contact lens use, fitting the DISEASE label. It is explicit in the context and complete."
+      },
+      {
+        "row_id": 2931989,
+        "start_char": 426,
+        "end_char": 437,
+        "text": "pseudotumor",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'pseudotumor' is a recognized biomedical entity, specifically a type of pseudotumor cerebri, which is a disease. The context explicitly links it to serious ocular adverse reactions and describes it as reversible if the drug is discontinued. Therefore, the proposed label DISEASE is correct."
+      },
+      {
+        "row_id": 3533179,
+        "start_char": 897,
+        "end_char": 922,
+        "text": "immunodeficiency syndrome",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'immunodeficiency syndrome' is a recognized biomedical entity, specifically a type of disease. The context clearly links it to aplastic anemia and Wiskott-Aldrich syndrome as conditions treated by the described procedure."
+      },
+      {
+        "row_id": 3812624,
+        "start_char": 88,
+        "end_char": 97,
+        "text": "nystagmus",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'nystagmus' is a recognized biomedical entity, specifically a type of eye movement disorder. The proposed label 'DISEASE' is appropriate for this context."
+      },
+      {
+        "row_id": 6728873,
+        "start_char": 867,
+        "end_char": 891,
+        "text": "Loss of righting ability",
+        "label": "DISEASE",
+        "weighted_score": 1.08738697,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'Loss of righting ability' is a clear biomedical entity describing a specific physiological function impairment, fitting the DISEASE category. It is explicitly mentioned in the context and represents a clinical observation."
+      },
+      {
+        "row_id": 6728873,
+        "start_char": 1648,
+        "end_char": 1661,
+        "text": "alkylxanthine",
+        "label": "CHEMICAL",
+        "weighted_score": 1.08738697,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'alkylxanthine' is a specific chemical compound name mentioned in the context of behavioral toxicity testing. It fits the definition of a CHEMICAL entity."
+      },
+      {
+        "row_id": 7315949,
+        "start_char": 18,
+        "end_char": 32,
+        "text": "arterial spasm",
+        "label": "DISEASE",
+        "weighted_score": 1.08738697,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'arterial spasm' is a clear biomedical entity representing a pathological condition, specifically a type of vascular event. The label 'DISEASE' accurately reflects this medical context."
+      }
+    ],
+    "false_reject_examples": [
+      {
+        "row_id": 931801,
+        "start_char": 581,
+        "end_char": 584,
+        "text": "TCA",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'TCA' is not a biomedical entity in this context. It refers to the Tricarboxylic acid cycle, which is a biochemical pathway, but it is not a disease or chemical substance itself."
+      },
+      {
+        "row_id": 1564030,
+        "start_char": 473,
+        "end_char": 482,
+        "text": "hypomania",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'hypomania' is not a complete biomedical entity in the context. The text contains '[CANDIDATE]hypomania[/CANDIDATE]' which is a complete term."
+      },
+      {
+        "row_id": 1615846,
+        "start_char": 1240,
+        "end_char": 1252,
+        "text": "triglyceride",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'triglyceride' is a specific type of lipid, which falls under the category of CHEMICAL. However, the context describes its decrease in levels as part of a treatment study for cholesterol and triglycerides. While it is a chemical compound, the label 'CHEMICAL' might be too broad or misleading in this biomedical context where it's discussed alongside other lipids like LDL cholesterol and HDL cholesterol within the scope of cardiovascular health."
+      },
+      {
+        "row_id": 2173761,
+        "start_char": 1162,
+        "end_char": 1173,
+        "text": "tachycardia",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'tachycardia' is not a disease. It is a symptom or condition, but the label 'DISEASE' is incorrect."
+      },
+      {
+        "row_id": 2553470,
+        "start_char": 144,
+        "end_char": 148,
+        "text": "NMDA",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'NMDA' is a chemical name, but the context explicitly mentions it as an N-methyl-D-aspartate receptor antagonist. The label 'CHEMICAL' is incorrect; the correct label should be 'CHEMICAL_NAME' or similar."
+      },
+      {
+        "row_id": 2782734,
+        "start_char": 1621,
+        "end_char": 1624,
+        "text": "Glu",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'Glu' is not a complete biomedical entity in the context. The text provided is '001) and [CANDIDATE]Glu[/CANDIDATE] (p less than 0'. The proposed label 'CHEMICAL' is plausible, but the marked text 'Glu' is incomplete and lacks context within the sentence to confirm its role as a specific chemical entity in this biomedical context. It appears to be part of a larger name or sequence."
+      },
+      {
+        "row_id": 3708328,
+        "start_char": 1769,
+        "end_char": 1780,
+        "text": "pilocarpine",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'pilocarpine' is a chemical compound, but the context describes its application as an irreversible inhibitor of GABA transaminase to suppress seizures caused by pilocarpine. The marked text 'pilocarpine' refers to the drug itself, not just a chemical in general. Therefore, the label 'CHEMICAL' is incorrect."
+      },
+      {
+        "row_id": 3711722,
+        "start_char": 1566,
+        "end_char": 1580,
+        "text": "catecholamines",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'catecholamines' is not a complete biomedical entity in the context. The text provided is 'Myocardial catecholamines'. The word 'catecholamines' is incomplete and lacks its full name, which is 'myocardial catecholamines'."
+      },
+      {
+        "row_id": 3895875,
+        "start_char": 669,
+        "end_char": 680,
+        "text": "arrhythmias",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'arrhythmias' is not a complete biomedical entity in the context. The text provided is 'warning [CANDIDATE]arrhythmias[/CANDIDATE]' which contains the word 'arrhythmias'. However, the proposed label is 'DISEASE', and the marked boundary is only 'arrhythmias'. This is an incomplete fragment."
+      },
+      {
+        "row_id": 6299641,
+        "start_char": 1319,
+        "end_char": 1330,
+        "text": "tachycardia",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'tachycardia' is a medical term, but it is not explicitly marked as a disease in the context. The text describes exercise-induced tachycardia and its relation to beta receptor activation, but does not label it as a disease itself."
+      },
+      {
+        "row_id": 7147232,
+        "start_char": 725,
+        "end_char": 736,
+        "text": "Hypotension",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'Hypotension' is a disease, but the context indicates it was induced by ATP. The label should be 'CHEMICAL' or 'DRUG', not 'DISEASE'."
+      },
+      {
+        "row_id": 7457821,
+        "start_char": 158,
+        "end_char": 166,
+        "text": "fentanyl",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'fentanyl' is not a complete word in the context. The text provided is 'fentanyl'."
+      },
+      {
+        "row_id": 7931490,
+        "start_char": 1162,
+        "end_char": 1170,
+        "text": "vomiting",
+        "label": "DISEASE",
+        "weighted_score": 1.08738697,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'vomiting' is not a disease. It is a symptom."
+      },
+      {
+        "row_id": 9869655,
+        "start_char": 537,
+        "end_char": 543,
+        "text": "sterol",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'sterol' is not a biomedical entity in this context. It refers to a class of organic compounds, but the context discusses specific enzymes involved in bile salt synthesis, which are biochemical entities. The word 'sterol' here is used as a placeholder or part of a larger term (like 'cholesterol 7alpha-hydroxylase') and is not a distinct biomedical entity itself."
+      },
+      {
+        "row_id": 15276093,
+        "start_char": 1654,
+        "end_char": 1662,
+        "text": "creatine",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'creatine' is not a disease or chemical, but rather a specific type of molecule. The label 'CHEMICAL' is incorrect."
+      },
+      {
+        "row_id": 16723784,
+        "start_char": 378,
+        "end_char": 381,
+        "text": "Bpd",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'Bpd' is not a complete biomedical entity in the context. The full term is 'Bpd', which stands for Borderline Personality Disorder, a psychiatric condition. The provided text only contains 'Bpd', which is an incomplete fragment."
+      },
+      {
+        "row_id": 16723784,
+        "start_char": 1330,
+        "end_char": 1333,
+        "text": "Bpd",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'Bpd' is not a recognized biomedical entity in this context. It appears to be an abbreviation or acronym, but without further context, it cannot be definitively classified as a disease or chemical. The label 'CHEMICAL' is also questionable given the context of administering medication."
+      },
+      {
+        "row_id": 18987260,
+        "start_char": 342,
+        "end_char": 352,
+        "text": "adriamycin",
+        "label": "CHEMICAL",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'adriamycin' is not a biomedical entity in this context. It refers to a chemical compound (a type of chemotherapy drug), but the context discusses its effects on renal disease progression in rats, which falls under pharmacology and toxicology rather than pure chemistry."
+      },
+      {
+        "row_id": 19178808,
+        "start_char": 423,
+        "end_char": 434,
+        "text": "hypotension",
+        "label": "DISEASE",
+        "weighted_score": 1.16884495,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'hypotension' is not a disease. It is a medical condition characterized by low blood pressure."
+      },
+      {
+        "row_id": 20431083,
+        "start_char": 994,
+        "end_char": 996,
+        "text": "MB",
+        "label": "DISEASE",
+        "weighted_score": 1.08738697,
+        "decision": "REJECT",
+        "is_exact_human_gold": true,
+        "outcome": "FN",
+        "reason": "The proposed entity 'MB' is not a complete biomedical entity in the context. The text mentions 'ICH and IS/TIA', but the specific entity 'MB' is incomplete and lacks context to be considered a valid disease or chemical name within this sentence."
+      }
+    ],
+    "audit_csv": "C:\\University\\Projects\\spatial-human-anatomy\\results\\test\\medgemma_report\\candidate_decision_audit.csv"
+  },
+  "token_level_bio_confusion_matrices": {
+    "medgemma_zero_shot": {
+      "labels": [
+        "O",
+        "B-DISEASE",
+        "I-DISEASE",
+        "B-CHEMICAL",
+        "I-CHEMICAL"
+      ],
+      "raw_counts": [
+        [
+          81306,
+          673,
+          653,
+          648,
+          671
+        ],
+        [
+          2907,
+          1225,
+          248,
+          17,
+          14
+        ],
+        [
+          1450,
+          52,
+          899,
+          4,
+          18
+        ],
+        [
+          3533,
+          119,
+          23,
+          1520,
+          102
+        ],
+        [
+          243,
+          0,
+          8,
+          5,
+          145
+        ]
+      ],
+      "row_normalized": [
+        [
+          0.9684935259853963,
+          0.008016581100880275,
+          0.007778346892830341,
+          0.007718788340817858,
+          0.007992757680075282
+        ],
+        [
+          0.6590342326003173,
+          0.27771480389934255,
+          0.05622307866696894,
+          0.003854001360235774,
+          0.0031738834731353436
+        ],
+        [
+          0.5984316962443252,
+          0.021460998761865455,
+          0.37102765167148166,
+          0.0016508460586050352,
+          0.007428807263722658
+        ],
+        [
+          0.666981310175571,
+          0.022465546535774965,
+          0.004342080422880876,
+          0.2869548801208231,
+          0.019256182744949973
+        ],
+        [
+          0.6059850374064838,
+          0.0,
+          0.0199501246882793,
+          0.012468827930174564,
+          0.36159600997506236
+        ]
+      ],
+      "token_count": 96483,
+      "caution": "This is a secondary token-level BIO diagnostic. The frequent O class can dominate counts; primary evaluation remains exact span and label."
+    },
+    "weighted_plus_medgemma": {
+      "labels": [
+        "O",
+        "B-DISEASE",
+        "I-DISEASE",
+        "B-CHEMICAL",
+        "I-CHEMICAL"
+      ],
+      "raw_counts": [
+        [
+          83485,
+          276,
+          132,
+          55,
+          3
+        ],
+        [
+          1291,
+          3024,
+          93,
+          3,
+          0
+        ],
+        [
+          842,
+          110,
+          1468,
+          3,
+          0
+        ],
+        [
+          1645,
+          4,
+          0,
+          3641,
+          7
+        ],
+        [
+          191,
+          0,
+          0,
+          7,
+          203
+        ]
+      ],
+      "row_normalized": [
+        [
+          0.9944491429524366,
+          0.0032876320710890877,
+          0.0015723457731295636,
+          0.0006551440721373182,
+          3.5735131207490086e-05
+        ],
+        [
+          0.29267739741555204,
+          0.6855588301972342,
+          0.021083654500113354,
+          0.0006801178871004307,
+          0.0
+        ],
+        [
+          0.34750309533635987,
+          0.04539826661163846,
+          0.6058605035080479,
+          0.0012381345439537762,
+          0.0
+        ],
+        [
+          0.31055314328865397,
+          0.0007551444213705871,
+          0.0,
+          0.6873702095525769,
+          0.0013215027373985274
+        ],
+        [
+          0.4763092269326683,
+          0.0,
+          0.0,
+          0.017456359102244388,
+          0.5062344139650873
+        ]
+      ],
+      "token_count": 96483,
+      "caution": "This is a secondary token-level BIO diagnostic. The frequent O class can dominate counts; primary evaluation remains exact span and label."
+    }
+  },
+  "caution": "BIO confusion matrices are secondary diagnostics. Primary results are exact character-span and label metrics."
+}
