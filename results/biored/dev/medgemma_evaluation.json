@@ -96,59 +96,59 @@
     },
     {
       "system": "MedGemma Zero-Shot",
-      "precision": 0.3086053412462908,
-      "recall": 0.28824833702882485,
-      "f1": 0.2980796789911149,
-      "tp": 520,
-      "fp": 1165,
-      "fn": 1284,
+      "precision": 0.32427277062470194,
+      "recall": 0.376940133037694,
+      "f1": 0.34862855678031274,
+      "tp": 680,
+      "fp": 1417,
+      "fn": 1124,
       "per_label": {
         "DISEASE": {
-          "precision": 0.30982658959537573,
-          "recall": 0.2729124236252546,
-          "f1-score": 0.29020032485110997,
+          "precision": 0.32879377431906615,
+          "recall": 0.34419551934826886,
+          "f1-score": 0.3363184079601991,
           "support": 982,
-          "tp": 268,
-          "fp": 597,
-          "fn": 714
+          "tp": 338,
+          "fp": 690,
+          "fn": 644
         },
         "CHEMICAL": {
-          "precision": 0.3073170731707317,
-          "recall": 0.30656934306569344,
-          "f1-score": 0.3069427527405603,
+          "precision": 0.3199251637043966,
+          "recall": 0.41605839416058393,
+          "f1-score": 0.3617133791644633,
           "support": 822,
-          "tp": 252,
-          "fp": 568,
-          "fn": 570
+          "tp": 342,
+          "fp": 727,
+          "fn": 480
         }
       }
     },
     {
       "system": "Weighted + MedGemma Tie-Breaker",
-      "precision": 0.6743192738921516,
-      "recall": 0.700110864745011,
-      "f1": 0.6869730758770737,
-      "tp": 1263,
-      "fp": 610,
-      "fn": 541,
+      "precision": 0.6185866408518877,
+      "recall": 0.7084257206208425,
+      "f1": 0.6604651162790698,
+      "tp": 1278,
+      "fp": 788,
+      "fn": 526,
       "per_label": {
         "DISEASE": {
-          "precision": 0.6019163763066202,
-          "recall": 0.7036659877800407,
-          "f1-score": 0.6488262910798122,
+          "precision": 0.5273141122913505,
+          "recall": 0.7077393075356415,
+          "f1-score": 0.6043478260869565,
           "support": 982,
-          "tp": 691,
-          "fp": 457,
-          "fn": 291
+          "tp": 695,
+          "fp": 623,
+          "fn": 287
         },
         "CHEMICAL": {
-          "precision": 0.7889655172413793,
-          "recall": 0.6958637469586375,
-          "f1-score": 0.7394957983193278,
+          "precision": 0.7794117647058824,
+          "recall": 0.7092457420924574,
+          "f1-score": 0.7426751592356687,
           "support": 822,
-          "tp": 572,
-          "fp": 153,
-          "fn": 250
+          "tp": 583,
+          "fp": 165,
+          "fn": 239
         }
       }
     }
@@ -162,23 +162,23 @@
     "prompt_hash": "90f9fe63d081df49bf85179ba647d2f0b2adce09c5419ecc7da7acdd667dc515",
     "document_count": 100,
     "completed_segment_count": 501,
-    "entity_count": 1685,
-    "summed_request_seconds": 2293.082647,
-    "average_seconds_per_document": 22.930826,
-    "current_process_wall_seconds": 2293.246307,
+    "entity_count": 2097,
+    "summed_request_seconds": 2972.809844,
+    "average_seconds_per_document": 29.728098,
+    "current_process_wall_seconds": 1057.896962,
     "diagnostics": {
-      "returned_entities": 1855,
-      "accepted_entities": 1827,
+      "returned_entities": 3582,
+      "accepted_entities": 3552,
       "exact_offset_matches": 4,
-      "repaired_exact_occurrences": 1813,
+      "repaired_exact_occurrences": 3538,
       "repaired_casefold_occurrences": 10,
       "rejected_invalid_label": 0,
       "rejected_missing_text": 0,
-      "rejected_unmapped_text": 26,
-      "rejected_ambiguous_occurrence": 2
+      "rejected_unmapped_text": 27,
+      "rejected_ambiguous_occurrence": 3
     },
-    "prediction_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\processed\\biored\\medgemma_dev_entities_biored.jsonl",
-    "cache_file": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\dev\\medgemma\\zero_shot_doc_results_chunked_v2.jsonl",
+    "prediction_file": "C:\\University\\Projects\\Biomedical NER\\data\\processed\\biored\\medgemma_dev_entities_biored.jsonl",
+    "cache_file": "C:\\University\\Projects\\Biomedical NER\\results\\biored\\dev\\medgemma\\zero_shot_doc_results_chunked_v2.jsonl",
     "is_smoke_run": false
   },
   "hybrid_routing": {
@@ -192,16 +192,16 @@
     "auto_reject_count": 8247,
     "routed_count": 968,
     "auto_accept_count": 1406,
-    "medgemma_accept_count": 467,
-    "medgemma_reject_count": 501,
-    "invalid_default_reject_count": 0,
-    "final_entity_count": 1873,
+    "medgemma_accept_count": 660,
+    "medgemma_reject_count": 308,
+    "invalid_default_reject_count": 9,
+    "final_entity_count": 2066,
     "routing_rate_over_all_candidates": 0.09114019395537143,
-    "tie_break_request_seconds": 3622.412656,
-    "current_process_wall_seconds": 3623.796281,
+    "tie_break_request_seconds": 3150.852224,
+    "current_process_wall_seconds": 3152.140966,
     "construction_used_human_gold": false,
     "test_gold_was_not_read": null,
-    "decision_cache": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\dev\\medgemma_hybrid\\candidate_decisions.jsonl",
-    "output_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\gold\\biored\\medgemma_hybrid_dev_entities_biored.jsonl"
+    "decision_cache": "C:\\University\\Projects\\Biomedical NER\\results\\biored\\dev\\medgemma_hybrid\\candidate_decisions.jsonl",
+    "output_file": "C:\\University\\Projects\\Biomedical NER\\data\\gold\\biored\\medgemma_hybrid_dev_entities_biored.jsonl"
   }
 }

@@ -77,7 +77,7 @@
       "tp": 1142,
       "fp": 503,
       "fn": 662,
-      "runtime_seconds_per_document": 0.036781,
+      "runtime_seconds_per_document": 0.054504,
       "per_label": {
         "DISEASE": {
           "precision": 0.71849234393404,
@@ -107,7 +107,7 @@
       "tp": 1253,
       "fp": 2266,
       "fn": 551,
-      "runtime_seconds_per_document": 0.66835,
+      "runtime_seconds_per_document": 0.977505,
       "per_label": {
         "DISEASE": {
           "precision": 0.29109863672814756,
@@ -130,14 +130,14 @@
       }
     },
     {
-      "system": "PubMedBERT",
+      "system": "PubMedBERT + OpenMed",
       "precision": 0.24564693276185373,
       "recall": 0.5083148558758315,
       "f1": 0.33122629582806573,
       "tp": 917,
       "fp": 2816,
       "fn": 887,
-      "runtime_seconds_per_document": 5.051295,
+      "runtime_seconds_per_document": 6.089769,
       "per_label": {
         "DISEASE": {
           "precision": 0.17956026058631921,
@@ -167,7 +167,7 @@
       "tp": 739,
       "fp": 3200,
       "fn": 1065,
-      "runtime_seconds_per_document": 0.295272,
+      "runtime_seconds_per_document": 0.293159,
       "per_label": {
         "DISEASE": {
           "precision": 0.17159985013113527,
@@ -190,14 +190,14 @@
       }
     },
     {
-      "system": "BioELECTRA",
+      "system": "D4Data NER (DistilBERT)",
       "precision": 0.14694656488549618,
       "recall": 0.17073170731707318,
       "f1": 0.15794871794871793,
       "tp": 308,
       "fp": 1788,
       "fn": 1496,
-      "runtime_seconds_per_document": 0.162165,
+      "runtime_seconds_per_document": 0.158943,
       "per_label": {
         "DISEASE": {
           "precision": 0.1448529411764706,

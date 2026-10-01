@@ -230,9 +230,10 @@ def _shift_entities_to_document(
 def _should_split_after_failure(exc: Exception) -> bool:
     message = str(exc).lower()
     return (
-        "generation limit" in message
-        or "invalid json" in message
-        or "output reached" in message
+    "generation limit" in message
+    or "invalid json" in message
+    or "output reached" in message
+    or "timed out" in message
     )
 
 

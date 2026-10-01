@@ -21,7 +21,7 @@
       "ci_high": 0.5530579286705809
     },
     {
-      "system": "PubMedBERT",
+      "system": "PubMedBERT + OpenMed",
       "precision": 0.30817502424553594,
       "recall": 0.550718727699052,
       "f1": 0.3952008193723023,
@@ -37,7 +37,7 @@
       "ci_high": 0.3174666700817315
     },
     {
-      "system": "BioELECTRA",
+      "system": "D4Data NER (DistilBERT)",
       "precision": 0.17229948253557567,
       "recall": 0.21724946477724538,
       "f1": 0.19218108851512827,
@@ -75,7 +75,7 @@
     },
     {
       "system_1": "scispaCy",
-      "system_2": "PubMedBERT",
+      "system_2": "PubMedBERT + OpenMed",
       "f1_system_1": 0.7512788756663615,
       "f1_system_2": 0.3952008193723023,
       "f1_difference": 0.35607805629405925,
@@ -97,7 +97,7 @@
     },
     {
       "system_1": "scispaCy",
-      "system_2": "BioELECTRA",
+      "system_2": "D4Data NER (DistilBERT)",
       "f1_system_1": 0.7512788756663615,
       "f1_system_2": 0.19218108851512827,
       "f1_difference": 0.5590977871512333,
@@ -108,7 +108,7 @@
     },
     {
       "system_1": "BioBERT",
-      "system_2": "PubMedBERT",
+      "system_2": "PubMedBERT + OpenMed",
       "f1_system_1": 0.5383788762665028,
       "f1_system_2": 0.3952008193723023,
       "f1_difference": 0.14317805689420054,
@@ -130,7 +130,7 @@
     },
     {
       "system_1": "BioBERT",
-      "system_2": "BioELECTRA",
+      "system_2": "D4Data NER (DistilBERT)",
       "f1_system_1": 0.5383788762665028,
       "f1_system_2": 0.19218108851512827,
       "f1_difference": 0.34619778775137455,
@@ -140,7 +140,7 @@
       "significant_holm_0.05": true
     },
     {
-      "system_1": "PubMedBERT",
+      "system_1": "PubMedBERT + OpenMed",
       "system_2": "ClinicalBERT",
       "f1_system_1": 0.3952008193723023,
       "f1_system_2": 0.3044699274514393,
@@ -151,8 +151,8 @@
       "significant_holm_0.05": true
     },
     {
-      "system_1": "PubMedBERT",
-      "system_2": "BioELECTRA",
+      "system_1": "PubMedBERT + OpenMed",
+      "system_2": "D4Data NER (DistilBERT)",
       "f1_system_1": 0.3952008193723023,
       "f1_system_2": 0.19218108851512827,
       "f1_difference": 0.203019730857174,
@@ -163,7 +163,7 @@
     },
     {
       "system_1": "ClinicalBERT",
-      "system_2": "BioELECTRA",
+      "system_2": "D4Data NER (DistilBERT)",
       "f1_system_1": 0.3044699274514393,
       "f1_system_2": 0.19218108851512827,
       "f1_difference": 0.11228883893631103,
@@ -187,7 +187,7 @@
     },
     {
       "system_1": "scispaCy",
-      "system_2": "PubMedBERT",
+      "system_2": "PubMedBERT + OpenMed",
       "f1_system_1": 0.7512788756663615,
       "f1_system_2": 0.3952008193723023,
       "f1_difference": 0.35607805629405925,
@@ -209,7 +209,7 @@
     },
     {
       "system_1": "scispaCy",
-      "system_2": "BioELECTRA",
+      "system_2": "D4Data NER (DistilBERT)",
       "f1_system_1": 0.7512788756663615,
       "f1_system_2": 0.19218108851512827,
       "f1_difference": 0.5590977871512333,
@@ -220,7 +220,7 @@
     },
     {
       "system_1": "BioBERT",
-      "system_2": "PubMedBERT",
+      "system_2": "PubMedBERT + OpenMed",
       "f1_system_1": 0.5383788762665028,
       "f1_system_2": 0.3952008193723023,
       "f1_difference": 0.14317805689420054,
@@ -242,7 +242,7 @@
     },
     {
       "system_1": "BioBERT",
-      "system_2": "BioELECTRA",
+      "system_2": "D4Data NER (DistilBERT)",
       "f1_system_1": 0.5383788762665028,
       "f1_system_2": 0.19218108851512827,
       "f1_difference": 0.34619778775137455,
@@ -252,7 +252,7 @@
       "significant_holm_0.05": true
     },
     {
-      "system_1": "PubMedBERT",
+      "system_1": "PubMedBERT + OpenMed",
       "system_2": "ClinicalBERT",
       "f1_system_1": 0.3952008193723023,
       "f1_system_2": 0.3044699274514393,
@@ -263,8 +263,8 @@
       "significant_holm_0.05": true
     },
     {
-      "system_1": "PubMedBERT",
-      "system_2": "BioELECTRA",
+      "system_1": "PubMedBERT + OpenMed",
+      "system_2": "D4Data NER (DistilBERT)",
       "f1_system_1": 0.3952008193723023,
       "f1_system_2": 0.19218108851512827,
       "f1_difference": 0.203019730857174,
@@ -275,7 +275,7 @@
     },
     {
       "system_1": "ClinicalBERT",
-      "system_2": "BioELECTRA",
+      "system_2": "D4Data NER (DistilBERT)",
       "f1_system_1": 0.3044699274514393,
       "f1_system_2": 0.19218108851512827,
       "f1_difference": 0.11228883893631103,

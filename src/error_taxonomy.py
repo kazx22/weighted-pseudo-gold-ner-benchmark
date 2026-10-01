@@ -362,7 +362,7 @@ def main():
         "--models",
         nargs="+",
         default=["scispacy", "pubmedbert"],
-        choices=["scispacy", "biobert", "pubmedbert", "clinicalbert", "bioelectra"],
+        choices=["scispacy", "biobert", "pubmedbert", "clinicalbert", "d4data"],
     )
     args = parser.parse_args()
     split = normalize_split(args.split, allow_train=False)

@@ -7,15 +7,33 @@ extension cannot overwrite the existing BC5CDR results.
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_ROOT = PROJECT_ROOT / "data" / "raw"
 RAW_DIR = RAW_ROOT / "biored"
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed" / "biored"
-GOLD_DIR = PROJECT_ROOT / "data" / "gold" / "biored"
-RESULTS_ROOT = PROJECT_ROOT / "results" / "biored"
+
+# One code path supports both the official BioRED experiment and the
+# overlap-excluded sensitivity analysis.  The runner sets BIORED_VARIANT for
+# each subprocess, so outputs can never overwrite one another.
+BIORED_VARIANT = os.environ.get("BIORED_VARIANT", "official").strip().lower() or "official"
+VALID_VARIANTS = {"official", "overlap_excluded"}
+if BIORED_VARIANT not in VALID_VARIANTS:
+    raise ValueError(
+        f"Unknown BIORED_VARIANT={BIORED_VARIANT!r}. "
+        f"Use one of: {', '.join(sorted(VALID_VARIANTS))}."
+    )
+
+if BIORED_VARIANT == "official":
+    PROCESSED_DIR = PROJECT_ROOT / "data" / "processed" / "biored"
+    GOLD_DIR = PROJECT_ROOT / "data" / "gold" / "biored"
+    RESULTS_ROOT = PROJECT_ROOT / "results" / "biored"
+else:
+    PROCESSED_DIR = PROJECT_ROOT / "data" / "processed" / "biored_overlap_excluded"
+    GOLD_DIR = PROJECT_ROOT / "data" / "gold" / "biored_overlap_excluded"
+    RESULTS_ROOT = PROJECT_ROOT / "results" / "biored_overlap_excluded"
 
 SPLIT_ALIASES = {
     "development": "dev",
@@ -26,15 +44,15 @@ SPLIT_ALIASES = {
     "test": "test",
 }
 
-MODEL_KEYS = ("scispacy", "biobert", "pubmedbert", "clinicalbert", "bioelectra")
+MODEL_KEYS = ("scispacy", "biobert", "pubmedbert", "clinicalbert", "d4data")
 OPTIONAL_MODEL_KEYS = ("medgemma",)
 ALL_PREDICTION_KEYS = MODEL_KEYS + OPTIONAL_MODEL_KEYS
 MODEL_DISPLAY_NAMES = {
     "scispacy": "scispaCy",
     "biobert": "BioBERT",
-    "pubmedbert": "PubMedBERT",
+    "pubmedbert": "PubMedBERT + OpenMed",
     "clinicalbert": "ClinicalBERT",
-    "bioelectra": "BioELECTRA",
+    "d4data": "D4Data NER (DistilBERT)",
     "medgemma": "MedGemma 1.5 4B",
 }
 

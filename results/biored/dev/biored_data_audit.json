@@ -1,5 +1,5 @@
 {
-  "source_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\raw\\biored\\_extracted\\BioRED\\Dev.PubTator",
+  "source_file": "C:\\University\\Projects\\Biomedical NER\\data\\raw\\biored\\_extracted\\BioRED\\Dev.PubTator",
   "document_count": 100,
   "target_entity_count": 1804,
   "target_labels": {

@@ -22,38 +22,38 @@
     },
     {
       "system": "MedGemma Zero-Shot",
-      "precision": 0.577556225365175,
-      "recall": 0.2539504536650015,
-      "f1": 0.35278289194165124,
-      "ci_low": 0.3380923322603983,
-      "ci_high": 0.36754450284315243
+      "precision": 0.561155048740114,
+      "recall": 0.3110408808237333,
+      "f1": 0.4002361275088548,
+      "ci_low": 0.384740683121413,
+      "ci_high": 0.41604996792087034
     },
     {
       "system": "Weighted + MedGemma Tie-Breaker",
-      "precision": 0.9172375227177408,
-      "recall": 0.6688755224793557,
-      "f1": 0.7736116024053769,
-      "ci_low": 0.7598828745693917,
-      "ci_high": 0.786428149145676
+      "precision": 0.9165969316596931,
+      "recall": 0.6699969415842594,
+      "f1": 0.7741327522233348,
+      "ci_low": 0.7604999386565616,
+      "ci_high": 0.7871143004166016
     }
   ],
   "comparisons": [
     {
       "system_1": "Weighted + MedGemma Tie-Breaker",
       "system_2": "Weighted Pseudo-Gold",
-      "f1_system_1": 0.7736116024053769,
+      "f1_system_1": 0.7741327522233348,
       "f1_system_2": 0.7738580629911954,
-      "f1_difference": -0.0002464605858185642,
-      "raw_p": 0.6773226773226774,
-      "holm_p": 0.6773226773226774,
+      "f1_difference": 0.0002746892321393579,
+      "raw_p": 0.6993006993006993,
+      "holm_p": 0.6993006993006993,
       "significant_holm_0.05": false
     },
     {
       "system_1": "MedGemma Zero-Shot",
       "system_2": "scispaCy",
-      "f1_system_1": 0.35278289194165124,
+      "f1_system_1": 0.4002361275088548,
       "f1_system_2": 0.7512788756663615,
-      "f1_difference": -0.3984959837247103,
+      "f1_difference": -0.35104274815750675,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.005994005994005994,
       "significant_holm_0.05": true
@@ -61,9 +61,9 @@
     {
       "system_1": "Weighted + MedGemma Tie-Breaker",
       "system_2": "MedGemma Zero-Shot",
-      "f1_system_1": 0.7736116024053769,
-      "f1_system_2": 0.35278289194165124,
-      "f1_difference": 0.4208287104637256,
+      "f1_system_1": 0.7741327522233348,
+      "f1_system_2": 0.4002361275088548,
+      "f1_difference": 0.37389662471448,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.005994005994005994,
       "significant_holm_0.05": true

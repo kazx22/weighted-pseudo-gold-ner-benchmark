@@ -1,8 +1,9 @@
 """Run the same five off-the-shelf NER systems on BioRED disease/chemical text.
 
 The model identities and deterministic label mappings match the BC5CDR study.
-No task-specific fine-tuning is performed here. This file writes BioRED outputs
-into data/processed/biored and never touches the BC5CDR prediction files.
+The D4Data system uses d4data/biomedical-ner-all, a DistilBERT token-classification checkpoint.
+No task-specific fine-tuning is performed here. BioRED outputs are written to the active
+variant directory and never touch BC5CDR prediction files.
 """
 
 from __future__ import annotations
@@ -34,7 +35,7 @@ PUBMEDBERT_DISEASE_MODEL = (
 )
 PUBMEDBERT_CHEMICAL_MODEL = "OpenMed/OpenMed-NER-ChemicalDetect-PubMed-335M"
 CLINICALBERT_MODEL = "samrawal/bert-base-uncased_clinical-ner"
-BIOELECTRA_MODEL = "d4data/biomedical-ner-all"
+D4DATA_NER_MODEL = "d4data/biomedical-ner-all"
 
 MAX_TOKENS = 400
 OVERLAP_SENTS = 1
@@ -44,7 +45,7 @@ CLINICAL_LABEL_MAP = {
     "treatment": "CHEMICAL",
 }
 
-BIOELECTRA_LABEL_MAP = {
+D4DATA_NER_LABEL_MAP = {
     "Disease_disorder": "DISEASE",
     "Sign_symptom": "DISEASE",
     "Medication": "CHEMICAL",
@@ -249,8 +250,8 @@ def run_clinicalbert(docs: list[dict]) -> tuple[list[dict], float, float]:
     return deduplicate_entities(all_entities), total, total / len(docs)
 
 
-def run_bioelectra(docs: list[dict]) -> tuple[list[dict], float, float]:
-    ner = pipeline("ner", model=BIOELECTRA_MODEL, aggregation_strategy="simple")
+def run_d4data_ner(docs: list[dict]) -> tuple[list[dict], float, float]:
+    ner = pipeline("ner", model=D4DATA_NER_MODEL, aggregation_strategy="simple")
     all_entities: list[dict] = []
     start_time = time.time()
     for index, document in enumerate(docs, start=1):
@@ -259,11 +260,11 @@ def run_bioelectra(docs: list[dict]) -> tuple[list[dict], float, float]:
         for chunk, offset in chunk_text(text, ner.tokenizer):
             for prediction in ner(chunk):
                 raw_label = str(prediction.get("entity_group", ""))
-                mapped = BIOELECTRA_LABEL_MAP.get(raw_label)
+                mapped = D4DATA_NER_LABEL_MAP.get(raw_label)
                 if mapped is None:
                     # Some transformers versions preserve BIO prefixes.
                     stripped = re.sub(r"^[BI]-", "", raw_label)
-                    mapped = BIOELECTRA_LABEL_MAP.get(stripped)
+                    mapped = D4DATA_NER_LABEL_MAP.get(stripped)
                 if mapped is None:
                     continue
                 entity = _safe_entity(
@@ -278,7 +279,7 @@ def run_bioelectra(docs: list[dict]) -> tuple[list[dict], float, float]:
                 if entity is not None:
                     all_entities.append(entity)
         if index == 1 or index % 25 == 0 or index == len(docs):
-            print(f"  BioELECTRA {index}/{len(docs)}")
+            print(f"  D4Data NER {index}/{len(docs)}")
     total = time.time() - start_time
     return deduplicate_entities(all_entities), total, total / len(docs)
 
@@ -295,10 +296,10 @@ RUNNERS: dict[str, Callable[[list[dict]], tuple[list[dict], float, float]]] = {
         docs,
         disease_model=PUBMEDBERT_DISEASE_MODEL,
         chemical_model=PUBMEDBERT_CHEMICAL_MODEL,
-        display_name="PubMedBERT",
+        display_name="PubMedBERT + OpenMed",
     ),
     "clinicalbert": run_clinicalbert,
-    "bioelectra": run_bioelectra,
+    "d4data": run_d4data_ner,
 }
 
 

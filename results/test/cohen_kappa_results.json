@@ -4,32 +4,32 @@
   "caution": "The frequent O class can inflate agreement; interpret with exact span metrics.",
   "pairwise": [
     {
-      "model_1": "SciSpacy",
+      "model_1": "scispaCy",
       "model_2": "BioBERT",
       "kappa": 0.36245275393598364,
       "interpretation": "Fair"
     },
     {
-      "model_1": "SciSpacy",
-      "model_2": "PubMedBERT",
+      "model_1": "scispaCy",
+      "model_2": "PubMedBERT + OpenMed",
       "kappa": 0.3716919761028443,
       "interpretation": "Fair"
     },
     {
-      "model_1": "SciSpacy",
+      "model_1": "scispaCy",
       "model_2": "ClinicalBERT",
       "kappa": 0.42035867631319945,
       "interpretation": "Moderate"
     },
     {
-      "model_1": "SciSpacy",
-      "model_2": "BioELECTRA",
+      "model_1": "scispaCy",
+      "model_2": "D4Data NER (DistilBERT)",
       "kappa": 0.5446357722262172,
       "interpretation": "Moderate"
     },
     {
       "model_1": "BioBERT",
-      "model_2": "PubMedBERT",
+      "model_2": "PubMedBERT + OpenMed",
       "kappa": 0.7574320890762589,
       "interpretation": "Substantial"
     },
@@ -41,32 +41,32 @@
     },
     {
       "model_1": "BioBERT",
-      "model_2": "BioELECTRA",
+      "model_2": "D4Data NER (DistilBERT)",
       "kappa": 0.2516956596547558,
       "interpretation": "Fair"
     },
     {
-      "model_1": "PubMedBERT",
+      "model_1": "PubMedBERT + OpenMed",
       "model_2": "ClinicalBERT",
       "kappa": 0.2510207612527092,
       "interpretation": "Fair"
     },
     {
-      "model_1": "PubMedBERT",
-      "model_2": "BioELECTRA",
+      "model_1": "PubMedBERT + OpenMed",
+      "model_2": "D4Data NER (DistilBERT)",
       "kappa": 0.273475992554162,
       "interpretation": "Fair"
     },
     {
       "model_1": "ClinicalBERT",
-      "model_2": "BioELECTRA",
+      "model_2": "D4Data NER (DistilBERT)",
       "kappa": 0.36515931967892834,
       "interpretation": "Fair"
     }
   ],
   "versus_human_gold": [
     {
-      "model": "SciSpacy",
+      "model": "scispaCy",
       "kappa": 0.790866568876107,
       "interpretation": "Substantial"
     },
@@ -76,7 +76,7 @@
       "interpretation": "Moderate"
     },
     {
-      "model": "PubMedBERT",
+      "model": "PubMedBERT + OpenMed",
       "kappa": 0.42421747289908873,
       "interpretation": "Moderate"
     },
@@ -86,7 +86,7 @@
       "interpretation": "Moderate"
     },
     {
-      "model": "BioELECTRA",
+      "model": "D4Data NER (DistilBERT)",
       "kappa": 0.5687256369574809,
       "interpretation": "Moderate"
     }

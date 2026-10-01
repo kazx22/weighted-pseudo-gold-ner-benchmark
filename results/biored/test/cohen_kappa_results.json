@@ -16,7 +16,7 @@
     },
     {
       "model_1": "scispaCy",
-      "model_2": "PubMedBERT",
+      "model_2": "PubMedBERT + OpenMed",
       "kappa": 0.03645415068944613,
       "interpretation": "Slight"
     },
@@ -28,13 +28,13 @@
     },
     {
       "model_1": "scispaCy",
-      "model_2": "BioELECTRA",
+      "model_2": "D4Data NER (DistilBERT)",
       "kappa": 0.39187554406278025,
       "interpretation": "Fair"
     },
     {
       "model_1": "BioBERT",
-      "model_2": "PubMedBERT",
+      "model_2": "PubMedBERT + OpenMed",
       "kappa": 0.8165789779609165,
       "interpretation": "Almost perfect"
     },
@@ -46,25 +46,25 @@
     },
     {
       "model_1": "BioBERT",
-      "model_2": "BioELECTRA",
+      "model_2": "D4Data NER (DistilBERT)",
       "kappa": 0.028700621803076753,
       "interpretation": "Slight"
     },
     {
-      "model_1": "PubMedBERT",
+      "model_1": "PubMedBERT + OpenMed",
       "model_2": "ClinicalBERT",
       "kappa": 0.017995792430198998,
       "interpretation": "Slight"
     },
     {
-      "model_1": "PubMedBERT",
-      "model_2": "BioELECTRA",
+      "model_1": "PubMedBERT + OpenMed",
+      "model_2": "D4Data NER (DistilBERT)",
       "kappa": 0.027502406863325612,
       "interpretation": "Slight"
     },
     {
       "model_1": "ClinicalBERT",
-      "model_2": "BioELECTRA",
+      "model_2": "D4Data NER (DistilBERT)",
       "kappa": 0.2385807924199984,
       "interpretation": "Fair"
     }
@@ -81,7 +81,7 @@
       "interpretation": "Slight"
     },
     {
-      "model": "PubMedBERT",
+      "model": "PubMedBERT + OpenMed",
       "kappa": 0.04108719960535556,
       "interpretation": "Slight"
     },
@@ -91,7 +91,7 @@
       "interpretation": "Fair"
     },
     {
-      "model": "BioELECTRA",
+      "model": "D4Data NER (DistilBERT)",
       "kappa": 0.44474670734693,
       "interpretation": "Moderate"
     }

@@ -9,15 +9,15 @@
   "auto_reject_count": 39168,
   "routed_count": 658,
   "auto_accept_count": 6335,
-  "medgemma_accept_count": 573,
-  "medgemma_reject_count": 85,
+  "medgemma_accept_count": 595,
+  "medgemma_reject_count": 63,
   "invalid_default_reject_count": 0,
-  "final_entity_count": 6908,
+  "final_entity_count": 6930,
   "routing_rate_over_all_candidates": 0.014254457225796668,
-  "tie_break_request_seconds": 2607.49428,
-  "current_process_wall_seconds": 2609.486764,
+  "tie_break_request_seconds": 1927.110445,
+  "current_process_wall_seconds": 1928.232348,
   "construction_used_human_gold": false,
   "test_gold_was_not_read": null,
-  "decision_cache": "C:\\University\\Projects\\spatial-human-anatomy\\results\\dev\\medgemma_hybrid\\candidate_decisions.jsonl",
-  "output_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\gold\\medgemma_hybrid_dev_entities_bc5cdr.jsonl"
+  "decision_cache": "C:\\University\\Projects\\Biomedical NER\\results\\dev\\medgemma_hybrid\\candidate_decisions.jsonl",
+  "output_file": "C:\\University\\Projects\\Biomedical NER\\data\\gold\\medgemma_hybrid_dev_entities_bc5cdr.jsonl"
 }

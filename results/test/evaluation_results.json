@@ -68,14 +68,14 @@
     ],
     "models_vs_human": [
       {
-        "name": "SciSpacy",
+        "name": "scispaCy",
         "precision": 0.796165259073271,
         "recall": 0.7111836068916302,
         "f1": 0.7512788756663615,
         "tp": 6976,
         "fp": 1786,
         "fn": 2833,
-        "runtime_seconds_per_document": 0.024772,
+        "runtime_seconds_per_document": 0.043274,
         "per_label": {
           "DISEASE": {
             "precision": 0.7531130268199234,
@@ -106,7 +106,7 @@
         "tp": 7014,
         "fp": 9233,
         "fn": 2795,
-        "runtime_seconds_per_document": 0.485112,
+        "runtime_seconds_per_document": 0.752129,
         "per_label": {
           "DISEASE": {
             "precision": 0.3208572290974947,
@@ -130,14 +130,14 @@
         "comparison": "models_vs_human"
       },
       {
-        "name": "PubMedBERT",
+        "name": "PubMedBERT + OpenMed",
         "precision": 0.30817502424553594,
         "recall": 0.550718727699052,
         "f1": 0.3952008193723023,
         "tp": 5402,
         "fp": 12127,
         "fn": 4407,
-        "runtime_seconds_per_document": 3.834136,
+        "runtime_seconds_per_document": 6.362127,
         "per_label": {
           "DISEASE": {
             "precision": 0.2023565019997838,
@@ -168,7 +168,7 @@
         "tp": 3903,
         "fp": 11926,
         "fn": 5906,
-        "runtime_seconds_per_document": 0.223074,
+        "runtime_seconds_per_document": 0.346471,
         "per_label": {
           "DISEASE": {
             "precision": 0.22935255090368337,
@@ -192,14 +192,14 @@
         "comparison": "models_vs_human"
       },
       {
-        "name": "BioELECTRA",
+        "name": "D4Data NER (DistilBERT)",
         "precision": 0.17229948253557567,
         "recall": 0.21724946477724538,
         "f1": 0.19218108851512827,
         "tp": 2131,
         "fp": 10237,
         "fn": 7678,
-        "runtime_seconds_per_document": 0.123983,
+        "runtime_seconds_per_document": 0.196341,
         "per_label": {
           "DISEASE": {
             "precision": 0.17669517409896152,
@@ -225,14 +225,14 @@
     ],
     "models_vs_majority_pseudo_gold": [
       {
-        "name": "SciSpacy vs Majority Pseudo-Gold",
+        "name": "scispaCy vs Majority Pseudo-Gold",
         "precision": 0.6172106824925816,
         "recall": 0.922237380627558,
         "f1": 0.7395049911117189,
         "tp": 5408,
         "fp": 3354,
         "fn": 456,
-        "runtime_seconds_per_document": 0.024772,
+        "runtime_seconds_per_document": 0.043274,
         "per_label": {
           "DISEASE": {
             "precision": 0.5955459770114943,
@@ -263,7 +263,7 @@
         "tp": 5167,
         "fp": 11080,
         "fn": 697,
-        "runtime_seconds_per_document": 0.485112,
+        "runtime_seconds_per_document": 0.752129,
         "per_label": {
           "DISEASE": {
             "precision": 0.24660428614548746,
@@ -287,14 +287,14 @@
         "comparison": "models_vs_majority_pseudo_gold"
       },
       {
-        "name": "PubMedBERT vs Majority Pseudo-Gold",
+        "name": "PubMedBERT + OpenMed vs Majority Pseudo-Gold",
         "precision": 0.2320725654629471,
         "recall": 0.6937244201909959,
         "f1": 0.3477963493352712,
         "tp": 4068,
         "fp": 13461,
         "fn": 1796,
-        "runtime_seconds_per_document": 3.834136,
+        "runtime_seconds_per_document": 6.362127,
         "per_label": {
           "DISEASE": {
             "precision": 0.16484704356285806,
@@ -325,7 +325,7 @@
         "tp": 3644,
         "fp": 12185,
         "fn": 2220,
-        "runtime_seconds_per_document": 0.223074,
+        "runtime_seconds_per_document": 0.346471,
         "per_label": {
           "DISEASE": {
             "precision": 0.21642644703729125,
@@ -349,14 +349,14 @@
         "comparison": "models_vs_majority_pseudo_gold"
       },
       {
-        "name": "BioELECTRA vs Majority Pseudo-Gold",
+        "name": "D4Data NER (DistilBERT) vs Majority Pseudo-Gold",
         "precision": 0.1714909443725744,
         "recall": 0.36169849931787174,
         "f1": 0.23266783677051342,
         "tp": 2121,
         "fp": 10247,
         "fn": 3743,
-        "runtime_seconds_per_document": 0.123983,
+        "runtime_seconds_per_document": 0.196341,
         "per_label": {
           "DISEASE": {
             "precision": 0.169975565058033,
@@ -382,14 +382,14 @@
     ],
     "models_vs_weighted_pseudo_gold": [
       {
-        "name": "SciSpacy vs Weighted Pseudo-Gold",
+        "name": "scispaCy vs Weighted Pseudo-Gold",
         "precision": 0.7771056836338736,
         "recall": 0.9571267922406522,
         "f1": 0.8577727387251197,
         "tp": 6809,
         "fp": 1953,
         "fn": 305,
-        "runtime_seconds_per_document": 0.024772,
+        "runtime_seconds_per_document": 0.043274,
         "per_label": {
           "DISEASE": {
             "precision": 0.7696360153256705,
@@ -420,7 +420,7 @@
         "tp": 5936,
         "fp": 10311,
         "fn": 1178,
-        "runtime_seconds_per_document": 0.485112,
+        "runtime_seconds_per_document": 0.752129,
         "per_label": {
           "DISEASE": {
             "precision": 0.2873528523996378,
@@ -444,14 +444,14 @@
         "comparison": "models_vs_weighted_pseudo_gold"
       },
       {
-        "name": "PubMedBERT vs Weighted Pseudo-Gold",
+        "name": "PubMedBERT + OpenMed vs Weighted Pseudo-Gold",
         "precision": 0.2595128073478236,
         "recall": 0.6394433511386,
         "f1": 0.3691920626547093,
         "tp": 4549,
         "fp": 12980,
         "fn": 2565,
-        "runtime_seconds_per_document": 3.834136,
+        "runtime_seconds_per_document": 6.362127,
         "per_label": {
           "DISEASE": {
             "precision": 0.1902497027348395,
@@ -482,7 +482,7 @@
         "tp": 3493,
         "fp": 12336,
         "fn": 3621,
-        "runtime_seconds_per_document": 0.223074,
+        "runtime_seconds_per_document": 0.346471,
         "per_label": {
           "DISEASE": {
             "precision": 0.20647449096316633,
@@ -506,14 +506,14 @@
         "comparison": "models_vs_weighted_pseudo_gold"
       },
       {
-        "name": "BioELECTRA vs Weighted Pseudo-Gold",
+        "name": "D4Data NER (DistilBERT) vs Weighted Pseudo-Gold",
         "precision": 0.15928201811125486,
         "recall": 0.2769187517570987,
         "f1": 0.2022379632481265,
         "tp": 1970,
         "fp": 10398,
         "fn": 5144,
-        "runtime_seconds_per_document": 0.123983,
+        "runtime_seconds_per_document": 0.196341,
         "per_label": {
           "DISEASE": {
             "precision": 0.15668906536346977,

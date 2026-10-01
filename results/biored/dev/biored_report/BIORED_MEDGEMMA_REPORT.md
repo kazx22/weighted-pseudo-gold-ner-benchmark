@@ -5,26 +5,26 @@ Task scope: BioRED DiseaseOrPhenotypicFeature and ChemicalEntity only.
 ## Main result
 
 - Weighted pseudo-gold F1: 0.7231
-- MedGemma zero-shot F1: 0.2981
-- Weighted + MedGemma F1: 0.6870
-- Hybrid minus weighted F1: -0.036128
+- MedGemma zero-shot F1: 0.3486
+- Weighted + MedGemma F1: 0.6605
+- Hybrid minus weighted F1: -0.062636
 
 ## Routing
 
 - Total candidates: 10,621
 - Routed to MedGemma: 968
 - Routing rate: 9.11%
-- Tie-break request time: 60.4 minutes
-- Full zero-shot request time: 38.2 minutes
+- Tie-break request time: 52.5 minutes
+- Full zero-shot request time: 49.5 minutes
 
 ## Routed-candidate exact-gold audit
 
-- Correct accepts: 109
-- False accepts: 358
-- Correct rejects: 472
-- False rejects: 29
-- Acceptance precision: 23.34%
-- Rejection specificity: 56.87%
+- Correct accepts: 124
+- False accepts: 536
+- Correct rejects: 294
+- False rejects: 14
+- Acceptance precision: 18.79%
+- Rejection specificity: 35.42%
 
 BIO confusion matrices are secondary diagnostics. The primary metric remains exact character span + label.
 

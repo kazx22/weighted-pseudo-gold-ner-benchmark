@@ -9,7 +9,7 @@
     "biobert": 0.60041357,
     "pubmedbert": 0.40923915,
     "clinicalbert": 0.30209633,
-    "bioelectra": 0.18487707
+    "d4data": 0.18487707
   },
   "selected_threshold": 1.16884495,
   "selected_threshold_metrics": {
@@ -59,7 +59,7 @@
       "fn": 5837,
       "support": 9591
     },
-    "bioelectra": {
+    "d4data": {
       "precision": 0.16677846721448936,
       "recall": 0.2073819205505161,
       "f1": 0.18487707394153458,

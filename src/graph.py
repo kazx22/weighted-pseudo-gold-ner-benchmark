@@ -185,7 +185,7 @@ def plot_models_vs_human_gold():
     Only the five base models are plotted here — filtered variants are
     excluded so the figure stays readable.  Model order matches the paper.
     """
-    base_models = ["SciSpacy", "BioBERT", "PubMedBERT", "ClinicalBERT", "BioELECTRA"]
+    base_models = ["scispaCy", "BioBERT", "PubMedBERT + OpenMed", "ClinicalBERT", "D4Data NER (DistilBERT)"]
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] in base_models]
 
     if not results:
@@ -363,7 +363,7 @@ def plot_per_label_performance():
     Reveals whether a model's overall F1 hides asymmetric performance
     across entity types — e.g. a model strong on chemicals but weak on diseases.
     """
-    base_models = ["SciSpacy", "BioBERT", "PubMedBERT", "ClinicalBERT", "BioELECTRA"]
+    base_models = ["scispaCy", "BioBERT", "PubMedBERT + OpenMed", "ClinicalBERT", "D4Data NER (DistilBERT)"]
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] in base_models]
 
     if not results:
@@ -431,22 +431,22 @@ def plot_per_label_performance():
 
 
 # ---------------------------------------------------------------------------
-# Figure 4: SciSpacy confusion matrix vs human gold
+# Figure 4: scispaCy confusion matrix vs human gold
 # ---------------------------------------------------------------------------
 
 
 def plot_scispacy_confusion_matrix():
     """
-    Confusion matrix for SciSpacy, the best-performing model in the study.
+    Confusion matrix for scispaCy, the best-performing model in the study.
 
-    Plotted separately because SciSpacy's high F1 makes its error pattern
+    Plotted separately because scispaCy's high F1 makes its error pattern
     worth examining in detail — the matrix shows where it still goes wrong
     relative to human gold.
     """
-    results = [r for r in MODEL_RESULTS_HUMAN if r["model"] == "SciSpacy"]
+    results = [r for r in MODEL_RESULTS_HUMAN if r["model"] == "scispaCy"]
 
     if not results or results[0]["y_true"] is None:
-        print("No SciSpacy data for Figure 4.")
+        print("No scispaCy data for Figure 4.")
         return
 
     r = results[0]
@@ -457,7 +457,7 @@ def plot_scispacy_confusion_matrix():
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=labels)
     disp.plot(ax=ax, values_format="d", cmap="Blues", colorbar=False)
 
-    ax.set_title("SciSpacy — Confusion Matrix vs Human Gold (BC5CDR)")
+    ax.set_title("scispaCy — Confusion Matrix vs Human Gold (BC5CDR)")
     plt.tight_layout()
     out = figure_path("fig4_scispacy_confusion_matrix.png")
     plt.savefig(out)
@@ -512,7 +512,7 @@ def plot_all_model_confusion_matrices():
     compare them side by side without flipping between separate figures.
     Abbreviated labels (B-DIS etc.) keep the cells readable at small size.
     """
-    base_models = ["SciSpacy", "BioBERT", "PubMedBERT", "ClinicalBERT", "BioELECTRA"]
+    base_models = ["scispaCy", "BioBERT", "PubMedBERT + OpenMed", "ClinicalBERT", "D4Data NER (DistilBERT)"]
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] in base_models]
 
     if not results:
@@ -573,7 +573,7 @@ def plot_separate_model_confusion_matrices():
     These are the full-size individual versions of the Figure 6 grid,
     useful for supplementary material or close inspection.
     """
-    base_models = ["SciSpacy", "BioBERT", "PubMedBERT", "ClinicalBERT", "BioELECTRA"]
+    base_models = ["scispaCy", "BioBERT", "PubMedBERT + OpenMed", "ClinicalBERT", "D4Data NER (DistilBERT)"]
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] in base_models]
 
     if not results:

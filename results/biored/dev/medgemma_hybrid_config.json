@@ -15,14 +15,14 @@
     "biobert": 0.47078715,
     "pubmedbert": 0.3312263,
     "clinicalbert": 0.25735678,
-    "bioelectra": 0.15794872
+    "d4data": 0.15794872
   },
   "source_ensemble_models": [
     "scispacy",
     "biobert",
     "pubmedbert",
     "clinicalbert",
-    "bioelectra"
+    "d4data"
   ],
   "threshold_origin": "Adjacent achievable weighted-score levels around the frozen development-selected threshold."
 }

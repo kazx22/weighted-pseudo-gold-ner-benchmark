@@ -23,15 +23,15 @@ SPLIT_ALIASES = {
     "test": "test",
 }
 
-MODEL_KEYS = ("scispacy", "biobert", "pubmedbert", "clinicalbert", "bioelectra")
+MODEL_KEYS = ("scispacy", "biobert", "pubmedbert", "clinicalbert", "d4data")
 OPTIONAL_MODEL_KEYS = ("medgemma",)
 ALL_PREDICTION_KEYS = MODEL_KEYS + OPTIONAL_MODEL_KEYS
 MODEL_DISPLAY_NAMES = {
     "scispacy": "scispaCy",
     "biobert": "BioBERT",
-    "pubmedbert": "PubMedBERT",
+    "pubmedbert": "PubMedBERT + OpenMed",
     "clinicalbert": "ClinicalBERT",
-    "bioelectra": "BioELECTRA",
+    "d4data": "D4Data NER (DistilBERT)",
     "medgemma": "MedGemma 1.5 4B",
 }
 

@@ -42,7 +42,7 @@
       "ci_high": 0.5134948782458043
     },
     {
-      "system": "PubMedBERT",
+      "system": "PubMedBERT + OpenMed",
       "precision": 0.2307277628032345,
       "recall": 0.5122681029323758,
       "f1": 0.31815647649135853,
@@ -58,7 +58,7 @@
       "ci_high": 0.25845078311976755
     },
     {
-      "system": "BioELECTRA",
+      "system": "D4Data NER (DistilBERT)",
       "precision": 0.1440329218106996,
       "recall": 0.1675643327348893,
       "f1": 0.15491009681881054,
@@ -95,7 +95,7 @@
     },
     {
       "model_1": "scispaCy",
-      "model_2": "PubMedBERT",
+      "model_2": "PubMedBERT + OpenMed",
       "f1_difference": 0.3290276939804832,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
@@ -111,7 +111,7 @@
     },
     {
       "model_1": "scispaCy",
-      "model_2": "BioELECTRA",
+      "model_2": "D4Data NER (DistilBERT)",
       "f1_difference": 0.4922740736530312,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
@@ -119,7 +119,7 @@
     },
     {
       "model_1": "BioBERT",
-      "model_2": "PubMedBERT",
+      "model_2": "PubMedBERT + OpenMed",
       "f1_difference": 0.15995932331237062,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
@@ -135,14 +135,14 @@
     },
     {
       "model_1": "BioBERT",
-      "model_2": "BioELECTRA",
+      "model_2": "D4Data NER (DistilBERT)",
       "f1_difference": 0.3232057029849186,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
       "significant_holm_0.05": true
     },
     {
-      "model_1": "PubMedBERT",
+      "model_1": "PubMedBERT + OpenMed",
       "model_2": "ClinicalBERT",
       "f1_difference": 0.08606953598666148,
       "raw_p": 0.001998001998001998,
@@ -150,8 +150,8 @@
       "significant_holm_0.05": true
     },
     {
-      "model_1": "PubMedBERT",
-      "model_2": "BioELECTRA",
+      "model_1": "PubMedBERT + OpenMed",
+      "model_2": "D4Data NER (DistilBERT)",
       "f1_difference": 0.163246379672548,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
@@ -159,7 +159,7 @@
     },
     {
       "model_1": "ClinicalBERT",
-      "model_2": "BioELECTRA",
+      "model_2": "D4Data NER (DistilBERT)",
       "f1_difference": 0.07717684368588651,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
