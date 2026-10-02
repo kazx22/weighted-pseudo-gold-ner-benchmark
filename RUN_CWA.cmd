@@ -9,28 +9,45 @@ if exist ".venv\Scripts\python.exe" (
 )
 
 echo ==============================================================
-echo CONTENT-AWARE WEIGHTED VOTING - BC5CDR ONLY
+echo CONTENT-AWARE WEIGHTED VOTING - BC5CDR + BIORED
 echo MV and WV are NOT changed by this runner.
 echo ==============================================================
 
 echo.
-echo [1/3] Fit CWA reliability, alpha, and threshold on DEV only...
+echo [1/6] BC5CDR: fit CWA on DEV...
 "%PYTHON%" -m src.content_aware_voting --split dev
 if errorlevel 1 goto :fail
 
 echo.
-echo [2/3] Apply frozen CWA settings to TEST without test gold...
+echo [2/6] BC5CDR: apply frozen CWA to TEST...
 "%PYTHON%" -m src.content_aware_voting --split test
 if errorlevel 1 goto :fail
 
 echo.
-echo [3/3] Evaluate MV -^> WV -^> CWA and run paired bootstrap on held-out TEST...
+echo [3/6] BC5CDR: evaluate MV -^> WV -^> CWA + paired bootstrap...
 "%PYTHON%" -m src.cwa_evaluation --split test --resamples 1000 --seed 42
+if errorlevel 1 goto :fail
+
+set "BIORED_VARIANT=official"
+
+echo.
+echo [4/6] BioRED: fit CWA on official DEV...
+"%PYTHON%" -m src.biored_content_aware_voting --split dev
+if errorlevel 1 goto :fail
+
+echo.
+echo [5/6] BioRED: apply frozen CWA to official TEST...
+"%PYTHON%" -m src.biored_content_aware_voting --split test
+if errorlevel 1 goto :fail
+
+echo.
+echo [6/6] BioRED: evaluate MV -^> WV -^> CWA + paired bootstrap...
+"%PYTHON%" -m src.biored_cwa_evaluation --split test --resamples 1000 --seed 42
 if errorlevel 1 goto :fail
 
 echo.
 echo ==============================================================
-echo CWA COMPLETE
+echo CWA COMPLETE - BC5CDR + BIORED
 echo ==============================================================
 exit /b 0
 

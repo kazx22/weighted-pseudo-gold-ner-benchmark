@@ -9,8 +9,8 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
-from src.candidate_gold import build_vote_table, load_model_predictions
-from src.experiment_config import (
+from src.biored_candidate_gold import build_vote_table, load_model_predictions
+from src.biored_config import (
     MODEL_DISPLAY_NAMES,
     MODEL_KEYS,
     GOLD_DIR,
@@ -43,7 +43,7 @@ def cwa_config_file() -> Path:
 
 def cwa_pseudo_gold_file(split: str) -> Path:
     split = normalize_split(split, allow_train=False)
-    return GOLD_DIR / f"cwa_pseudo_gold_{split}_entities_bc5cdr.jsonl"
+    return GOLD_DIR / f"cwa_pseudo_gold_{split}_entities_biored.jsonl"
 
 
 def _entity_key(entity: dict) -> tuple[int, int, int, str]:
@@ -88,7 +88,7 @@ def mention_form_category(entity: dict) -> str:
 def content_categories(entity: dict) -> dict[str, str]:
     label = str(entity["label"]).upper()
     if label not in {"DISEASE", "CHEMICAL"}:
-        raise ValueError(f"Unexpected BC5CDR label for CWA: {label}")
+        raise ValueError(f"Unexpected BioRED label for CWA: {label}")
     return {
         "entity_type": label,
         "span_length": span_length_category(entity),
@@ -357,10 +357,10 @@ def fit_on_development(alpha_grid: tuple[float, ...] = DEFAULT_ALPHA_GRID) -> di
     wv_config = _load_frozen_wv_config()
     global_weights = {key: float(wv_config["weights"][key]) for key in MODEL_KEYS}
 
-    print("Loading BC5CDR development predictions...")
+    print("Loading BioRED development predictions...")
     model_predictions = load_model_predictions("dev")
     gold_entities = load_jsonl(
-        require_file(gold_entities_file("dev"), "BC5CDR development human gold")
+        require_file(gold_entities_file("dev"), "BioRED development human gold")
     )
 
     print("\nLearning content-specific DEV reliability...")
@@ -501,7 +501,7 @@ def apply_to_test(config_path: Path) -> None:
     reliability = config["content_reliability"]
 
                                                                         
-    print("Loading BC5CDR test predictions only...")
+    print("Loading BioRED test predictions only...")
     model_predictions = load_model_predictions("test")
     vote_table, entity_store = build_vote_table(model_predictions)
     scored = score_candidates(
@@ -547,7 +547,7 @@ def _parse_alpha_grid(value: str | None) -> tuple[float, ...]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="BC5CDR Content-Aware Weighted Voting.")
+    parser = argparse.ArgumentParser(description="BioRED Content-Aware Weighted Voting.")
     parser.add_argument("--split", required=True, choices=["dev", "development", "test"])
     parser.add_argument(
         "--config",
