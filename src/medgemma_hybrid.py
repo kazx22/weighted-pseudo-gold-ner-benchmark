@@ -1,11 +1,3 @@
-"""Selective MedGemma tie-breaker for the five-model BC5CDR ensemble.
-
-Candidates far below the frozen weighted threshold are rejected automatically.
-Candidates safely above it are accepted automatically. Only candidates on the
-adjacent score levels around the threshold are routed to MedGemma.
-
-The test construction path never loads test human gold.
-"""
 
 from __future__ import annotations
 

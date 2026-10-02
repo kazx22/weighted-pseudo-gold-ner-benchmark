@@ -1,4 +1,3 @@
-"""Compare official BioRED with the BC5CDR-overlap-excluded sensitivity run."""
 
 from __future__ import annotations
 

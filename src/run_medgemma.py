@@ -1,10 +1,3 @@
-"""Run only the MedGemma stages for BC5CDR and both BioRED branches.
-
-This runner never starts conventional model inference. It validates that the
-required conventional predictions and frozen development configurations already
-exist, then runs MedGemma zero-shot, selective adjudication, evaluation,
-bootstrap analysis, diagnostics, and reports.
-"""
 
 from __future__ import annotations
 
@@ -185,7 +178,7 @@ def run_pipeline(*, force: bool = False) -> Path:
             for stage in biored_medgemma_stages(variant):
                 run_stage(stage, log, force=force)
 
-        # Refresh the same comparison file so it now includes the MedGemma columns.
+                                                                                   
         comparison = Stage(
             "Refresh BioRED official-vs-overlap comparison with MedGemma results",
             "src.biored_variant_compare",

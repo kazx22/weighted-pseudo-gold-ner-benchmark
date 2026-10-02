@@ -1,8 +1,3 @@
-"""Token-level BIO Cohen's kappa for a selected BC5CDR split.
-
-Kappa is a secondary agreement analysis. Because the O label is frequent, it
-must be interpreted alongside exact span precision, recall and F1.
-"""
 
 from __future__ import annotations
 

@@ -1,8 +1,3 @@
-"""Shared stage definitions for the three top-level experiment runners.
-
-This file defines orchestration only. Every scientific task remains executable
-as its own `python -m src.<module>` command for easy debugging and reruns.
-"""
 
 from __future__ import annotations
 
@@ -250,7 +245,6 @@ def require_conventional_results() -> None:
             "MedGemma requires completed conventional/calibration outputs.\n"
             "Run RUN_TRANSFORMERS.cmd first. Missing:\n  " + "\n  ".join(missing)
         )
-
 
 
 def conventional_comparison_stage() -> Stage:

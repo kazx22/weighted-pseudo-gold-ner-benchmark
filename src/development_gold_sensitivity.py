@@ -1,23 +1,3 @@
-"""Development-gold budget sensitivity for the weighted ensemble.
-
-This module asks how much labelled development data is needed to calibrate the
-weighted pseudo-gold method. It samples DEVELOPMENT DOCUMENTS at 25%, 50%, and
-75% using ten fixed random seeds, plus a single 100% run. For every sampled
-calibration set it:
-
-1. recomputes each conventional model's exact-span F1 weight;
-2. selects the weighted threshold on that sampled development subset only;
-3. freezes the resulting weights and threshold;
-4. constructs a test pseudo-gold set without reading test human annotations;
-5. evaluates that frozen construction on the untouched test set.
-
-No NER model is rerun. The module consumes the saved conventional predictions.
-
-Examples:
-    python -m src.development_gold_sensitivity --dataset bc5cdr
-    set BIORED_VARIANT=official
-    python -m src.development_gold_sensitivity --dataset biored
-"""
 
 from __future__ import annotations
 
@@ -174,8 +154,8 @@ def main() -> None:
     rows: list[dict] = []
     seeds = DEFAULT_SEEDS[: max(1, min(args.seeds, len(DEFAULT_SEEDS)))]
 
-    # IMPORTANT: test human gold is intentionally not loaded until every
-    # frozen test construction below has been completed.
+                                                                        
+                                                        
     for fraction in FRACTIONS:
         fraction_seeds = (None,) if fraction == 1.0 else seeds
         for seed in fraction_seeds:

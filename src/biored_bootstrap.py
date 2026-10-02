@@ -1,4 +1,3 @@
-"""Document-level bootstrap validation for BioRED disease/chemical NER."""
 
 from __future__ import annotations
 
@@ -45,7 +44,6 @@ def paired_bootstrap_p_value(
     lower_tail = (np.count_nonzero(difference <= 0) + 1) / (resamples + 1)
     upper_tail = (np.count_nonzero(difference >= 0) + 1) / (resamples + 1)
     return float(min(1.0, 2.0 * min(lower_tail, upper_tail)))
-
 
 
 def aggregate(counts: list[dict], indices: np.ndarray) -> dict:

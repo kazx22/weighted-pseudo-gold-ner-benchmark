@@ -1,4 +1,3 @@
-"""Evaluate MedGemma zero-shot and selective-hybrid BC5CDR outputs."""
 
 from __future__ import annotations
 

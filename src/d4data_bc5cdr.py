@@ -1,27 +1,3 @@
-"""
-D4Data biomedical NER pipeline for BC5CDR.
-
-Uses d4data/biomedical-ner-all, a DistilBERT token-classification checkpoint
-trained for broad biomedical NER. Its native label space is richer than
-BC5CDR's two-class taxonomy, so a label_map collapses the relevant categories:
-
-  Disease_disorder      -> DISEASE
-  Sign_symptom          -> DISEASE   (symptoms are annotated as diseases in BC5CDR)
-  Medication            -> CHEMICAL
-  Therapeutic_procedure -> CHEMICAL  (drug procedures map loosely to chemicals)
-
-All other labels are dropped.  This is the only single-checkpoint model in the
-study that does not natively emit DISEASE/CHEMICAL, so the mapping is a
-necessary adaptation rather than a cleanup step.
-
-The model is used off-the-shelf with zero fine-tuning.
-
-The chunking and offset logic is identical to biobert_bc5cdr.py — sentence-
-based sliding windows with character offsets tracked via text.find().
-
-Pipeline position: runs after parse_bc5cdr.py; output feeds candidate_gold.py
-and bc5cdr_evaluation.py.
-"""
 
 import argparse
 import json
@@ -40,14 +16,14 @@ from src.experiment_config import (
 
 MODEL_NAME = "d4data/biomedical-ner-all"
 
-MAX_TOKENS = 400  # leaves headroom for [CLS]/[SEP] tokens
-OVERLAP_SENTS = 1  # one sentence of overlap between consecutive chunks
+MAX_TOKENS = 400                                          
+OVERLAP_SENTS = 1                                                      
 
-# Maps d4data/biomedical-ner-all labels to BC5CDR equivalents.
-# Sign_symptom -> DISEASE: BC5CDR annotates symptoms as disease mentions.
-# Therapeutic_procedure -> CHEMICAL: drug administration procedures are
-# treated as chemical references for this evaluation.
-# All other labels (Anatomical_structure, Biological_function, etc.) are dropped.
+                                                              
+                                                                         
+                                                                       
+                                                     
+                                                                                 
 label_map = {
     "Disease_disorder": "DISEASE",
     "Sign_symptom": "DISEASE",
@@ -76,26 +52,13 @@ def save_jsonl(records, output_file):
 
 
 def normalize_label(raw_label):
-    """Look up raw_label in label_map; return None if not mapped."""
     return label_map.get(raw_label, None)
 
 
 def chunk_text(text, tokenizer, max_tokens=MAX_TOKENS, overlap_sents=OVERLAP_SENTS):
-    """
-    Split text into sentence-based chunks that fit within max_tokens.
-
-    Returns a list of (chunk_str, char_offset) pairs where chunk_str is a
-    direct slice of the original text and char_offset is its start position
-    in the original document.
-
-    Sentence positions are located with text.find() so inter-sentence
-    whitespace is included in the offset.  The chunk string itself is sliced
-    directly from the original text (text[start:end]) so character positions
-    reported by the pipeline add directly to char_offset.
-    """
     raw_sentences = [s for s in re.split(r"(?<=[.!?])\s+|\n+", text) if s]
 
-    # True character offset of each sentence in the ORIGINAL text
+                                                                 
     sentence_offsets = []
     search_start = 0
     for sent in raw_sentences:
@@ -137,11 +100,6 @@ def chunk_text(text, tokenizer, max_tokens=MAX_TOKENS, overlap_sents=OVERLAP_SEN
 
 
 def deduplicate_entities(entities):
-    """
-    Remove duplicate spans produced by overlapping chunks.
-
-    Key: (row_id, start_char, end_char, label).  First occurrence wins.
-    """
     seen = set()
     deduped = []
     for ent in entities:
@@ -153,18 +111,6 @@ def deduplicate_entities(entities):
 
 
 def run_d4data(docs):
-    """
-    Run the D4Data biomedical NER (DistilBERT) pipeline over all documents.
-
-    For each prediction, the label is mapped via normalize_label and skipped
-    if None (i.e. not in BC5CDR's taxonomy).  The surface text is taken from
-    the original document slice rather than pred["word"] to avoid '##' subword
-    fragments.
-
-    The self-test checks that the first half of pred["word"] (stripped of '##'
-    and spaces) appears somewhere in the corresponding original-text slice —
-    a loose but fast check that the offset arithmetic is correct.
-    """
     ner = pipeline(
         "token-classification",
         model=MODEL_NAME,
@@ -195,13 +141,13 @@ def run_d4data(docs):
                 start_char = int(pred["start"]) + char_offset
                 end_char = int(pred["end"]) + char_offset
 
-                # Use the ORIGINAL text slice as the canonical entity text,
-                # not pred["word"] (which may contain ## subword artifacts).
+                                                                           
+                                                                            
                 surface = text[start_char:end_char]
 
-                # Loose self-test: does the first half of pred["word"] appear
-                # in the original-text slice?  A miss suggests the offsets
-                # have drifted.
+                                                                             
+                                                                          
+                               
                 checked += 1
                 pred_word = pred["word"].replace("##", "").replace(" ", "").lower()
                 slice_norm = surface.replace(" ", "").lower()

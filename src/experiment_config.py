@@ -1,4 +1,3 @@
-"""Shared split-aware paths and experiment metadata for the BC5CDR pipeline."""
 
 from __future__ import annotations
 
@@ -92,7 +91,6 @@ def results_dir(split: str) -> Path:
 
 def figures_dir(split: str) -> Path:
     return results_dir(split) / "figures"
-
 
 
 def medgemma_hybrid_file(split: str) -> Path:

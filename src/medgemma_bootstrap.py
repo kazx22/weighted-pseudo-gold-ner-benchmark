@@ -1,4 +1,3 @@
-"""Paired document-level bootstrap for the MedGemma BC5CDR extension."""
 
 from __future__ import annotations
 

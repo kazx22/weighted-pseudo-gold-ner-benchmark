@@ -1,4 +1,3 @@
-"""Run the complete study: conventional/method stages, then MedGemma."""
 
 from __future__ import annotations
 

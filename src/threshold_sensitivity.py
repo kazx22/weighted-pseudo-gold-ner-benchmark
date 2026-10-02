@@ -1,4 +1,3 @@
-"""Plot development-set threshold selection produced by candidate_gold.py."""
 
 from __future__ import annotations
 

@@ -1,15 +1,3 @@
-"""Reuse official BioRED model predictions for the overlap-excluded branch.
-
-The overlap-excluded documents are a strict subset of the official BioRED
-split. Running the same deterministic conventional checkpoints again would
-waste time without changing their predictions. This module therefore filters
-already-produced official prediction JSONL files by the retained PMIDs and
-writes the filtered copies into the overlap-excluded variant directory.
-
-Run one split at a time, for example:
-    python -m src.biored_filter_predictions --split dev
-    python -m src.biored_filter_predictions --split test
-"""
 
 from __future__ import annotations
 

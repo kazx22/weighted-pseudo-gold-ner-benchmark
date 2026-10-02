@@ -1,4 +1,3 @@
-"""Parse BC5CDR PubTator files into split-specific JSONL documents and entities."""
 
 from __future__ import annotations
 
@@ -58,14 +57,14 @@ def parse_bc5cdr(file_path: Path) -> tuple[list[dict], list[dict]]:
         for line in lines[2:]:
             parts = line.split("\t")
             if len(parts) < 5:
-                # CID relation line, not an entity annotation.
+                                                              
                 continue
 
             try:
                 start_char = int(parts[1])
                 end_char = int(parts[2])
             except ValueError:
-                # A non-entity tab-delimited line; leave it out explicitly.
+                                                                           
                 continue
 
             entity_text = parts[3]
@@ -105,7 +104,7 @@ def resolve_input(split: str, explicit_input: str | None) -> Path:
         path = Path(explicit_input)
     else:
         path = RAW_DIR / RAW_FILENAMES[split]
-        # Windows/browser downloads often append '(1)' to a duplicate filename.
+                                                                               
         if split == "dev" and not path.exists():
             fallback = RAW_DIR / "CDR_DevelopmentSet.PubTator(1).txt"
             if fallback.exists():

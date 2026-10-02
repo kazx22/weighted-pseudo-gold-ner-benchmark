@@ -1,4 +1,3 @@
-"""Plot the BioRED development-only weighted-threshold sweep."""
 
 from __future__ import annotations
 

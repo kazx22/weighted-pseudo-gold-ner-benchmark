@@ -1,4 +1,3 @@
-"""Fit BioRED weighted pseudo-gold on development data and apply it to test."""
 
 from __future__ import annotations
 

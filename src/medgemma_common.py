@@ -1,7 +1,3 @@
-"""Shared MedGemma/Ollama helpers for the BC5CDR extension.
-
-The LLM is accessed through the local Ollama HTTP API. No remote API is used.
-"""
 
 from __future__ import annotations
 
@@ -486,7 +482,6 @@ def call_with_retries(
     raise RuntimeError(f"MedGemma failed after {attempts} attempts: {last_error}")
 
 
-
 def chat_and_parse_with_retries(
     client: OllamaClient,
     *,
@@ -495,14 +490,6 @@ def chat_and_parse_with_retries(
     max_output_tokens: int,
     attempts: int = 3,
 ) -> tuple[dict[str, Any], dict[str, Any], int]:
-    """Retry API/JSON failures with a larger output budget on each attempt.
-
-    A model can obey the JSON schema but still be cut off in the middle of the
-    object when ``num_predict`` is too small. Retrying with exactly the same
-    token limit reproduces the same truncated prefix when temperature is zero.
-    This function therefore increases the output allowance for retries while
-    leaving the model, prompt, temperature, seed, and schema unchanged.
-    """
     if attempts < 1:
         raise ValueError("attempts must be at least 1")
     if max_output_tokens < 1:
@@ -510,9 +497,9 @@ def chat_and_parse_with_retries(
 
     token_budgets: list[int] = []
     for attempt_index in range(attempts):
-        # 2,048 -> 4,096 -> 6,144 for the current BC5CDR call. The cap avoids
-        # an unbounded completion while still leaving room in an 8,192-token
-        # context for the prompt and a long structured entity list.
+                                                                             
+                                                                            
+                                                                   
         proposed = int(max_output_tokens * (attempt_index + 1))
         token_budgets.append(min(proposed, 6144))
 

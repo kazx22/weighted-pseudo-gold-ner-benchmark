@@ -1,15 +1,3 @@
-"""Parse the official BioRED PubTator corpus for DISEASE/CHEMICAL validation.
-
-Accepted raw layouts (no manual extraction required):
-  data/raw/BIORED.zip
-  data/raw/biored/BIORED.zip
-  data/raw/BioRED/Dev.PubTator + Test.PubTator
-  data/raw/biored/BioRED/Dev.PubTator + Test.PubTator
-  data/raw/biored/Dev.PubTator + Test.PubTator
-
-Only BioRED's DiseaseOrPhenotypicFeature and ChemicalEntity annotations are
-kept. Other BioRED entity classes and relation rows are intentionally excluded.
-"""
 
 from __future__ import annotations
 
@@ -34,8 +22,8 @@ from src.utils import save_jsonl
 LABEL_MAP = {
     "DiseaseOrPhenotypicFeature": "DISEASE",
     "ChemicalEntity": "CHEMICAL",
-    # Accepted aliases make the parser tolerant of PubTator variants while
-    # preserving the same two-label task.
+                                                                          
+                                         
     "Disease": "DISEASE",
     "Chemical": "CHEMICAL",
 }

@@ -1,9 +1,3 @@
-"""Split-aware BC5CDR evaluation with exact character-span primary metrics.
-
-Primary precision, recall and F1 require an exact match on:
-(row_id, start_char, end_char, label).
-BIO labels are generated only for secondary token-level confusion matrices.
-"""
 
 from __future__ import annotations
 

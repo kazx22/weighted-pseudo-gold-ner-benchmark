@@ -1,22 +1,3 @@
-"""
-pubmed_bc5cdr.py — runs the PubMedBERT NER pipeline over the parsed documents.
-
-Like BioBERT, this is a dual-model pipeline:
-  Disease:  sarahmiller137/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext-ft-ncbi-disease
-  Chemical: OpenMed/OpenMed-NER-ChemicalDetect-PubMed-335M
-
-Both checkpoints are pre-trained on PubMed text and used off-the-shelf with
-zero fine-tuning.  The disease checkpoint was fine-tuned on NCBI-Disease; the
-chemical checkpoint is from the OpenMed NER suite.  Neither was trained on
-BC5CDR, so the evaluation reflects genuine zero-shot transfer.
-
-The chunking and offset logic is identical to biobert_bc5cdr.py — sentence-
-based sliding windows with character-offset tracking via text.find() so
-pipeline offsets map correctly back into the original document.
-
-Pipeline position: runs after parse_bc5cdr.py; output feeds candidate_gold.py
-and bc5cdr_evaluation.py.
-"""
 
 import argparse
 import json
@@ -38,11 +19,11 @@ DISEASE_MODEL = (
 )
 CHEMICAL_MODEL = "OpenMed/OpenMed-NER-ChemicalDetect-PubMed-335M"
 
-MAX_TOKENS = 400  # leaves headroom for [CLS]/[SEP] tokens
-OVERLAP_SENTS = 1  # one sentence of overlap between consecutive chunks
-MAX_ENTITY_CHARS = 110  # longest real BC5CDR gold entity is 105 chars;
-# anything longer is almost certainly a chunk-boundary
-# aggregation artifact and is dropped
+MAX_TOKENS = 400                                          
+OVERLAP_SENTS = 1                                                      
+MAX_ENTITY_CHARS = 110                                                 
+                                                      
+                                     
 
 
 def load_jsonl(file_path):
@@ -65,14 +46,6 @@ def save_jsonl(records, output_file):
 
 
 def normalize_label(raw_label, fallback_label):
-    """
-    Map a raw model label to DISEASE or CHEMICAL.
-
-    Substring matching handles the range of label formats across both
-    checkpoints (e.g. 'Disease', 'DISEASE', 'Chemical', 'CHEMICAL').
-    fallback_label is used when neither substring matches — it carries the
-    intent of the model being called (disease pass or chemical pass).
-    """
     raw = str(raw_label).upper()
     if "DISEASE" in raw:
         return "DISEASE"
@@ -82,17 +55,6 @@ def normalize_label(raw_label, fallback_label):
 
 
 def chunk_text(text, tokenizer, max_tokens=MAX_TOKENS, overlap_sents=OVERLAP_SENTS):
-    """
-    Split text into sentence-based chunks that fit within max_tokens.
-
-    Returns a list of (chunk_str, char_offset) pairs where chunk_str is a
-    direct slice of the original text and char_offset is the position of
-    chunk_str[0] in the original text.
-
-    Sentence start positions are found with text.find() rather than by
-    concatenating sentence strings, so whitespace and newlines between
-    sentences are correctly accounted for in the offset arithmetic.
-    """
     raw_sentences = [s for s in re.split(r"(?<=[.!?])\s+|\n+", text) if s]
 
     sentence_offsets = []
@@ -134,13 +96,6 @@ def chunk_text(text, tokenizer, max_tokens=MAX_TOKENS, overlap_sents=OVERLAP_SEN
 
 
 def predictions_to_entities(predictions, row_id, label_name, full_text, char_offset=0):
-    """
-    Convert HuggingFace pipeline predictions to entity dicts.
-
-    The surface text is taken from the original document slice rather than
-    pred["word"] to avoid '##' subword fragments.  Entities longer than
-    MAX_ENTITY_CHARS are dropped as chunk-boundary artifacts.
-    """
     entities = []
     for pred in predictions:
         start_char = int(pred["start"]) + char_offset
@@ -169,11 +124,6 @@ def predictions_to_entities(predictions, row_id, label_name, full_text, char_off
 
 
 def deduplicate_entities(entities):
-    """
-    Remove duplicate spans produced by overlapping chunks.
-
-    Same key scheme as biobert_bc5cdr.py: (row_id, start_char, end_char, label).
-    """
     seen = set()
     deduped = []
     for ent in entities:
@@ -185,12 +135,6 @@ def deduplicate_entities(entities):
 
 
 def run_pubmedbert(docs):
-    """
-    Run both PubMedBERT checkpoints over all documents and return merged entities.
-
-    Processing order: disease model first, then chemical model, per document.
-    Results are merged and deduplicated after all documents are processed.
-    """
     disease_ner = pipeline(
         "token-classification",
         model=DISEASE_MODEL,
@@ -233,8 +177,8 @@ def run_pubmedbert(docs):
 
     all_entities = deduplicate_entities(all_entities)
 
-    # Offset self-test: '##' in entity text means the offset arithmetic
-    # has broken down and we're storing subword fragments instead of surface text.
+                                                                       
+                                                                                  
     checked = len(all_entities)
     aligned = sum(1 for e in all_entities if "##" not in e["text"])
 

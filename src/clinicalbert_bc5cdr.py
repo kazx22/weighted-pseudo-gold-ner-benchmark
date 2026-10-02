@@ -1,29 +1,3 @@
-"""
-clinicalbert_bc5cdr.py — runs the ClinicalBERT NER pipeline over the parsed documents.
-
-Uses samrawal/bert-base-uncased_clinical-ner, a single-model checkpoint trained
-on i2b2 2010 clinical NER data.  Its native label space is {problem, treatment,
-test}; BC5CDR has no equivalent for 'test', so that label is silently dropped
-at inference time via the label_map below.
-
-The mapping used:
-  problem   -> DISEASE
-  treatment -> CHEMICAL
-  test      -> (dropped)
-
-This is an intentional design choice: 'test' spans in clinical notes (lab
-tests, imaging procedures) have no direct counterpart in BC5CDR's
-disease/chemical taxonomy, and including them would inflate false positives.
-The drop happens here in the per-entity loop, before any deduplication, so
-TEST spans never enter the output file.  A second cleanup pass via
-utils.remove_TEST is also applied upstream in candidate_gold.py as a safety
-net.
-
-All models in this study are used off-the-shelf with zero fine-tuning.
-
-Pipeline position: runs after parse_bc5cdr.py; output feeds candidate_gold.py
-and bc5cdr_evaluation.py.
-"""
 
 import argparse
 import json
@@ -42,11 +16,11 @@ from src.experiment_config import (
 
 MODEL_NAME = "samrawal/bert-base-uncased_clinical-ner"
 
-MAX_TOKENS = 400  # leaves headroom for [CLS]/[SEP] tokens
-OVERLAP_SENTS = 1  # one sentence of overlap between consecutive chunks
+MAX_TOKENS = 400                                          
+OVERLAP_SENTS = 1                                                      
 
-# ClinicalBERT's native labels mapped to BC5CDR equivalents.
-# 'test' is intentionally absent — those spans are dropped.
+                                                            
+                                                           
 label_map = {
     "problem": "DISEASE",
     "treatment": "CHEMICAL",
@@ -73,16 +47,6 @@ def save_jsonl(records, output_file):
 
 
 def chunk_text(text, tokenizer, max_tokens=MAX_TOKENS, overlap_sents=OVERLAP_SENTS):
-    """
-    Split text into sentence-based chunks that fit within max_tokens.
-
-    Returns a list of (chunk_str, char_offset) pairs where chunk_str is a
-    direct slice of the original text and char_offset is the position of
-    chunk_str[0] in the original text.
-
-    Sentence start positions are found with text.find() so whitespace and
-    newlines between sentences are correctly included in the offset arithmetic.
-    """
     raw_sentences = [s for s in re.split(r"(?<=[.!?])\s+|\n+", text) if s]
 
     sentence_offsets = []
@@ -124,11 +88,6 @@ def chunk_text(text, tokenizer, max_tokens=MAX_TOKENS, overlap_sents=OVERLAP_SEN
 
 
 def deduplicate_entities(entities):
-    """
-    Remove duplicate spans produced by overlapping chunks.
-
-    Key: (row_id, start_char, end_char, label).  First occurrence wins.
-    """
     seen = set()
     deduped = []
     for ent in entities:
@@ -140,14 +99,6 @@ def deduplicate_entities(entities):
 
 
 def run_clinicalbert(docs):
-    """
-    Run the ClinicalBERT NER pipeline over all documents.
-
-    For each chunk, entity labels are mapped via label_map.  Any label not
-    in label_map (i.e. 'test') is dropped immediately — it never reaches the
-    output list.  The surface text is taken from the original document slice
-    to avoid '##' subword fragments.
-    """
     ner = pipeline(
         "ner",
         model=MODEL_NAME,
@@ -170,7 +121,7 @@ def run_clinicalbert(docs):
                 raw_label = ent["entity_group"]
                 mapped_label = label_map.get(raw_label)
                 if mapped_label is None:
-                    # Drops 'test' and any other label without a BC5CDR equivalent
+                                                                                  
                     continue
 
                 start_char = int(ent["start"]) + char_offset

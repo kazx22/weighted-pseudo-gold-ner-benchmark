@@ -1,40 +1,3 @@
-"""
-biored_error_taxonomy.py
-
-Qualitative error analysis for the BioRED disease/chemical external validation.
-
-This is the BioRED counterpart of src/error_taxonomy.py and intentionally keeps
-its span-matching, sampling, counting, and output logic the same so the two
-corpora can be compared consistently.
-
-Classifies prediction errors against BioRED HUMAN GOLD into four types:
-  - FALSE_POSITIVE  : model predicted an entity, nothing overlaps in gold
-  - FALSE_NEGATIVE  : gold has an entity, model missed it entirely
-  - BOUNDARY_ERROR  : partial span overlap but not a complete match
-  - TYPE_CONFUSION  : exact span but the predicted label is wrong
-
-By default it runs the same contrast used in the BC5CDR taxonomy:
-  - scispaCy
-  - PubMedBERT
-
-Usage from the project root:
-    python -m src.biored_error_taxonomy --split test
-
-Optional:
-    python -m src.biored_error_taxonomy --split dev
-    python -m src.biored_error_taxonomy --split test --models scispacy pubmedbert
-
-Outputs are written to:
-    results/biored/<split>/error_taxonomy/
-
-Files:
-    <model>_error_counts.txt
-    <model>_false_positive.txt
-    <model>_false_negative.txt
-    <model>_boundary_error.txt
-    <model>_type_confusion.txt
-    biored_error_taxonomy_summary.txt
-"""
 
 import argparse
 import json
@@ -76,7 +39,6 @@ def group_by_row(entities):
 
 
 def spans_overlap(a_start, a_end, b_start, b_end) -> bool:
-    """True when two character spans overlap; touching boundaries do not count."""
     return a_start < b_end and a_end > b_start
 
 
@@ -104,7 +66,6 @@ def get_context(text: str, start: int, end: int, window: int = CONTEXT_CHARS) ->
 
 
 def classify_errors(doc_text: str, gold_ents: list, pred_ents: list) -> dict:
-    """Use the same four-way span taxonomy as the existing BC5CDR script."""
     errors = {
         "FALSE_POSITIVE": [],
         "FALSE_NEGATIVE": [],

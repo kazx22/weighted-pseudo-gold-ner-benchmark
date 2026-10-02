@@ -1,8 +1,3 @@
-"""Small shared helpers for the three top-level study runners.
-
-Scientific work stays in the individual src modules. This file only handles
-stage execution, resume checks, logging, raw-input checks, and Ollama checks.
-"""
 
 from __future__ import annotations
 

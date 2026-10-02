@@ -1,10 +1,3 @@
-"""Run the same five off-the-shelf NER systems on BioRED disease/chemical text.
-
-The model identities and deterministic label mappings match the BC5CDR study.
-The D4Data system uses d4data/biomedical-ner-all, a DistilBERT token-classification checkpoint.
-No task-specific fine-tuning is performed here. BioRED outputs are written to the active
-variant directory and never touch BC5CDR prediction files.
-"""
 
 from __future__ import annotations
 
@@ -63,7 +56,6 @@ def normalize_binary_label(raw_label: str, fallback: str) -> str:
 
 
 def chunk_text(text: str, tokenizer, max_tokens: int = MAX_TOKENS) -> list[tuple[str, int]]:
-    """Sentence-based chunks that remain literal slices of the source text."""
     raw_sentences = [s for s in re.split(r"(?<=[.!?])\s+|\n+", text) if s]
     if not raw_sentences:
         return [(text, 0)] if text else []
@@ -262,7 +254,7 @@ def run_d4data_ner(docs: list[dict]) -> tuple[list[dict], float, float]:
                 raw_label = str(prediction.get("entity_group", ""))
                 mapped = D4DATA_NER_LABEL_MAP.get(raw_label)
                 if mapped is None:
-                    # Some transformers versions preserve BIO prefixes.
+                                                                       
                     stripped = re.sub(r"^[BI]-", "", raw_label)
                     mapped = D4DATA_NER_LABEL_MAP.get(stripped)
                 if mapped is None:

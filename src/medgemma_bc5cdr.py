@@ -1,14 +1,3 @@
-"""Run MedGemma 1.5 4B as a zero-shot BC5CDR NER baseline.
-
-The model is served locally through Ollama. To prevent very long or repetitive
-JSON generations, each BC5CDR document is split deterministically into short
-text segments. Entity offsets returned for a segment are shifted back to the
-original document coordinates before evaluation.
-
-One durable cache record is saved per document so interrupted runs can resume.
-The chunked cache is intentionally separate from the earlier whole-document
-cache because the inference protocol has changed.
-"""
 
 from __future__ import annotations
 
@@ -62,7 +51,6 @@ def _trim_span(text: str, start_char: int, end_char: int) -> tuple[int, int]:
 
 
 def _sentence_like_spans(text: str) -> list[tuple[int, int]]:
-    """Return deterministic sentence-like spans while preserving source offsets."""
     boundaries: list[int] = [0]
     index = 0
     text_length = len(text)
@@ -107,7 +95,6 @@ def _sentence_like_spans(text: str) -> list[tuple[int, int]]:
 
 
 def _best_internal_cut(text: str, start_char: int, target_end: int) -> int:
-    """Choose a safe cut near target_end, preferring clause punctuation."""
     minimum_cut = start_char + max(40, (target_end - start_char) // 2)
 
     for symbols in (";:", ",", " \t"):
@@ -154,7 +141,6 @@ def split_document_into_chunks(
     *,
     maximum_chars: int = DEFAULT_CHUNK_CHARS,
 ) -> list[TextChunk]:
-    """Group sentence-like spans into compact chunks with exact source offsets."""
     if maximum_chars < 80:
         raise ValueError("maximum_chars must be at least 80")
 
@@ -245,7 +231,6 @@ def _extract_chunk_recursively(
     model_name: str,
     depth: int = 0,
 ) -> tuple[list[dict], dict[str, int], list[dict], list[dict], int]:
-    """Extract one chunk, splitting it further only if generation still loops."""
     prompt = zero_shot_prompt(chunk.text)
 
     try:

@@ -1,40 +1,19 @@
-"""
-graph.py — figure generation for the comparative NER evaluation.
 
-This module has two parts:
-
-  1. A set of accumulator functions (add_model_result_*, add_human_comparison_result)
-     that bc5cdr_evaluation.py calls after each evaluation pass to register
-     results into module-level lists.
-
-  2. Seven plot functions (Figure 1–6 + separate per-model confusion matrices)
-     that read those lists and write publication-quality PNG figures.
-     plot_all() calls all of them in sequence.
-
-All figures use a serif font and 300 dpi to match typical journal requirements.
-The colour palette (blue/coral/green for P/R/F1) is consistent across all
-figures and is chosen to be accessible in greyscale print.
-
-The first half of this file (fully commented out) is the earlier prototype
-plotting code, kept for reference.  The active code starts at the second
-`import os` block.
-"""
-
-# ===========================================================================
-# LEGACY PROTOTYPE — kept for reference only, not executed
-# ===========================================================================
-#
-# The functions below were an earlier, simpler version of the plotting code.
-# They produced basic matplotlib figures without the publication styling.
-# Replaced by the active code below.
-#
-# import os
+                                                                             
+                                                          
+                                                                             
+ 
+                                                                            
+                                                                         
+                                    
+ 
+           
 from pathlib import Path
-# import numpy as np
-# import matplotlib.pyplot as plt
-# from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-# ... (omitted for brevity — see git history)
-# ===========================================================================
+                    
+                                 
+                                                                      
+                                             
+                                                                             
 
 import os
 import numpy as np
@@ -42,7 +21,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
-# Publication-quality rcParams: serif font, consistent sizes, 300 dpi output.
+                                                                             
 matplotlib.rcParams.update(
     {
         "font.family": "serif",
@@ -58,15 +37,15 @@ matplotlib.rcParams.update(
     }
 )
 
-# Colour palette — accessible in greyscale print, consistent across all figures.
+                                                                                
 COLOURS = {
-    "precision": "#2166ac",  # blue
-    "recall": "#d6604d",  # coral
-    "f1": "#4dac26",  # green
+    "precision": "#2166ac",        
+    "recall": "#d6604d",         
+    "f1": "#4dac26",         
 }
 
-# Module-level result stores.  bc5cdr_evaluation.py populates these by
-# calling the add_* functions; the plot functions read from them.
+                                                                      
+                                                                 
 MODEL_RESULTS_HUMAN = []
 MODEL_RESULTS_CANDIDATE = []
 HUMAN_COMPARISON_RESULTS = []
@@ -89,9 +68,9 @@ def figure_path(filename):
     return FIGURE_DIR / filename
 
 
-# ---------------------------------------------------------------------------
-# Accumulators
-# ---------------------------------------------------------------------------
+                                                                             
+              
+                                                                             
 
 
 def add_model_result_human(
@@ -104,7 +83,6 @@ def add_model_result_human(
     y_true=None,
     y_pred=None,
 ):
-    """Register a model's evaluation result vs human gold."""
     MODEL_RESULTS_HUMAN.append(
         {
             "model": model_name,
@@ -129,7 +107,6 @@ def add_model_result_candidate(
     y_true=None,
     y_pred=None,
 ):
-    """Register a model's evaluation result vs candidate (pseudo) gold."""
     MODEL_RESULTS_CANDIDATE.append(
         {
             "model": model_name,
@@ -154,7 +131,6 @@ def add_human_comparison_result(
     y_true=None,
     y_pred=None,
 ):
-    """Register a pseudo-gold set's evaluation result vs human gold."""
     HUMAN_COMPARISON_RESULTS.append(
         {
             "model": model_name,
@@ -173,18 +149,12 @@ def ensure_figure_dir():
     FIGURE_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# ---------------------------------------------------------------------------
-# Figure 1: Base models vs human gold
-# ---------------------------------------------------------------------------
+                                                                             
+                                     
+                                                                             
 
 
 def plot_models_vs_human_gold():
-    """
-    Grouped bar chart: precision, recall, F1 for each base model vs human gold.
-
-    Only the five base models are plotted here — filtered variants are
-    excluded so the figure stays readable.  Model order matches the paper.
-    """
     base_models = ["scispaCy", "BioBERT", "PubMedBERT + OpenMed", "ClinicalBERT", "D4Data NER (DistilBERT)"]
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] in base_models]
 
@@ -263,18 +233,12 @@ def plot_models_vs_human_gold():
     print(f"Saved: {out}")
 
 
-# ---------------------------------------------------------------------------
-# Figure 2: Pseudo-gold quality — majority vs weighted vs human gold
-# ---------------------------------------------------------------------------
+                                                                             
+                                                                    
+                                                                             
 
 
 def plot_candidate_gold_comparison():
-    """
-    Bar chart comparing majority and weighted pseudo-gold against human gold.
-
-    Shows that the weighted scheme produces a higher-quality pseudo-gold set
-    than unweighted majority voting.
-    """
     if not HUMAN_COMPARISON_RESULTS:
         print("No human comparison results for Figure 2.")
         return
@@ -351,18 +315,12 @@ def plot_candidate_gold_comparison():
     print(f"Saved: {out}")
 
 
-# ---------------------------------------------------------------------------
-# Figure 3: Per-label F1 (DISEASE vs CHEMICAL) for each base model
-# ---------------------------------------------------------------------------
+                                                                             
+                                                                  
+                                                                             
 
 
 def plot_per_label_performance():
-    """
-    Side-by-side DISEASE and CHEMICAL F1 for each base model.
-
-    Reveals whether a model's overall F1 hides asymmetric performance
-    across entity types — e.g. a model strong on chemicals but weak on diseases.
-    """
     base_models = ["scispaCy", "BioBERT", "PubMedBERT + OpenMed", "ClinicalBERT", "D4Data NER (DistilBERT)"]
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] in base_models]
 
@@ -430,19 +388,12 @@ def plot_per_label_performance():
     print(f"Saved: {out}")
 
 
-# ---------------------------------------------------------------------------
-# Figure 4: scispaCy confusion matrix vs human gold
-# ---------------------------------------------------------------------------
+                                                                             
+                                                   
+                                                                             
 
 
 def plot_scispacy_confusion_matrix():
-    """
-    Confusion matrix for scispaCy, the best-performing model in the study.
-
-    Plotted separately because scispaCy's high F1 makes its error pattern
-    worth examining in detail — the matrix shows where it still goes wrong
-    relative to human gold.
-    """
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] == "scispaCy"]
 
     if not results or results[0]["y_true"] is None:
@@ -465,18 +416,12 @@ def plot_scispacy_confusion_matrix():
     print(f"Saved: {out}")
 
 
-# ---------------------------------------------------------------------------
-# Figure 5: Weighted candidate gold confusion matrix vs human gold
-# ---------------------------------------------------------------------------
+                                                                             
+                                                                  
+                                                                             
 
 
 def plot_weighted_gold_confusion_matrix():
-    """
-    Confusion matrix for the weighted pseudo-gold set vs human gold.
-
-    Shows where the ensemble framework deviates from expert annotation —
-    useful for the paper's discussion of pseudo-gold quality.
-    """
     results = [r for r in HUMAN_COMPARISON_RESULTS if "Weighted" in r["model"]]
 
     if not results or results[0]["y_true"] is None:
@@ -499,19 +444,12 @@ def plot_weighted_gold_confusion_matrix():
     print(f"Saved: {out}")
 
 
-# ---------------------------------------------------------------------------
-# Figure 6: All five model confusion matrices in a single grid
-# ---------------------------------------------------------------------------
+                                                                             
+                                                              
+                                                                             
 
 
 def plot_all_model_confusion_matrices():
-    """
-    2×3 grid of confusion matrices, one per base model (last cell blank).
-
-    Gives a compact overview of each model's error pattern so readers can
-    compare them side by side without flipping between separate figures.
-    Abbreviated labels (B-DIS etc.) keep the cells readable at small size.
-    """
     base_models = ["scispaCy", "BioBERT", "PubMedBERT + OpenMed", "ClinicalBERT", "D4Data NER (DistilBERT)"]
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] in base_models]
 
@@ -545,7 +483,7 @@ def plot_all_model_confusion_matrices():
         ax.tick_params(axis="both", labelsize=8)
         plt.setp(ax.get_xticklabels(), rotation=45, ha="right")
 
-    # Hide unused grid cells (5 models in a 2×3 grid leaves one empty)
+                                                                      
     for j in range(n, len(axes)):
         axes[j].set_visible(False)
 
@@ -561,18 +499,12 @@ def plot_all_model_confusion_matrices():
     print(f"Saved: {out}")
 
 
-# ---------------------------------------------------------------------------
-# Figure 7: Individual confusion matrices saved to figure/confusion/
-# ---------------------------------------------------------------------------
+                                                                             
+                                                                    
+                                                                             
 
 
 def plot_separate_model_confusion_matrices():
-    """
-    Write one confusion matrix PNG per base model to figure/confusion/.
-
-    These are the full-size individual versions of the Figure 6 grid,
-    useful for supplementary material or close inspection.
-    """
     base_models = ["scispaCy", "BioBERT", "PubMedBERT + OpenMed", "ClinicalBERT", "D4Data NER (DistilBERT)"]
     results = [r for r in MODEL_RESULTS_HUMAN if r["model"] in base_models]
 
@@ -605,13 +537,12 @@ def plot_separate_model_confusion_matrices():
         print(f"Saved: {out}")
 
 
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
+                                                                             
+             
+                                                                             
 
 
 def plot_all():
-    """Run all figure-generating functions in order."""
     ensure_figure_dir()
 
     plot_models_vs_human_gold()

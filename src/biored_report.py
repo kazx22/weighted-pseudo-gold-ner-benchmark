@@ -1,7 +1,3 @@
-"""Generate BioRED paper-ready figures and a compact result report from saved outputs.
-
-No Ollama calls are made here. This is safe to rerun after the expensive LLM step.
-"""
 
 from __future__ import annotations
 

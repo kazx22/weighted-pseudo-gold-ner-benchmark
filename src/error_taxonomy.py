@@ -1,30 +1,3 @@
-"""
-error_taxonomy.py
-
-Qualitative error analysis for the BC5CDR NER comparative evaluation.
-
-Classifies every prediction error against human gold into four types:
-  - FALSE_POSITIVE  : model predicted an entity, nothing overlaps in gold
-  - FALSE_NEGATIVE  : gold has an entity, model missed it entirely
-  - BOUNDARY_ERROR  : partial span overlap but not a complete match
-  - TYPE_CONFUSION  : span overlaps correctly but label is wrong
-
-Runs on two models for contrast:
-  - SciSpacy     (best overall, F1 0.8959)
-  - PubMedBERT   (worst on disease, F1 0.568)
-
-Both evaluated against HUMAN GOLD, not pseudo-gold.
-
-Usage (from project root):
-    python src/error_taxonomy.py
-
-Output files written to data/analysis/error_taxonomy/:
-    {model}_error_counts.txt        - counts per type per label
-    {model}_false_positives.txt     - sampled FP cases with context
-    {model}_false_negatives.txt     - sampled FN cases with context
-    {model}_boundary_errors.txt     - sampled boundary cases with context
-    {model}_type_confusions.txt     - sampled type confusion cases with context
-"""
 
 import argparse
 import sys
@@ -42,13 +15,13 @@ from src.experiment_config import (
     results_dir,
 )
 
-SAMPLE_SIZE = 40  # max samples dumped per error type
-CONTEXT_CHARS = 120  # characters of surrounding text to show each side of entity
+SAMPLE_SIZE = 40                                     
+CONTEXT_CHARS = 120                                                              
 RANDOM_SEED = 42
 
-# ---------------------------------------------------------------------------
-# I/O helpers  (mirrors utils.py so behaviour is identical)
-# ---------------------------------------------------------------------------
+                                                                             
+                                                           
+                                                                             
 
 
 def load_jsonl(path: Path):
@@ -69,13 +42,12 @@ def group_by_row(entities):
     return grouped
 
 
-# ---------------------------------------------------------------------------
-# Span matching helpers
-# ---------------------------------------------------------------------------
+                                                                             
+                       
+                                                                             
 
 
 def spans_overlap(a_start, a_end, b_start, b_end) -> bool:
-    """True if two character spans overlap at all (touching boundaries don't count)."""
     return a_start < b_end and a_end > b_start
 
 
@@ -84,13 +56,12 @@ def spans_match_exactly(a_start, a_end, b_start, b_end) -> bool:
 
 
 def get_context(text: str, start: int, end: int, window: int = CONTEXT_CHARS) -> str:
-    """Return a snippet of text centred on the entity span."""
     left = max(0, start - window)
     right = min(len(text), end + window)
     prefix = "..." if left > 0 else ""
     suffix = "..." if right < len(text) else ""
     snippet = text[left:right]
-    # highlight the entity span within the snippet
+                                                  
     offset = start - left
     entity_len = end - start
     highlighted = (
@@ -103,28 +74,12 @@ def get_context(text: str, start: int, end: int, window: int = CONTEXT_CHARS) ->
     return prefix + highlighted + suffix
 
 
-# ---------------------------------------------------------------------------
-# Core classification
-# ---------------------------------------------------------------------------
+                                                                             
+                     
+                                                                             
 
 
 def classify_errors(doc_text: str, gold_ents: list, pred_ents: list) -> dict:
-    """
-    Compare gold vs predictions for a single document and return four buckets.
-
-    Matching strategy  (mirrors span_to_bio overlap logic in utils.py):
-      1. For every predicted entity, look for gold entities that overlap its span.
-         - If none overlap           -> FALSE_POSITIVE
-         - If one overlaps exactly and label matches -> TRUE_POSITIVE (not recorded)
-         - If one overlaps exactly but label differs -> TYPE_CONFUSION
-         - If one overlaps but span is not exact     -> BOUNDARY_ERROR
-      2. Any gold entity not matched by any prediction -> FALSE_NEGATIVE
-
-    Each error record stores enough to write a readable sample:
-      pred_text, pred_label, pred_start, pred_end,
-      gold_text (if applicable), gold_label (if applicable),
-      context (surrounding sentence window)
-    """
     errors = {
         "FALSE_POSITIVE": [],
         "FALSE_NEGATIVE": [],
@@ -132,7 +87,7 @@ def classify_errors(doc_text: str, gold_ents: list, pred_ents: list) -> dict:
         "TYPE_CONFUSION": [],
     }
 
-    gold_matched = set()  # indices into gold_ents that a prediction accounts for
+    gold_matched = set()                                                         
 
     for pred in pred_ents:
         ps, pe = pred["start_char"], pred["end_char"]
@@ -155,7 +110,7 @@ def classify_errors(doc_text: str, gold_ents: list, pred_ents: list) -> dict:
             )
             continue
 
-        # Pick the best overlapping gold entity (most overlap by character count)
+                                                                                 
         best_i, best_g = max(
             overlapping,
             key=lambda ig: min(pe, ig[1]["end_char"]) - max(ps, ig[1]["start_char"]),
@@ -166,7 +121,7 @@ def classify_errors(doc_text: str, gold_ents: list, pred_ents: list) -> dict:
         exact = spans_match_exactly(ps, pe, gs, ge)
 
         if exact and pred["label"] == best_g["label"]:
-            pass  # true positive - skip
+            pass                        
 
         elif not exact:
             errors["BOUNDARY_ERROR"].append(
@@ -184,7 +139,7 @@ def classify_errors(doc_text: str, gold_ents: list, pred_ents: list) -> dict:
             )
 
         else:
-            # exact span, wrong label -> type confusion
+                                                       
             errors["TYPE_CONFUSION"].append(
                 {
                     "pred_text": pred["text"],
@@ -197,7 +152,7 @@ def classify_errors(doc_text: str, gold_ents: list, pred_ents: list) -> dict:
                 }
             )
 
-    # Any gold entity not touched by any prediction -> false negative
+                                                                     
     for i, g in enumerate(gold_ents):
         if i not in gold_matched:
             gs, ge = g["start_char"], g["end_char"]
@@ -214,13 +169,12 @@ def classify_errors(doc_text: str, gold_ents: list, pred_ents: list) -> dict:
     return errors
 
 
-# ---------------------------------------------------------------------------
-# Aggregation
-# ---------------------------------------------------------------------------
+                                                                             
+             
+                                                                             
 
 
 def run_analysis(model_name: str, docs: list, gold_grouped: dict, pred_grouped: dict):
-    """Run classification over all documents and aggregate."""
 
     all_errors = {
         "FALSE_POSITIVE": [],
@@ -243,16 +197,12 @@ def run_analysis(model_name: str, docs: list, gold_grouped: dict, pred_grouped: 
     return all_errors
 
 
-# ---------------------------------------------------------------------------
-# Counting per label
-# ---------------------------------------------------------------------------
+                                                                             
+                    
+                                                                             
 
 
 def count_by_label(errors: dict) -> dict:
-    """
-    Return a nested dict: {error_type: {label: count}}.
-    FP and BOUNDARY use pred_label; FN uses gold_label; TYPE_CONFUSION uses both.
-    """
     counts = {etype: defaultdict(int) for etype in errors}
 
     for record in errors["FALSE_POSITIVE"]:
@@ -271,9 +221,9 @@ def count_by_label(errors: dict) -> dict:
     return counts
 
 
-# ---------------------------------------------------------------------------
-# Output formatting
-# ---------------------------------------------------------------------------
+                                                                             
+                   
+                                                                             
 
 LABEL_FOR_ERROR = {
     "FALSE_POSITIVE": "pred_label",
@@ -344,9 +294,9 @@ def write_counts_file(output_path: Path, model_name: str, counts: dict, totals: 
     print(f"  Wrote counts -> {output_path}")
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
+                                                                             
+      
+                                                                             
 
 
 def main():

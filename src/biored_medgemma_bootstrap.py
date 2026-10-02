@@ -1,4 +1,3 @@
-"""Paired document-level bootstrap for the BioRED MedGemma extension."""
 
 from __future__ import annotations
 

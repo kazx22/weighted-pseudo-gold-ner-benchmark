@@ -1,4 +1,3 @@
-"""Evaluate BioRED MedGemma zero-shot and selective-hybrid outputs."""
 
 from __future__ import annotations
 

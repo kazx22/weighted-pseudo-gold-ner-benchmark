@@ -1,8 +1,3 @@
-"""Compare official and overlap-excluded BioRED conventional experiments.
-
-This module intentionally does not depend on MedGemma outputs, so it can run at
-the end of RUN_TRANSFORMERS.cmd.
-"""
 
 from __future__ import annotations
 

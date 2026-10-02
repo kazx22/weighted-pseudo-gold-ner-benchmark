@@ -1,12 +1,3 @@
-"""Methodological controls for weighted pseudo-gold construction.
-
-Adds two post-processing experiments without rerunning NER models:
-1) development-tuned unweighted consensus (k-of-5 selected on dev), and
-2) leave-one-model-out (LOMO) weighted ablation with dev-only recalibration.
-
-All settings are fitted on development annotations, frozen, applied to test
-predictions without reading test gold, and only then evaluated on test gold.
-"""
 
 from __future__ import annotations
 
@@ -201,7 +192,7 @@ def main() -> None:
     dev_predictions = _load_predictions(cfg, "dev", models)
     dev_votes, dev_store = _vote_table(dev_predictions)
 
-    # Control 1: tune an equal-weight k-of-5 rule on development only.
+                                                                      
     tuned_rows = []
     for k in range(1, len(models) + 1):
         pseudo = _materialise(
@@ -215,7 +206,7 @@ def main() -> None:
     )
     selected_k = int(tuned_best["k"])
 
-    # Control 2: leave each model out, recalibrate the weighted threshold on dev.
+                                                                                 
     lomo_dev: list[dict] = []
     lomo_frozen: dict[str, dict] = {}
     for omitted in models:
@@ -258,7 +249,7 @@ def main() -> None:
             }
         )
 
-    # Freeze first; construct all test outputs before loading test human gold.
+                                                                              
     test_predictions = _load_predictions(cfg, "test", models)
     test_votes, test_store = _vote_table(test_predictions)
     output_dir = cfg.results_dir("test") / "method_controls"
@@ -287,7 +278,7 @@ def main() -> None:
         lomo_test_predictions[omitted] = pseudo
         save_jsonl(pseudo, gold_output_dir / f"lomo_without_{omitted}_test_entities.jsonl")
 
-    # Human test gold is deliberately loaded only after all control outputs exist.
+                                                                                  
     test_gold = load_jsonl(cfg.gold_entities_file("test"))
     weighted_test = load_jsonl(cfg.pseudo_gold_file("weighted", "test"))
     fixed_majority_test = load_jsonl(cfg.pseudo_gold_file("majority", "test"))

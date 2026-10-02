@@ -1,4 +1,3 @@
-"""Shared I/O, span matching, and BIO conversion helpers."""
 
 from __future__ import annotations
 
@@ -69,7 +68,6 @@ def exact_span_counts(
     *,
     label: str | None = None,
 ) -> dict[str, int]:
-    """Count exact character-span-and-label matches."""
     wanted = label.upper() if label else None
     gold_set = {
         entity_key(entity)
@@ -150,12 +148,6 @@ def per_document_exact_counts(
 
 
 def span_to_bio(text: str, entities: Iterable[dict]) -> tuple[list[str], list[str]]:
-    """Convert character spans to token-level BIO tags for secondary analyses.
-
-    Primary precision/recall/F1 is calculated with exact character spans. This
-    helper is retained for Cohen's kappa and confusion matrices. Token offsets
-    come from regex matches, so repeated spaces and newlines remain aligned.
-    """
     matches = list(re.finditer(r"\S+", text))
     tokens = [match.group(0) for match in matches]
     labels = ["O"] * len(tokens)
@@ -205,7 +197,6 @@ def derive_weights(f1: dict[str, float]) -> dict[str, float]:
 
 
 def remove_TEST(input_file: str | Path, output_file: str | Path) -> None:
-    """Compatibility cleanup for older ClinicalBERT output files."""
     records = [
         record
         for record in load_jsonl(input_file)

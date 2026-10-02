@@ -1,10 +1,3 @@
-"""Create BioRED sensitivity splits with every BC5CDR-overlapping PMID removed.
-
-The official BioRED experiment remains untouched.  This module reads the already
-parsed official BioRED dev/test files, compares PMIDs against all three BC5CDR
-splits, writes filtered BioRED dev/test inputs to a separate variant directory,
-and records a transparent overlap audit.
-"""
 
 from __future__ import annotations
 

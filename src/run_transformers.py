@@ -1,9 +1,3 @@
-"""Run every non-MedGemma experiment in the study.
-
-Despite the historical command name RUN_TRANSFORMERS.cmd, this runner includes
-all five conventional systems, including scispaCy. Scientific stages remain in
-separate modules and can be rerun individually if troubleshooting is needed.
-"""
 
 from __future__ import annotations
 
@@ -350,9 +344,9 @@ def biored_overlap_excluded_stages() -> list[Stage]:
 
 
 def comparison_stage() -> Stage:
-    # RUN_TRANSFORMERS must not depend on MedGemma outputs.
-    # This conventional-only comparison is refreshed later by RUN_MEDGEMMA
-    # using src.biored_variant_compare once MedGemma outputs exist.
+                                                           
+                                                                          
+                                                                   
     return Stage(
         "Compare official vs overlap-excluded BioRED conventional results",
         "src.biored_conventional_compare",

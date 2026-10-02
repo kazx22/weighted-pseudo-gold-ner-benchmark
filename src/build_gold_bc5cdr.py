@@ -1,4 +1,3 @@
-"""Build split-specific BIO gold files for kappa and confusion matrices."""
 
 import argparse
 
@@ -37,7 +36,7 @@ def main() -> None:
     if not gold_data:
         raise ValueError("No BIO records were built.")
 
-    # Structural self-check: every document must have one label per token.
+                                                                          
     bad_records = [
         record for record in gold_data
         if len(record["tokens"]) != len(record["bio_labels"])

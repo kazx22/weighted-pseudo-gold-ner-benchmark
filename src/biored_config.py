@@ -1,8 +1,3 @@
-"""Dataset-specific paths and metadata for BioRED disease/chemical validation.
-
-This module is intentionally separate from experiment_config.py so the BioRED
-extension cannot overwrite the existing BC5CDR results.
-"""
 
 from __future__ import annotations
 
@@ -15,9 +10,9 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_ROOT = PROJECT_ROOT / "data" / "raw"
 RAW_DIR = RAW_ROOT / "biored"
 
-# One code path supports both the official BioRED experiment and the
-# overlap-excluded sensitivity analysis.  The runner sets BIORED_VARIANT for
-# each subprocess, so outputs can never overwrite one another.
+                                                                    
+                                                                            
+                                                              
 BIORED_VARIANT = os.environ.get("BIORED_VARIANT", "official").strip().lower() or "official"
 VALID_VARIANTS = {"official", "overlap_excluded"}
 if BIORED_VARIANT not in VALID_VARIANTS:
@@ -63,7 +58,7 @@ RAW_FILENAMES = {
 
 
 def normalize_split(value: str, *, allow_train: bool = False) -> str:
-    del allow_train  # BioRED extension deliberately uses development and test only.
+    del allow_train                                                                 
     split = SPLIT_ALIASES.get(value.strip().lower())
     if split is None:
         raise ValueError(f"Unknown BioRED split '{value}'. Use dev or test.")

@@ -1,18 +1,3 @@
-"""Fit weighted pseudo-gold on BC5CDR development data and apply it to test.
-
-Development run:
-    python -m src.candidate_gold --split dev
-
-This calculates model weights from DEVELOPMENT exact-span F1, searches every
-unique achievable weighted score as a threshold, freezes the selected values,
-and writes the configuration to results/dev/frozen_pseudo_gold_config.json.
-
-Test run:
-    python -m src.candidate_gold --split test
-
-This reads the frozen development configuration and constructs test pseudo-gold
-without reading test human annotations.
-"""
 
 from __future__ import annotations
 
@@ -107,7 +92,6 @@ def materialise_pseudo_gold(
 
 
 def achievable_thresholds(weights: dict[str, float]) -> list[float]:
-    """Return all score cut-points at which the retained set can change."""
     values = [float(weights[key]) for key in MODEL_KEYS]
     scores: set[float] = set()
     for size in range(1, len(values) + 1):
@@ -188,7 +172,7 @@ def fit_on_development() -> dict:
             }
         )
 
-    # Predeclared tie-break: best F1, then best precision, then higher threshold.
+                                                                                 
     best = max(
         threshold_rows,
         key=lambda row: (row["f1"], row["precision"], row["threshold"]),

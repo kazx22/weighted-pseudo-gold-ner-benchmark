@@ -1,18 +1,3 @@
-"""Post-process completed MedGemma BC5CDR outputs.
-
-This module does not call Ollama and does not rerun MedGemma. It reads saved
-predictions, human gold, evaluation summaries, bootstrap results, and hybrid
-candidate decisions to create paper-ready figures and a transparent report.
-
-Run from the project root:
-
-    python -m src.medgemma_report --split test
-
-Optional:
-
-    python -m src.medgemma_report --split dev
-    python -m src.medgemma_report --split both
-"""
 
 from __future__ import annotations
 
@@ -47,13 +32,13 @@ SYSTEM_ORDER = [
     "Weighted + MedGemma Tie-Breaker",
 ]
 
-# Match the colour palette used by the existing paper figures.
+                                                              
 PAPER_COLOURS = {
-    "precision": "#2166ac",  # blue
-    "recall": "#d6604d",  # coral
-    "f1": "#4dac26",  # green
-    "disease": "#b2182b",  # dark red
-    "chemical": "#2166ac",  # blue
+    "precision": "#2166ac",        
+    "recall": "#d6604d",         
+    "f1": "#4dac26",         
+    "disease": "#b2182b",            
+    "chemical": "#2166ac",        
 }
 
 

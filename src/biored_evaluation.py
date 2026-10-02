@@ -1,4 +1,3 @@
-"""Exact-span BioRED evaluation and paper-style figures for disease/chemical NER."""
 
 from __future__ import annotations
 

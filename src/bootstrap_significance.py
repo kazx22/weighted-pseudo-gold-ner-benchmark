@@ -1,16 +1,3 @@
-"""Paired document-level bootstrap tests using exact entity-span counts.
-
-This version evaluates both the five individual NER systems and the two
-pseudo-gold references.  It keeps the original ten model-vs-model tests as one
-Holm-corrected family and adds the paper's two central pseudo-gold comparisons
-as a separate Holm-corrected family:
-
-1. Weighted Pseudo-Gold vs Majority Pseudo-Gold
-2. Weighted Pseudo-Gold vs scispaCy
-
-No model inference is performed.  The script only reads the existing test
-prediction and pseudo-gold JSONL files and resamples the 500 test documents.
-"""
 
 from __future__ import annotations
 
@@ -38,7 +25,7 @@ from src.utils import group_by_row, load_jsonl, metrics_from_counts, per_documen
 N_BOOTSTRAP = 1000
 SEED = 42
 
-# Use the publication spelling in newly generated outputs.
+                                                          
 DISPLAY_NAMES = {
     **MODEL_DISPLAY_NAMES,
     "scispacy": "scispaCy",
@@ -48,7 +35,6 @@ DISPLAY_NAMES = {
 
 
 def aggregate_metrics(counts: list[dict], indices: np.ndarray) -> dict:
-    """Aggregate exact-span TP/FP/FN over a sampled set of documents."""
     tp = sum(counts[int(index)]["tp"] for index in indices)
     fp = sum(counts[int(index)]["fp"] for index in indices)
     fn = sum(counts[int(index)]["fn"] for index in indices)
@@ -60,7 +46,6 @@ def aggregate_f1(counts: list[dict], indices: np.ndarray) -> float:
 
 
 def holm_adjust(raw_p_values: list[float]) -> list[float]:
-    """Holm step-down family-wise error correction."""
     number = len(raw_p_values)
     if number == 0:
         return []
@@ -83,10 +68,6 @@ def paired_bootstrap_p_value(
     *,
     resamples: int,
 ) -> float:
-    """Two-sided paired-bootstrap sign-reversal probability.
-
-    A +1 finite-sample correction prevents a reported p-value of exactly zero.
-    """
     difference = first_bootstrap - second_bootstrap
 
     lower_tail = (np.count_nonzero(difference <= 0) + 1) / (resamples + 1)
@@ -96,7 +77,6 @@ def paired_bootstrap_p_value(
 
 
 def load_system_counts(split: str, docs: list[dict], gold_by_row: dict) -> dict[str, list[dict]]:
-    """Load existing predictions and produce per-document exact-span counts."""
     system_files: dict[str, Path] = {
         model_key: prediction_file(model_key, split) for model_key in MODEL_KEYS
     }
@@ -270,7 +250,7 @@ def main() -> None:
             f"95% CI [{row['ci_low']:.4f}, {row['ci_high']:.4f}]"
         )
 
-    # Existing benchmark family: all ten comparisons among the five models.
+                                                                           
     model_comparisons = list(itertools.combinations(MODEL_KEYS, 2))
     model_pairwise = build_pairwise_rows(
         model_comparisons,
@@ -279,7 +259,7 @@ def main() -> None:
         resamples=args.resamples,
     )
 
-    # Paper's central claims: treated as a separate two-comparison family.
+                                                                          
     primary_comparisons = [
         ("weighted_pseudo_gold", "majority_pseudo_gold"),
         ("weighted_pseudo_gold", "scispacy"),
@@ -309,7 +289,7 @@ def main() -> None:
         "resamples": args.resamples,
         "seed": args.seed,
         "confidence_intervals": confidence_intervals,
-        # Kept under the old key for compatibility with the existing manuscript workflow.
+                                                                                         
         "pairwise_tests": model_pairwise,
         "model_pairwise_tests": model_pairwise,
         "primary_pseudo_gold_tests": primary_pairwise,

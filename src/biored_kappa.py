@@ -1,4 +1,3 @@
-"""Token-level BIO Cohen's kappa diagnostics for BioRED disease/chemical NER."""
 
 from __future__ import annotations
 
