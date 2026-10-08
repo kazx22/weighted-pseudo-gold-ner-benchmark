@@ -13,6 +13,7 @@ from src.biored_config import (
     prediction_file,
     require_file,
     results_dir,
+    save_json,
 )
 
 SAMPLE_SIZE = 40
@@ -403,6 +404,17 @@ def main():
                     handle.write(f"    {label}: {label_count}\n")
 
             handle.write("\n")
+
+    save_json(
+        {
+            "dataset": "BioRED",
+            "split": split,
+            "taxonomy_version": 2,
+            "models": summaries,
+            "note": "Regenerated after prediction-span integrity audit; taxonomy remains span-overlap based.",
+        },
+        output_dir / "taxonomy_summary.json",
+    )
 
     print(f"\nSaved text summary -> {summary_path}")
     print(f"Done. All BioRED taxonomy output is in {output_dir}")

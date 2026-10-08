@@ -9,11 +9,14 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
+import matplotlib.pyplot as plt
+
 from src.biored_candidate_gold import build_vote_table, load_model_predictions
 from src.biored_config import (
     MODEL_DISPLAY_NAMES,
     MODEL_KEYS,
     GOLD_DIR,
+    figures_dir,
     frozen_config_file,
     gold_entities_file,
     normalize_split,
@@ -28,22 +31,22 @@ from src.utils import (
     save_jsonl,
 )
 
-CWA_SCHEMA_VERSION = 1
+CAWV_SCHEMA_VERSION = 1
 # Both global and content-specific reliability stay active.
 DEFAULT_ALPHA_GRID = tuple(round(i / 10.0, 1) for i in range(1, 10))
 
 
-def cwa_results_dir(split: str) -> Path:
-    return results_dir(split) / "cwa"
+def cawv_results_dir(split: str) -> Path:
+    return results_dir(split) / "cawv"
 
 
-def cwa_config_file() -> Path:
-    return cwa_results_dir("dev") / "frozen_cwa_config.json"
+def cawv_config_file() -> Path:
+    return cawv_results_dir("dev") / "frozen_cawv_config.json"
 
 
-def cwa_pseudo_gold_file(split: str) -> Path:
+def cawv_pseudo_gold_file(split: str) -> Path:
     split = normalize_split(split, allow_train=False)
-    return GOLD_DIR / f"cwa_pseudo_gold_{split}_entities_biored.jsonl"
+    return GOLD_DIR / f"cawv_pseudo_gold_{split}_entities_biored.jsonl"
 
 
 def _entity_key(entity: dict) -> tuple[int, int, int, str]:
@@ -59,7 +62,7 @@ def _surface(entity: dict) -> str:
     text = str(entity.get("text", "")).strip()
     if not text:
         raise ValueError(
-            "CWA requires each entity record to contain its surface text in the 'text' field. "
+            "CAWV requires each entity record to contain its surface text in the 'text' field. "
             f"Missing text for {_entity_key(entity)}"
         )
     return text
@@ -88,7 +91,7 @@ def mention_form_category(entity: dict) -> str:
 def content_categories(entity: dict) -> dict[str, str]:
     label = str(entity["label"]).upper()
     if label not in {"DISEASE", "CHEMICAL"}:
-        raise ValueError(f"Unexpected BioRED label for CWA: {label}")
+        raise ValueError(f"Unexpected BioRED label for CAWV: {label}")
     return {
         "entity_type": label,
         "span_length": span_length_category(entity),
@@ -233,7 +236,7 @@ def score_candidates(
             voter_details[model_key] = {
                 "global_f1": round(float(global_weights[model_key]), 8),
                 "content_reliability": round(content_score, 8),
-                "cwa_weight": round(weight, 8),
+                "cawv_weight": round(weight, 8),
                 "components": {k: round(v, 8) for k, v in components.items()},
             }
 
@@ -304,7 +307,7 @@ def sweep_thresholds(
     return results
 
 
-def materialise_cwa(
+def materialise_cawv(
     scored_candidates: list[dict],
     *,
     threshold: float,
@@ -320,14 +323,117 @@ def materialise_cwa(
         entity["agreement_score"] = round(
             int(row["vote_count"]) / len(MODEL_KEYS), 6
         )
-        entity["cwa_score"] = round(float(row["score"]), 8)
-        entity["cwa_alpha"] = round(float(alpha), 4)
-        entity["cwa_categories"] = dict(row["categories"])
-        entity["cwa_voter_details"] = dict(row["voter_details"])
+        entity["cawv_score"] = round(float(row["score"]), 8)
+        entity["cawv_alpha"] = round(float(alpha), 4)
+        entity["cawv_categories"] = dict(row["categories"])
+        entity["cawv_voter_details"] = dict(row["voter_details"])
         output.append(entity)
 
     output.sort(key=_entity_key)
     return output
+
+
+def _best_row(rows: list[dict]) -> dict:
+    return max(
+        rows,
+        key=lambda row: (
+            float(row["f1"]),
+            float(row["precision"]),
+            float(row["threshold"]),
+        ),
+    )
+
+
+def _best_rows_by_alpha(all_rows: list[dict]) -> list[dict]:
+    grouped: dict[float, list[dict]] = defaultdict(list)
+    for row in all_rows:
+        grouped[float(row["alpha"])].append(row)
+
+    summary: list[dict] = []
+    for alpha in sorted(grouped):
+        best = _best_row(grouped[alpha])
+        summary.append(
+            {
+                "alpha": round(float(alpha), 4),
+                "best_threshold": round(float(best["threshold"]), 8),
+                "best_precision": round(float(best["precision"]), 8),
+                "best_recall": round(float(best["recall"]), 8),
+                "best_f1": round(float(best["f1"]), 8),
+                "tp": int(best["tp"]),
+                "fp": int(best["fp"]),
+                "fn": int(best["fn"]),
+                "entity_count": int(best["entity_count"]),
+            }
+        )
+    return summary
+
+
+def _plot_alpha_sensitivity(alpha_rows: list[dict], selected_alpha: float, output_file: Path) -> None:
+    if not alpha_rows:
+        return
+
+    x = [float(row["alpha"]) for row in alpha_rows]
+    y = [float(row["best_f1"]) for row in alpha_rows]
+
+    fig, ax = plt.subplots(figsize=(7.5, 5.0))
+    ax.plot(x, y, marker="o")
+    ax.set_xlabel("Alpha")
+    ax.set_ylabel("Best DEV F1")
+    ax.set_title("CAWV alpha sensitivity")
+    ax.grid(alpha=0.25)
+
+    for alpha, f1 in zip(x, y):
+        if abs(alpha - float(selected_alpha)) <= 1e-12:
+            ax.scatter([alpha], [f1], s=70)
+            ax.annotate(
+                f"selected alpha={alpha:.1f}\nF1={f1:.4f}",
+                (alpha, f1),
+                textcoords="offset points",
+                xytext=(8, 8),
+            )
+            break
+
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    fig.tight_layout()
+    fig.savefig(output_file, dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+
+def _plot_threshold_curve(
+    all_rows: list[dict],
+    selected_alpha: float,
+    selected_threshold: float,
+    output_file: Path,
+) -> None:
+    rows = [row for row in all_rows if abs(float(row["alpha"]) - float(selected_alpha)) <= 1e-12]
+    if not rows:
+        return
+
+    rows.sort(key=lambda row: float(row["threshold"]))
+    x = [float(row["threshold"]) for row in rows]
+    y = [float(row["f1"]) for row in rows]
+
+    fig, ax = plt.subplots(figsize=(7.5, 5.0))
+    ax.plot(x, y)
+    ax.axvline(float(selected_threshold), linestyle="--")
+    ax.set_xlabel("Threshold")
+    ax.set_ylabel("DEV F1")
+    ax.set_title(f"CAWV threshold curve at alpha={selected_alpha:.1f}")
+    ax.grid(alpha=0.25)
+
+    best_row = max(rows, key=lambda row: (float(row["f1"]), float(row["precision"]), float(row["threshold"])))
+    ax.scatter([float(best_row["threshold"])], [float(best_row["f1"])], s=70)
+    ax.annotate(
+        f"selected tau={float(selected_threshold):.4f}\nF1={float(best_row['f1']):.4f}",
+        (float(best_row["threshold"]), float(best_row["f1"])),
+        textcoords="offset points",
+        xytext=(8, 8),
+    )
+
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    fig.tight_layout()
+    fig.savefig(output_file, dpi=300, bbox_inches="tight")
+    plt.close(fig)
 
 
 def _write_csv(rows: list[dict], path: Path) -> None:
@@ -379,7 +485,7 @@ def fit_on_development(alpha_grid: tuple[float, ...] = DEFAULT_ALPHA_GRID) -> di
     vote_table, entity_store = build_vote_table(model_predictions)
     all_rows: list[dict] = []
 
-    print("\nTuning alpha and CWA threshold on DEV only...")
+    print("\nTuning alpha and CAWV threshold on DEV only...")
     for alpha in alpha_grid:
         scored = score_candidates(
             vote_table,
@@ -390,14 +496,7 @@ def fit_on_development(alpha_grid: tuple[float, ...] = DEFAULT_ALPHA_GRID) -> di
         )
         rows = sweep_thresholds(scored, gold_entities, alpha=float(alpha))
         all_rows.extend(rows)
-        best_alpha = max(
-            rows,
-            key=lambda row: (
-                float(row["f1"]),
-                float(row["precision"]),
-                float(row["threshold"]),
-            ),
-        )
+        best_alpha = _best_row(rows)
         print(
             f"  alpha={alpha:.1f}  best threshold={best_alpha['threshold']:.8f}  "
             f"P={best_alpha['precision']:.4f} R={best_alpha['recall']:.4f} "
@@ -408,6 +507,8 @@ def fit_on_development(alpha_grid: tuple[float, ...] = DEFAULT_ALPHA_GRID) -> di
                                                           
                                                                      
                           
+    alpha_summary_rows = _best_rows_by_alpha(all_rows)
+
     best = max(
         all_rows,
         key=lambda row: (
@@ -427,23 +528,37 @@ def fit_on_development(alpha_grid: tuple[float, ...] = DEFAULT_ALPHA_GRID) -> di
         global_weights=global_weights,
         reliability=reliability,
     )
-    cwa_dev = materialise_cwa(
+    cawv_dev = materialise_cawv(
         selected_scored,
         threshold=selected_threshold,
         alpha=selected_alpha,
     )
                                                                   
-    verified = exact_span_metrics(gold_entities, cwa_dev)
+    verified = exact_span_metrics(gold_entities, cawv_dev)
     if not math.isclose(float(verified["f1"]), float(best["f1"]), abs_tol=1e-8):
-        raise AssertionError("CWA development sweep and materialised output disagree.")
+        raise AssertionError("CAWV development sweep and materialised output disagree.")
 
-    save_jsonl(cwa_dev, cwa_pseudo_gold_file("dev"))
-    output_dir = cwa_results_dir("dev")
+    save_jsonl(cawv_dev, cawv_pseudo_gold_file("dev"))
+    output_dir = cawv_results_dir("dev")
     _write_csv(reliability_rows, output_dir / "content_reliability.csv")
     _write_csv(all_rows, output_dir / "alpha_threshold_selection.csv")
+    _write_csv(alpha_summary_rows, output_dir / "alpha_sensitivity_summary.csv")
+
+    figure_dir = figures_dir("dev")
+    _plot_alpha_sensitivity(
+        alpha_summary_rows,
+        selected_alpha,
+        figure_dir / "cawv_alpha_sensitivity.png",
+    )
+    _plot_threshold_curve(
+        all_rows,
+        selected_alpha,
+        selected_threshold,
+        figure_dir / "cawv_threshold_curve_selected_alpha.png",
+    )
 
     config = {
-        "schema_version": CWA_SCHEMA_VERSION,
+        "schema_version": CAWV_SCHEMA_VERSION,
         "method": "Content-Aware Weighted Voting",
         "fit_split": "dev",
         "primary_metric": "exact_character_span_and_label_micro_f1",
@@ -470,28 +585,31 @@ def fit_on_development(alpha_grid: tuple[float, ...] = DEFAULT_ALPHA_GRID) -> di
         "selected_alpha": selected_alpha,
         "selected_threshold": selected_threshold,
         "selected_dev_metrics": best,
+        "alpha_sensitivity_summary": alpha_summary_rows,
         "content_reliability": reliability,
         "dev_candidate_count": len(vote_table),
-        "dev_cwa_entity_count": len(cwa_dev),
+        "dev_cawv_entity_count": len(cawv_dev),
     }
-    save_json(config, cwa_config_file())
+    save_json(config, cawv_config_file())
 
-    print("\nFrozen CWA development configuration:")
+    print("\nFrozen CAWV development configuration:")
     print(f"  alpha:      {selected_alpha:.4f}")
     print(f"  threshold:  {selected_threshold:.8f}")
     print(f"  DEV P/R/F1: {verified['precision']:.4f}/{verified['recall']:.4f}/{verified['f1']:.4f}")
-    print(f"  config:     {cwa_config_file()}")
-    print(f"  CWA dev:    {cwa_pseudo_gold_file('dev')}")
+    print(f"  config:     {cawv_config_file()}")
+    print(f"  CAWV dev:    {cawv_pseudo_gold_file('dev')}")
+    print(f"  figure:     {figure_dir / 'cawv_alpha_sensitivity.png'}")
+    print(f"  figure:     {figure_dir / 'cawv_threshold_curve_selected_alpha.png'}")
     return config
 
 
 def apply_to_test(config_path: Path) -> None:
-    require_file(config_path, "frozen CWA development configuration")
+    require_file(config_path, "frozen CAWV development configuration")
     with config_path.open("r", encoding="utf-8") as handle:
         config = json.load(handle)
 
     if config.get("fit_split") != "dev":
-        raise ValueError("CWA configuration was not fitted on development data.")
+        raise ValueError("CAWV configuration was not fitted on development data.")
 
     alpha = float(config["selected_alpha"])
     threshold = float(config["selected_threshold"])
@@ -511,9 +629,9 @@ def apply_to_test(config_path: Path) -> None:
         global_weights=global_weights,
         reliability=reliability,
     )
-    cwa_test = materialise_cwa(scored, threshold=threshold, alpha=alpha)
-    output_path = cwa_pseudo_gold_file("test")
-    save_jsonl(cwa_test, output_path)
+    cawv_test = materialise_cawv(scored, threshold=threshold, alpha=alpha)
+    output_path = cawv_pseudo_gold_file("test")
+    save_jsonl(cawv_test, output_path)
 
     application = {
         "method": "Content-Aware Weighted Voting",
@@ -522,15 +640,15 @@ def apply_to_test(config_path: Path) -> None:
         "selected_alpha": alpha,
         "selected_threshold": threshold,
         "candidate_count": len(vote_table),
-        "cwa_entity_count": len(cwa_test),
+        "cawv_entity_count": len(cawv_test),
         "test_gold_was_not_read": True,
     }
-    save_json(application, cwa_results_dir("test") / "cwa_application.json")
+    save_json(application, cawv_results_dir("test") / "cawv_application.json")
 
-    print("\nApplied frozen CWA settings to TEST predictions.")
+    print("\nApplied frozen CAWV settings to TEST predictions.")
     print(f"  alpha:      {alpha:.4f}")
     print(f"  threshold:  {threshold:.8f}")
-    print(f"  CWA test:   {output_path} ({len(cwa_test)} entities)")
+    print(f"  CAWV test:   {output_path} ({len(cawv_test)} entities)")
     print("  Test human gold was NOT accessed during construction.")
 
 
@@ -552,8 +670,8 @@ def main() -> None:
     parser.add_argument(
         "--config",
         type=Path,
-        default=cwa_config_file(),
-        help="Frozen CWA DEV config used for --split test.",
+        default=cawv_config_file(),
+        help="Frozen CAWV DEV config used for --split test.",
     )
     parser.add_argument(
         "--alpha-grid",

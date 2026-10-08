@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 
+from src.run_cawv import run_pipeline as run_cawv
 from src.run_medgemma import run_pipeline as run_medgemma
 from src.run_transformers import run_pipeline as run_conventional
 
@@ -13,12 +14,17 @@ def main() -> None:
     args = parser.parse_args()
 
     print("=" * 78)
-    print("PART 1/2 — CONVENTIONAL NER + METHODOLOGICAL CONTROLS")
+    print("PART 1/3 — CONVENTIONAL NER + METHODOLOGICAL CONTROLS")
     print("=" * 78)
     run_conventional(force=args.force)
 
     print("\n" + "=" * 78)
-    print("PART 2/2 — MEDGEMMA")
+    print("PART 2/3 — CONTENT-AWARE WEIGHTED VOTING")
+    print("=" * 78)
+    run_cawv(force=args.force)
+
+    print("\n" + "=" * 78)
+    print("PART 3/3 — MEDGEMMA + CAWV/MEDGEMMA ABLATION")
     print("=" * 78)
     run_medgemma(force=args.force)
 

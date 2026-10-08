@@ -40,6 +40,18 @@ def _check_prerequisites() -> None:
         "MedGemma prerequisites are missing. Run RUN_TRANSFORMERS.cmd first.",
     )
 
+    cawv_required = [
+        ROOT / "results" / "dev" / "cawv" / "frozen_cawv_config.json",
+        ROOT / "data" / "gold" / "cawv_pseudo_gold_test_entities_bc5cdr.jsonl",
+        ROOT / "results" / "biored" / "dev" / "cawv" / "frozen_cawv_config.json",
+        ROOT / "data" / "gold" / "biored" / "cawv_pseudo_gold_test_entities_biored.jsonl",
+    ]
+    if any(not path.exists() for path in cawv_required):
+        print("CAWV prerequisites are missing; running CAWV first...")
+        from src.run_cawv import run_pipeline as run_cawv
+        run_cawv(force=False)
+    ensure_paths(cawv_required, "CAWV prerequisites are still missing after the CAWV run.")
+
 
 def bc5cdr_medgemma_stages() -> list[Stage]:
     proc = ROOT / "data" / "processed" / "bc5cdr"
@@ -162,6 +174,73 @@ def biored_medgemma_stages(variant: str) -> list[Stage]:
     ]
 
 
+def bc5cdr_cawv_medgemma_stages() -> list[Stage]:
+    gold = ROOT / "data" / "gold"
+    dev = ROOT / "results" / "dev" / "medgemma_cawv_hybrid"
+    test = ROOT / "results" / "test" / "medgemma_cawv_hybrid"
+    return [
+        Stage(
+            "BC5CDR CAWV + MedGemma development routing",
+            "src.cawv_medgemma_hybrid",
+            ("--dataset", "bc5cdr", "--split", "dev"),
+            (gold / "medgemma_cawv_hybrid_dev_entities_bc5cdr.jsonl", ROOT / "results" / "dev" / "medgemma_cawv_hybrid_config.json"),
+        ),
+        Stage(
+            "BC5CDR CAWV + MedGemma development evaluation",
+            "src.cawv_medgemma_analysis",
+            ("--dataset", "bc5cdr", "--split", "dev"),
+            (dev / "cawv_medgemma_analysis.json",),
+        ),
+        Stage(
+            "BC5CDR CAWV + MedGemma test routing",
+            "src.cawv_medgemma_hybrid",
+            ("--dataset", "bc5cdr", "--split", "test"),
+            (gold / "medgemma_cawv_hybrid_test_entities_bc5cdr.jsonl",),
+        ),
+        Stage(
+            "BC5CDR CAWV vs CAWV + MedGemma paired bootstrap",
+            "src.cawv_medgemma_analysis",
+            ("--dataset", "bc5cdr", "--split", "test", "--resamples", "1000", "--seed", "42"),
+            (test / "cawv_medgemma_analysis.json",),
+        ),
+    ]
+
+
+def biored_cawv_medgemma_stages() -> list[Stage]:
+    _, gold, results = biored_dirs("official")
+    env = biored_env("official")
+    return [
+        Stage(
+            "BioRED official CAWV + MedGemma development routing",
+            "src.cawv_medgemma_hybrid",
+            ("--dataset", "biored", "--split", "dev"),
+            (gold / "medgemma_cawv_hybrid_dev_entities_biored.jsonl", results / "dev" / "medgemma_cawv_hybrid_config.json"),
+            env,
+        ),
+        Stage(
+            "BioRED official CAWV + MedGemma development evaluation",
+            "src.cawv_medgemma_analysis",
+            ("--dataset", "biored", "--split", "dev"),
+            (results / "dev" / "medgemma_cawv_hybrid" / "cawv_medgemma_analysis.json",),
+            env,
+        ),
+        Stage(
+            "BioRED official CAWV + MedGemma test routing",
+            "src.cawv_medgemma_hybrid",
+            ("--dataset", "biored", "--split", "test"),
+            (gold / "medgemma_cawv_hybrid_test_entities_biored.jsonl",),
+            env,
+        ),
+        Stage(
+            "BioRED official CAWV vs CAWV + MedGemma paired bootstrap",
+            "src.cawv_medgemma_analysis",
+            ("--dataset", "biored", "--split", "test", "--resamples", "1000", "--seed", "42"),
+            (results / "test" / "medgemma_cawv_hybrid" / "cawv_medgemma_analysis.json",),
+            env,
+        ),
+    ]
+
+
 def run_pipeline(*, force: bool = False) -> Path:
     _check_prerequisites()
     check_ollama()
@@ -174,9 +253,13 @@ def run_pipeline(*, force: bool = False) -> Path:
         print(f"Started: {time.strftime('%Y-%m-%d %H:%M:%S')}", file=log, flush=True)
         for stage in bc5cdr_medgemma_stages():
             run_stage(stage, log, force=force)
+        for stage in bc5cdr_cawv_medgemma_stages():
+            run_stage(stage, log, force=force)
         for variant in ("official", "overlap_excluded"):
             for stage in biored_medgemma_stages(variant):
                 run_stage(stage, log, force=force)
+        for stage in biored_cawv_medgemma_stages():
+            run_stage(stage, log, force=force)
 
                                                                                    
         comparison = Stage(

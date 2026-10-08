@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import itertools
+from collections import Counter
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -23,13 +24,21 @@ from src.biored_config import (
 from src.utils import group_by_row, load_jsonl, span_to_bio
 
 
-def build_flat_labels(docs: list[dict], entities_by_row: dict[int, list[dict]]) -> list[str]:
-    output: list[str] = []
+def build_flat_tokens_labels(docs: list[dict], entities_by_row: dict[int, list[dict]]) -> tuple[list[str], list[str]]:
+    tokens_out: list[str] = []
+    labels_out: list[str] = []
     for document in docs:
         row_id = int(document["row_id"])
-        _, labels = span_to_bio(str(document["full_text"]), entities_by_row.get(row_id, []))
-        output.extend(labels)
-    return output
+        tokens, labels = span_to_bio(str(document["full_text"]), entities_by_row.get(row_id, []))
+        if len(tokens) != len(labels):
+            raise ValueError(f"BIO conversion length mismatch for row_id={row_id}: {len(tokens)} tokens vs {len(labels)} labels")
+        tokens_out.extend(tokens)
+        labels_out.extend(labels)
+    return tokens_out, labels_out
+
+
+def build_flat_labels(docs: list[dict], entities_by_row: dict[int, list[dict]]) -> list[str]:
+    return build_flat_tokens_labels(docs, entities_by_row)[1]
 
 
 def interpret(value: float) -> str:
@@ -54,10 +63,29 @@ def main() -> None:
 
     docs = load_jsonl(require_file(docs_file(split), "BioRED documents"))
     gold = load_jsonl(require_file(gold_entities_file(split), "BioRED human gold"))
-    labels = {"Human Gold": build_flat_labels(docs, group_by_row(gold))}
+    gold_tokens, gold_labels = build_flat_tokens_labels(docs, group_by_row(gold))
+    labels = {"Human Gold": gold_labels}
+    diagnostics = {
+        "token_count": len(gold_tokens),
+        "document_count": len(docs),
+        "token_sequences_identical": True,
+        "label_counts": {"Human Gold": dict(Counter(gold_labels))},
+        "model_token_counts": {},
+    }
     for key in MODEL_KEYS:
         predictions = load_jsonl(require_file(prediction_file(key, split), f"{key} predictions"))
-        labels[MODEL_DISPLAY_NAMES[key]] = build_flat_labels(docs, group_by_row(predictions))
+        model_tokens, model_labels = build_flat_tokens_labels(docs, group_by_row(predictions))
+        if model_tokens != gold_tokens:
+            diagnostics["token_sequences_identical"] = False
+            raise ValueError(f"Token sequence mismatch for {key}; kappa alignment is invalid.")
+        labels[MODEL_DISPLAY_NAMES[key]] = model_labels
+        diagnostics["model_token_counts"][MODEL_DISPLAY_NAMES[key]] = len(model_tokens)
+        diagnostics["label_counts"][MODEL_DISPLAY_NAMES[key]] = dict(Counter(model_labels))
+
+    lengths = {name: len(values) for name, values in labels.items()}
+    diagnostics["label_lengths"] = lengths
+    if len(set(lengths.values())) != 1:
+        raise ValueError(f"Token-label length mismatch across systems: {lengths}")
 
     model_names = [MODEL_DISPLAY_NAMES[key] for key in MODEL_KEYS]
     matrix = np.eye(len(model_names), dtype=float)
@@ -77,6 +105,8 @@ def main() -> None:
         value = float(cohen_kappa_score(labels[name], labels["Human Gold"]))
         versus_gold.append({"model": name, "kappa": value, "interpretation": interpret(value)})
         print(f"{name:15} vs human gold: kappa={value:.4f}")
+
+    save_json(diagnostics, results_dir(split) / "kappa_alignment_diagnostics.json")
 
     save_json(
         {

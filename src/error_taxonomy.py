@@ -13,6 +13,7 @@ from src.experiment_config import (
     prediction_file,
     require_file,
     results_dir,
+    save_json,
 )
 
 SAMPLE_SIZE = 40                                     
@@ -331,6 +332,8 @@ def main():
     gold_grouped = group_by_row(gold_entities)
     print(f"  {len(gold_entities)} gold entities across {len(gold_grouped)} documents")
 
+    summaries = []
+
     for model_name in args.models:
         pred_path = require_file(
             prediction_file(model_name, split), f"{model_name} predictions"
@@ -363,6 +366,23 @@ def main():
                     records,
                 )
 
+        totals = {error_type: len(records) for error_type, records in all_errors.items()}
+        summaries.append({
+            "model": model_name,
+            "totals": totals,
+            "grand_total": sum(totals.values()),
+        })
+
+    save_json(
+        {
+            "dataset": "BC5CDR",
+            "split": split,
+            "taxonomy_version": 2,
+            "models": summaries,
+            "note": "Regenerated after prediction-span integrity audit; taxonomy remains span-overlap based.",
+        },
+        output_dir / "taxonomy_summary.json",
+    )
     print(f"\nDone. All output is in {output_dir}")
 
 

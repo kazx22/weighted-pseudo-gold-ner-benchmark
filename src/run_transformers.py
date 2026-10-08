@@ -61,6 +61,15 @@ def bc5cdr_stages() -> list[Stage]:
             )
         )
 
+    stages.append(
+        Stage(
+            "BC5CDR development prediction span-integrity audit",
+            "src.span_integrity_audit",
+            ("--dataset", "bc5cdr", "--split", "dev", "--top", "50", "--fail-on-integrity-error"),
+            (dev / "span_audit" / "span_integrity_audit.json",),
+        )
+    )
+
     stages.extend(
         [
             Stage(
@@ -100,6 +109,15 @@ def bc5cdr_stages() -> list[Stage]:
             )
         )
 
+    stages.append(
+        Stage(
+            "BC5CDR test prediction span-integrity audit",
+            "src.span_integrity_audit",
+            ("--dataset", "bc5cdr", "--split", "test", "--top", "50", "--fail-on-integrity-error"),
+            (test / "span_audit" / "span_integrity_audit.json",),
+        )
+    )
+
     stages.extend(
         [
             Stage(
@@ -129,11 +147,21 @@ def bc5cdr_stages() -> list[Stage]:
             Stage(
                 "BC5CDR qualitative error taxonomy",
                 "src.error_taxonomy",
-                ("--split", "test", "--models", "scispacy", "pubmedbert"),
+                ("--split", "test", "--models", "scispacy", "biobert", "pubmedbert", "clinicalbert", "d4data"),
                 (
                     test / "error_taxonomy" / "scispacy_error_counts.txt",
+                    test / "error_taxonomy" / "biobert_error_counts.txt",
                     test / "error_taxonomy" / "pubmedbert_error_counts.txt",
+                    test / "error_taxonomy" / "clinicalbert_error_counts.txt",
+                    test / "error_taxonomy" / "d4data_error_counts.txt",
+                    test / "error_taxonomy" / "taxonomy_summary.json",
                 ),
+            ),
+            Stage(
+                "BC5CDR relaxed same-label overlap evaluation",
+                "src.relaxed_overlap_evaluation",
+                ("--dataset", "bc5cdr", "--split", "test"),
+                (test / "relaxed_overlap" / "relaxed_overlap_metrics.csv",),
             ),
             Stage(
                 "BC5CDR tuned-unweighted control and leave-one-model-out ablation",
@@ -186,6 +214,16 @@ def biored_official_stages() -> list[Stage]:
                 )
             )
 
+        stages.append(
+            Stage(
+                f"BioRED official {split} prediction span-integrity audit",
+                "src.span_integrity_audit",
+                ("--dataset", "biored", "--split", split, "--top", "50", "--fail-on-integrity-error"),
+                (results / split / "span_audit" / "span_integrity_audit.json",),
+                env,
+            )
+        )
+
         if split == "dev":
             stages.extend(
                 [
@@ -219,6 +257,15 @@ def biored_official_stages() -> list[Stage]:
             )
         else:
             stages.extend(_biored_test_analysis_stages("official"))
+            stages.append(
+                Stage(
+                    "BioRED official relaxed same-label overlap evaluation",
+                    "src.relaxed_overlap_evaluation",
+                    ("--dataset", "biored", "--split", "test"),
+                    (results / "test" / "relaxed_overlap" / "relaxed_overlap_metrics.csv",),
+                    env,
+                )
+            )
     return stages
 
 
@@ -252,14 +299,23 @@ def _biored_test_analysis_stages(variant: str) -> list[Stage]:
             f"{label} token-level Cohen kappa",
             "src.biored_kappa",
             ("--split", "test"),
-            (results / "test" / "cohen_kappa_results.json",),
+            (
+                results / "test" / "cohen_kappa_results.json",
+                results / "test" / "kappa_alignment_diagnostics.json",
+            ),
             env,
         ),
         Stage(
             f"{label} qualitative error taxonomy",
             "src.biored_error_taxonomy",
-            ("--split", "test", "--models", "scispacy", "pubmedbert"),
-            (results / "test" / "error_taxonomy" / "biored_error_taxonomy_summary.txt",),
+            ("--split", "test", "--models", "scispacy", "biobert", "pubmedbert", "clinicalbert", "d4data"),
+            (
+                results / "test" / "error_taxonomy" / "biored_error_taxonomy_summary.txt",
+                results / "test" / "error_taxonomy" / "biobert_error_counts.txt",
+                results / "test" / "error_taxonomy" / "clinicalbert_error_counts.txt",
+                results / "test" / "error_taxonomy" / "d4data_error_counts.txt",
+                results / "test" / "error_taxonomy" / "taxonomy_summary.json",
+            ),
             env,
         ),
         Stage(
@@ -307,6 +363,13 @@ def biored_overlap_excluded_stages() -> list[Stage]:
             tuple(proc / f"{model}_dev_entities_biored.jsonl" for model in MODEL_KEYS),
         ),
         Stage(
+            "BioRED overlap-excluded development prediction span-integrity audit",
+            "src.span_integrity_audit",
+            ("--dataset", "biored", "--split", "dev", "--top", "50", "--fail-on-integrity-error"),
+            (results / "dev" / "span_audit" / "span_integrity_audit.json",),
+            env,
+        ),
+        Stage(
             "BioRED overlap-excluded fit NEW development weights and threshold",
             "src.biored_candidate_gold",
             ("--split", "dev"),
@@ -337,6 +400,13 @@ def biored_overlap_excluded_stages() -> list[Stage]:
             "src.biored_filter_predictions",
             ("--split", "test"),
             tuple(proc / f"{model}_test_entities_biored.jsonl" for model in MODEL_KEYS),
+        ),
+        Stage(
+            "BioRED overlap-excluded test prediction span-integrity audit",
+            "src.span_integrity_audit",
+            ("--dataset", "biored", "--split", "test", "--top", "50", "--fail-on-integrity-error"),
+            (results / "test" / "span_audit" / "span_integrity_audit.json",),
+            env,
         ),
     ]
     stages.extend(_biored_test_analysis_stages("overlap_excluded"))
