@@ -4,7 +4,9 @@ import json
 import re
 import time
 from pathlib import Path
-from transformers import pipeline
+from src.cpu_ner import enforce_cpu, cpu_pipeline
+enforce_cpu()
+
 
 from src.experiment_config import (
     docs_file,
@@ -111,10 +113,11 @@ def deduplicate_entities(entities):
 
 
 def run_d4data(docs):
-    ner = pipeline(
+    ner = cpu_pipeline(
         "token-classification",
         model=MODEL_NAME,
         aggregation_strategy="simple",
+        device=-1,
     )
 
     print("Model max length:", ner.tokenizer.model_max_length)

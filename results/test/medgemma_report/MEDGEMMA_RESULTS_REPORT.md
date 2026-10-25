@@ -6,23 +6,23 @@ This report was generated from saved outputs. No Ollama or MedGemma inference wa
 
 | System | Precision | Recall | F1 | TP | FP | FN |
 |---|---:|---:|---:|---:|---:|---:|
-| Majority Pseudo-Gold | 0.9170 | 0.5482 | 0.6861 | 5,377 | 487 | 4,432 |
-| Weighted Pseudo-Gold | 0.9204 | 0.6676 | 0.7739 | 6,548 | 566 | 3,261 |
+| Majority Pseudo-Gold | 0.9050 | 0.5574 | 0.6899 | 5,468 | 574 | 4,341 |
+| Weighted Pseudo-Gold | 0.8629 | 0.7797 | 0.8192 | 7,648 | 1,215 | 2,161 |
 | scispaCy | 0.7962 | 0.7112 | 0.7513 | 6,976 | 1,786 | 2,833 |
 | MedGemma Zero-Shot | 0.5612 | 0.3110 | 0.4002 | 3,051 | 2,386 | 6,758 |
-| Weighted + MedGemma Tie-Breaker | 0.9166 | 0.6700 | 0.7741 | 6,572 | 598 | 3,237 |
+| Weighted + MedGemma Tie-Breaker | 0.8646 | 0.7800 | 0.8201 | 7,651 | 1,198 | 2,158 |
 
 ## Central finding
 
-The selective MedGemma tie-breaker changed F1 from 0.773858 to 0.774133, a difference of 0.000275.
-It added 24 true positives and 32 false positives, while changing false negatives by -24.
-Precision changed by -0.003842 and recall changed by 0.002447.
-The paired bootstrap comparison gave raw p = 0.6993 and Holm-adjusted p = 0.6993. The difference was not statistically significant.
+The selective MedGemma tie-breaker changed F1 from 0.819195 to 0.820131, a difference of 0.000936.
+It added 3 true positives and -17 false positives, while changing false negatives by -3.
+Precision changed by 0.001704 and recall changed by 0.000306.
+The paired bootstrap comparison gave raw p = 0.0420 and Holm-adjusted p = 0.0420. The difference was not statistically significant.
 
 ## Per-label effect
 
-- DISEASE F1: 0.7565 → 0.7594 (0.002884).
-- CHEMICAL F1: 0.7887 → 0.7868 (-0.001881).
+- DISEASE F1: 0.7697 → 0.7704 (0.000650).
+- CHEMICAL F1: 0.8607 → 0.8619 (0.001216).
 
 ## Zero-shot MedGemma
 
@@ -32,19 +32,19 @@ Unmapped outputs: 103; ambiguous repeated occurrences: 6.
 
 ## Hybrid routing and cost
 
-The pipeline routed 632 of 48,671 candidates to MedGemma (1.30%).
-MedGemma accepted 577 routed candidates and rejected 55.
-Selective tie-breaking used 31.2 minutes of LLM request time, compared with 145.3 minutes for full zero-shot extraction on the same split. This is approximately 78.55% less LLM request time.
+The pipeline routed 325 of 42,649 candidates to MedGemma (0.76%).
+MedGemma accepted 251 routed candidates and rejected 74.
+Selective tie-breaking used 16.3 minutes of LLM request time, compared with 145.7 minutes for full zero-shot extraction on the same split. This is approximately 88.85% less LLM request time.
 
 ## Routed-candidate audit against exact human gold
 
-- Correct accepts (TP): 462.
-- False accepts (FP): 115.
-- Correct rejects (TN): 43.
-- False rejects (FN): 12.
-- Acceptance precision: 80.07%.
-- Acceptance recall: 97.47%.
-- Rejection specificity: 27.22%.
+- Correct accepts (TP): 103.
+- False accepts (FP): 148.
+- Correct rejects (TN): 69.
+- False rejects (FN): 5.
+- Acceptance precision: 41.04%.
+- Acceptance recall: 95.37%.
+- Rejection specificity: 31.80%.
 
 ## Important adverse observations
 
@@ -53,7 +53,7 @@ Selective tie-breaking used 31.2 minutes of LLM request time, compared with 145.
 3. Disease-label decisions were less reliable than chemical-label decisions. Medically plausible symptoms or conditions can still be false positives relative to the BC5CDR annotation policy.
 4. MedGemma did not reliably supply exact character offsets. Text-to-source offset repair was essential and must be reported in the methodology.
 5. Zero-shot extraction used 450-character segments to prevent repetitive generation and truncated JSON. This segmentation can reduce broader context and should be listed as a limitation.
-6. Examples of false accepted fragments included: `l`, `h`, `met`.
+6. Examples of false accepted fragments included: `SNR`, `MI`.
 
 ## Safe paper interpretation
 

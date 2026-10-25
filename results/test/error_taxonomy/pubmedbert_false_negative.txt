@@ -1,204 +1,204 @@
 ERROR TYPE: FALSE_NEGATIVE
-Total instances: 1069  |  Showing: 40
+Total instances: 1225  |  Showing: 40
 ================================================================================
 
 --- Sample 1 ---
-  GOLD : [CHEMICAL]  'NA'  (chars 938-940)
-  PRED : (missed)
-  CTX  : ... one of the doses of codeine (45 mg/kg) slightly enhanced it. Pentazocine dose-dependently decreased the brain level of >>>NA<<<. The rate of NA turnover was not altered by analgesics except for the higher dose of fentanyl (0.2 mg/kg) following whi...
-
---- Sample 2 ---
-  GOLD : [DISEASE]  'seizures'  (chars 735-743)
-  PRED : (missed)
-  CTX  : ...onic-clonic seizures within the first two wk after LT. Univariate analysis showed that the risk factors associated with >>>seizures<<< after pediatric LT included gender, pediatric end-stage liver disease score before surgery, Child-Pugh score before sur...
-
---- Sample 3 ---
-  GOLD : [CHEMICAL]  'HBsAg'  (chars 1392-1397)
-  PRED : (missed)
-  CTX  : ...were observed. In conclusion, a 4-week course of lamivudine was safe and effective in suppression of HBV DNA in Chinese >>>HBsAg<<< carriers. The suppression was >90% but reversible. Studies with long-term lamivudine administration should be performed...
-
---- Sample 4 ---
-  GOLD : [DISEASE]  'convulsions'  (chars 549-560)
-  PRED : (missed)
-  CTX  : ...-44.8) mg/kg, p.o. Although moderate anticonvulsant effects of S-312-d in higher doses were observed against the clonic >>>convulsions<<< induced by pentylenetetrazole (85 mg/kg, s.c.) or bemegride (40 mg/kg, s.c.), no effects were observed in convulsions i...
-
---- Sample 5 ---
-  GOLD : [CHEMICAL]  'vasopressin'  (chars 778-789)
-  PRED : (missed)
-  CTX  : ...nhanced pressor responsiveness to the hormone was observed in the initial stage of hypertension. Increased secretion of >>>vasopressin<<< from neurohypophysis also promotes the function of the hormone as a pathogenetic factor in hypertension. An unproportio...
-
---- Sample 6 ---
-  GOLD : [DISEASE]  'pain'  (chars 1119-1123)
-  PRED : (missed)
-  CTX  : ... was always treated with AgSD cream. There was a direct relationship between CHP concentration and patients' ratings of >>>pain<<< on an analogue scale. The 0.25 per cent CHP cream was closest to AgSD in pain tolerance; however, none of the treatment...
-
---- Sample 7 ---
-  GOLD : [DISEASE]  'infections'  (chars 778-788)
-  PRED : (missed)
-  CTX  : ...sultations. Streptococcal organisms were found in 3 cases and Capnocytophaga and Brevibacterium casei in 1 patient. The >>>infections<<< responded to antibiotic treatment. Two patients needed a lateral tarsorrhaphy for persistent epithelial defects. CONCLU...
-
---- Sample 8 ---
-  GOLD : [DISEASE]  'inflammation'  (chars 1893-1905)
-  PRED : (missed)
-  CTX  : ... cataract formation (100%). CONCLUSION: The data suggest that fluocinolone acetonide implant (0.59 mg) helps to control >>>inflammation<<< in otherwise treatment-refractory cases of birdshot retinochoroidopathy. It is associated with significant side effects...
-
---- Sample 9 ---
-  GOLD : [CHEMICAL]  'flavonoid'  (chars 556-565)
-  PRED : (missed)
-  CTX  : ...t the cardiac myocytes because these cells seem to have a relatively poor antioxidant defense system. The semisynthetic >>>flavonoid<<< monohydroxyethylrutoside (monoHER) showed cardioprotection against DOX-induced cardiotoxicity through its radical scave...
-
---- Sample 10 ---
-  GOLD : [CHEMICAL]  'CCK-8'  (chars 1168-1173)
-  PRED : (missed)
-  CTX  : ...ated (1ml/kg, s.c.) rats. Pre-treatment of the CCK2 receptor antagonist L-365,260 (10ug, i.c.v) reversed the effects of >>>CCK-8<<<, but the CCK1 receptor antagonist L-364,718 (10ug, i.c.v) did not. The present results demonstrate that CCK-8 attenuate...
-
---- Sample 11 ---
-  GOLD : [CHEMICAL]  'CCK-8'  (chars 293-298)
-  PRED : (missed)
-  CTX  : ...t peptide, exerts a wide range of biological activities on the central nervous system. We have previously reported that >>>CCK-8<<< significantly alleviated morphine-induced amnesia and reversed spine density decreases in the CA1 region of the hippoca...
-
---- Sample 12 ---
-  GOLD : [DISEASE]  'dizziness'  (chars 394-403)
-  PRED : (missed)
-  CTX  : ...re reported in 21% of patients and caused withdrawal from the study in 3 patients. The main side-effects were headache, >>>dizziness<<<, palpitation and flushing and these were not more frequent than reported in other studies with isradipine or with place...
-
---- Sample 13 ---
-  GOLD : [CHEMICAL]  'cholecystokinin octapeptide'  (chars 275-302)
-  PRED : (missed)
-  CTX  : ...kinin in mice. Intraperitoneal administration of cholecystokinin octapeptide sulphate ester (CCK-8-SE) and nonsulphated >>>cholecystokinin octapeptide<<< (CCK-8-NS) enhanced the latency of seizures induced by picrotoxin in mice. Experiments with N- and C-terminal fragments...
-
---- Sample 14 ---
-  GOLD : [DISEASE]  'hyperactivity'  (chars 256-269)
-  PRED : (missed)
-  CTX  : ...d the noradrenaline neurotoxin DSP4 (50 mg/kg) 7 days prior to injection of D-amphetamine (10 or 40 mumol/kg i.p.). The >>>hyperactivity<<< induced by D-amphetamine (10 mumol/kg) was significantly reduced by DSP4 pretreatment. However, the increased rearings ...
-
---- Sample 15 ---
-  GOLD : [DISEASE]  'myocarditis'  (chars 480-491)
-  PRED : (missed)
-  CTX  : ...equently fatal, although exceptionally rare side effect of carbamazepine is necrotizing eosinophilic (hypersensitivity) >>>myocarditis<<<. We report a case of hypersensitivity myocarditis secondary to administration of carbamazepine. Acute hypersensitivity ...
-
---- Sample 16 ---
-  GOLD : [DISEASE]  'seizure'  (chars 1131-1138)
-  PRED : (missed)
-  CTX  : ...ctor associated with the seizures. All children who experienced seizures survived with good graft function and remained >>>seizure<<<-free without anti-epileptic drugs over a mean follow-up period of 33.7 + 14.6 months. High trough TAC level was the pre...
-
---- Sample 17 ---
-  GOLD : [DISEASE]  'catalepsy'  (chars 334-343)
-  PRED : (missed)
-  CTX  : ...tact for full expression of neuroleptic-induced catalepsy. Large doses of the cholinomimetic, pilocarpine, could induce >>>catalepsy<<< when peripheral cholinergic receptors were blocked. Low doses of pilocarpine caused a pronounced enhancement of the cat...
-
---- Sample 18 ---
-  GOLD : [DISEASE]  'atrophy'  (chars 1294-1301)
-  PRED : (missed)
-  CTX  : ...induced nephrotoxicity. There were a significant dilatation of tubular lumens, extensive epithelial cell vacuolization, >>>atrophy<<<, desquamation, and necrosis in VCM-treated rats more than those of the control and the erdosteine groups. Erdosteine ca...
-
---- Sample 19 ---
-  GOLD : [CHEMICAL]  'CCK-8'  (chars 557-562)
-  PRED : (missed)
-  CTX  : ...the C-terminal tetrapeptide (CCK-5-8) was the active centre of the CCK octapeptide molecule. The analogues CCK-8-SE and >>>CCK-8<<<-NS (dose range 0.2-6.4 mumol/kg) and caerulein dose range 0.1-0.8 mumol/kg) showed bell-shaped dose-effect curves, with...
-
---- Sample 20 ---
-  GOLD : [DISEASE]  'premature ventricular contraction'  (chars 170-203)
-  PRED : (missed)
-  CTX  : ...e malaria. It was reported that there was a case of severe malaria patient with jaundice who presented with arrhythmia (>>>premature ventricular contraction<<<) while getting quinine infusion was reported. A man, 25 years old, was admitted to hospital with high fever, chill, vom...
-
---- Sample 21 ---
-  GOLD : [CHEMICAL]  'OC'  (chars 1331-1333)
-  PRED : (missed)
-  CTX  : ...arations, and a nested case-control study to calculate the odds ratios of VTE associated with use of different types of >>>OC<<<, after adjustment for potential confounding factors. In the case-control study, we matched cases to controls by exact y...
-
---- Sample 22 ---
-  GOLD : [CHEMICAL]  'RD'  (chars 1054-1056)
-  PRED : (missed)
-  CTX  : ...e to thalidomide or bortezomib. Median duration of response was 34.4 months, and it was higher in patients who received >>>RD<<< until progression (not reached versus 19 months, p < 0.001). Improvement of humoral immunity occurred in 60 % of respon...
-
---- Sample 23 ---
-  GOLD : [DISEASE]  'edema'  (chars 717-722)
-  PRED : (missed)
-  CTX  : ... superficial cells and in all the plasma membranes of the intermediate and basal cells, intercellular and intracellular >>>edema<<< and disintegration of the desmosomes and hemidesmosomes lead to progressive degeneration and detachment of the epitheli...
-
---- Sample 24 ---
-  GOLD : [DISEASE]  'cardiomyocyte damage'  (chars 1349-1369)
-  PRED : (missed)
-  CTX  : ...servation for 2 weeks, the mice were sacrificed. Their cardiac tissues were processed for light microscopy, after which >>>cardiomyocyte damage<<< was evaluated according to Billingham (in Cancer Treat Rep 62(6):865-872, 1978). Microscopic evaluation revealed that t...
-
---- Sample 25 ---
-  GOLD : [CHEMICAL]  'ACE inhibitor'  (chars 865-878)
-  PRED : (missed)
-  CTX  : ...inopril and Survival study was a multicenter, randomized, double-blind trial in which patients with or without previous >>>ACE inhibitor<<< treatment were stabilized receiving medium-dose lisinopril (12.5 or 15.0 mg once daily [OD]) for 2 to 4 weeks and then ...
-
---- Sample 26 ---
-  GOLD : [DISEASE]  'nausea'  (chars 906-912)
-  PRED : (missed)
-  CTX  : ...th either dosage of oxitropium. No subject reported side effects of oxitropium, as compared to three subjects reporting >>>nausea<<<, vomiting and tremors after theophylline. Oxitropium proves to be a valuable alternative to theophylline in nocturnal a...
-
---- Sample 27 ---
-  GOLD : [DISEASE]  'infections'  (chars 683-693)
-  PRED : (missed)
-  CTX  : ...ndomized cyclosporine patients. Heart and liver patients had more infections than cyclosporine renal patients but fewer >>>infections<<< than the Aza renal patients. There were no infectious deaths in renal transplant patients on cyclosporine or Aza, but i...
-
---- Sample 28 ---
-  GOLD : [DISEASE]  'pupil dilation'  (chars 14-28)
-  PRED : (missed)
-  CTX  : The effect of >>>pupil dilation<<< with tropicamide on vision and driving simulator performance. PURPOSE: To assess the effect of pupil dilation on vision...
-
---- Sample 29 ---
-  GOLD : [CHEMICAL]  'heparin'  (chars 230-237)
-  PRED : (missed)
-  CTX  : ...h warfarin during pregnancy. In the first case a caesarean section was done one week after replacement of warfarin with >>>heparin<<<. The baby died of cerebral and pulmonary hemorrhage. The second mother had a male infant by caesarean section. The baby...
-
---- Sample 30 ---
-  GOLD : [DISEASE]  'Pain'  (chars 1211-1215)
-  PRED : (missed)
-  CTX  : ...nce times, respiratory and cardiovascular variables showed no significant differences between the two treatment groups. >>>Pain<<< on injection (80 vs. 20%, p < 0.01) and thrombophlebitis (93.3 vs. 6.6%, p < 0.001) occurred more frequently with AM149...
-
---- Sample 31 ---
   GOLD : [DISEASE]  'toxicity'  (chars 1628-1636)
   PRED : (missed)
   CTX  : ...d differences in response to toxic caffeine doses were observed between strains. These results indicate that behavioral >>>toxicity<<< testing of alkylxanthines in a single mouse strain may be misleading and suggest that toxic responses of the central ne...
 
---- Sample 32 ---
-  GOLD : [CHEMICAL]  'CY'  (chars 1551-1553)
+--- Sample 2 ---
+  GOLD : [CHEMICAL]  'bevacizumab'  (chars 1027-1038)
   PRED : (missed)
-  CTX  : ...elayed cystitis still persisted in DBA/2 mice 100 days after treatment. These results indicate that delayed toxicity of >>>CY<<< in female DBA/2 mice causes a bladder pathology that is not observed in C57BL/6 mice. This pathology resembles intersti...
+  CTX  : ...herapy (P = 0.005); it was also an independent risk factor (P = 0.017). CIN was significantly more after treatment with >>>bevacizumab<<</irinotecan (P = 0.021) and in patients with hypertension (P = 0.044). CONCLUSIONS: The incidence of CIN after CT in hos...
+
+--- Sample 3 ---
+  GOLD : [DISEASE]  'pain'  (chars 662-666)
+  PRED : (missed)
+  CTX  : ...or Thiopentone) nor the salt preparation of suxamethonium used (chloride or bromide), affected the incidence of scoline >>>pain<<<.
+
+--- Sample 4 ---
+  GOLD : [DISEASE]  'infections'  (chars 522-532)
+  PRED : (missed)
+  CTX  : ...closporine and prednisone. The randomized Aza patients had more overall infections (P less than 0.05) and more nonviral >>>infections<<< (P less than 0.02) than the randomized cyclosporine patients. Heart and liver patients had more infections than cyclosp...
+
+--- Sample 5 ---
+  GOLD : [DISEASE]  'seizures'  (chars 197-205)
+  PRED : (missed)
+  CTX  : ...ne month to 14 years) with other types of epilepsy than infantile spasms were treated with clonazepam. Disappearance of >>>seizures<<< and normalization of abnormal EEG with disappearance of seizures were recognized in 77% and 50%, respectively. Seizures...
+
+--- Sample 6 ---
+  GOLD : [DISEASE]  'enlargement of pulse pressure'  (chars 493-522)
+  PRED : (missed)
+  CTX  : ...conversely, potentiated by i.v. desmethylimipramine (0.3 mg), while propranolol (0.5 mg) i.v. selectively inhibited the >>>enlargement of pulse pressure<<< and the tachycardia following i.c. carbachol (1 mug). On the other hand, the pressor response to i.c. carbachol (1 mug)...
+
+--- Sample 7 ---
+  GOLD : [DISEASE]  'kidney injury'  (chars 685-698)
+  PRED : (missed)
+  CTX  : ...cose, sodium, neutrophil gelatinase-associated lipocalin (NGAL) and N-acetyl b-D-glucosaminidase (NAG), upregulation of >>>kidney injury<<< molecule (KIM)-1, decrease in renal blood flow and claudin-2 expression besides of necrosis and apoptosis of tubular ce...
+
+--- Sample 8 ---
+  GOLD : [CHEMICAL]  'heparin'  (chars 249-256)
+  PRED : (missed)
+  CTX  : .... Argatroban is a hepatically metabolized, direct thrombin inhibitor used for prophylaxis or treatment of thrombosis in >>>heparin<<<-induced thrombocytopenia (HIT) and for patients with or at risk of HIT undergoing percutaneous coronary intervention (P...
+
+--- Sample 9 ---
+  GOLD : [DISEASE]  'toxicity'  (chars 444-452)
+  PRED : (missed)
+  CTX  : ...l intensity involving both dentate nuclei of cerebellum and splenium of corpus callosum. The diagnosis of metronidazole >>>toxicity<<< was made by the MRI findings and supported clinically.
+
+--- Sample 10 ---
+  GOLD : [DISEASE]  'paralysis'  (chars 876-885)
+  PRED : (missed)
+  CTX  : ... For patients with bilateral abductor paralysis, age, sex, paralytic Botox dose, prior Botox dose, and course following >>>paralysis<<< were noted. RESULTS: From a database of 452 patients receiving Botox, 352 patients had been diagnosed with ADSD. Of the...
+
+--- Sample 11 ---
+  GOLD : [DISEASE]  'decreased the locomotor activity'  (chars 298-330)
+  PRED : (missed)
+  CTX  : ...ts on cocaine-and amphetamine-induced hyperactivity was examined in mice. All adenosine receptor agonists significantly >>>decreased the locomotor activity<<< in mice, and the effects were dose-dependent. It seems that adenosine A1 and A2 receptors might be involved in this rea...
+
+--- Sample 12 ---
+  GOLD : [DISEASE]  'seizures'  (chars 1036-1044)
+  PRED : (missed)
+  CTX  : ... TAC level. Multivariate analysis showed that trough TAC level was the only independent risk factor associated with the >>>seizures<<<. All children who experienced seizures survived with good graft function and remained seizure-free without anti-epilept...
+
+--- Sample 13 ---
+  GOLD : [DISEASE]  'seizures'  (chars 416-424)
+  PRED : (missed)
+  CTX  : ...underwent LT from January 2007 to December 2010 in our center were analyzed retrospectively. Patients were divided into >>>seizures<<< group and a non-seizures group. Pre-operative, intra-operative, and post-operative data were collected. Seizures occurr...
+
+--- Sample 14 ---
+  GOLD : [CHEMICAL]  'GFC'  (chars 1472-1475)
+  PRED : (missed)
+  CTX  : ... GFC75 plus P400 showed an increase in AChE activity (63.30%) when compared with seized mice. The results indicate that >>>GFC<<< can exert anticonvulsant activity and reduce the frequency of installation of pilocarpine-induced status epilepticus, a...
+
+--- Sample 15 ---
+  GOLD : [DISEASE]  'INF-MI'  (chars 814-820)
+  PRED : (missed)
+  CTX  : ...ic ST-segment depression (0.05 mV or more) was observed in 84% of the non-MI group, 29% of the ANT-MI group, 63% of the >>>INF-MI<<< group and 61% of the total population. Exercise-induced ST depression was observed in 84% of the non-MI group, 43% of t...
+
+--- Sample 16 ---
+  GOLD : [DISEASE]  'hypersensitivity'  (chars 1900-1916)
+  PRED : (missed)
+  CTX  : ...all, the altered cardiac contractility and excitability characteristics, the myocardial metabolic disturbances, and the >>>hypersensitivity<<< of the cardiovascular system to sodium pentobarbital suggest the existence of a heretofore undescribed cardiomyopathic ...
+
+--- Sample 17 ---
+  GOLD : [DISEASE]  'weight gain'  (chars 1168-1179)
+  PRED : (missed)
+  CTX  : ...severity scores were 1.4 (95% CI=1.2-1.6) with risperidone and 1.2 (95% CI=1.0-1.4) with olanzapine. Significantly more >>>weight gain<<< occurred with olanzapine than with risperidone: the increase in weight at 4 months relative to baseline weight was 17.3...
+
+--- Sample 18 ---
+  GOLD : [CHEMICAL]  'Contrast'  (chars 1427-1435)
+  PRED : (missed)
+  CTX  : ...tension and the combination of bevacizumab/irinotecan may be additional risk factors for CIN development. KEY POINTS: . >>>Contrast<<<-induced nephropathy (CIN) is a concern for oncological patients undergoing CT. . CIN occurs more often when CT is perfo...
+
+--- Sample 19 ---
+  GOLD : [CHEMICAL]  'SSRI'  (chars 592-596)
+  PRED : (missed)
+  CTX  : ...the adult brain. In contrast reports indicate that hippocampal dependent neurogenesis and cognition are enhanced by the >>>SSRI<<< antidepressant Fluoxetine. In this investigation the behavioural effects of chronic (two week) treatment with 5-FU and ...
+
+--- Sample 20 ---
+  GOLD : [DISEASE]  'seizures'  (chars 326-334)
+  PRED : (missed)
+  CTX  : ...ays pregnant and nonpregnant rats of the same age and strain received infusions of aminophylline until onset of maximal >>>seizures<<< which occurred after 28 and 30 minutes respectively. Theophylline concentrations at this endpoint in serum (total) and ...
+
+--- Sample 21 ---
+  GOLD : [DISEASE]  'seizure'  (chars 676-683)
+  PRED : (missed)
+  CTX  : ... areas in the left brain in right-pawed animals, and vice versa in left-pawed animals. Similar results were obtained in >>>seizure<<<-induced breakdown of BBB. These results were explained by an asymmetric cerebral blood flow depending upon the paw pref...
+
+--- Sample 22 ---
+  GOLD : [DISEASE]  'INF-MI'  (chars 968-974)
+  PRED : (missed)
+  CTX  : ...population. Exercise-induced ST depression was observed in 84% of the non-MI group, 43% of the ANT-MI group, 38% of the >>>INF-MI<<< group and 61% of the total. For individual patients, there were no obvious differences between the body surface distrib...
+
+--- Sample 23 ---
+  GOLD : [DISEASE]  'mitochondrial oxidative damage'  (chars 1385-1415)
+  PRED : (missed)
+  CTX  : ...same time point as when mitochondrial injury initially appeared. These results document for the first time in vivo that >>>mitochondrial oxidative damage<<< precedes nitrative damage. The progressive nature of mitochondrial injury suggests that mitochondria, not other subcell...
+
+--- Sample 24 ---
+  GOLD : [DISEASE]  'hyperalgesia'  (chars 1514-1526)
+  PRED : (missed)
+  CTX  : ...morphine (3.2 mg/kg) was increased by co-administration with CNSB002 from 28.0 and 31.7% to 114.6 and 56.9% reversal of >>>hyperalgesia<<< in the inflammatory and neuropathic models, respectively (P < 0.01; one-way analysis of variance-significantly greater ...
+
+--- Sample 25 ---
+  GOLD : [DISEASE]  'swelling'  (chars 557-565)
+  PRED : (missed)
+  CTX  : ...ause of an unacceptable incidence of side effects. Venous pain occurred in 68% of patients and 50% had redness, pain or >>>swelling<<< related to the injection site, in some cases lasting up to three weeks after anaesthesia. Skeletal movements occurred i...
+
+--- Sample 26 ---
+  GOLD : [CHEMICAL]  'angiotensin'  (chars 1134-1145)
+  PRED : (missed)
+  CTX  : ...nol injection significantly prevented the observed alterations. Captopril (50 mg/kg/day, given orally), an inhibitor of >>>angiotensin<<<-converting enzyme used as a standard cardioprotective drug, was used as a positive control in this study. The data of t...
+
+--- Sample 27 ---
+  GOLD : [DISEASE]  'vomiting'  (chars 333-341)
+  PRED : (missed)
+  CTX  : ...in was administered thrice as one of the 3-4 drug regimen and each time he developed untoward side effects like nausea, >>>vomiting<<< and fever with chills and rigors. The last such episode was of acute renal failure at which stage the patient was seen ...
+
+--- Sample 28 ---
+  GOLD : [DISEASE]  'hyperactivity'  (chars 1579-1592)
+  PRED : (missed)
+  CTX  : ...nist, did not show any influence in this test. Similarly, all adenosine receptor agonists decreased amphetamine-induced >>>hyperactivity<<<, but at the higher doses than those which were active in cocaine-induced hyperactivity. The selective blockade of A2 ad...
+
+--- Sample 29 ---
+  GOLD : [DISEASE]  'loss of myelination'  (chars 527-546)
+  PRED : (missed)
+  CTX  : ... the enhancement was more pronounced near the base of the brain than at the vertex. Necropsy of the first case revealed >>>loss of myelination<<< and necrosis of the white matter. Possible mechanisms causing such a leukoencephalopathy are discussed.
+
+--- Sample 30 ---
+  GOLD : [DISEASE]  'pain'  (chars 399-403)
+  PRED : (missed)
+  CTX  : ...edian duration 24 months, were treated with 0.025% capsaicin cream for 8 weeks. During therapy the patients rated their >>>pain<<< on a visual analogue scale (VAS) and a verbal outcome scale. A follow-up investigation was performed 10-12 months after...
+
+--- Sample 31 ---
+  GOLD : [DISEASE]  'MI'  (chars 452-454)
+  PRED : (missed)
+  CTX  : ...body surface mapping technique. Patients were divided into three groups; 19 patients without myocardial infarction (non->>>MI<<< group), 14 with anterior infarction (ANT-MI) and eight with inferior infarction (INF-MI). Eighty-seven unipolar electro...
+
+--- Sample 32 ---
+  GOLD : [DISEASE]  'arrhythmia'  (chars 2549-2559)
+  PRED : (missed)
+  CTX  : ... for torsades de pointes. Recurrence rates of ventricular tachyarrhythmias are high despite complete suppression of the >>>arrhythmia<<< during programmed stimulation. Therefore programmed electrical stimulation in the case of d,l-sotalol seems to be of li...
 
 --- Sample 33 ---
-  GOLD : [CHEMICAL]  'CE'  (chars 1334-1336)
+  GOLD : [CHEMICAL]  'GFC'  (chars 820-823)
   PRED : (missed)
-  CTX  : ...ach cocaine bolus in the C+E and C only groups; however, persistent hemodynamic changes occurred in the C+E group. Peak >>>CE<<< levels were associated with a 45% (SD +/- 22%, 95% CI = 22% to 69%) decrease in cardiac output (p < 0.05), a 56% (SD +/...
+  CTX  : ...spartate and glutathione) levels as well as on acetylcholinesterase (AChE) activity in mice hippocampus after seizures. >>>GFC<<< produced an increased latency to first seizure, at doses 25mg/kg (20.12 + 2.20 min), 50mg/kg (20.95 + 2.21 min) or 75 m...
 
 --- Sample 34 ---
-  GOLD : [DISEASE]  'hemorrhagic'  (chars 1114-1125)
+  GOLD : [DISEASE]  'bipolar'  (chars 70-77)
   PRED : (missed)
-  CTX  : ...is due to multiple genes. However, while DES-induced pituitary growth exhibited quantitative, additive inheritance, the >>>hemorrhagic<<< phenotype exhibited recessive, epistatic inheritance. Only 5 of the 160 F2 pituitaries exhibited the hemorrhagic phenot...
+  CTX  : Hypercalcemia, arrhythmia, and mood stabilizers. Recent findings in a >>>bipolar<<< patient receiving maintenance lithium therapy who developed hypercalcemia and severe bradyarrhythmia prompted the autho...
 
 --- Sample 35 ---
-  GOLD : [DISEASE]  'myocardial strain'  (chars 233-250)
+  GOLD : [DISEASE]  'nephropathy'  (chars 57-68)
   PRED : (missed)
-  CTX  : ...ion and prediction of cardiotoxicity during epirubicine-based chemotherapy. AIMS: To investigate whether alterations of >>>myocardial strain<<< and high-sensitive cardiac troponin T (cTnT) could predict future cardiac dysfunction in patients after epirubicin expo...
+  CTX  : Conversion to sirolimus ameliorates cyclosporine-induced >>>nephropathy<<< in the rat: focus on serum, urine, gene, and protein renal expression biomarkers. Protocols of conversion from cyclospo...
 
 --- Sample 36 ---
-  GOLD : [CHEMICAL]  'BUN'  (chars 848-851)
+  GOLD : [CHEMICAL]  'EE'  (chars 1302-1304)
   PRED : (missed)
-  CTX  : ...sentation. He then presented to the emergency department feeling quite ill and was found to have a blood urea nitrogen (>>>BUN<<<) concentration of of 147 mg/dl, creatinine of 15.3 mg/dl and serum potassium of 8.7 mEq/l. Dialysis was immediately ini...
+  CTX  : ...verted rats treated with EE, yet biliary BS composition was only minimally affected. Activity of CYP7A was decreased by >>>EE<<< in both intact and bile-diverted rats, whereas the activity of the CYP27 was not affected. Hepatic mRNA levels of CYP7A...
 
 --- Sample 37 ---
-  GOLD : [CHEMICAL]  'tert-butyl-(S)-8-bromo-11,12,13,13a-tetrahydro-9-oxo-9H- imidazo[1,5-a]-pyrrolo-[2,1-c][1,4]benzodiazepine-1-carboxylate'  (chars 827-947)
+  GOLD : [DISEASE]  'pain'  (chars 511-515)
   PRED : (missed)
-  CTX  : ...othionate ([35S]TBPS). These effects were similar to those induced by diazepam, whereas the partial agonist Ro 16-6028 (>>>tert-butyl-(S)-8-bromo-11,12,13,13a-tetrahydro-9-oxo-9H- imidazo[1,5-a]-pyrrolo-[2,1-c][1,4]benzodiazepine-1-carboxylate<<<) showed very weak efficacy in these biochemical tests. After i.p. injection to rats, abecarnil and diazepam decreased i...
+  CTX  : ...xperimental conditions were created in which NSAIDs had previously been observed to produce effects on phasic and tonic >>>pain<<< by either central or peripheral mechanisms. METHODS: According to a double-blind, randomised, controlled, threefold cro...
 
 --- Sample 38 ---
-  GOLD : [DISEASE]  'sweating'  (chars 734-742)
+  GOLD : [DISEASE]  'hypotension'  (chars 56-67)
   PRED : (missed)
-  CTX  : ...d with compensatory focal hyperhidrosis. After applying topical glycopyrrolate, the subjective effect was excellent (no >>>sweating<<< after eating hot spicy food) in 10 patients (77%), and fair (clearly reduced sweating) in 3 patients (23%). All had rep...
+  CTX  : Hemodynamics and myocardial metabolism under deliberate >>>hypotension<<<. An experimental study in dogs. Coronary blood flow, cardiac work and metabolism were studied in dogs under sodium nitr...
 
 --- Sample 39 ---
-  GOLD : [DISEASE]  'seizures'  (chars 104-112)
+  GOLD : [DISEASE]  'neurotoxicity'  (chars 1771-1784)
   PRED : (missed)
-  CTX  : Behavioral and neurochemical studies in mice pretreated with garcinielliptone FC in pilocarpine-induced >>>seizures<<<. Garcinielliptone FC (GFC) isolated from hexanic fraction seed extract of species Platonia insignis Mart. It is widely ...
+  CTX  : ...o apoptosis and does not affect memory function. Present study clearly suggests that glial activation and post synaptic >>>neurotoxicity<<< are the key factors in STZ induced memory impairment and neuronal cell death.
 
 --- Sample 40 ---
-  GOLD : [DISEASE]  'manic'  (chars 499-504)
+  GOLD : [DISEASE]  'HTN'  (chars 472-475)
   PRED : (missed)
-  CTX  : ...llary oscillation, were dramatically different than those observed in the eight other study subjects who did not become >>>manic<<<. The large changes in total power of pupillary oscillation occurred a few days before the patient became fully manic. S...
+  CTX  : ...by one of the following schedules during 120 min of reperfusion: Control, normotensive reperfusion; 90/hypertension (90/>>>HTN<<<), blood pressure was increased by 35 mm Hg during the initial 90 min of reperfusion only; 15/hypertension (15/HTN), nor...
 

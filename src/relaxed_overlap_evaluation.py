@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import os
 
 from src.utils import deduplicate_entities, group_by_row, load_jsonl
 
@@ -71,7 +70,6 @@ def main() -> None:
     if args.dataset == "bc5cdr":
         from src.experiment_config import MODEL_DISPLAY_NAMES, MODEL_KEYS, gold_entities_file, prediction_file, require_file, results_dir
     else:
-        os.environ["BIORED_VARIANT"] = "official"
         from src.biored_config import MODEL_DISPLAY_NAMES, MODEL_KEYS, gold_entities_file, prediction_file, require_file, results_dir
 
     gold = load_jsonl(require_file(gold_entities_file(args.split), "human gold entities"))

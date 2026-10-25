@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import time
 from pathlib import Path
@@ -89,6 +90,27 @@ def candidate_rows(
     return rows
 
 
+def _source_config_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _config_matches_source(
+    config: dict,
+    *,
+    source_hash: str,
+    model: str,
+    levels_below: int,
+    levels_above: int,
+) -> bool:
+    return (
+        config.get("model") == model
+        and config.get("prompt_version") == PROMPT_VERSION
+        and config.get("source_wv_config_sha256") == source_hash
+        and int(config.get("levels_below", -1)) == levels_below
+        and int(config.get("levels_above", -1)) == levels_above
+    )
+
+
 def load_or_create_config(
     *,
     split: str,
@@ -97,25 +119,30 @@ def load_or_create_config(
     levels_above: int,
     force_refit: bool,
 ) -> dict:
-    original_config = json.loads(
-        require_file(frozen_config_file(), "frozen five-model development configuration").read_text(
-            encoding="utf-8"
-        )
+    source_path = require_file(
+        frozen_config_file(),
+        "frozen five-model development configuration",
     )
-    weights = original_config["weights"]
-    base_threshold = float(original_config["selected_threshold"])
-    config_path = results_dir("dev") / CONFIG_FILENAME
+    original_config = json.loads(source_path.read_text(encoding="utf-8"))
+    if original_config.get("fit_split") != "dev":
+        raise ValueError("WV configuration was not fitted on development data.")
 
-    if split == "test":
-        require_file(config_path, "frozen MedGemma hybrid configuration")
-        config = json.loads(config_path.read_text(encoding="utf-8"))
-        return config
+    weights = {key: float(original_config["weights"][key]) for key in MODEL_KEYS}
+    base_threshold = float(original_config["selected_threshold"])
+    source_hash = _source_config_hash(source_path)
+    config_path = results_dir("dev") / CONFIG_FILENAME
 
     if config_path.exists() and not force_refit:
         config = json.loads(config_path.read_text(encoding="utf-8"))
-        if config.get("model") != model:
-            raise ValueError("Existing hybrid config uses another MedGemma model. Use --force-refit.")
-        return config
+        if _config_matches_source(
+            config,
+            source_hash=source_hash,
+            model=model,
+            levels_below=levels_below,
+            levels_above=levels_above,
+        ):
+            return config
+        print("Existing BC5CDR WV + MedGemma routing config is stale; rebuilding from current DEV WV config.")
 
     low_threshold, high_threshold = derive_band(
         weights=weights,
@@ -124,11 +151,13 @@ def load_or_create_config(
         levels_above=levels_above,
     )
     config = {
-        "schema_version": 1,
+        "schema_version": 2,
         "fit_split": "dev",
         "model": model,
         "prompt_version": PROMPT_VERSION,
         "prompt_hash": prompt_hash(PROMPT_VERSION + "|tie-break"),
+        "source_wv_config": str(source_path),
+        "source_wv_config_sha256": source_hash,
         "base_weighted_threshold": base_threshold,
         "low_threshold": low_threshold,
         "high_threshold": high_threshold,
@@ -147,7 +176,6 @@ def load_or_create_config(
     }
     save_json(config, config_path)
     return config
-
 
 def main() -> None:
     parser = argparse.ArgumentParser(

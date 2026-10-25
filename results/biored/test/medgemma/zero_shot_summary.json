@@ -8,9 +8,9 @@
   "document_count": 100,
   "completed_segment_count": 496,
   "entity_count": 2097,
-  "summed_request_seconds": 2678.607784,
-  "average_seconds_per_document": 26.786078,
-  "current_process_wall_seconds": 2678.768271,
+  "summed_request_seconds": 2691.833777,
+  "average_seconds_per_document": 26.918338,
+  "current_process_wall_seconds": 2691.969475,
   "diagnostics": {
     "returned_entities": 3139,
     "accepted_entities": 3121,
@@ -22,7 +22,7 @@
     "rejected_unmapped_text": 18,
     "rejected_ambiguous_occurrence": 0
   },
-  "prediction_file": "C:\\University\\Projects\\Biomedical NER\\data\\processed\\biored\\medgemma_test_entities_biored.jsonl",
-  "cache_file": "C:\\University\\Projects\\Biomedical NER\\results\\biored\\test\\medgemma\\zero_shot_doc_results_chunked_v2.jsonl",
+  "prediction_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\processed\\biored\\medgemma_test_entities_biored.jsonl",
+  "cache_file": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\test\\medgemma\\zero_shot_doc_results_chunked_v2.jsonl",
   "is_smoke_run": false
 }

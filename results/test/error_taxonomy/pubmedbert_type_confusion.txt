@@ -1,204 +1,204 @@
 ERROR TYPE: TYPE_CONFUSION
-Total instances: 198  |  Showing: 40
+Total instances: 48  |  Showing: 40
 ================================================================================
 
 --- Sample 1 ---
-  PRED : [DISEASE]  'Rifampicin'
-  GOLD : [CHEMICAL]  'Rifampicin'
-  CTX  : >>>Rifampicin<<<-associated segmental necrotizing glomerulonephritis in staphylococcal endocarditis. Segmental necrotising glomeruloneph...
+  PRED : [CHEMICAL]  'MDP'
+  GOLD : [DISEASE]  'MDP'
+  CTX  : ....85, P = .026). Our data suggest that there is an association between panic attacks, no matter if associated with PD or >>>MDP<<<, and hyperreactivity to an oral caffeine challenge test.
 
 --- Sample 2 ---
-  PRED : [DISEASE]  'ecstasy'
-  GOLD : [CHEMICAL]  'ecstasy'
-  CTX  : ...ains of proactive interference memory, long-term memory, encoding, working memory and complex planning. We suggest that >>>ecstasy<<<-associated dysfunction in fronto-temporal circuitry may underlie overnight consolidation memory impairments in regular ...
+  PRED : [DISEASE]  'Dex'
+  GOLD : [CHEMICAL]  'Dex'
+  CTX  : ...nic administration of LF strongly reduced the blood pressure and production of ROS and improved antioxidant capacity in >>>Dex<<<-induced hypertension, suggesting the role of inhibition of oxidative stress as another mechanism of antihypertensive ac...
 
 --- Sample 3 ---
-  PRED : [DISEASE]  'methamphetamine'
-  GOLD : [CHEMICAL]  'methamphetamine'
-  CTX  : ...methamphetamine based on DSM-IV were interviewed using the Mini International Neuropsychiatric Interview (M.I.N.I.) for >>>methamphetamine<<<-induced psychosis and other Axis I psychiatric disorders. The information on sociodemographic background and drug use h...
+  PRED : [DISEASE]  'levodopa'
+  GOLD : [CHEMICAL]  'levodopa'
+  CTX  : Risk factors and predictors of >>>levodopa<<<-induced dyskinesia among multiethnic Malaysians with Parkinson's disease. Chronic pulsatile levodopa therapy for Parkin...
 
 --- Sample 4 ---
-  PRED : [DISEASE]  'acetaminophen'
-  GOLD : [CHEMICAL]  'acetaminophen'
-  CTX  : ..., there were no significant differences in rejection (acute and chronic), graft failure or survival between the groups (>>>acetaminophen<<<-induced ALF 1 year 87%, 5 years 75%; non-acetaminophen-induced ALF 88%, 78%; CLD 93%, 82%: P>0.6 log rank). Two acetami...
+  PRED : [DISEASE]  'PAN'
+  GOLD : [CHEMICAL]  'PAN'
+  CTX  : ...ven colloidal carbon (CC) intravenously. At 5 months glomerular sclerosis was found in 7.6 +/- 3.4% of the glomeruli of >>>PAN<<< rats; glomeruli of the controls were normal. Glomeruli of PAN rats contained significantly more CC than glomeruli of co...
 
 --- Sample 5 ---
-  PRED : [DISEASE]  'CYA'
-  GOLD : [CHEMICAL]  'CYA'
-  CTX  : ...spectively calculated the dose of CYA in patients transplanted at our institution to determine whether the incidence of >>>CYA<<< cardiotoxicity correlated with the dose per body surface area. Eighty patients who were to receive CYA 50 mg/kg/d for f...
+  PRED : [DISEASE]  'PAN'
+  GOLD : [CHEMICAL]  'PAN'
+  CTX  : ...clerosis was studied in the puromycin aminonucleoside (PAN) model. Five male Wistar rats received repeated subcutaneous >>>PAN<<< injections; five controls received saline only. After 4 weeks the PAN rats were severely proteinuric (190 +/- 80 mg/24 ...
 
 --- Sample 6 ---
-  PRED : [DISEASE]  'neuroleptic'
-  GOLD : [CHEMICAL]  'neuroleptic'
-  CTX  : ...lly corrected with bromocriptine. This suggests that bromocriptine should be further evaluated as potential therapy for >>>neuroleptic<<<-associated hyperprolactinemia and amenorrhea/galactorrhea.
+  PRED : [DISEASE]  'PAN'
+  GOLD : [CHEMICAL]  'PAN'
+  CTX  : ...hip between mesangial dysfunction and development of glomerular sclerosis was studied in the puromycin aminonucleoside (>>>PAN<<<) model. Five male Wistar rats received repeated subcutaneous PAN injections; five controls received saline only. After ...
 
 --- Sample 7 ---
-  PRED : [DISEASE]  'warfarin'
-  GOLD : [CHEMICAL]  'warfarin'
-  CTX  : ...CONCLUSIONS: The excess of MB in warfarin users with ICH compared to other groups suggests that MB increase the risk of >>>warfarin<<<-associated ICH. Limited prospective data corroborate these findings, but larger prospective studies are urgently requir...
+  PRED : [DISEASE]  'doxorubicin'
+  GOLD : [CHEMICAL]  'doxorubicin'
+  CTX  : An integrated characterization of serological, pathological, and functional events in >>>doxorubicin<<<-induced cardiotoxicity. Many efficacious cancer treatments cause significant cardiac morbidity, yet biomarkers or funct...
 
 --- Sample 8 ---
-  PRED : [DISEASE]  'heparin'
-  GOLD : [CHEMICAL]  'heparin'
-  CTX  : ...ansplant developed extensive bilateral upper-extremity deep venous thrombosis (DVT) and pulmonary embolism secondary to >>>heparin<<<-induced thrombocytopenia. A continuous i.v. infusion of argatroban was initiated, and the patient was managed on the ge...
-
---- Sample 9 ---
-  PRED : [DISEASE]  'acetaminophen'
-  GOLD : [CHEMICAL]  'acetaminophen'
-  CTX  : ... Chronic Health Evaluation II scores and requirement for organ support compared with the other two groups. Twenty (56%) >>>acetaminophen<<<-induced ALF patients had a formal psychiatric diagnosis before LT (non-acetaminophen-induced ALF=0/35, CLD=2/34; P<0.01...
-
---- Sample 10 ---
   PRED : [DISEASE]  'methotrexate'
   GOLD : [CHEMICAL]  'methotrexate'
   CTX  : ...protocols (ACCL0131): a methotrexate consequence? A report from the Children's Oncology Group. Concerns about long-term >>>methotrexate<<< (MTX) neurotoxicity in the 1990s led to modifications in intrathecal (IT) therapy, leucovorin rescue, and frequency of ...
 
---- Sample 11 ---
-  PRED : [DISEASE]  'cocaine'
-  GOLD : [CHEMICAL]  'cocaine'
-  CTX  : ...k patients with cocaine-associated chest pain. BACKGROUND: Most patients presenting to emergency departments (EDs) with >>>cocaine<<<-associated chest pain are admitted for at least 12 hours and receive a "rule out acute coronary syndrome" protocol, oft...
+--- Sample 9 ---
+  PRED : [DISEASE]  'PAN'
+  GOLD : [CHEMICAL]  'PAN'
+  CTX  : ...mocapril group. It appears that temocapril was effective in retarding renal progression and protected renal function in >>>PAN<<< neprotic rats.
 
---- Sample 12 ---
-  PRED : [DISEASE]  'androgen'
-  GOLD : [CHEMICAL]  'androgen'
-  CTX  : An open-label phase II study of low-dose thalidomide in >>>androgen<<<-independent prostate cancer. The antiangiogenic effects of thalidomide have been assessed in clinical trials in patient...
-
---- Sample 13 ---
-  PRED : [DISEASE]  'Tacrolimus'
-  GOLD : [CHEMICAL]  'Tacrolimus'
-  CTX  : >>>Tacrolimus<<<-related seizure after pediatric liver transplantation--a single-center experience. To identify the risk factors for new...
-
---- Sample 14 ---
-  PRED : [DISEASE]  'ADR'
-  GOLD : [CHEMICAL]  'ADR'
-  CTX  : ...t study was to determine if elevated reactive oxygen (ROS)/nitrogen species (RNS) reported to be present in adriamycin (>>>ADR<<<)-induced cardiotoxicity actually resulted in cardiomyocyte oxidative/nitrative damage, and to quantitatively determine ...
-
---- Sample 15 ---
-  PRED : [DISEASE]  'warfarin'
-  GOLD : [CHEMICAL]  'warfarin'
-  CTX  : ...warfarin-like anticoagulant causing an intracerebral hemorrhage: a case report. A case of intercerebral hematoma due to >>>warfarin<<<-induced coagulopathy is presented. The 39-year-old woman had spread a warfarin-type rat poison around her house weekly ...
-
---- Sample 16 ---
-  PRED : [DISEASE]  'methamphetamine'
-  GOLD : [CHEMICAL]  'methamphetamine'
-  CTX  : ...ere the only factors associated with current psychosis. CONCLUSION: There was a high risk of psychosis in patients with >>>methamphetamine<<< dependence. It was associated with co-morbid affective disorder, antisocial personality, and heavy methamphetamine use....
-
---- Sample 17 ---
-  PRED : [DISEASE]  'methamphetamine'
-  GOLD : [CHEMICAL]  'methamphetamine'
-  CTX  : ...ity disorder (OR=12.619, 95 CI=6.702-23.759) and heavy methamphetamine uses were significantly associated with lifetime >>>methamphetamine<<<-induced psychosis after adjusted for other factors. Major depressive disorder (OR=2.870, CI=1.154-7.142) and antisocial...
-
---- Sample 18 ---
+--- Sample 10 ---
   PRED : [DISEASE]  'TAC'
   GOLD : [CHEMICAL]  'TAC'
   CTX  : ...c LT. High PELD and Child-Pugh scores before LT and high post-operative serum Tbil may be contributory risk factors for >>>TAC<<<-related seizures.
 
---- Sample 19 ---
-  PRED : [CHEMICAL]  'AL'
-  GOLD : [DISEASE]  'AL'
-  CTX  : ...y affected the outcome after PBSCT. Effective preventive measures may help decrease the treatment mortality of PBSCT in >>>AL<<< patients.
-
---- Sample 20 ---
-  PRED : [DISEASE]  'phenytoin'
-  GOLD : [CHEMICAL]  'phenytoin'
-  CTX  : Phenytoin encephalopathy as probable idiosyncratic reaction: case report. A case of >>>phenytoin<<< (DPH) encephalopathy with increasing seizures and EEG and mental changes is described. Despite adequate oral dosage of ...
-
---- Sample 21 ---
-  PRED : [DISEASE]  'Thalidomide'
-  GOLD : [CHEMICAL]  'Thalidomide'
-  CTX  : >>>Thalidomide<<< neuropathy in patients treated for metastatic prostate cancer. We prospectively evaluated thalidomide-induced neuropath...
-
---- Sample 22 ---
-  PRED : [DISEASE]  'vancomycin'
-  GOLD : [CHEMICAL]  'vancomycin'
-  CTX  : In vivo evidences suggesting the role of oxidative stress in pathogenesis of >>>vancomycin<<<-induced nephrotoxicity: protection by erdosteine. The aims of this study were to examine vancomycin (VCM)-induced oxida...
-
---- Sample 23 ---
-  PRED : [DISEASE]  'bisphosphonate'
-  GOLD : [CHEMICAL]  'bisphosphonate'
-  CTX  : ...consecutive administration of alendronate. CONCLUSION: We conclude that patients with osteoporosis can report pain, and >>>bisphosphonate<<<-related pain should also be considered before ascribing this complaint to osteoporosis.
-
---- Sample 24 ---
-  PRED : [DISEASE]  'VNR'
-  GOLD : [CHEMICAL]  'VNR'
-  CTX  : ...lbine-related cardiac events concern about 1% of treated patients in clinical trials. However, the risk associated with >>>VNR<<< seems to be similar to that of other chemotherapeutic agents in the same indications.
-
---- Sample 25 ---
-  PRED : [DISEASE]  'doxorubicin'
-  GOLD : [CHEMICAL]  'doxorubicin'
-  CTX  : ...say) decreased from 35 +/- 11 pg/mg protein (mean +/- SD) to 5 +/- 4 pg/mg protein (P less than 0.05). In six dogs with >>>doxorubicin<<<-induced heart failure, VIP decreased from 31 +/- 7 to 11 +/- 4 pg/mg protein (P less than 0.05). In addition, VIP conte...
-
---- Sample 26 ---
+--- Sample 11 ---
   PRED : [DISEASE]  'ADR'
   GOLD : [CHEMICAL]  'ADR'
-  CTX  : ..., and its potential in slowing down renal disease progression in spontaneously hypertensive rats (SHR) with adriamycin (>>>ADR<<<) nephropathy. METHODS: Six-month-old female SHR were randomly selected in six groups. Two control groups (SH(6), SH(12)...
+  CTX  : ...t study was to determine if elevated reactive oxygen (ROS)/nitrogen species (RNS) reported to be present in adriamycin (>>>ADR<<<)-induced cardiotoxicity actually resulted in cardiomyocyte oxidative/nitrative damage, and to quantitatively determine ...
 
---- Sample 27 ---
-  PRED : [DISEASE]  'acetaminophen'
-  GOLD : [CHEMICAL]  'acetaminophen'
-  CTX  : ...and psychosocial outcomes of all patients who had undergone liver transplantation (LT) emergently between 1999-2004 for >>>acetaminophen<<<-induced ALF (n=36) with age- and sex-matched patients undergoing emergent LT for non-acetaminophen-induced ALF (n=35) a...
+--- Sample 12 ---
+  PRED : [DISEASE]  'doxorubicin'
+  GOLD : [CHEMICAL]  'doxorubicin'
+  CTX  : ...development of cardiotoxicity with time. These findings result in a model that allows the testing of protectors against >>>doxorubicin<<<-induced cardiotoxicity as demonstrated by the protection provided by ICRF-187.
 
---- Sample 28 ---
+--- Sample 13 ---
+  PRED : [DISEASE]  'levodopa'
+  GOLD : [CHEMICAL]  'levodopa'
+  CTX  : ...disease (PD) leads to the development of motor fluctuations and dyskinesia. We studied the prevalence and predictors of >>>levodopa<<<-induced dyskinesia among multiethnic Malaysian patients with PD. METHODS: This is a cross-sectional study involving 95 ...
+
+--- Sample 14 ---
+  PRED : [DISEASE]  'Gentamicin'
+  GOLD : [CHEMICAL]  'Gentamicin'
+  CTX  : ...ase, NHE3, NBC1, and AQP1 in the kidney of gentamicin-treated rats. The expression of OAT1 and OAT3 was also decreased. >>>Gentamicin<<<-induced nephropathy may at least in part be causally related with a decreased expression of Na(+)/K(+)-ATPase, NHE3, NB...
+
+--- Sample 15 ---
+  PRED : [DISEASE]  'ADR'
+  GOLD : [CHEMICAL]  'ADR'
+  CTX  : ...dose of 25 mg/kg evoked fully developed cardiac toxicity. D-ribose in the multiple doses of 200 mg/kg did not influence >>>ADR<<< cardiotoxicity.
+
+--- Sample 16 ---
+  PRED : [DISEASE]  'puromycin aminonucleoside'
+  GOLD : [CHEMICAL]  'puromycin aminonucleoside'
+  CTX  : ...sis. The possible relationship between mesangial dysfunction and development of glomerular sclerosis was studied in the >>>puromycin aminonucleoside<<< (PAN) model. Five male Wistar rats received repeated subcutaneous PAN injections; five controls received saline only. A...
+
+--- Sample 17 ---
+  PRED : [DISEASE]  '6-hydroxydopamine'
+  GOLD : [CHEMICAL]  '6-hydroxydopamine'
+  CTX  : Increased vulnerability to >>>6-hydroxydopamine<<< lesion and reduced development of dyskinesias in mice lacking CB1 cannabinoid receptors. Motor impairment, dopamine (DA...
+
+--- Sample 18 ---
+  PRED : [DISEASE]  'PAN'
+  GOLD : [CHEMICAL]  'PAN'
+  CTX  : ...e male Wistar rats received repeated subcutaneous PAN injections; five controls received saline only. After 4 weeks the >>>PAN<<< rats were severely proteinuric (190 +/- 80 mg/24 hr), and all rats were given colloidal carbon (CC) intravenously. At 5...
+
+--- Sample 19 ---
+  PRED : [DISEASE]  'PAN'
+  GOLD : [CHEMICAL]  'PAN'
+  CTX  : ...clerotic areas of the affected glomeruli. Since mesangial CC clearance from the mesangium did not change during chronic >>>PAN<<< treatment, we conclude that this preferential CC localization within the lesions is caused by an increased CC uptake sh...
+
+--- Sample 20 ---
+  PRED : [DISEASE]  'methamphetamine'
+  GOLD : [CHEMICAL]  'methamphetamine'
+  CTX  : ...ependent patients in Malaysia. OBJECTIVE: The objective of this study was to determine the risk of lifetime and current >>>methamphetamine<<<-induced psychosis in patients with methamphetamine dependence. The association between psychiatric co-morbidity and met...
+
+--- Sample 21 ---
+  PRED : [DISEASE]  'Gentamicin'
+  GOLD : [CHEMICAL]  'Gentamicin'
+  CTX  : Decreased Expression of Na/K-ATPase, NHE3, NBC1, AQP1 and OAT in >>>Gentamicin<<<-induced Nephropathy. The present study was aimed to determine whether there is an altered regulation of tubular transpo...
+
+--- Sample 22 ---
+  PRED : [DISEASE]  'STZ'
+  GOLD : [CHEMICAL]  'STZ'
+  CTX  : ...f hyperalgesia (ED50) were 7.54 (1.81) and 4.83 (1.54) in the carrageenan model and 44.18 (1.37) and 9.14 (1.24) in the >>>STZ<<<-induced neuropathy model for CNSB002 and morphine, respectively (mg/kg; mean, SEM). These values were greater than the ...
+
+--- Sample 23 ---
   PRED : [DISEASE]  'GM'
   GOLD : [CHEMICAL]  'GM'
-  CTX  : ...enal cortical GM content in GM-treated rats. These results suggest that 1) both SOD and DMTU have protective effects on >>>GM<<<-mediated nephropathy, 2) the mechanisms for the protective effects differ for SOD and DMTU, and 3) superoxide anions pl...
+  CTX  : .... Studies were performed to examine the mechanisms for the protective effects of free radical scavengers on gentamicin (>>>GM<<<)-mediated nephropathy. Administration of GM at 40 mg/kg sc for 13 days to rats induced a significant reduction in renal...
+
+--- Sample 24 ---
+  PRED : [DISEASE]  'PAN'
+  GOLD : [CHEMICAL]  'PAN'
+  CTX  : ...erable areas where sclerosis will develop subsequently. Cluster analysis showed a random distribution of lesions in the >>>PAN<<< glomeruli in concordance with the random localization of mesangial areas with dysfunction in this model. Similar to the...
+
+--- Sample 25 ---
+  PRED : [DISEASE]  'Doxorubicin'
+  GOLD : [CHEMICAL]  'Doxorubicin'
+  CTX  : >>>Doxorubicin<<<-induced cardiotoxicity monitored by ECG in freely moving mice. A new model to test potential protectors. In laboratory ...
+
+--- Sample 26 ---
+  PRED : [DISEASE]  'Ribavirin'
+  GOLD : [CHEMICAL]  'Ribavirin'
+  CTX  : ... mg participated in the study. A hemoglobin concentration of <10 g/dL was defined as ribavirin-induced anemia. RESULTS: >>>Ribavirin<<<-induced anemia occurred in 18 (20.5%) patients during treatment. A 2 g/dL decrease in hemoglobin concentrations in pati...
+
+--- Sample 27 ---
+  PRED : [DISEASE]  'puromycin aminonucleoside'
+  GOLD : [CHEMICAL]  'puromycin aminonucleoside'
+  CTX  : ...zyme (ACE) inhibitor, reduced proteinuria, inhibited glomerular hypertrophy and prevented glomerulosclerosis in chronic >>>puromycin aminonucleoside<<< (PAN) - induced nephrotic rats. Nephrosis was induced by injection of PAN (15mg/100g body weight) in male Sprague-Dawle...
+
+--- Sample 28 ---
+  PRED : [DISEASE]  'acetaminophen'
+  GOLD : [CHEMICAL]  'acetaminophen'
+  CTX  : ..., there were no significant differences in rejection (acute and chronic), graft failure or survival between the groups (>>>acetaminophen<<<-induced ALF 1 year 87%, 5 years 75%; non-acetaminophen-induced ALF 88%, 78%; CLD 93%, 82%: P>0.6 log rank). Two acetami...
 
 --- Sample 29 ---
-  PRED : [DISEASE]  'cocaine'
-  GOLD : [CHEMICAL]  'cocaine'
-  CTX  : Bilateral haemorrhagic infarction of the globus pallidus after >>>cocaine<<< and alcohol intoxication. Cocaine is a risk factor for both ischemic and haemorrhagic stroke. We present the case of a ...
+  PRED : [DISEASE]  'thalidomide'
+  GOLD : [CHEMICAL]  'thalidomide'
+  CTX  : Thalidomide neuropathy in patients treated for metastatic prostate cancer. We prospectively evaluated >>>thalidomide<<<-induced neuropathy using electrodiagnostic studies. Sixty-seven men with metastatic androgen-independent prostate cance...
 
 --- Sample 30 ---
   PRED : [DISEASE]  'PAN'
   GOLD : [CHEMICAL]  'PAN'
-  CTX  : ...earance was higher in rhIGF-I-treated rats, 0.48 +/- 0.08 versus 0.24 +/- 0.06 mL/min/100 g of body weight in untreated >>>PAN<<< nephropathy animals, p < 0.05. The improvement in GFR was not associated with enhanced glomerular hypertrophy or increa...
+  CTX  : ...r sclerosis was found in 7.6 +/- 3.4% of the glomeruli of PAN rats; glomeruli of the controls were normal. Glomeruli of >>>PAN<<< rats contained significantly more CC than glomeruli of controls. Glomeruli with sclerosis contained significantly more ...
 
 --- Sample 31 ---
-  PRED : [DISEASE]  'adriamycin'
-  GOLD : [CHEMICAL]  'adriamycin'
-  CTX  : ...f the present study was to determine if elevated reactive oxygen (ROS)/nitrogen species (RNS) reported to be present in >>>adriamycin<<< (ADR)-induced cardiotoxicity actually resulted in cardiomyocyte oxidative/nitrative damage, and to quantitatively deter...
+  PRED : [DISEASE]  'Rifampicin'
+  GOLD : [CHEMICAL]  'Rifampicin'
+  CTX  : >>>Rifampicin<<<-associated segmental necrotizing glomerulonephritis in staphylococcal endocarditis. Segmental necrotising glomeruloneph...
 
 --- Sample 32 ---
-  PRED : [DISEASE]  'CYA'
-  GOLD : [CHEMICAL]  'CYA'
-  CTX  : ...ome, or severe combined immunodeficiency syndrome. Fourteen of 84 (17%) patients had symptoms and signs consistent with >>>CYA<<< cardiotoxicity within ten days of receiving 1 to 4 doses of CYA. Six of the 14 patients died with congestive heart fail...
+  PRED : [DISEASE]  'Heparin'
+  GOLD : [CHEMICAL]  'Heparin'
+  CTX  : >>>Heparin<<<-induced thrombocytopenia, paradoxical thromboembolism, and other side effects of heparin therapy. Although several new ...
 
 --- Sample 33 ---
-  PRED : [DISEASE]  'methamphetamine'
-  GOLD : [CHEMICAL]  'methamphetamine'
-  CTX  : The risk and associated factors of >>>methamphetamine<<< psychosis in methamphetamine-dependent patients in Malaysia. OBJECTIVE: The objective of this study was to determine th...
+  PRED : [DISEASE]  'PAN'
+  GOLD : [CHEMICAL]  'PAN'
+  CTX  : ...tion and GSI (r = 0.808, p < 0.0001). The ratio of glomerular tuft area to the area of Bowman's capsules (GT/BC) in the >>>PAN<<< group was significantly increased, but it was significantly lower in the PAN/temocapril group. It appears that temocapr...
 
 --- Sample 34 ---
-  PRED : [DISEASE]  'metronidazole'
-  GOLD : [CHEMICAL]  'metronidazole'
-  CTX  : ...abnormal signal intensity involving both dentate nuclei of cerebellum and splenium of corpus callosum. The diagnosis of >>>metronidazole<<< toxicity was made by the MRI findings and supported clinically.
+  PRED : [CHEMICAL]  'AL'
+  GOLD : [DISEASE]  'AL'
+  CTX  : ...y affected the outcome after PBSCT. Effective preventive measures may help decrease the treatment mortality of PBSCT in >>>AL<<< patients.
 
 --- Sample 35 ---
-  PRED : [DISEASE]  'CM'
-  GOLD : [CHEMICAL]  'CM'
-  CTX  : ...ed by CM administration than PCI patients. The effectiveness of PTRA on renal function seems to be barely influenced by >>>CM<<< toxicity.
+  PRED : [DISEASE]  'doxorubicin'
+  GOLD : [CHEMICAL]  'doxorubicin'
+  CTX  : ... moving mice. A new model to test potential protectors. In laboratory animals, histology is most commonly used to study >>>doxorubicin<<<-induced cardiotoxicity. However, for monitoring during treatment, large numbers of animals are needed. Recently we deve...
 
 --- Sample 36 ---
-  PRED : [DISEASE]  'DOCA'
-  GOLD : [CHEMICAL]  'DOCA'
-  CTX  : ...on, since the elevation of blood pressure was not substantial in the rats with lithium-treated diabetes insipidus after >>>DOCA<<<-salt treatment. Administration of DDAVP which has antidiuretic action but minimal vasopressor effect failed to increase...
-
---- Sample 37 ---
   PRED : [DISEASE]  'cocaine'
   GOLD : [CHEMICAL]  'cocaine'
-  CTX  : Coronary computerized tomography angiography for rapid discharge of low-risk patients with >>>cocaine<<<-associated chest pain. BACKGROUND: Most patients presenting to emergency departments (EDs) with cocaine-associated ches...
+  CTX  : .... CONCLUSIONS: Although cocaine-associated myocardial ischemia can result from coronary vasoconstriction, patients with >>>cocaine<<< associated chest pain, a non-ischemic ECG, and a TIMI risk score <2 may be safely discharged from the ED after a negati...
+
+--- Sample 37 ---
+  PRED : [DISEASE]  'Tacrolimus'
+  GOLD : [CHEMICAL]  'Tacrolimus'
+  CTX  : >>>Tacrolimus<<<-related seizure after pediatric liver transplantation--a single-center experience. To identify the risk factors for new...
 
 --- Sample 38 ---
-  PRED : [DISEASE]  'Metronidazole'
-  GOLD : [CHEMICAL]  'Metronidazole'
-  CTX  : >>>Metronidazole<<<-induced encephalopathy: an uncommon scenario. Metronidazole can produce neurological complications although it is not a...
+  PRED : [DISEASE]  'ribavirin'
+  GOLD : [CHEMICAL]  'ribavirin'
+  CTX  : ...d orally at a dose of 600 mg or 800 mg participated in the study. A hemoglobin concentration of <10 g/dL was defined as >>>ribavirin<<<-induced anemia. RESULTS: Ribavirin-induced anemia occurred in 18 (20.5%) patients during treatment. A 2 g/dL decrease i...
 
 --- Sample 39 ---
-  PRED : [DISEASE]  'acetaminophen'
-  GOLD : [CHEMICAL]  'acetaminophen'
-  CTX  : ...e had complete recovery of neurological and hepatic functions. CONCLUSION: In patients with FHF and cerebral edema from >>>acetaminophen<<< overdose, prolonged therapeutic hypothermia could potentially be used as a life saving therapy and a bridge to hepatic ...
+  PRED : [DISEASE]  'levodopa'
+  GOLD : [CHEMICAL]  'levodopa'
+  CTX  : ... dyskinesia were duration of levodopa therapy, onset age, and total daily levodopa dose. CONCLUSIONS: The prevalence of >>>levodopa<<<-induced dyskinesia in our patients was 44%. The most significant predictors were duration of levodopa therapy, total da...
 
 --- Sample 40 ---
-  PRED : [DISEASE]  'lithium'
-  GOLD : [CHEMICAL]  'lithium'
-  CTX  : ... the pathogenesis of DOCA-salt hypertension, since the elevation of blood pressure was not substantial in the rats with >>>lithium<<<-treated diabetes insipidus after DOCA-salt treatment. Administration of DDAVP which has antidiuretic action but minimal...
+  PRED : [DISEASE]  'cocaine'
+  GOLD : [CHEMICAL]  'cocaine'
+  CTX  : Bilateral haemorrhagic infarction of the globus pallidus after >>>cocaine<<< and alcohol intoxication. Cocaine is a risk factor for both ischemic and haemorrhagic stroke. We present the case of a ...
 

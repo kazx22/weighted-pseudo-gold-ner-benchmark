@@ -8,16 +8,21 @@ from collections import Counter
 from pathlib import Path
 
 from src.biored_config import (
+    PROJECT_ROOT,
     RAW_DIR,
     RAW_FILENAMES,
     RAW_ROOT,
     docs_file,
     gold_entities_file,
+    training_docs_file,
+    training_entities_file,
     normalize_split,
     results_dir,
     save_json,
 )
 from src.utils import save_jsonl
+
+PROJECT_TRAIN_AUDIT = PROJECT_ROOT / "results" / "finetuned_models" / "biored" / "train_data_audit.json"
 
 LABEL_MAP = {
     "DiseaseOrPhenotypicFeature": "DISEASE",
@@ -97,7 +102,7 @@ def _extract_from_zip(split: str) -> Path | None:
 
 
 def resolve_input(split: str, explicit_input: str | None = None) -> Path:
-    split = normalize_split(split)
+    split = normalize_split(split, allow_train=True)
     if explicit_input:
         path = Path(explicit_input)
         if not path.exists():
@@ -226,7 +231,7 @@ def parse_biored(file_path: Path) -> tuple[list[dict], list[dict], dict]:
 
 
 def process_split(split: str, explicit_input: str | None = None) -> None:
-    split = normalize_split(split)
+    split = normalize_split(split, allow_train=True)
     input_file = resolve_input(split, explicit_input)
     print("\n" + "=" * 72)
     print(f"BIORED {split.upper()} PARSING — DISEASE + CHEMICAL ONLY")
@@ -234,12 +239,20 @@ def process_split(split: str, explicit_input: str | None = None) -> None:
     print(f"Input: {input_file}")
 
     documents, entities, audit = parse_biored(input_file)
-    save_jsonl(documents, docs_file(split))
-    save_jsonl(entities, gold_entities_file(split))
-    save_json(audit, results_dir(split) / "biored_data_audit.json")
+    if split == "train":
+        out_docs = training_docs_file()
+        out_entities = training_entities_file()
+        audit_path = PROJECT_TRAIN_AUDIT
+    else:
+        out_docs = docs_file(split)
+        out_entities = gold_entities_file(split)
+        audit_path = results_dir(split) / "biored_data_audit.json"
+    save_jsonl(documents, out_docs)
+    save_jsonl(entities, out_entities)
+    save_json(audit, audit_path)
 
-    print(f"Saved documents: {len(documents)} -> {docs_file(split)}")
-    print(f"Saved target entities: {len(entities)} -> {gold_entities_file(split)}")
+    print(f"Saved documents: {len(documents)} -> {out_docs}")
+    print(f"Saved target entities: {len(entities)} -> {out_entities}")
     print(f"Target counts: {audit['target_labels']}")
     print(f"Ignored BioRED entity classes: {audit['ignored_entity_labels']}")
     print("Relations were ignored because this experiment is NER only.")
@@ -250,7 +263,7 @@ def main() -> None:
     parser.add_argument(
         "--split",
         default="all",
-        choices=["all", "dev", "test", "development"],
+        choices=["all", "train", "dev", "test", "development"],
     )
     parser.add_argument(
         "--input",
@@ -265,7 +278,7 @@ def main() -> None:
         process_split("test")
         return
 
-    process_split(normalize_split(args.split), args.input)
+    process_split(normalize_split(args.split, allow_train=True), args.input)
 
 
 if __name__ == "__main__":

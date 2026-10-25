@@ -38,6 +38,7 @@ def _budget_map(root: Path) -> dict[str, float]:
 
 def _summary(variant: str, root: Path, audit: dict) -> dict:
     evaluation = _load(root / "test" / "evaluation_results.json")
+    cawv = _load(root / "test" / "cawv" / "cawv_evaluation.json")
     controls = _load(root / "test" / "method_controls" / "method_controls.json")
     config = _load(root / "dev" / "frozen_pseudo_gold_config.json")
     budget = _budget_map(root)
@@ -55,6 +56,9 @@ def _summary(variant: str, root: Path, audit: dict) -> dict:
         "selected_weighted_threshold": float(config["selected_threshold"]),
         "majority_f1": float(_find(pseudo, "Majority Pseudo-Gold")["f1"]),
         "weighted_f1": float(_find(pseudo, "Weighted Pseudo-Gold")["f1"]),
+        "cawv_f1": float(cawv["overall"]["CAWV"]["f1"]),
+        "cawv_minus_weighted_f1": float(cawv["overall"]["CAWV"]["f1"] - cawv["overall"]["WV"]["f1"]),
+        "cawv_vs_weighted_holm_p": float(next(row for row in cawv["bootstrap"]["comparisons"] if row["comparison"] == "CAWV_vs_WV")["holm_p"]),
         "scispacy_f1": float(_find(models, "scispaCy")["f1"]),
         "tuned_unweighted_k": int(controls["tuned_unweighted"]["selected_k"]),
         "tuned_unweighted_f1": float(controls["tuned_unweighted"]["test_metrics"]["f1"]),
@@ -111,6 +115,9 @@ def main() -> None:
         "|---|---:|---:|",
         f"| Majority F1 | {official['majority_f1']:.4f} | {clean['majority_f1']:.4f} |",
         f"| Weighted F1 | {official['weighted_f1']:.4f} | {clean['weighted_f1']:.4f} |",
+        f"| CAWV F1 | {official['cawv_f1']:.4f} | {clean['cawv_f1']:.4f} |",
+        f"| CAWV - WV | {official['cawv_minus_weighted_f1']:+.4f} | {clean['cawv_minus_weighted_f1']:+.4f} |",
+        f"| CAWV vs WV Holm p | {official['cawv_vs_weighted_holm_p']:.4f} | {clean['cawv_vs_weighted_holm_p']:.4f} |",
         f"| scispaCy F1 | {official['scispacy_f1']:.4f} | {clean['scispacy_f1']:.4f} |",
         f"| Tuned unweighted F1 | {official['tuned_unweighted_f1']:.4f} | {clean['tuned_unweighted_f1']:.4f} |",
         f"| 25% dev-gold mean weighted F1 | {official['budget_25_mean_test_f1']:.4f} | {clean['budget_25_mean_test_f1']:.4f} |",

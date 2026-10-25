@@ -5,16 +5,16 @@
     "CHEMICAL"
   ],
   "applied_split": "test",
-  "source_config": "C:\\University\\Projects\\Biomedical NER\\results\\biored\\dev\\frozen_pseudo_gold_config.json",
+  "source_config": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\dev\\frozen_pseudo_gold_config.json",
   "weights": {
     "scispacy": 0.66222093,
-    "biobert": 0.47078715,
-    "pubmedbert": 0.3312263,
+    "biobert": 0.62338308,
+    "pubmedbert": 0.47855013,
     "clinicalbert": 0.25735678,
     "d4data": 0.15794872
   },
   "selected_threshold": 0.82016965,
-  "weighted_entity_count": 1330,
-  "majority_entity_count": 978,
+  "weighted_entity_count": 1588,
+  "majority_entity_count": 1019,
   "test_gold_was_not_read": true
 }

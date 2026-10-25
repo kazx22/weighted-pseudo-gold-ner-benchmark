@@ -1,204 +1,204 @@
 ERROR TYPE: FALSE_POSITIVE
-Total instances: 3314  |  Showing: 40
+Total instances: 826  |  Showing: 40
 ================================================================================
 
 --- Sample 1 ---
-  PRED : [DISEASE]  'These data suggest that while'  (chars 1925-1954)
+  PRED : [DISEASE]  'inatt'  (chars 916-921)
   GOLD : (nothing)
-  CTX  : ...va, and sympathetic ganglia from LNNA rats had higher basal levels of superoxide compared with those from control rats. >>>These data suggest that while<<< NO deficiency increases oxidative stress and sympathetic activity in both arterial and venous vessels, the impact on ve...
+  CTX  : ...arent-rated irritability and social withdrawal on the ABC as well as significant improvements in emotional lability and >>>inatt<<<ention on the Conners' Parent Rating Scale--Revised. Similarly, clinician ratings showed reductions in the anger subscal...
 
 --- Sample 2 ---
-  PRED : [DISEASE]  'and'  (chars 214-217)
+  PRED : [DISEASE]  'cardiopulmonary compromise'  (chars 845-871)
   GOLD : (nothing)
-  CTX  : ...ed cardiotoxicity in rats with breast cancer. Oxidative stress is involved in several processes including cancer, aging >>>and<<< cardiovascular disease, and has been shown to potentiate the therapeutic effect of drugs such as doxorubicin. Doxorubic...
+  CTX  : ...was managed on the general medical floor. After one week of therapy, he was transferred to the intensive care unit with >>>cardiopulmonary compromise<<< related to superior vena cava (SVC) syndrome. A percutaneous mechanical thrombectomy and CDT with alteplase were attemp...
 
 --- Sample 3 ---
-  PRED : [DISEASE]  'gammapathy of undetermined significance'  (chars 616-655)
+  PRED : [CHEMICAL]  'id'  (chars 608-610)
   GOLD : (nothing)
-  CTX  : ...his case we report the unexpected diagnosis of amyloidosis in a renal-transplant patient with pre-transplant monoclonal >>>gammapathy of undetermined significance<<< who developed proteinuria after conversion from tacrolimus to everolimus.
+  CTX  : ...rdia, fibrillation, or QRS prolongation. Piglets were then randomly allocated to four groups: control (saline), Intralip>>>id<<<( ) alone, epinephrine alone, or a combination of Intralipd plus epinephrine. Resuscitation continued for 30 min or unti...
 
 --- Sample 4 ---
-  PRED : [DISEASE]  '. METHODS: Stage'  (chars 364-380)
+  PRED : [DISEASE]  'Acute Physiology and Chronic Health Evaluation'  (chars 870-916)
   GOLD : (nothing)
-  CTX  : ...LC) patients. RAD001, an oral inhibitor of the mammalian target of rapamycin (mTOR), has shown phase I efficacy in NSCLC>>>. METHODS: Stage<<< IIIb or IV NSCLC patients, with two or fewer prior chemotherapy regimens, one platinum based (stratum 1) or both chemot...
+  CTX  : ... RESULTS: Acetaminophen-induced ALF patients undergoing LT had a greater severity of pre-LT illness reflected by higher >>>Acute Physiology and Chronic Health Evaluation<<< II scores and requirement for organ support compared with the other two groups. Twenty (56%) acetaminophen-induced ALF ...
 
 --- Sample 5 ---
-  PRED : [DISEASE]  'and'  (chars 35-38)
+  PRED : [DISEASE]  'metabolic'  (chars 2707-2716)
   GOLD : (nothing)
-  CTX  : Mefenamic acid-induced neutropenia >>>and<<< renal failure in elderly females with hypothyroidism. We report mefenamic acid-induced non-oliguric renal failure and s...
+  CTX  : ...rrelationship between neurons and astrocytes is particularly tight in SNR. Both cell elements may suffer in common from >>>metabolic<<< disturbance and neurotransmitter dysfunction as occur during massive status epilepticus.
 
 --- Sample 6 ---
-  PRED : [CHEMICAL]  '[35S]TBPS'  (chars 1787-1796)
+  PRED : [DISEASE]  'le'  (chars 273-275)
   GOLD : (nothing)
-  CTX  : ...imals, abecarnil produced a paralleled dose-dependent (0.05-1 mg/kg i.p.) reduction of both motor behavior and cortical >>>[35S]TBPS<<< binding. Moreover, 0.05 mg/kg of this beta-carboline reduced markedly the increase of [35S]TBPS binding and the convuls...
+  CTX  : ... The influence of L-dopa on the renal excretion of potassium was studied in 3 patients with hypokalemia and in 5 normoka>>>le<<<mic patients by determination of renal plasma flow, glomerular filtration rate, plasma concentration of potassium and so...
 
 --- Sample 7 ---
-  PRED : [DISEASE]  'and histopathological documentation of recurrent'  (chars 1050-1098)
+  PRED : [DISEASE]  'corneal complications'  (chars 1353-1374)
   GOLD : (nothing)
-  CTX  : ...the kidney due to thrombosis of a normal renal artery. This occlusion occurred after EACA therapy in a patient with SAH >>>and histopathological documentation of recurrent<<< SAH. The corresponding clinical event was characterized by marked hypertension and abrupt neurological deterioration.
+  CTX  : ...vide the patient the opportunity to discontinue their substance abuse, improve their overall health, and prevent future >>>corneal complications<<<.
 
 --- Sample 8 ---
-  PRED : [DISEASE]  'axonal'  (chars 138-144)
+  PRED : [DISEASE]  'D'  (chars 1430-1431)
   GOLD : (nothing)
-  CTX  : ... peripheral neuropathy due to ethambutol overtreatment. Ethambutol is known to cause optic neuropathy and, more rarely, >>>axonal<<< polyneuropathy. We characterize the clinical, neurophysiological, and neuroimaging findings in a 72-year-old man who de...
+  CTX  : ...FPDc can predict the effects of drug candidates on QT interval. This study also shows that this assay can help detect EA>>>D<<< for drugs with TdP potential.
 
 --- Sample 9 ---
-  PRED : [DISEASE]  'Increased vulnerability to'  (chars 0-26)
+  PRED : [DISEASE]  'Neuropsychiatric'  (chars 90-106)
   GOLD : (nothing)
-  CTX  : >>>Increased vulnerability to<<< 6-hydroxydopamine lesion and reduced development of dyskinesias in mice lacking CB1 cannabinoid receptors. Motor impair...
+  CTX  : Neuropsychiatric behaviors in the MPTP marmoset model of Parkinson's disease. OBJECTIVES: >>>Neuropsychiatric<<< symptoms are increasingly recognised as a significant problem in patients with Parkinson's disease (PD). These symptoms...
 
 --- Sample 10 ---
-  PRED : [DISEASE]  '.'  (chars 1633-1634)
+  PRED : [DISEASE]  'neuroc'  (chars 667-673)
   GOLD : (nothing)
-  CTX  : ...and suggest that reducing ER stress has potential as a therapeutic strategy for treating glucocorticoid-induced glaucoma>>>.<<<
+  CTX  : ...tive, propensity-matched cohort study. SETTING: Neurocritical care units at two academic medical centers with dedicated >>>neuroc<<<ritical care teams and board-certified neurointensivists. PATIENTS: Neurocritical care patients admitted between July 20...
 
 --- Sample 11 ---
-  PRED : [DISEASE]  'Our data suggest that there is an association between'  (chars 1443-1496)
+  PRED : [DISEASE]  'cardiac surgery'  (chars 340-355)
   GOLD : (nothing)
-  CTX  : ... (2-way analysis of variance, group by time interaction with Greenhouse-Geisser correction: F(3,762) = 2.85, P = .026). >>>Our data suggest that there is an association between<<< panic attacks, no matter if associated with PD or MDP, and hyperreactivity to an oral caffeine challenge test.
+  CTX  : ...protinin compared to tranexamic acid in an unselected, consecutive cohort. METHODS: Perioperative data from consecutive >>>cardiac surgery<<< patients were prospectively collected between September 2005 and June 2006 in a university-affiliated clinic (n = 1188)...
 
 --- Sample 12 ---
-  PRED : [DISEASE]  '.'  (chars 1784-1785)
+  PRED : [DISEASE]  'non'  (chars 659-662)
   GOLD : (nothing)
-  CTX  : ...ion between flecainide and paroxetine. CONCLUSIONS: Supratherapeutic flecainide plasma concentrations may cause delirium>>>.<<< Because toxicity may occur when flecainide is prescribed with paroxetine and other potent CYP2D6 inhibitors, flecainide...
+  CTX  : ...ly between 1999-2004 for acetaminophen-induced ALF (n=36) with age- and sex-matched patients undergoing emergent LT for >>>non<<<-acetaminophen-induced ALF (n=35) and elective LT for chronic liver disease (CLD, n=34). RESULTS: Acetaminophen-induced ...
 
 --- Sample 13 ---
-  PRED : [DISEASE]  '-associated'  (chars 2412-2423)
+  PRED : [DISEASE]  'renal complications'  (chars 256-275)
   GOLD : (nothing)
-  CTX  : ...rment of the renal function in these children occurred in the absence of clinical symptoms of nephrolithiasis. Indinavir>>>-associated<<< nephrotoxicity must be monitored closely, especially in children with risk factors such as persistent sterile leukocytu...
+  CTX  : ...ted with indinavir. BACKGROUND: Prolonged administration of indinavir is associated with the occurrence of a variety of >>>renal complications<<< in adults. These well-documented side effects have restricted the use of this potent protease inhibitor in children. DE...
 
 --- Sample 14 ---
-  PRED : [DISEASE]  'skeletal'  (chars 324-332)
+  PRED : [CHEMICAL]  'Sir'  (chars 1083-1086)
   GOLD : (nothing)
-  CTX  : ..., is associated with potentially serious but treatable adverse effects involving numerous organ systems, including rare >>>skeletal<<< muscle involvement. Only a handful of cases of ATRA-induced myositis in children have been reported, and none in the ra...
+  CTX  : ...ation, hypertrophy/cytomegaly, and extensive vacuolation after two doses. Extensive replacement fibrosis (quantified by >>>Sir<<<ius red staining) developed during the off-dosing period. Functional indices assessed by cardiac MRI (including left ven...
 
 --- Sample 15 ---
-  PRED : [DISEASE]  'abuse'  (chars 551-556)
+  PRED : [DISEASE]  'ce'  (chars 920-922)
   GOLD : (nothing)
-  CTX  : ...tational brain-mapping techniques, we determined the pattern of structural brain alterations associated with chronic MA >>>abuse<<< in human subjects and related these deficits to cognitive impairment. We used high-resolution MRI and surface-based com...
+  CTX  : ...orm lesions. Biopsy revealed an abundance of Demodex mites in 2 of these patients. In 1 patient with eyelid eczema, rosa>>>ce<<<iform periocular dermatitis gradually appeared after 3 weeks of treatment. In 1 patient with atopic dermatitis, telangie...
 
 --- Sample 16 ---
-  PRED : [DISEASE]  'that develops in association with the use of antidepressants indicates that'  (chars 524-599)
+  PRED : [DISEASE]  'far'  (chars 1534-1537)
   GOLD : (nothing)
-  CTX  : ...t of the symptoms may have been dopamine/serotonin imbalance in the central nervous system. The NMS-like encephalopathy >>>that develops in association with the use of antidepressants indicates that<<< NMS and SS are spectrum disorders induced by drugs with both antidopaminergic and serotonergic effects.
+  CTX  : ...izes epinephrine dysrhythmogenicity in conscious dogs susceptible to VT and in anesthetized dogs with spontaneous postin>>>far<<<ct dysrhythmias. There is no evidence that systemic subtoxic bupivacaine administration enhances the dysrhythmogenicity ...
 
 --- Sample 17 ---
-  PRED : [DISEASE]  'dysfunction'  (chars 1254-1265)
+  PRED : [DISEASE]  'Model'  (chars 1186-1191)
   GOLD : (nothing)
-  CTX  : ...bserved at both 3 and 49 days post-administration. In parallel, another neurochemical feature of depression--astroglial >>>dysfunction<<<--was unaffected in the cortex and the striatal levels of the astrocytic protein marker, glial fibrillary acidic protein...
+  CTX  : ...ESULTS: A total of 155 (75.6%) of 205 patients had thrombocytopenia before transplantation, significantly influenced by >>>Model<<< of End-Stage Liver Disease score and liver cirrhosis. The platelet count exceeded 100,000/uL in most of the patients (n...
 
 --- Sample 18 ---
-  PRED : [DISEASE]  'is high even in a population without known risk factors. PURPOSE:'  (chars 36-101)
+  PRED : [CHEMICAL]  'ip'  (chars 1229-1231)
   GOLD : (nothing)
-  CTX  : Incidence of postoperative delirium >>>is high even in a population without known risk factors. PURPOSE:<<< Postoperative delirium is a recognized complication in populations at risk. The aim of this study is to assess the prev...
+  CTX  : ...ficantly lower in all the treatment groups compared with control. The number of ECG abnormalities was zero in the Intral>>>ip<<<id only group, but 14 and 17, respectively, in the epinephrine and epinephrine plus lipid groups (P<0.05). CONCLUSIONS: ...
 
 --- Sample 19 ---
-  PRED : [DISEASE]  'An integrated characterization of serological, pathological, and functional events in'  (chars 0-85)
+  PRED : [DISEASE]  'withdrawal from'  (chars 258-273)
   GOLD : (nothing)
-  CTX  : >>>An integrated characterization of serological, pathological, and functional events in<<< doxorubicin-induced cardiotoxicity. Many efficacious cancer treatments cause significant cardiac morbidity, yet biomark...
+  CTX  : ...ation caused by the cessation of chronic opioid use. OIH can limit the clinical use of opioid analgesics and complicate >>>withdrawal from<<< opioid addiction. In this study, we investigated the effects of Re, Rg1, and Rb1 ginsenosides, the bioactive components...
 
 --- Sample 20 ---
-  PRED : [DISEASE]  'is very suggestive of a direct connection.'  (chars 754-796)
+  PRED : [DISEASE]  'ant'  (chars 1058-1061)
   GOLD : (nothing)
-  CTX  : ...tween the ingestion of diphenylhydantoin and the occurrence of the skin rash, lymphadenopathy and pure red cell aplasia >>>is very suggestive of a direct connection.<<<
+  CTX  : ...de treatment. It is the third urinary tract cancer reported in association with cyclophosphamide treatment for nonmalign>>>ant<<< disease. The association of the tumor with preexisting hydroureteronephrosis suggests that stasis prolonged and intensi...
 
 --- Sample 21 ---
-  PRED : [DISEASE]  ','  (chars 694-695)
+  PRED : [DISEASE]  'neurological deterioration'  (chars 1189-1215)
   GOLD : (nothing)
-  CTX  : ...tival hemorrhages with edema. Follow-up changes showed marked visual loss, constricted visual fields, optic nerve pallor>>>,<<< vascular attenuation, and chorioretinal atrophy. The literature is reviewed, and possible causes are discussed.
+  CTX  : ...al documentation of recurrent SAH. The corresponding clinical event was characterized by marked hypertension and abrupt >>>neurological deterioration<<<.
 
 --- Sample 22 ---
-  PRED : [DISEASE]  'New York'  (chars 1092-1100)
+  PRED : [DISEASE]  'acute'  (chars 26-31)
   GOLD : (nothing)
-  CTX  : ...for 2 to 4 weeks and then randomized to high- (35.0 or 32.5 mg OD) or low-dose (5.0 or 2.5 mg OD) groups. Patients with >>>New York<<< Heart Association classes II to IV CHF and left ventricular ejection fractions of no greater than 0.30 (n = 3164) were ...
+  CTX  : Efficacy of olanzapine in >>>acute<<< bipolar mania: a double-blind, placebo-controlled study. The Olanzipine HGGW Study Group. BACKGROUND: We compared the e...
 
 --- Sample 23 ---
-  PRED : [DISEASE]  '('  (chars 301-302)
+  PRED : [DISEASE]  'Ho'  (chars 588-590)
   GOLD : (nothing)
-  CTX  : ... due to dilated cardiomyopathy was referred to our hospital for symptomatic incessant sustained ventricular tachycardia >>>(<<<VT). After the administration of nifekalant hydrochloride, sustained VT was terminated. An alternate class III agent, so...
+  CTX  : ...nts were asked about dysphagia and evaluated with the Unified Parkinson's Disease Rating Scale Parts II and III and the >>>Ho<<<ehn and Yahr scale. Deglutition was assessed using modified barium swallow with videofluoroscopy. Nondyskinetic patients...
 
 --- Sample 24 ---
-  PRED : [DISEASE]  'kidney'  (chars 655-661)
+  PRED : [CHEMICAL]  'ip'  (chars 666-668)
   GOLD : (nothing)
-  CTX  : ...troviral therapy regimen and submitted to the Medicines and Healthcare Products Regulatory Agency (MHRA) with suspected >>>kidney<<< adverse effects. Reports that satisfy defined criteria were classified as acute kidney injury, kidney tubular dysfuncti...
+  CTX  : ... randomly allocated to four groups: control (saline), Intralipid( ) alone, epinephrine alone, or a combination of Intral>>>ip<<<d plus epinephrine. Resuscitation continued for 30 min or until there was a return of spontaneous circulation (ROSC) acc...
 
 --- Sample 25 ---
-  PRED : [DISEASE]  ', such as leaky bladder epithelium and mucosal'  (chars 1358-1404)
+  PRED : [DISEASE]  'ventilation difficulties'  (chars 377-401)
   GOLD : (nothing)
-  CTX  : ...significant (P <0.0001). CONCLUSIONS: Indomethacin resulted in histopathologic findings typical of interstitial cystitis>>>, such as leaky bladder epithelium and mucosal<<< mastocytosis. The true incidence of nonsteroidal anti-inflammatory drug-induced cystitis in humans must be clarified by...
+  CTX  : ...isation. We describe a previously healthy 32-year-old woman who developed a life-threatening muscle spasm and secondary >>>ventilation difficulties<<< following a preoperative injection of suxamethonium. The muscle spasms disappeared spontaneously and the surgery procee...
 
 --- Sample 26 ---
-  PRED : [DISEASE]  '.'  (chars 1374-1375)
+  PRED : [DISEASE]  'LAC'  (chars 1406-1409)
   GOLD : (nothing)
-  CTX  : ...opportunity to discontinue their substance abuse, improve their overall health, and prevent future corneal complications>>>.<<<
+  CTX  : ...picondylitis. An electrodiagnostic study, including a nerve conduction study of the LACN, was helpful to diagnose right >>>LAC<<<NP and to find the passage of the LACN on the lateral epicondyle.
 
 --- Sample 27 ---
-  PRED : [DISEASE]  'The implications of these results are discussed.'  (chars 1957-2005)
+  PRED : [CHEMICAL]  'phospho'  (chars 1356-1363)
   GOLD : (nothing)
-  CTX  : ...than that of (+)-propranolol in both species but much higher than that required to produce evidence of beta-blockade.8. >>>The implications of these results are discussed.<<<
+  CTX  : ... probably or possibly related, mainly grade 1/2, occurred in 25%. Cox regression analysis of IHC scores found that only >>>phospho<<< AKT (pAKT) was a significant independent predictor of worse PFS. CONCLUSIONS: RAD001 10 mg/day was well tolerated, show...
 
 --- Sample 28 ---
-  PRED : [DISEASE]  '.'  (chars 1650-1651)
+  PRED : [DISEASE]  'Bez'  (chars 723-726)
   GOLD : (nothing)
-  CTX  : ...de new insight into the potential role of ectopic hilar granule cells in the pilocarpine model of temporal lobe epilepsy>>>.<<<
+  CTX  : ...tal. There are very few documented case like this in the prehospital scientific literature. The cause appears to be the >>>Bez<<<old-Jarish reflex, stimulation of the ventricular walls which in turn decreases sympathetic outflow from the vasomotor c...
 
 --- Sample 29 ---
-  PRED : [DISEASE]  ','  (chars 1176-1177)
+  PRED : [DISEASE]  'controlled'  (chars 1129-1139)
   GOLD : (nothing)
-  CTX  : ...rominent swelling of podocytes and subepithelial deposits, which were sometimes large and hump-like. Autoimmune diseases>>>,<<< viral hepatitis, malignant neoplasms or other diseases with a known relationship to membranous glomerulonephritis were ...
+  CTX  : ...ower total dose of remifentanil. CONCLUSION: In summary, our results indicate that airway management using FRLMA during >>>controlled<<< hypotension anesthesia provided better surgical conditions in terms of quality of operative field and blood loss and al...
 
 --- Sample 30 ---
-  PRED : [DISEASE]  '.'  (chars 2401-2402)
+  PRED : [DISEASE]  'growth'  (chars 1322-1328)
   GOLD : (nothing)
-  CTX  : .... The impairment of the renal function in these children occurred in the absence of clinical symptoms of nephrolithiasis>>>.<<< Indinavir-associated nephrotoxicity must be monitored closely, especially in children with risk factors such as persist...
+  CTX  : ...d 65% at 1 year. Cytomegalovirus infections were treated successfully with ganciclovir in 11 patients. No impairment of >>>growth<<< was observed in children who underwent transplantation compared with a control population. Twenty-one patients (60%) ha...
 
 --- Sample 31 ---
-  PRED : [DISEASE]  'presents as'  (chars 1019-1030)
+  PRED : [DISEASE]  'continuing'  (chars 905-915)
   GOLD : (nothing)
-  CTX  : ...tisone on the second. This illustrates intravenous pamidronate as a valuable therapeutic tool when milk-alkali syndrome >>>presents as<<< hypercalcemic emergency.
+  CTX  : ...thin 24 hours preceding the onset of chest pain and had a normal ECG and tropinin I level. Patients exhibiting signs of >>>continuing<<< cocaine toxicity were excluded from the study. All patients were admitted to the hospital for serial testing after the ...
 
 --- Sample 32 ---
-  PRED : [DISEASE]  'Recurrent'  (chars 0-9)
+  PRED : [CHEMICAL]  'A'  (chars 727-728)
   GOLD : (nothing)
-  CTX  : >>>Recurrent<<< subarachnoid hemorrhage associated with aminocaproic acid therapy and acute renal artery thrombosis. Case report. Epsil...
+  CTX  : ...g treatment, which may reflect severity of illness. The incidence of intubation was similar. We conclude that CNA and IN>>>A<<< demonstrated similar profiles with regard to safety, morbidity, and mortality.
 
 --- Sample 33 ---
-  PRED : [DISEASE]  'was similar between groups. Symptomatic'  (chars 499-538)
+  PRED : [DISEASE]  'rosa'  (chars 916-920)
   GOLD : (nothing)
-  CTX  : ...tients with asthma are compared. CNA was administered for a mean of 11 +/- 10 hr. The incidence of cardiac dysrhythmias >>>was similar between groups. Symptomatic<<< hypokalemia did not occur. CNA patients had higher heart rates during treatment, which may reflect severity of illness....
+  CTX  : ...ceiform lesions. Biopsy revealed an abundance of Demodex mites in 2 of these patients. In 1 patient with eyelid eczema, >>>rosa<<<ceiform periocular dermatitis gradually appeared after 3 weeks of treatment. In 1 patient with atopic dermatitis, telang...
 
 --- Sample 34 ---
-  PRED : [DISEASE]  ','  (chars 1032-1033)
+  PRED : [CHEMICAL]  'Gly-Gly'  (chars 478-485)
   GOLD : (nothing)
-  CTX  : ...ma, rosaceiform periocular dermatitis gradually appeared after 3 weeks of treatment. In 1 patient with atopic dermatitis>>>,<<< telangiectatic and papular rosacea insidiously appeared after 5 months of treatment. CONCLUSIONS: Our observations sugg...
+  CTX  : ...conjugates. In these HPMA copolymers, DOX was covalently bound via peptide linkages that were either non-biodegradable (>>>Gly-Gly<<<) or degradable by lysosomal proteinases (Gly-Phe-Leu-Gly). In addition, one biodegradable conjugate containing galactos...
 
 --- Sample 35 ---
-  PRED : [DISEASE]  'eucalcemic'  (chars 431-441)
+  PRED : [DISEASE]  'R'  (chars 467-468)
   GOLD : (nothing)
-  CTX  : ...ameters of intestinal calcium reabsorption and bone turnover rate in these 14 patients were compared with results in 14 >>>eucalcemic<<< patients matched for age, sex, length of time on dialysis, and etiology of renal disease. In addition to experiencing h...
+  CTX  : ... 8, and 11 every 3 weeks) and dex (20 mg on the day of and the day after bort) as salvage treatment in 85 patients with >>>R<<</R MM after prior autologous stem cell transplantation or conventional chemotherapy. The median number of prior lines of...
 
 --- Sample 36 ---
-  PRED : [DISEASE]  '(OR=3.299, 95 CI=1.375-7.914) were the only factors associated with current'  (chars 1428-1503)
+  PRED : [DISEASE]  'abd'  (chars 1056-1059)
   GOLD : (nothing)
-  CTX  : ...er adjusted for other factors. Major depressive disorder (OR=2.870, CI=1.154-7.142) and antisocial personality disorder >>>(OR=3.299, 95 CI=1.375-7.914) were the only factors associated with current<<< psychosis. CONCLUSION: There was a high risk of psychosis in patients with methamphetamine dependence. It was associate...
+  CTX  : ...ts receiving Botox, 352 patients had been diagnosed with ADSD. Of these 352 patients, eight patients suffered bilateral >>>abd<<<uctor paralysis, and two suffered this complication twice. All affected patients were females over the age of 50 years. ...
 
 --- Sample 37 ---
-  PRED : [DISEASE]  '.'  (chars 1789-1790)
+  PRED : [DISEASE]  'sAD'  (chars 1038-1041)
   GOLD : (nothing)
-  CTX  : ...ese changes might be involved in detrimental neuroplasticity and neuroinflammatory changes that occur following seizures>>>.<<<
+  CTX  : ...s daily oral galactose (200 mg/kg/day) treatment on cognitive deficits in streptozotocin-induced (STZ-icv) rat model of >>>sAD<<<, tested by Morris Water Maze and Passive Avoidance test, respectively. One month of oral galactose treatment initiated ...
 
 --- Sample 38 ---
-  PRED : [DISEASE]  'is warranted.'  (chars 2148-2161)
+  PRED : [CHEMICAL]  'hexa'  (chars 154-158)
   GOLD : (nothing)
-  CTX  : ... who have failed or cannot tolerate standard therapy. Further clinical evaluation in patients with confirmed meningitis >>>is warranted.<<<
+  CTX  : ...es in mice pretreated with garcinielliptone FC in pilocarpine-induced seizures. Garcinielliptone FC (GFC) isolated from >>>hexa<<<nic fraction seed extract of species Platonia insignis Mart. It is widely used in folk medicine to treat skin diseases i...
 
 --- Sample 39 ---
-  PRED : [DISEASE]  'delayed'  (chars 859-866)
+  PRED : [DISEASE]  'endoscopic sinus surgery'  (chars 70-94)
   GOLD : (nothing)
-  CTX  : ...follow-up period. For five patients, Hb levels decreased below 5 g/dL during at least one follow-up visit. All cases of >>>delayed<<< anemia were clinically manageable and resolved within one month.
+  CTX  : Comparison of laryngeal mask with endotracheal tube for anesthesia in >>>endoscopic sinus surgery<<<. BACKGROUND: The purpose of this study was to compare surgical conditions, including the amount of intraoperative bleed...
 
 --- Sample 40 ---
-  PRED : [DISEASE]  '(hemoglobin <7 g/dL) was observed in 5.4% of patients (CD4, 165 cells/microL) and'  (chars 858-939)
+  PRED : [DISEASE]  'generalized'  (chars 366-377)
   GOLD : (nothing)
-  CTX  : ...ash (15.2%; CD4, 285 cells/microL) and peripheral neuropathy (9.0% and 348 cells/microL). Clinically significant anemia >>>(hemoglobin <7 g/dL) was observed in 5.4% of patients (CD4, 165 cells/microL) and<<< hepatitis (clinical jaundice with alanine aminotransferase > 5 times upper limits of normal) in 3.5% of patients (CD4, ...
+  CTX  : ...isappearance of seizures were recognized in 77% and 50%, respectively. Seizures disappeared in 71% of the patients with >>>generalized<<< seizures and 89% of partial seizures. Improvement of abnormal EEG was noticed in 76% of diffuse paroxysms and in 67% of...
 

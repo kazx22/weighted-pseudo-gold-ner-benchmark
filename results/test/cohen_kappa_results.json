@@ -2,18 +2,19 @@
   "split": "test",
   "level": "token-level BIO labels",
   "caution": "The frequent O class can inflate agreement; interpret with exact span metrics.",
+  "positive_token_definition": "Every non-O BIO tag is treated as an entity-positive token.",
   "pairwise": [
     {
       "model_1": "scispaCy",
       "model_2": "BioBERT",
-      "kappa": 0.36245275393598364,
-      "interpretation": "Fair"
+      "kappa": 0.7875959364258945,
+      "interpretation": "Substantial"
     },
     {
       "model_1": "scispaCy",
       "model_2": "PubMedBERT + OpenMed",
-      "kappa": 0.3716919761028443,
-      "interpretation": "Fair"
+      "kappa": 0.743435556576348,
+      "interpretation": "Substantial"
     },
     {
       "model_1": "scispaCy",
@@ -30,32 +31,32 @@
     {
       "model_1": "BioBERT",
       "model_2": "PubMedBERT + OpenMed",
-      "kappa": 0.7574320890762589,
-      "interpretation": "Substantial"
+      "kappa": 0.8449744071141589,
+      "interpretation": "Almost perfect"
     },
     {
       "model_1": "BioBERT",
       "model_2": "ClinicalBERT",
-      "kappa": 0.2566400159295271,
-      "interpretation": "Fair"
+      "kappa": 0.45097747258207843,
+      "interpretation": "Moderate"
     },
     {
       "model_1": "BioBERT",
       "model_2": "D4Data NER (DistilBERT)",
-      "kappa": 0.2516956596547558,
-      "interpretation": "Fair"
+      "kappa": 0.5647609319382213,
+      "interpretation": "Moderate"
     },
     {
       "model_1": "PubMedBERT + OpenMed",
       "model_2": "ClinicalBERT",
-      "kappa": 0.2510207612527092,
-      "interpretation": "Fair"
+      "kappa": 0.44759427718453315,
+      "interpretation": "Moderate"
     },
     {
       "model_1": "PubMedBERT + OpenMed",
       "model_2": "D4Data NER (DistilBERT)",
-      "kappa": 0.273475992554162,
-      "interpretation": "Fair"
+      "kappa": 0.5321801430146686,
+      "interpretation": "Moderate"
     },
     {
       "model_1": "ClinicalBERT",
@@ -68,28 +69,58 @@
     {
       "model": "scispaCy",
       "kappa": 0.790866568876107,
-      "interpretation": "Substantial"
+      "interpretation": "Substantial",
+      "positive_token_precision": 0.8714490432436989,
+      "positive_token_recall": 0.8249281838493456,
+      "positive_token_f1": 0.8475507276081164,
+      "positive_token_tp": 10338,
+      "positive_token_fp": 1525,
+      "positive_token_fn": 2194
     },
     {
       "model": "BioBERT",
-      "kappa": 0.4167465342473473,
-      "interpretation": "Moderate"
+      "kappa": 0.891078624894851,
+      "interpretation": "Almost perfect",
+      "positive_token_precision": 0.9008187857253206,
+      "positive_token_recall": 0.9305777210341526,
+      "positive_token_f1": 0.9154564722505691,
+      "positive_token_tp": 11662,
+      "positive_token_fp": 1284,
+      "positive_token_fn": 870
     },
     {
       "model": "PubMedBERT + OpenMed",
-      "kappa": 0.42421747289908873,
-      "interpretation": "Moderate"
+      "kappa": 0.833346495751029,
+      "interpretation": "Almost perfect",
+      "positive_token_precision": 0.8933114485022569,
+      "positive_token_recall": 0.8685764443025854,
+      "positive_token_f1": 0.8807703200226564,
+      "positive_token_tp": 10885,
+      "positive_token_fp": 1300,
+      "positive_token_fn": 1647
     },
     {
       "model": "ClinicalBERT",
       "kappa": 0.4324165211041796,
-      "interpretation": "Moderate"
+      "interpretation": "Moderate",
+      "positive_token_precision": 0.42729079929485014,
+      "positive_token_recall": 0.9090328758378551,
+      "positive_token_f1": 0.5813282984206363,
+      "positive_token_tp": 11392,
+      "positive_token_fp": 15269,
+      "positive_token_fn": 1140
     },
     {
       "model": "D4Data NER (DistilBERT)",
       "kappa": 0.5687256369574809,
-      "interpretation": "Moderate"
+      "interpretation": "Moderate",
+      "positive_token_precision": 0.7323312761298029,
+      "positive_token_recall": 0.5870571337376317,
+      "positive_token_f1": 0.6516963415714411,
+      "positive_token_tp": 7357,
+      "positive_token_fp": 2689,
+      "positive_token_fn": 5175
     }
   ],
-  "mean_pairwise_kappa": 0.3854563016724586
+  "mean_pairwise_kappa": 0.5701672493054247
 }

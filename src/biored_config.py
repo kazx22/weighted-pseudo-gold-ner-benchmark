@@ -31,6 +31,8 @@ else:
     RESULTS_ROOT = PROJECT_ROOT / "results" / "biored_overlap_excluded"
 
 SPLIT_ALIASES = {
+    "training": "train",
+    "train": "train",
     "development": "dev",
     "dev": "dev",
     "validation": "dev",
@@ -52,16 +54,19 @@ MODEL_DISPLAY_NAMES = {
 }
 
 RAW_FILENAMES = {
+    "train": "Train.PubTator",
     "dev": "Dev.PubTator",
     "test": "Test.PubTator",
 }
 
 
 def normalize_split(value: str, *, allow_train: bool = False) -> str:
-    del allow_train                                                                 
     split = SPLIT_ALIASES.get(value.strip().lower())
     if split is None:
-        raise ValueError(f"Unknown BioRED split '{value}'. Use dev or test.")
+        valid = "train, dev, or test" if allow_train else "dev or test"
+        raise ValueError(f"Unknown BioRED split '{value}'. Use {valid}.")
+    if split == "train" and not allow_train:
+        raise ValueError("Training split access must be explicit with allow_train=True.")
     return split
 
 
@@ -74,6 +79,15 @@ def gold_entities_file(split: str) -> Path:
     split = normalize_split(split)
     return PROCESSED_DIR / f"biored_{split}_entities.jsonl"
 
+
+
+
+def training_docs_file() -> Path:
+    return PROCESSED_DIR / "biored_train_docs.jsonl"
+
+
+def training_entities_file() -> Path:
+    return PROCESSED_DIR / "biored_train_entities.jsonl"
 
 def prediction_file(model_key: str, split: str) -> Path:
     split = normalize_split(split)

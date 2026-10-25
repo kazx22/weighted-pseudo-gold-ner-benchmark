@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib
 import json
 import time
@@ -9,16 +10,12 @@ from pathlib import Path
 from src.medgemma_common import (
     DEFAULT_MEDGEMMA_MODEL,
     DEFAULT_OLLAMA_URL,
-    PROMPT_VERSION,
-    TIE_BREAK_SCHEMA,
     OllamaClient,
     append_jsonl,
     candidate_key,
     chat_and_parse_with_retries,
     load_jsonl_if_exists,
     prompt_hash,
-    sentence_context_with_markers,
-    tie_break_prompt,
 )
 from src.utils import deduplicate_entities, load_jsonl, save_jsonl
 
@@ -28,13 +25,15 @@ def dataset_parts(dataset: str):
         cfg = importlib.import_module("src.experiment_config")
         cawv = importlib.import_module("src.content_aware_voting")
         candidate = importlib.import_module("src.candidate_gold")
+        prompt_module = importlib.import_module("src.medgemma_common")
         suffix = "bc5cdr"
     else:
         cfg = importlib.import_module("src.biored_config")
         cawv = importlib.import_module("src.biored_content_aware_voting")
         candidate = importlib.import_module("src.biored_candidate_gold")
+        prompt_module = importlib.import_module("src.biored_medgemma_common")
         suffix = "biored"
-    return cfg, cawv, candidate, suffix
+    return cfg, cawv, candidate, prompt_module, suffix
 
 
 def output_file(cfg, split: str, suffix: str) -> Path:
@@ -49,6 +48,10 @@ def config_file(cfg) -> Path:
     return cfg.results_dir("dev") / "medgemma_cawv_hybrid_config.json"
 
 
+def source_config_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def derive_band(scores: list[float], threshold: float) -> tuple[float, float]:
     unique = sorted(set(float(score) for score in scores))
     below = [score for score in unique if score < threshold - 1e-12]
@@ -59,22 +62,24 @@ def derive_band(scores: list[float], threshold: float) -> tuple[float, float]:
 
 
 def load_or_create_config(dataset: str, split: str, model: str, force_refit: bool) -> dict:
-    cfg, cawv, candidate, _ = dataset_parts(dataset)
+    cfg, cawv, candidate, prompt_module, _ = dataset_parts(dataset)
     path = config_file(cfg)
-    if split == "test":
-        cfg.require_file(path, "frozen CAWV + MedGemma configuration")
-        return json.loads(path.read_text(encoding="utf-8"))
-
-    if path.exists() and not force_refit:
-        data = json.loads(path.read_text(encoding="utf-8"))
-        if data.get("model") != model:
-            raise ValueError("Existing CAWV + MedGemma config uses another model.")
-        return data
-
     cawv_path = cfg.require_file(cawv.cawv_config_file(), "frozen CAWV development config")
     base = json.loads(cawv_path.read_text(encoding="utf-8"))
     if base.get("fit_split") != "dev":
         raise ValueError("CAWV config was not fitted on DEV.")
+
+    current_hash = source_config_hash(cawv_path)
+    expected_prompt = prompt_module.PROMPT_VERSION
+    if path.exists() and not force_refit:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if (
+            data.get("model") == model
+            and data.get("prompt_version") == expected_prompt
+            and data.get("source_cawv_config_sha256") == current_hash
+        ):
+            return data
+        print("Existing CAWV + MedGemma config is stale; rebuilding it from current DEV CAWV config.")
 
     predictions = candidate.load_model_predictions("dev")
     votes, store = candidate.build_vote_table(predictions)
@@ -85,16 +90,20 @@ def load_or_create_config(dataset: str, split: str, model: str, force_refit: boo
         global_weights={k: float(base["global_weights"][k]) for k in cfg.MODEL_KEYS},
         reliability=base["content_reliability"],
     )
-    low, high = derive_band([float(row["score"]) for row in scored], float(base["selected_threshold"]))
+    low, high = derive_band(
+        [float(row["score"]) for row in scored],
+        float(base["selected_threshold"]),
+    )
 
     data = {
-        "schema_version": 1,
+        "schema_version": 2,
         "dataset": dataset,
         "fit_split": "dev",
         "model": model,
-        "prompt_version": PROMPT_VERSION,
-        "prompt_hash": prompt_hash(PROMPT_VERSION + "|tie-break"),
+        "prompt_version": expected_prompt,
+        "prompt_hash": prompt_hash(expected_prompt + "|tie-break"),
         "cawv_config": str(cawv_path),
+        "source_cawv_config_sha256": current_hash,
         "cawv_alpha": float(base["selected_alpha"]),
         "base_cawv_threshold": float(base["selected_threshold"]),
         "low_threshold": float(low),
@@ -104,7 +113,6 @@ def load_or_create_config(dataset: str, split: str, model: str, force_refit: boo
     }
     cfg.save_json(data, path)
     return data
-
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -120,7 +128,7 @@ def main() -> None:
     parser.add_argument("--force-decisions", action="store_true")
     args = parser.parse_args()
 
-    cfg, cawv, candidate, suffix = dataset_parts(args.dataset)
+    cfg, cawv, candidate, prompt_module, suffix = dataset_parts(args.dataset)
     config = load_or_create_config(args.dataset, args.split, args.model, args.force_refit)
     if args.split == "test" and args.model != config["model"]:
         raise ValueError(f"Test must use frozen model {config['model']}.")
@@ -177,8 +185,8 @@ def main() -> None:
         doc = docs_by_row[int(entity["row_id"])]
         source = str(doc["full_text"])
         s, e = int(entity["start_char"]), int(entity["end_char"])
-        prompt = tie_break_prompt(
-            context_with_markers=sentence_context_with_markers(source, s, e),
+        prompt = prompt_module.tie_break_prompt(
+            context_with_markers=prompt_module.sentence_context_with_markers(source, s, e),
             candidate_text=source[s:e],
             candidate_label=str(entity["label"]).upper(),
         )
@@ -187,7 +195,7 @@ def main() -> None:
             response, parsed, attempts = chat_and_parse_with_retries(
                 client,
                 user_prompt=prompt,
-                response_schema=TIE_BREAK_SCHEMA,
+                response_schema=prompt_module.TIE_BREAK_SCHEMA,
                 max_output_tokens=160,
             )
             decision = str(parsed.get("decision", "")).upper()
@@ -212,7 +220,7 @@ def main() -> None:
             "reason": reason,
             "status": status,
             "model": config["model"],
-            "prompt_version": PROMPT_VERSION,
+            "prompt_version": prompt_module.PROMPT_VERSION,
             "prompt_hash": config["prompt_hash"],
             "attempts_used": attempts,
             "duration_seconds": round(time.perf_counter() - request_start, 6),

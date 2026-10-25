@@ -69,7 +69,6 @@ def _load_dataset(dataset: str):
             "dataset_name": "BC5CDR",
         }
 
-    os.environ["BIORED_VARIANT"] = "official"
     from src import biored_content_aware_voting as cav
     from src.biored_candidate_gold import build_vote_table, load_model_predictions
     from src.biored_config import (

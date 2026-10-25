@@ -11,11 +11,11 @@
   "confidence_intervals": [
     {
       "system": "Weighted Pseudo-Gold",
-      "precision": 0.8135338345864662,
-      "recall": 0.6475164572112507,
-      "f1": 0.7210929690103299,
-      "ci_low": 0.6822715679772862,
-      "ci_high": 0.7556839606219503
+      "precision": 0.8073047858942065,
+      "recall": 0.7672052663076002,
+      "f1": 0.786744400122737,
+      "ci_low": 0.7526355111608763,
+      "ci_high": 0.8188822923183555
     },
     {
       "system": "scispaCy",
@@ -35,23 +35,23 @@
     },
     {
       "system": "Weighted + MedGemma Tie-Breaker",
-      "precision": 0.6078234704112337,
-      "recall": 0.725314183123878,
-      "f1": 0.6613915416098228,
-      "ci_low": 0.625630500916134,
-      "ci_high": 0.6946230070488453
+      "precision": 0.7960566851509551,
+      "recall": 0.7731897067624177,
+      "f1": 0.7844565877352763,
+      "ci_low": 0.7510912526852769,
+      "ci_high": 0.8157131149719591
     }
   ],
   "comparisons": [
     {
       "system_1": "Weighted + MedGemma Tie-Breaker",
       "system_2": "Weighted Pseudo-Gold",
-      "f1_system_1": 0.6613915416098228,
-      "f1_system_2": 0.7210929690103299,
-      "f1_difference": -0.0597014274005071,
-      "raw_p": 0.001998001998001998,
-      "holm_p": 0.005994005994005994,
-      "significant_holm_0.05": true
+      "f1_system_1": 0.7844565877352763,
+      "f1_system_2": 0.786744400122737,
+      "f1_difference": -0.002287812387460786,
+      "raw_p": 0.2757242757242757,
+      "holm_p": 0.2757242757242757,
+      "significant_holm_0.05": false
     },
     {
       "system_1": "MedGemma Zero-Shot",
@@ -66,9 +66,9 @@
     {
       "system_1": "Weighted + MedGemma Tie-Breaker",
       "system_2": "MedGemma Zero-Shot",
-      "f1_system_1": 0.6613915416098228,
+      "f1_system_1": 0.7844565877352763,
       "f1_system_2": 0.34235668789808915,
-      "f1_difference": 0.3190348537117337,
+      "f1_difference": 0.4420998998371871,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.005994005994005994,
       "significant_holm_0.05": true

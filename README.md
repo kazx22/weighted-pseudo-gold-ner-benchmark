@@ -1,91 +1,105 @@
-# Biomedical NER — clean modular reproducible pipeline
+# CAWV Biomedical NER Reproducibility Repository
 
-This package contains raw BC5CDR/BioRED inputs and modular source code. Generated predictions, processed data, figures, reports, caches, and logs are intentionally excluded.
+This is the clean, source-data-only repository for the BC5CDR and BioRED study.
 
-## Top-level runners
+## One command
 
-```text
-RUN_TRANSFORMERS.cmd  Conventional NER + methodological controls
-RUN_SPAN_AUDIT.cmd    Audit saved prediction spans only; no model inference
-RUN_KAPPA_CHECK.cmd   BioRED span audit + kappa + taxonomy recheck
-RUN_CAWV.cmd          CAWV on BC5CDR + official BioRED, including bootstrap
-RUN_MEDGEMMA.cmd      MedGemma stages only; requires transformer outputs
-RUN_ALL.cmd           Conventional -> CAWV -> MedGemma in dependency order
+Open the folder in VS Code on Windows and run:
+
+```cmd
+RUN_ALL.cmd
 ```
 
-The CMD files expect a Windows virtual environment at `.venv\Scripts\python.exe`.
-For detailed usage and troubleshooting, read **QUICK_MANUAL.md**.
+`RUN_ALL.cmd` creates or repairs `.venv`, installs the required Python packages, verifies CUDA/PyTorch and the scispaCy model, then runs the complete study.
 
-## Experiments included
+The repository ships with **only the two source datasets** under `data/raw/`. Everything else is generated locally: processed corpora, predictions, pseudo-gold files, checkpoints, bootstrap outputs, Cohen's kappa, diagnostics, taxonomy, CAWV ablations, MedGemma results, fine-tuned controls, resource measurements, tables and figures.
 
-### BC5CDR
-- five conventional NER systems;
-- development F1 weighting and weighted-threshold selection;
-- held-out frozen test evaluation;
-- fixed 3-of-5 majority baseline;
-- development-tuned unweighted k-of-5 control;
-- leave-one-model-out weighted ablation;
-- 25/50/75/100% development-gold sensitivity;
-- paired bootstrap + Holm correction;
-- Cohen's kappa and qualitative taxonomy;
-- MedGemma zero-shot and selective adjudication.
+## Root commands
 
-### BioRED official
-The same disease/chemical experiment is run on the released BioRED development and test splits.
+- `RUN_ALL.cmd` — complete paper pipeline. This is the main command.
+- `RUN_BC5CDR.cmd` — BC5CDR branch only.
+- `RUN_BIORED.cmd` — BioRED official plus overlap-excluded sensitivity branch.
+- `RUN_MEDGEMMA.cmd` — MedGemma stages after the conventional branches exist.
+- `RUN_FINETUNED_MODELS.cmd` — four supervised reference encoders on BC5CDR and BioRED.
+- `SETUP_ENVIRONMENT.cmd` — create/repair `.venv` only.
+- `CLEAN_GENERATED.cmd` — delete generated outputs while preserving the two raw datasets.
 
-### Content-Aware Weighted Voting
-`RUN_CAWV.cmd` adds the MV -> WV -> CAWV comparison to BC5CDR and official BioRED. Each dataset learns its own content reliabilities, alpha, and threshold from DEV only. TEST evaluation includes entity-type, span-length, mention-form analysis, and paired bootstrap comparisons of CAWV against WV and MV.
+There are no temporary `*_FIXED.cmd`, tokenizer-debug runners, or BioBERT-special runners in the final interface.
 
-### BioRED overlap-excluded sensitivity analysis
-The code identifies BioRED PMIDs that occur in any BC5CDR split and removes them before the clean BioRED experiment. The retained development set is recalibrated independently, then the frozen configuration is evaluated on the retained test set. The same conventional controls and MedGemma analyses are repeated.
+## Main symmetric design
 
-The original BioRED experiment is retained and compared directly with the overlap-excluded analysis.
+BC5CDR and BioRED official are generated with the same presentation families: exact-span performance, MV/WV/CAWV, threshold analysis, CAWV alpha/threshold analysis, paired bootstrap, confidence intervals, Cohen's kappa, positive-token diagnostics, taxonomy, relaxed-overlap scoring, tuned unweighted voting, leave-one-model-out, development-label sensitivity, CAWV ablation, subgroup results, MedGemma, and standardized publication tables/figures.
 
-## Correct model identities
+BioRED overlap-excluded is generated automatically from the raw BioRED corpus using the documented BC5CDR overlap rule. It is a separate sensitivity branch, not a third source dataset. The final code also generates its kappa diagnostics, relaxed-overlap evaluation and CAWV ablation so the sensitivity reporting is as complete as possible without changing the supervised-control design.
 
-The fifth conventional system is **D4Data NER (DistilBERT)** using `d4data/biomedical-ner-all`. The incorrect legacy model label has been removed throughout the codebase.
+## Supervised controls
 
-The merged disease/chemical system is reported as **PubMedBERT + OpenMed**.
+The four controlled encoders are:
 
-## Raw inputs
+- `dmis-lab/biobert-v1.1`
+- `microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext`
+- `bert-base-uncased`
+- `distilbert-base-uncased`
 
-Included under `data\raw\`:
+Each encoder trains separate DISEASE and CHEMICAL token-classification heads. TRAIN updates parameters. DEV independently selects each target checkpoint. TEST is loaded only after selection. Seed 42 and the paper hyperparameters are coded in `src/finetuned_models_symmetric.py`.
 
-- official BC5CDR train/development/test PubTator files;
-- BioRED ZIP.
+## MedGemma prerequisite
+
+The MedGemma stages require a running local Ollama service with:
+
+```text
+medgemma1.5:4b-it-q4_K_M
+```
+
+If it is not installed, run once:
+
+```cmd
+ollama pull medgemma1.5:4b-it-q4_K_M
+```
+
+`RUN_ALL.cmd` deliberately fails rather than silently skipping MedGemma, because a complete run must actually include every study stage.
 
 ## Generated outputs
 
-The runners create outputs under locations including:
+After a successful full run:
 
 ```text
-results\dev\
-results\test\
-results\biored\
-results\biored_overlap_excluded\
-results\biored_sensitivity_comparison\
-data\processed\
-data\gold\
-logs\
+results/
+  publication/                 canonical symmetric tables and figures
+    bc5cdr/
+    biored/
+    biored_overlap_excluded/
+    cross_dataset/
+    SYMMETRY_MATRIX.csv
+  finetuned_models/
+  resource_usage/
+  reproducibility/
+  MANUSCRIPT_RESULTS.log
+checkpoints/
+logs/
+data/processed/
+data/gold/
 ```
 
-See `QUICK_MANUAL.md` for the recommended run order and examples for rerunning individual modules.
+`results/MANUSCRIPT_RESULTS.log` is the main code-to-manuscript transfer file. `results/publication/` is the canonical presentation layer. `results/reproducibility/` records raw-data SHA256 hashes, package versions, the resolved Hugging Face revisions and a pip freeze.
+
+## Reproducibility note
+
+The training pipeline fixes the random seed and DEV-selection protocol. GPU FP16 fine-tuning can still vary slightly across CUDA/driver/kernel versions. The repository therefore records the exact environment and resolved model revisions for each run rather than pretending bitwise identity is guaranteed across machines.
+
+## Operational safeguards
+
+`RUN_ALL.cmd` is the only command required for a complete run. It runs BC5CDR, official BioRED, overlap-excluded BioRED, MedGemma (all branches), four supervised controls on both corpora, symmetric reporting, and final checks. It **stops on any failed stage**, does not claim completion if outputs are missing, and records the run status at `results/run_control/last_run.json`.
+
+To inspect all planned steps without executing experiments after initial setup, run `RUN_ALL.cmd --dry-run`. To rerun experiments even if their outputs exist, run `RUN_ALL.cmd --force`. A rerun without `--force` reuses nonempty outputs only if they are not older than the corresponding module source and JSON files parse correctly. For a publication-final rerun after shared utility changes, use `--force` because intermediate dependency changes are not all captured by timestamps.
+
+The Ollama model is checked **before** expensive conventional experiments begin. `--skip-finetuned` is a deliberately incomplete run and is labeled partial. The two supplied prior logs were individual branches, not evidence of a successful full run. Hardware-dependent model inference and all supervised training require execution on your Windows machine.
 
 
-## CAWV + MedGemma ablation
+## Compute policy
 
-`RUN_MEDGEMMA.cmd` now also evaluates selective MedGemma routing on top of the frozen CAWV ensemble for BC5CDR and official BioRED. The routing band is derived from development CAWV scores around the frozen CAWV threshold and then applied unchanged to test.
-
-`RUN_ALL.cmd` runs conventional experiments, CAWV, and MedGemma in dependency order. Completed stages are skipped on rerun.
-
-## BioRED kappa sanity check
-
-Run `RUN_KAPPA_CHECK.cmd` to recheck token-level kappa from saved BioRED predictions only. It does not rerun NER inference. The check reports overlapping prediction tokens, binary entity-vs-O kappa, positive-token precision/recall, exact-span metrics, and five BioBERT gold/predicted BIO examples. Outputs are written to `results\biored\test\kappa_diagnostic\`.
-
-## Prediction-span integrity audit
-
-`RUN_SPAN_AUDIT.cmd` uses saved predictions only. It checks all five systems on BC5CDR and both BioRED branches for invalid bounds, missing documents, `text[start:end]` mismatches, very long spans, spans covering a large fraction of a document, and sentence-crossing warnings. The 50 longest predictions per model are saved for inspection. Hard offset/text corruption stops the pipeline; long-span warnings are reported without modifying predictions.
-
-The BIO converter already uses token positions from `re.finditer(r"\S+", text)` rather than reconstructing offsets from assumed single spaces.
-
-`RUN_KAPPA_CHECK.cmd` now runs the official BioRED TEST span audit first, regenerates kappa diagnostics, then regenerates the all-five-model error taxonomy.
+- All off-the-shelf NER models (SciSpacy, BioBERT, PubMedBERT, ClinicalBERT, D4Data) run on **CPU only**, for both datasets. Transformer token-classification pipelines set `device=-1`, and each pipeline stage subprocess receives `CUDA_VISIBLE_DEVICES=`. These models still use PyTorch as their CPU backend.
+- Supervised fine-tuning and its checkpoint evaluation are separate in-process PyTorch operations and use CUDA if available.
+- MedGemma 1.5 4B inference uses the existing **Ollama** service, not the fine-tuning PyTorch code. Ollama manages CPU/GPU offload separately.
+- The project still installs a CUDA-enabled PyTorch build because supervised fine-tuning requires it.
+- Running all stages on CPU except fine-tuning may be substantially slower than mixed-device inference.

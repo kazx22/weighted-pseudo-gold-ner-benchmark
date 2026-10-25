@@ -9,21 +9,21 @@
   "results": [
     {
       "system": "Majority Pseudo-Gold",
-      "precision": 0.8752556237218814,
-      "recall": 0.5122681029323758,
-      "f1": 0.6462816157040393,
-      "tp": 856,
-      "fp": 122,
-      "fn": 815,
+      "precision": 0.887144259077527,
+      "recall": 0.5409934171154998,
+      "f1": 0.6721189591078067,
+      "tp": 904,
+      "fp": 115,
+      "fn": 767,
       "per_label": {
         "DISEASE": {
-          "precision": 0.8925925925925926,
-          "recall": 0.5256270447110142,
-          "f1-score": 0.6616334934797529,
+          "precision": 0.9122203098106713,
+          "recall": 0.5779716466739367,
+          "f1-score": 0.7076101468624832,
           "support": 917,
-          "tp": 482,
-          "fp": 58,
-          "fn": 435
+          "tp": 530,
+          "fp": 51,
+          "fn": 387
         },
         "CHEMICAL": {
           "precision": 0.8538812785388128,
@@ -38,30 +38,30 @@
     },
     {
       "system": "Weighted Pseudo-Gold",
-      "precision": 0.8135338345864662,
-      "recall": 0.6475164572112507,
-      "f1": 0.7210929690103299,
-      "tp": 1082,
-      "fp": 248,
-      "fn": 589,
+      "precision": 0.8073047858942065,
+      "recall": 0.7672052663076002,
+      "f1": 0.786744400122737,
+      "tp": 1282,
+      "fp": 306,
+      "fn": 389,
       "per_label": {
         "DISEASE": {
-          "precision": 0.8220108695652174,
-          "recall": 0.6597600872410033,
-          "f1-score": 0.7320024198427103,
+          "precision": 0.8317865429234339,
+          "recall": 0.781897491821156,
+          "f1-score": 0.8060708263069141,
           "support": 917,
-          "tp": 605,
-          "fp": 131,
-          "fn": 312
+          "tp": 717,
+          "fp": 145,
+          "fn": 200
         },
         "CHEMICAL": {
-          "precision": 0.803030303030303,
-          "recall": 0.6326259946949602,
-          "f1-score": 0.7077151335311572,
+          "precision": 0.778236914600551,
+          "recall": 0.7493368700265252,
+          "f1-score": 0.7635135135135136,
           "support": 754,
-          "tp": 477,
-          "fp": 117,
-          "fn": 277
+          "tp": 565,
+          "fp": 161,
+          "fn": 189
         }
       }
     },
@@ -125,30 +125,30 @@
     },
     {
       "system": "Weighted + MedGemma Tie-Breaker",
-      "precision": 0.6078234704112337,
-      "recall": 0.725314183123878,
-      "f1": 0.6613915416098228,
-      "tp": 1212,
-      "fp": 782,
-      "fn": 459,
+      "precision": 0.7960566851509551,
+      "recall": 0.7731897067624177,
+      "f1": 0.7844565877352763,
+      "tp": 1292,
+      "fp": 331,
+      "fn": 379,
       "per_label": {
         "DISEASE": {
-          "precision": 0.504601226993865,
-          "recall": 0.7175572519083969,
-          "f1-score": 0.5925258892390814,
+          "precision": 0.8180790960451978,
+          "recall": 0.7895310796074155,
+          "f1-score": 0.8035516093229745,
           "support": 917,
-          "tp": 658,
-          "fp": 646,
-          "fn": 259
+          "tp": 724,
+          "fp": 161,
+          "fn": 193
         },
         "CHEMICAL": {
-          "precision": 0.8028985507246377,
-          "recall": 0.7347480106100795,
-          "f1-score": 0.7673130193905817,
+          "precision": 0.7696476964769647,
+          "recall": 0.753315649867374,
+          "f1-score": 0.7613941018766756,
           "support": 754,
-          "tp": 554,
-          "fp": 136,
-          "fn": 200
+          "tp": 568,
+          "fp": 170,
+          "fn": 186
         }
       }
     }
@@ -163,9 +163,9 @@
     "document_count": 100,
     "completed_segment_count": 496,
     "entity_count": 2097,
-    "summed_request_seconds": 2678.607784,
-    "average_seconds_per_document": 26.786078,
-    "current_process_wall_seconds": 2678.768271,
+    "summed_request_seconds": 2691.833777,
+    "average_seconds_per_document": 26.918338,
+    "current_process_wall_seconds": 2691.969475,
     "diagnostics": {
       "returned_entities": 3139,
       "accepted_entities": 3121,
@@ -177,8 +177,8 @@
       "rejected_unmapped_text": 18,
       "rejected_ambiguous_occurrence": 0
     },
-    "prediction_file": "C:\\University\\Projects\\Biomedical NER\\data\\processed\\biored\\medgemma_test_entities_biored.jsonl",
-    "cache_file": "C:\\University\\Projects\\Biomedical NER\\results\\biored\\test\\medgemma\\zero_shot_doc_results_chunked_v2.jsonl",
+    "prediction_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\processed\\biored\\medgemma_test_entities_biored.jsonl",
+    "cache_file": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\test\\medgemma\\zero_shot_doc_results_chunked_v2.jsonl",
     "is_smoke_run": false
   },
   "hybrid_routing": {
@@ -186,22 +186,22 @@
     "model": "medgemma1.5:4b-it-q4_K_M",
     "prompt_version": "biored-disease-chemical-medgemma-v1",
     "base_weighted_threshold": 0.82016965,
-    "low_threshold": 0.80201345,
-    "high_threshold": 0.88609265,
-    "total_unique_candidates": 10425,
-    "auto_reject_count": 8151,
-    "routed_count": 956,
-    "auto_accept_count": 1318,
-    "medgemma_accept_count": 676,
-    "medgemma_reject_count": 280,
-    "invalid_default_reject_count": 9,
-    "final_entity_count": 1994,
-    "routing_rate_over_all_candidates": 0.09170263788968824,
-    "tie_break_request_seconds": 3104.115472,
-    "current_process_wall_seconds": 3105.34207,
+    "low_threshold": 0.7813318,
+    "high_threshold": 0.88073986,
+    "total_unique_candidates": 8544,
+    "auto_reject_count": 6904,
+    "routed_count": 77,
+    "auto_accept_count": 1563,
+    "medgemma_accept_count": 60,
+    "medgemma_reject_count": 17,
+    "invalid_default_reject_count": 0,
+    "final_entity_count": 1623,
+    "routing_rate_over_all_candidates": 0.009012172284644194,
+    "tie_break_request_seconds": 232.495888,
+    "current_process_wall_seconds": 232.561926,
     "construction_used_human_gold": false,
     "test_gold_was_not_read": true,
-    "decision_cache": "C:\\University\\Projects\\Biomedical NER\\results\\biored\\test\\medgemma_hybrid\\candidate_decisions.jsonl",
-    "output_file": "C:\\University\\Projects\\Biomedical NER\\data\\gold\\biored\\medgemma_hybrid_test_entities_biored.jsonl"
+    "decision_cache": "C:\\University\\Projects\\spatial-human-anatomy\\results\\biored\\test\\medgemma_hybrid\\candidate_decisions.jsonl",
+    "output_file": "C:\\University\\Projects\\spatial-human-anatomy\\data\\gold\\biored\\medgemma_hybrid_test_entities_biored.jsonl"
   }
 }

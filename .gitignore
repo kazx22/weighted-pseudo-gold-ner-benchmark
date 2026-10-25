@@ -1,8 +1,12 @@
 .venv/
 __pycache__/
 *.pyc
+logs/
+results/
+checkpoints/
+figures/
 data/processed/
 data/gold/
-results/
-logs/
-tests/
+data/raw/biored/
+data/raw/_extracted/
+.huggingface/

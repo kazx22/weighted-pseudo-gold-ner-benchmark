@@ -1,43 +1,43 @@
 {
   "scispacy": {
     "model": "scispaCy",
-    "total_seconds": 3.167554,
-    "average_seconds_per_document": 0.031676,
+    "total_seconds": 3.294259,
+    "average_seconds_per_document": 0.032943,
     "document_count": 100,
     "entity_count": 1614
   },
   "biobert": {
     "model": "BioBERT",
-    "total_seconds": 62.650771,
-    "average_seconds_per_document": 0.626508,
+    "total_seconds": 64.431177,
+    "average_seconds_per_document": 0.644312,
     "document_count": 100,
-    "entity_count": 3424
+    "entity_count": 2141
   },
   "pubmedbert": {
     "model": "PubMedBERT + OpenMed",
-    "total_seconds": 498.480339,
-    "average_seconds_per_document": 4.984803,
+    "total_seconds": 416.076328,
+    "average_seconds_per_document": 4.160763,
     "document_count": 100,
-    "entity_count": 3710
+    "entity_count": 2447
   },
   "clinicalbert": {
     "model": "ClinicalBERT",
-    "total_seconds": 28.8665,
-    "average_seconds_per_document": 0.288665,
+    "total_seconds": 29.060331,
+    "average_seconds_per_document": 0.290603,
     "document_count": 100,
     "entity_count": 3758
   },
   "d4data": {
     "model": "D4Data NER (DistilBERT)",
-    "total_seconds": 15.498662,
-    "average_seconds_per_document": 0.154987,
+    "total_seconds": 16.010123,
+    "average_seconds_per_document": 0.160101,
     "document_count": 100,
     "entity_count": 1944
   },
   "medgemma": {
     "model": "MedGemma 1.5 4B",
-    "total_seconds": 2678.607784,
-    "average_seconds_per_document": 26.786078,
+    "total_seconds": 2691.833777,
+    "average_seconds_per_document": 26.918338,
     "document_count": 100,
     "entity_count": 2097
   }

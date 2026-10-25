@@ -36,6 +36,7 @@ def save_jsonl(records, output_file):
 
 
 def run_scispacy(docs):
+    spacy.require_cpu()
     nlp = spacy.load(MODEL_NAME)
     all_entities = []
 

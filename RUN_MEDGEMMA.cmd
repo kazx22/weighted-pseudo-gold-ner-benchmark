@@ -1,25 +1,28 @@
 @echo off
-setlocal
+setlocal EnableExtensions
 cd /d "%~dp0"
 
-if not exist ".venv\Scripts\python.exe" (
-    echo ERROR: .venv\Scripts\python.exe was not found.
-    echo Create/restore the project virtual environment first.
-    pause
-    exit /b 1
-)
+call SETUP_ENVIRONMENT.cmd
+if errorlevel 1 goto :fail
 
-call .venv\Scripts\activate.bat
-python -m src.run_medgemma
-set EXITCODE=%ERRORLEVEL%
 
-if not "%EXITCODE%"=="0" (
-    echo.
-    echo RUN_MEDGEMMA failed. Read the newest log in logs\.
-    pause
-    exit /b %EXITCODE%
-)
+echo ==============================================================
+echo MEDGEMMA ZERO-SHOT + SELECTIVE ADJUDICATION
+echo ==============================================================
+".venv\Scripts\python.exe" -m src.run_medgemma %*
+if errorlevel 1 goto :fail
 
 echo.
-echo RUN_MEDGEMMA completed successfully.
-pause
+echo ==============================================================
+echo COMPLETE
+echo MEDGEMMA ZERO-SHOT + SELECTIVE ADJUDICATION
+echo ==============================================================
+exit /b 0
+
+:fail
+echo.
+echo ==============================================================
+echo FAILED
+if exist "logs" echo Check the newest log in logs\
+echo ==============================================================
+exit /b 1

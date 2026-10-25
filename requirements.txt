@@ -1,7 +1,13 @@
-numpy
-matplotlib
-scikit-learn
-spacy
-scispacy
-transformers
-torch
+# Tested design: Windows + Python 3.11 + NVIDIA CUDA GPU.
+# PyTorch is installed separately by src/ensure_torch_cuda.cmd as 2.6.0/cu124.
+# Keep Transformers pinned because legacy public checkpoints are sensitive to loader changes.
+numpy>=1.26,<2.0
+matplotlib>=3.8,<4.0
+scikit-learn>=1.4,<2.0
+spacy>=3.7,<3.8
+scispacy==0.5.4
+transformers==5.2.0
+psutil>=5.9,<8.0
+sentencepiece>=0.2,<0.3
+tiktoken>=0.7,<1.0
+tokenizers>=0.20

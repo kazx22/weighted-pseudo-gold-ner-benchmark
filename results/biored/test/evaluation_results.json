@@ -9,22 +9,22 @@
   "pseudo_gold_vs_human": [
     {
       "system": "Majority Pseudo-Gold",
-      "precision": 0.8752556237218814,
-      "recall": 0.5122681029323758,
-      "f1": 0.6462816157040393,
-      "tp": 856,
-      "fp": 122,
-      "fn": 815,
+      "precision": 0.887144259077527,
+      "recall": 0.5409934171154998,
+      "f1": 0.6721189591078067,
+      "tp": 904,
+      "fp": 115,
+      "fn": 767,
       "runtime_seconds_per_document": null,
       "per_label": {
         "DISEASE": {
-          "precision": 0.8925925925925926,
-          "recall": 0.5256270447110142,
-          "f1-score": 0.6616334934797529,
+          "precision": 0.9122203098106713,
+          "recall": 0.5779716466739367,
+          "f1-score": 0.7076101468624832,
           "support": 917,
-          "tp": 482,
-          "fp": 58,
-          "fn": 435
+          "tp": 530,
+          "fp": 51,
+          "fn": 387
         },
         "CHEMICAL": {
           "precision": 0.8538812785388128,
@@ -39,31 +39,31 @@
     },
     {
       "system": "Weighted Pseudo-Gold",
-      "precision": 0.8135338345864662,
-      "recall": 0.6475164572112507,
-      "f1": 0.7210929690103299,
-      "tp": 1082,
-      "fp": 248,
-      "fn": 589,
+      "precision": 0.8073047858942065,
+      "recall": 0.7672052663076002,
+      "f1": 0.786744400122737,
+      "tp": 1282,
+      "fp": 306,
+      "fn": 389,
       "runtime_seconds_per_document": null,
       "per_label": {
         "DISEASE": {
-          "precision": 0.8220108695652174,
-          "recall": 0.6597600872410033,
-          "f1-score": 0.7320024198427103,
+          "precision": 0.8317865429234339,
+          "recall": 0.781897491821156,
+          "f1-score": 0.8060708263069141,
           "support": 917,
-          "tp": 605,
-          "fp": 131,
-          "fn": 312
+          "tp": 717,
+          "fp": 145,
+          "fn": 200
         },
         "CHEMICAL": {
-          "precision": 0.803030303030303,
-          "recall": 0.6326259946949602,
-          "f1-score": 0.7077151335311572,
+          "precision": 0.778236914600551,
+          "recall": 0.7493368700265252,
+          "f1-score": 0.7635135135135136,
           "support": 754,
-          "tp": 477,
-          "fp": 117,
-          "fn": 277
+          "tp": 565,
+          "fp": 161,
+          "fn": 189
         }
       }
     }
@@ -77,7 +77,7 @@
       "tp": 1063,
       "fp": 551,
       "fn": 608,
-      "runtime_seconds_per_document": 0.031676,
+      "runtime_seconds_per_document": 0.032943,
       "per_label": {
         "DISEASE": {
           "precision": 0.6885644768856448,
@@ -101,21 +101,21 @@
     },
     {
       "system": "BioBERT",
-      "precision": 0.3557242990654206,
+      "precision": 0.5688930406352172,
       "recall": 0.7289048473967684,
-      "f1": 0.47811579980372915,
+      "f1": 0.6390346274921301,
       "tp": 1218,
-      "fp": 2206,
+      "fp": 923,
       "fn": 453,
-      "runtime_seconds_per_document": 0.626508,
+      "runtime_seconds_per_document": 0.644312,
       "per_label": {
         "DISEASE": {
-          "precision": 0.28823288232882327,
+          "precision": 0.6081314878892734,
           "recall": 0.7666303162486369,
-          "f1-score": 0.4189511323003576,
+          "f1-score": 0.6782440906898215,
           "support": 917,
           "tp": 703,
-          "fp": 1736,
+          "fp": 453,
           "fn": 214
         },
         "CHEMICAL": {
@@ -131,30 +131,30 @@
     },
     {
       "system": "PubMedBERT + OpenMed",
-      "precision": 0.2307277628032345,
-      "recall": 0.5122681029323758,
-      "f1": 0.31815647649135853,
-      "tp": 856,
-      "fp": 2854,
-      "fn": 815,
-      "runtime_seconds_per_document": 4.984803,
+      "precision": 0.40539436044135674,
+      "recall": 0.5936564931178935,
+      "f1": 0.4817872753763963,
+      "tp": 992,
+      "fp": 1455,
+      "fn": 679,
+      "runtime_seconds_per_document": 4.160763,
       "per_label": {
         "DISEASE": {
-          "precision": 0.16572580645161292,
-          "recall": 0.44820065430752454,
-          "f1-score": 0.24197821607300557,
+          "precision": 0.4498355263157895,
+          "recall": 0.5965103598691385,
+          "f1-score": 0.512892639474918,
           "support": 917,
-          "tp": 411,
-          "fp": 2069,
-          "fn": 506
+          "tp": 547,
+          "fp": 669,
+          "fn": 370
         },
         "CHEMICAL": {
-          "precision": 0.3617886178861789,
+          "precision": 0.36149471974004876,
           "recall": 0.5901856763925729,
-          "f1-score": 0.4485887096774194,
+          "f1-score": 0.44836272040302266,
           "support": 754,
           "tp": 445,
-          "fp": 785,
+          "fp": 786,
           "fn": 309
         }
       }
@@ -167,7 +167,7 @@
       "tp": 630,
       "fp": 3128,
       "fn": 1041,
-      "runtime_seconds_per_document": 0.288665,
+      "runtime_seconds_per_document": 0.290603,
       "per_label": {
         "DISEASE": {
           "precision": 0.1550762365191521,
@@ -197,7 +197,7 @@
       "tp": 280,
       "fp": 1664,
       "fn": 1391,
-      "runtime_seconds_per_document": 0.154987,
+      "runtime_seconds_per_document": 0.160101,
       "per_label": {
         "DISEASE": {
           "precision": 0.1240086517664023,

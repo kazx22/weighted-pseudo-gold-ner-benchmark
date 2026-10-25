@@ -28,6 +28,7 @@ def _find(rows: list[dict], system: str) -> dict:
 
 def _summary(variant: str, root: Path, audit: dict) -> dict:
     evaluation = _load(root / "test" / "evaluation_results.json")
+    cawv = _load(root / "test" / "cawv" / "cawv_evaluation.json")
     med = _load(root / "test" / "medgemma_evaluation.json")
     controls = _load(root / "test" / "method_controls" / "method_controls.json")
     config = _load(root / "dev" / "frozen_pseudo_gold_config.json")
@@ -47,6 +48,8 @@ def _summary(variant: str, root: Path, audit: dict) -> dict:
         "selected_weighted_threshold": float(config["selected_threshold"]),
         "majority_f1": float(_find(pseudo, "Majority Pseudo-Gold")["f1"]),
         "weighted_f1": float(_find(pseudo, "Weighted Pseudo-Gold")["f1"]),
+        "cawv_f1": float(cawv["overall"]["CAWV"]["f1"]),
+        "cawv_minus_weighted_f1": float(cawv["overall"]["CAWV"]["f1"] - cawv["overall"]["WV"]["f1"]),
         "scispacy_f1": float(_find(models, "scispaCy")["f1"]),
         "tuned_unweighted_k": int(controls["tuned_unweighted"]["selected_k"]),
         "tuned_unweighted_f1": float(controls["tuned_unweighted"]["test_metrics"]["f1"]),
@@ -118,6 +121,8 @@ def main() -> None:
     metrics = [
         ("Majority F1", "majority_f1"),
         ("Weighted F1", "weighted_f1"),
+        ("CAWV F1", "cawv_f1"),
+        ("CAWV - WV", "cawv_minus_weighted_f1"),
         ("scispaCy F1", "scispacy_f1"),
         ("Tuned unweighted F1", "tuned_unweighted_f1"),
         ("MedGemma zero-shot F1", "medgemma_zero_shot_f1"),

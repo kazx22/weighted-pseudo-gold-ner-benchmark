@@ -7,7 +7,11 @@ import time
 from typing import Callable
 
 import spacy
-from transformers import pipeline
+from src.cpu_ner import enforce_cpu, cpu_pipeline
+enforce_cpu()
+
+
+from src.ner_pipeline_labels import make_ner_pipeline
 
 from src.biored_config import (
     MODEL_DISPLAY_NAMES,
@@ -123,6 +127,7 @@ def _safe_entity(
 
 
 def run_scispacy(docs: list[dict]) -> tuple[list[dict], float, float]:
+    spacy.require_cpu()
     nlp = spacy.load(SCISPACY_MODEL)
     all_entities: list[dict] = []
     start_time = time.time()
@@ -157,16 +162,8 @@ def run_dual_model(
     chemical_model: str,
     display_name: str,
 ) -> tuple[list[dict], float, float]:
-    disease_ner = pipeline(
-        "token-classification",
-        model=disease_model,
-        aggregation_strategy="simple",
-    )
-    chemical_ner = pipeline(
-        "token-classification",
-        model=chemical_model,
-        aggregation_strategy="simple",
-    )
+    disease_ner = make_ner_pipeline(disease_model)
+    chemical_ner = make_ner_pipeline(chemical_model)
     all_entities: list[dict] = []
     start_time = time.time()
 
@@ -213,7 +210,7 @@ def run_dual_model(
 
 
 def run_clinicalbert(docs: list[dict]) -> tuple[list[dict], float, float]:
-    ner = pipeline("ner", model=CLINICALBERT_MODEL, aggregation_strategy="simple")
+    ner = cpu_pipeline("ner", model=CLINICALBERT_MODEL, aggregation_strategy="simple", device=-1)
     all_entities: list[dict] = []
     start_time = time.time()
     for index, document in enumerate(docs, start=1):
@@ -243,7 +240,7 @@ def run_clinicalbert(docs: list[dict]) -> tuple[list[dict], float, float]:
 
 
 def run_d4data_ner(docs: list[dict]) -> tuple[list[dict], float, float]:
-    ner = pipeline("ner", model=D4DATA_NER_MODEL, aggregation_strategy="simple")
+    ner = cpu_pipeline("ner", model=D4DATA_NER_MODEL, aggregation_strategy="simple", device=-1)
     all_entities: list[dict] = []
     start_time = time.time()
     for index, document in enumerate(docs, start=1):

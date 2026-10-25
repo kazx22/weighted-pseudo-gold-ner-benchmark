@@ -4,7 +4,7 @@ import json
 import re
 import time
 from pathlib import Path
-from transformers import pipeline
+from src.ner_pipeline_labels import make_ner_pipeline
 
 from src.experiment_config import (
     docs_file,
@@ -19,7 +19,6 @@ CHEMICAL_MODEL = "alvaroalon2/biobert_chemical_ner"
 
 MAX_TOKENS = 400                                                         
 OVERLAP_SENTS = 1                                                      
-MAX_ENTITY_CHARS = 110                                                 
                                                       
                                      
 
@@ -104,9 +103,6 @@ def predictions_to_entities(predictions, row_id, label_name, full_text, char_off
         end_char = int(pred["end"]) + char_offset
         surface = full_text[start_char:end_char]
 
-        if (end_char - start_char) > MAX_ENTITY_CHARS:
-            continue
-
         entities.append(
             {
                 "row_id": row_id,
@@ -135,16 +131,8 @@ def deduplicate_entities(entities):
 
 
 def run_biobert(docs):
-    disease_ner = pipeline(
-        "token-classification",
-        model=DISEASE_MODEL,
-        aggregation_strategy="simple",
-    )
-    chemical_ner = pipeline(
-        "token-classification",
-        model=CHEMICAL_MODEL,
-        aggregation_strategy="simple",
-    )
+    disease_ner = make_ner_pipeline(DISEASE_MODEL)
+    chemical_ner = make_ner_pipeline(CHEMICAL_MODEL)
 
     print("Disease model max length:", disease_ner.tokenizer.model_max_length)
     print("Chemical model max length:", chemical_ner.tokenizer.model_max_length)

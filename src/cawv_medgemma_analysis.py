@@ -2,8 +2,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import importlib
-
 import numpy as np
 
 from src.bootstrap_significance import paired_bootstrap_p_value
@@ -29,7 +27,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
-    cfg, cawv, _, suffix = dataset_parts(args.dataset)
+    cfg, cawv, _, _, suffix = dataset_parts(args.dataset)
     gold = load_jsonl(cfg.require_file(cfg.gold_entities_file(args.split), "human gold"))
     baseline = load_jsonl(cfg.require_file(cawv.cawv_pseudo_gold_file(args.split), "CAWV output"))
     hybrid = load_jsonl(cfg.require_file(output_file(cfg, args.split, suffix), "CAWV + MedGemma output"))

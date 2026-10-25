@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import itertools
 
 import matplotlib.pyplot as plt
@@ -20,7 +21,7 @@ from src.experiment_config import (
     results_dir,
     save_json,
 )
-from src.utils import group_by_row, load_jsonl, span_to_bio
+from src.utils import exact_span_metrics, group_by_row, load_jsonl, span_to_bio
 
 
 def build_flat_labels(docs: list[dict], entities_by_row: dict[int, list[dict]]) -> list[str]:
@@ -32,6 +33,33 @@ def build_flat_labels(docs: list[dict], entities_by_row: dict[int, list[dict]]) 
         )
         flat.extend(labels)
     return flat
+
+
+def positive_token_metrics(gold: list[str], pred: list[str]) -> dict:
+    gold_positive = [label != "O" for label in gold]
+    pred_positive = [label != "O" for label in pred]
+    tp = sum(g and p for g, p in zip(gold_positive, pred_positive))
+    fp = sum((not g) and p for g, p in zip(gold_positive, pred_positive))
+    fn = sum(g and (not p) for g, p in zip(gold_positive, pred_positive))
+    precision = tp / (tp + fp) if tp + fp else 0.0
+    recall = tp / (tp + fn) if tp + fn else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+    return {
+        "tp": int(tp),
+        "fp": int(fp),
+        "fn": int(fn),
+        "precision": float(precision),
+        "recall": float(recall),
+        "f1": float(f1),
+    }
+
+
+def write_diagnostic_csv(rows: list[dict], path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(rows)
 
 
 def interpret_kappa(value: float) -> str:
@@ -93,11 +121,14 @@ def main() -> None:
     labels: dict[str, list[str]] = {
         "Human Gold": build_flat_labels(docs, group_by_row(human_gold))
     }
+    predictions_by_name: dict[str, list[dict]] = {}
     for model_key in MODEL_KEYS:
         predictions = load_jsonl(
             require_file(prediction_file(model_key, split), f"{model_key} predictions")
         )
-        labels[MODEL_DISPLAY_NAMES[model_key]] = build_flat_labels(
+        model_name = MODEL_DISPLAY_NAMES[model_key]
+        predictions_by_name[model_name] = predictions
+        labels[model_name] = build_flat_labels(
             docs, group_by_row(predictions)
         )
 
@@ -127,30 +158,74 @@ def main() -> None:
         print(f"  {first:15} vs {second:15} k={value:.4f}")
 
     versus_gold: list[dict] = []
-    print("\nModel versus human gold Cohen's kappa:")
+    diagnostic_rows: list[dict] = []
+    print("\nModel versus human gold Cohen's kappa and positive-token metrics:")
     for model_name in model_names:
         value = float(cohen_kappa_score(labels[model_name], labels["Human Gold"]))
-        versus_gold.append(
+        token_metrics = positive_token_metrics(labels["Human Gold"], labels[model_name])
+        exact = exact_span_metrics(human_gold, predictions_by_name[model_name])
+        row = {
+            "model": model_name,
+            "kappa": value,
+            "interpretation": interpret_kappa(value),
+            "positive_token_precision": float(token_metrics["precision"]),
+            "positive_token_recall": float(token_metrics["recall"]),
+            "positive_token_f1": float(token_metrics["f1"]),
+            "positive_token_tp": int(token_metrics["tp"]),
+            "positive_token_fp": int(token_metrics["fp"]),
+            "positive_token_fn": int(token_metrics["fn"]),
+        }
+        versus_gold.append(row)
+        diagnostic_rows.append(
             {
                 "model": model_name,
-                "kappa": value,
-                "interpretation": interpret_kappa(value),
+                "exact_f1": round(float(exact["f1"]), 8),
+                "bio_kappa": round(value, 8),
+                "positive_token_precision": round(float(token_metrics["precision"]), 8),
+                "positive_token_recall": round(float(token_metrics["recall"]), 8),
+                "positive_token_f1": round(float(token_metrics["f1"]), 8),
+                "positive_token_tp": int(token_metrics["tp"]),
+                "positive_token_fp": int(token_metrics["fp"]),
+                "positive_token_fn": int(token_metrics["fn"]),
             }
         )
-        print(f"  {model_name:15} k={value:.4f} ({interpret_kappa(value)})")
+        print(
+            f"  {model_name:24} k={value:.4f}  "
+            f"positive-token P/R/F1="
+            f"{token_metrics['precision']:.4f}/"
+            f"{token_metrics['recall']:.4f}/"
+            f"{token_metrics['f1']:.4f}"
+        )
 
     output = {
         "split": split,
         "level": "token-level BIO labels",
         "caution": "The frequent O class can inflate agreement; interpret with exact span metrics.",
+        "positive_token_definition": "Every non-O BIO tag is treated as an entity-positive token.",
         "pairwise": pairwise,
         "versus_human_gold": versus_gold,
         "mean_pairwise_kappa": float(np.mean([row["kappa"] for row in pairwise])),
     }
     save_json(output, results_dir(split) / "cohen_kappa_results.json")
+
+    diagnostic_dir = results_dir(split) / "kappa_diagnostic"
+    diagnostic_dir.mkdir(parents=True, exist_ok=True)
+    write_diagnostic_csv(diagnostic_rows, diagnostic_dir / "kappa_model_summary.csv")
+    save_json(
+        {
+            "dataset": "BC5CDR",
+            "split": split,
+            "uses_saved_predictions_only": True,
+            "models_rerun": False,
+            "positive_token_definition": "Every non-O BIO tag is treated as an entity-positive token.",
+            "models": diagnostic_rows,
+        },
+        diagnostic_dir / "kappa_diagnostic.json",
+    )
     heatmap_path = figures_dir(split) / "kappa_heatmap.png"
     plot_heatmap(model_names, matrix, heatmap_path)
     print(f"\nSaved kappa results to {results_dir(split)}")
+    print(f"Saved positive-token diagnostic to {diagnostic_dir}")
     print(f"Saved heatmap to {heatmap_path}")
 
 

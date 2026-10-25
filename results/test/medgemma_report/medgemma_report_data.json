@@ -3,438 +3,354 @@
   "postprocessing_only": true,
   "ollama_called": false,
   "primary_metric": "exact_character_span_and_label",
-  "evaluation_source": "C:\\University\\Projects\\Biomedical NER\\results\\test\\medgemma_evaluation.json",
-  "bootstrap_source": "C:\\University\\Projects\\Biomedical NER\\results\\test\\medgemma_bootstrap_results.json",
+  "evaluation_source": "C:\\University\\Projects\\spatial-human-anatomy\\results\\test\\medgemma_evaluation.json",
+  "bootstrap_source": "C:\\University\\Projects\\spatial-human-anatomy\\results\\test\\medgemma_bootstrap_results.json",
   "candidate_decision_audit": {
     "definition": "A routed candidate is correct only if row_id, start_char, end_char, and entity label exactly match BC5CDR human gold.",
     "counts": {
-      "tp": 462,
-      "fp": 115,
-      "tn": 43,
-      "fn": 12
+      "tp": 103,
+      "fp": 148,
+      "tn": 69,
+      "fn": 5
     },
-    "accuracy": 0.7990506329113924,
-    "accept_precision": 0.8006932409012132,
-    "accept_recall": 0.9746835443037974,
-    "accept_f1": 0.8791627021883921,
-    "reject_specificity": 0.2721518987341772,
+    "accuracy": 0.5292307692307693,
+    "accept_precision": 0.4103585657370518,
+    "accept_recall": 0.9537037037037037,
+    "accept_f1": 0.5738161559888579,
+    "reject_specificity": 0.31797235023041476,
     "by_label": {
       "CHEMICAL": {
-        "tp": 266,
-        "fp": 18,
-        "tn": 17,
-        "fn": 9
+        "tp": 42,
+        "fp": 34,
+        "tn": 46,
+        "fn": 0
       },
       "DISEASE": {
-        "tp": 196,
-        "fp": 97,
-        "tn": 26,
-        "fn": 3
+        "tp": 61,
+        "fp": 114,
+        "tn": 23,
+        "fn": 5
       }
     },
     "by_weighted_score": {
-      "1.16884495": {
-        "tp": 427,
-        "fp": 80,
-        "tn": 3,
-        "fn": 11
+      "1.00479647": {
+        "tp": 96,
+        "fp": 124,
+        "tn": 41,
+        "fn": 4
       },
-      "1.08738697": {
-        "tp": 35,
-        "fp": 35,
-        "tn": 40,
+      "0.97504501": {
+        "tp": 7,
+        "fp": 24,
+        "tn": 28,
         "fn": 1
       }
     },
     "false_accept_examples": [
       {
         "row_id": 146391,
-        "start_char": 181,
-        "end_char": 182,
-        "text": "l",
+        "start_char": 182,
+        "end_char": 196,
+        "text": "ymphadenopathy",
         "label": "DISEASE",
-        "weighted_score": 1.08738697,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'l' is a complete word and is explicitly mentioned in the context as a potential disease or condition, specifically 'lymphadenopathy'. The label 'DISEASE' is appropriate for this context."
+        "reason": "The marked text 'lymphadenopathy' is a recognized biomedical entity (a disease) and is explicitly mentioned in the context."
       },
       {
-        "row_id": 146391,
-        "start_char": 706,
-        "end_char": 710,
-        "text": "rash",
-        "label": "DISEASE",
-        "weighted_score": 1.16884495,
-        "decision": "ACCEPT",
-        "is_exact_human_gold": false,
-        "outcome": "FP",
-        "reason": "The marked text 'rash' is a clear biomedical entity representing a skin condition, fitting the DISEASE label. It is explicitly mentioned in the context of a patient's symptoms."
-      },
-      {
-        "row_id": 573555,
-        "start_char": 708,
-        "end_char": 709,
-        "text": "h",
-        "label": "DISEASE",
-        "weighted_score": 1.08738697,
-        "decision": "ACCEPT",
-        "is_exact_human_gold": false,
-        "outcome": "FP",
-        "reason": "The marked text 'h' is a complete biomedical entity in the context of the sentence, representing hypoglycemia, which is a disease."
-      },
-      {
-        "row_id": 573555,
-        "start_char": 765,
-        "end_char": 770,
-        "text": "apnea",
-        "label": "DISEASE",
-        "weighted_score": 1.16884495,
-        "decision": "ACCEPT",
-        "is_exact_human_gold": false,
-        "outcome": "FP",
-        "reason": "The marked text 'apnea' is a recognized biomedical entity, specifically a condition affecting the respiratory system. The proposed label 'DISEASE' is appropriate. The boundary is complete and contains only the entity. The candidate is not a broken word-piece or incomplete fragment."
-      },
-      {
-        "row_id": 733189,
-        "start_char": 501,
-        "end_char": 505,
-        "text": "hazy",
-        "label": "DISEASE",
-        "weighted_score": 1.16884495,
-        "decision": "ACCEPT",
-        "is_exact_human_gold": false,
-        "outcome": "FP",
-        "reason": "The marked text 'hazy' is an explicit biomedical entity in the context of describing acute observations, and the proposed label 'DISEASE' is correct."
-      },
-      {
-        "row_id": 851038,
-        "start_char": 574,
-        "end_char": 585,
-        "text": "hypokalemic",
-        "label": "DISEASE",
-        "weighted_score": 1.16884495,
-        "decision": "ACCEPT",
-        "is_exact_human_gold": false,
-        "outcome": "FP",
-        "reason": "The marked text 'hypokalemic' is a recognized biomedical term referring to a condition characterized by low potassium levels. It fits the definition of a disease state in this context."
-      },
-      {
-        "row_id": 946593,
-        "start_char": 426,
-        "end_char": 449,
-        "text": "nervous system leukemia",
-        "label": "DISEASE",
-        "weighted_score": 1.16884495,
-        "decision": "ACCEPT",
-        "is_exact_human_gold": false,
-        "outcome": "FP",
-        "reason": "The marked text 'nervous system leukemia' is an explicit biomedical entity in the context of the text, and the proposed label 'DISEASE' is correct. The boundary is complete and does not contain unrelated words. The candidate is not merely a broken word-piece or incomplete fragment."
-      },
-      {
-        "row_id": 946593,
-        "start_char": 1175,
-        "end_char": 1198,
-        "text": "nervous system leukemia",
-        "label": "DISEASE",
-        "weighted_score": 1.16884495,
-        "decision": "ACCEPT",
-        "is_exact_human_gold": false,
-        "outcome": "FP",
-        "reason": "The marked text 'nervous system leukemia' is a recognized biomedical entity, specifically a type of cancer affecting the nervous system. The context explicitly links it to neurotoxicity and methotrexate dosage adjustments, confirming its role as a disease entity in this specific context. The boundary is complete and contains only the relevant term. The candidate is not a broken word-piece or incomplete fragment."
-      },
-      {
-        "row_id": 978847,
-        "start_char": 325,
-        "end_char": 336,
-        "text": "xamethonium",
+        "row_id": 256433,
+        "start_char": 362,
+        "end_char": 370,
+        "text": "bramycin",
         "label": "CHEMICAL",
-        "weighted_score": 1.08738697,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'xamethonium' is a specific chemical compound used in medicine, fitting the CHEMICAL label. It is explicitly mentioned in the context of drug administration and its effects."
+        "reason": "The marked text 'bramycin' is a specific chemical name used in a biomedical context (antibiotic). It is explicitly mentioned and fits the CHEMICAL label."
       },
       {
-        "row_id": 978847,
-        "start_char": 445,
-        "end_char": 452,
-        "text": "ranolol",
-        "label": "CHEMICAL",
-        "weighted_score": 1.08738697,
-        "decision": "ACCEPT",
-        "is_exact_human_gold": false,
-        "outcome": "FP",
-        "reason": "The proposed text 'ranolol' is a chemical entity mentioned in the context of drug dosage and administration. It is explicitly marked and fits the CHEMICAL label."
-      },
-      {
-        "row_id": 1395192,
-        "start_char": 174,
-        "end_char": 186,
-        "text": "atheromatous",
+        "row_id": 448423,
+        "start_char": 335,
+        "end_char": 359,
+        "text": "thrombotic complications",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'atheromatous' is a recognized biomedical term, specifically a type of atherosclerosis, and fits the context of describing potential etiologies of spasm or coronary dissection. It is a complete word and not a fragment."
+        "reason": "The marked text 'thrombotic complications' is a clear biomedical entity describing a type of complication, fitting the DISEASE label. It is explicitly mentioned in the context of EACA therapy and its potential negative effects."
+      },
+      {
+        "row_id": 448423,
+        "start_char": 550,
+        "end_char": 571,
+        "text": "fibrinolytic syndrome",
+        "label": "DISEASE",
+        "weighted_score": 1.00479647,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'fibrinolytic syndrome' is a recognized biomedical term referring to a condition characterized by the breakdown of blood clots, which is relevant to the context of thromboembolic phenomena mentioned in the sentence."
+      },
+      {
+        "row_id": 448423,
+        "start_char": 907,
+        "end_char": 940,
+        "text": "subtotal infarction of the kidney",
+        "label": "DISEASE",
+        "weighted_score": 1.00479647,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'subtotal infarction of the kidney' is a clear biomedical entity describing a specific condition (disease) in the context of the report. The label 'DISEASE' is appropriate. The boundary is complete and contains only relevant medical terms. The candidate is not a broken word-piece or incomplete fragment."
+      },
+      {
+        "row_id": 689020,
+        "start_char": 135,
+        "end_char": 148,
+        "text": "finger tremor",
+        "label": "DISEASE",
+        "weighted_score": 0.97504501,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'finger tremor' is a clear biomedical entity representing a specific type of tremor, which is a disease or physiological abnormality. The label 'DISEASE' is appropriate for this context."
       },
       {
         "row_id": 1451544,
-        "start_char": 833,
-        "end_char": 844,
-        "text": "hypotension",
-        "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "start_char": 501,
+        "end_char": 509,
+        "text": "radipine",
+        "label": "CHEMICAL",
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'hypotension' is a recognized biomedical entity representing a condition, specifically a type of low blood pressure. The label 'DISEASE' is appropriate for this entity. The text is complete and contains only the relevant medical term."
+        "reason": "The marked text 'radipine' is a specific chemical name used in the context of a drug study, fitting the CHEMICAL label. It is explicitly mentioned and not a broken word-piece or incomplete fragment."
       },
       {
-        "row_id": 1655018,
-        "start_char": 303,
-        "end_char": 311,
-        "text": "aplastic",
+        "row_id": 1756784,
+        "start_char": 632,
+        "end_char": 635,
+        "text": "SNR",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'aplastic' is a biomedical entity representing a disease, specifically a type of bone marrow failure. The context clearly indicates it refers to aplastic crisis, a condition associated with bone marrow failure. The label 'DISEASE' is appropriate. The boundary is complete and contains only the relevant term. The candidate is not a broken word-piece or incomplete fragment."
+        "reason": "The marked text 'SNR' is a specific abbreviation for a neurological condition, fitting the DISEASE label. It is explicitly mentioned in the context of neuropathology investigation."
+      },
+      {
+        "row_id": 1756784,
+        "start_char": 1095,
+        "end_char": 1098,
+        "text": "SNR",
+        "label": "DISEASE",
+        "weighted_score": 1.00479647,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text SNR is explicitly mentioned as a term related to neuronal damage detection in the context of Nissl-staining and parvalbumin antibodies. It is a valid biomedical entity and fits the DISEASE label."
+      },
+      {
+        "row_id": 1756784,
+        "start_char": 2385,
+        "end_char": 2388,
+        "text": "SNR",
+        "label": "DISEASE",
+        "weighted_score": 1.00479647,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text SNR is explicitly mentioned as a disease in the context of neuronal and glial damage in animals."
       },
       {
         "row_id": 1837756,
-        "start_char": 403,
-        "end_char": 413,
-        "text": "depressive",
+        "start_char": 547,
+        "end_char": 557,
+        "text": "bipolarity",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'depressive' is a clear biomedical entity representing a type of mood disorder, fitting the DISEASE label. It is explicitly mentioned in the context of psychiatric symptoms."
+        "reason": "The marked text 'bipolarity' is a recognized biomedical entity representing a specific condition, fitting the DISEASE label. It is explicitly mentioned in the context of complicated depressive disorders and their vulnerability to certain exacerbations. The boundary is complete and contains only the relevant term."
       },
       {
         "row_id": 2131034,
-        "start_char": 473,
-        "end_char": 476,
-        "text": "met",
+        "start_char": 476,
+        "end_char": 485,
+        "text": "hotrexate",
         "label": "CHEMICAL",
-        "weighted_score": 1.08738697,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'met' is a chemical entity in the context of drug toxicity descriptions."
+        "reason": "The marked text 'hotrexate' is a specific chemical name mentioned in the context of neurologic toxicities, fitting the CHEMICAL label. It is an explicit biomedical entity in this context and the boundary is complete."
       },
       {
-        "row_id": 2818777,
-        "start_char": 315,
-        "end_char": 331,
-        "text": "hypersensitivity",
+        "row_id": 2358093,
+        "start_char": 683,
+        "end_char": 690,
+        "text": "myalgia",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'hypersensitivity' is a clear biomedical entity representing a type of reaction, specifically an adverse drug reaction, which falls under the category of disease or condition. It is explicitly mentioned in the context of drug hypersensitivity."
+        "reason": "The marked text 'myalgia' is a recognized biomedical entity representing muscle pain, which is explicitly mentioned in the context of adverse reactions."
       },
       {
-        "row_id": 2931989,
-        "start_char": 300,
-        "end_char": 316,
-        "text": "lens intolerance",
+        "row_id": 2383364,
+        "start_char": 384,
+        "end_char": 391,
+        "text": "painful",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'lens intolerance' is a recognized biomedical entity representing a side effect associated with contact lens use, fitting the DISEASE label."
+        "reason": "The marked text 'painful' is an explicit biomedical entity in the context of evaluating a topical burn wound dressing. The proposed label 'DISEASE' is correct as pain is a common symptom associated with certain conditions or treatments. The marked boundary is complete and does not contain unrelated words. The candidate is not merely a broken word-piece or incomplete fragment."
       },
       {
-        "row_id": 2931989,
-        "start_char": 426,
-        "end_char": 437,
-        "text": "pseudotumor",
+        "row_id": 2983630,
+        "start_char": 477,
+        "end_char": 481,
+        "text": "fear",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'pseudotumor' is a recognized biomedical entity, specifically a type of pseudotumor cerebri, which is a disease. The context explicitly links it to serious ocular adverse reactions, confirming its role as a disease entity."
+        "reason": "The marked text 'fear' is explicitly mentioned in the context as a symptom experienced by patients, fitting the description of a negative emotion or feeling, which can be considered a disease or condition in a broader sense, especially in the context of anxiety symptoms. The label 'DISEASE' is appropriate for this context."
       },
       {
-        "row_id": 3533179,
-        "start_char": 897,
-        "end_char": 922,
-        "text": "immunodeficiency syndrome",
+        "row_id": 3074291,
+        "start_char": 927,
+        "end_char": 933,
+        "text": "tremor",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 0.97504501,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'immunodeficiency syndrome' is a recognized biomedical entity, specifically a type of disease, and it is explicitly mentioned in the context of aplastic anemia, Wiskott-Aldrich syndrome, or severe combined immunodeficiency syndrome."
+        "reason": "The marked text 'tremor' is a recognized biomedical entity (a symptom/condition) and is explicitly mentioned in the context of side effects reported after theophylline administration. The label 'DISEASE' is appropriate for a symptom/condition. The boundary is complete and contains only the relevant word. The candidate is not a broken word-piece or incomplete fragment."
       },
       {
-        "row_id": 3812624,
-        "start_char": 88,
-        "end_char": 97,
-        "text": "nystagmus",
+        "row_id": 3289726,
+        "start_char": 662,
+        "end_char": 670,
+        "text": "mnolence",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 1.00479647,
         "decision": "ACCEPT",
         "is_exact_human_gold": false,
         "outcome": "FP",
-        "reason": "The marked text 'nystagmus' is a recognized biomedical entity, specifically a type of eye movement disorder. The proposed label 'DISEASE' is appropriate as nystagmus is a pathological condition. The boundary is complete and contains only the relevant term. The candidate is not a broken word-piece or incomplete fragment."
+        "reason": "The marked text 'mnolence' is a plausible biomedical entity, specifically a disease, in the context of the provided sentence describing clinical manifestations. It fits the criteria for acceptance as it is an explicit biomedical entity, the proposed label 'DISEASE' is correct, the boundary is complete, and it is not merely a broken word-piece or incomplete fragment."
+      },
+      {
+        "row_id": 3383127,
+        "start_char": 107,
+        "end_char": 123,
+        "text": "Cardiac symptoms",
+        "label": "DISEASE",
+        "weighted_score": 1.00479647,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'Cardiac symptoms' is a clear biomedical entity representing a set of symptoms related to the heart, which is a disease organ. The label 'DISEASE' is appropriate for this entity in the context of describing symptoms associated with a disease (colorectal carcinoma). The text is complete and contains only relevant biomedical terms."
+      },
+      {
+        "row_id": 3711722,
+        "start_char": 341,
+        "end_char": 362,
+        "text": "cobalt cardiomyopathy",
+        "label": "DISEASE",
+        "weighted_score": 0.97504501,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'cobalt cardiomyopathy' is a recognized biomedical entity representing a specific disease state, and the proposed label 'DISEASE' is appropriate."
+      },
+      {
+        "row_id": 3746148,
+        "start_char": 496,
+        "end_char": 498,
+        "text": "MI",
+        "label": "DISEASE",
+        "weighted_score": 1.00479647,
+        "decision": "ACCEPT",
+        "is_exact_human_gold": false,
+        "outcome": "FP",
+        "reason": "The marked text 'MI' is a clear biomedical entity representing myocardial infarction, which is a disease. The context explicitly mentions 'myocardial infarction' and 'infarction', confirming its relevance as a disease in this specific context. The boundary is complete and contains only the relevant term."
       }
     ],
     "false_reject_examples": [
       {
-        "row_id": 3711722,
-        "start_char": 1566,
-        "end_char": 1580,
-        "text": "catecholamines",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
-        "decision": "REJECT",
-        "is_exact_human_gold": true,
-        "outcome": "FN",
-        "reason": "The proposed entity 'catecholamines' is not a complete biomedical entity in the context. The text is incomplete and contains a typo ('catecholamines' instead of 'catecholamines')."
-      },
-      {
-        "row_id": 7147232,
-        "start_char": 725,
-        "end_char": 736,
-        "text": "Hypotension",
+        "row_id": 2904523,
+        "start_char": 23,
+        "end_char": 35,
+        "text": "hypertension",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 0.97504501,
         "decision": "REJECT",
         "is_exact_human_gold": true,
         "outcome": "FN",
-        "reason": "The proposed entity 'Hypotension' is a disease, but the context indicates it is a symptom or condition caused by ATP, not a disease itself. The label 'DISEASE' is incorrect."
+        "reason": "The proposed entity 'hypertension' is not explicitly mentioned in the context. The context mentions 'adrenaline-hypertension hypothesis', but the proposed entity is just 'hypertension'."
       },
       {
-        "row_id": 7931490,
-        "start_char": 1162,
-        "end_char": 1170,
-        "text": "vomiting",
+        "row_id": 9197951,
+        "start_char": 375,
+        "end_char": 396,
+        "text": "pupillary oscillation",
         "label": "DISEASE",
-        "weighted_score": 1.08738697,
+        "weighted_score": 1.00479647,
         "decision": "REJECT",
         "is_exact_human_gold": true,
         "outcome": "FN",
-        "reason": "The proposed entity 'vomiting' is not a disease. It is a symptom."
+        "reason": "The proposed entity 'pupillary oscillation' is not a disease. It is a biological phenomenon related to the pupils, not a disease itself. The context describes changes in this phenomenon, not the disease itself. Therefore, the label 'DISEASE' is incorrect."
       },
       {
-        "row_id": 9869655,
-        "start_char": 537,
-        "end_char": 543,
-        "text": "sterol",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
-        "decision": "REJECT",
-        "is_exact_human_gold": true,
-        "outcome": "FN",
-        "reason": "The proposed entity 'sterol' is not a biomedical entity in this context. It is a general chemical term, not a specific disease or chemical compound relevant to the biomedical context described."
-      },
-      {
-        "row_id": 15276093,
-        "start_char": 1654,
-        "end_char": 1662,
-        "text": "creatine",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
-        "decision": "REJECT",
-        "is_exact_human_gold": true,
-        "outcome": "FN",
-        "reason": "The proposed entity 'creatine' is not a biomedical entity in this context. The context discusses an increase of 'creatine phosphokinase' to >5 times the upper limit of normal. 'Creatine' is a chemical, but the context is discussing the enzyme 'creatine phosphokinase', not the chemical 'creatine' itself. The proposed label 'CHEMICAL' is incorrect for the context."
-      },
-      {
-        "row_id": 16723784,
-        "start_char": 378,
-        "end_char": 381,
-        "text": "Bpd",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
-        "decision": "REJECT",
-        "is_exact_human_gold": true,
-        "outcome": "FN",
-        "reason": "The proposed entity 'Bpd' is not a complete biomedical entity in the context. The full term is 'Bpd' which is a abbreviation for Bipolar disorder. The proposed text 'Bpd' is incomplete and lacks the full context of the disease."
-      },
-      {
-        "row_id": 16723784,
-        "start_char": 1330,
-        "end_char": 1333,
-        "text": "Bpd",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
-        "decision": "REJECT",
-        "is_exact_human_gold": true,
-        "outcome": "FN",
-        "reason": "The proposed entity 'Bpd' is not a recognized biomedical entity in the context of serum potassium concentration and ECG. It appears to be a typo or an abbreviation for a disease, but it is not explicitly stated as such. Therefore, it should be rejected as it is not an explicit biomedical entity in this context."
-      },
-      {
-        "row_id": 18987260,
-        "start_char": 342,
-        "end_char": 352,
-        "text": "adriamycin",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
-        "decision": "REJECT",
-        "is_exact_human_gold": true,
-        "outcome": "FN",
-        "reason": "The proposed entity 'adriamycin' is not a biomedical entity in this context. It is a chemical name, but the context discusses a study investigating the effects of a drug (losartan) on renal disease progression in rats. The word 'adriamycin' is used as a specific chemical name (a type of chemotherapy drug) to describe the type of nephropathy in the rats, not as a general chemical entity."
-      },
-      {
-        "row_id": 19178808,
-        "start_char": 423,
-        "end_char": 434,
-        "text": "hypotension",
+        "row_id": 9197951,
+        "start_char": 542,
+        "end_char": 563,
+        "text": "pupillary oscillation",
         "label": "DISEASE",
-        "weighted_score": 1.16884495,
+        "weighted_score": 1.00479647,
         "decision": "REJECT",
         "is_exact_human_gold": true,
         "outcome": "FN",
-        "reason": "The proposed entity 'hypotension' is a medical condition, but the context suggests it is being used as a placeholder for a specific type of hypotension, likely related to anesthesia. The label 'DISEASE' is too broad. The context mentions 'hypotension anesthesia induced by propofol-remifentanil total i.' which implies a specific type of hypotension related to anesthesia. The label should be more specific, such as 'anesthesia-induced hypotension' or 'hypotension'."
+        "reason": "The proposed entity 'pupillary oscillation' is a biological phenomenon, not a disease. The label 'DISEASE' is incorrect."
       },
       {
-        "row_id": 24072398,
-        "start_char": 1097,
-        "end_char": 1105,
-        "text": "tyrosine",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
+        "row_id": 9197951,
+        "start_char": 680,
+        "end_char": 701,
+        "text": "pupillary oscillation",
+        "label": "DISEASE",
+        "weighted_score": 1.00479647,
         "decision": "REJECT",
         "is_exact_human_gold": true,
         "outcome": "FN",
-        "reason": "The marked text 'tyrosine' is a chemical name, but the context suggests it is part of a larger chemical name 'tyrosine hydroxylase'. The proposed label 'CHEMICAL' is correct for the full name, but the candidate 'tyrosine' is incomplete and potentially part of a larger entity. The context explicitly mentions 'tyrosine hydroxylase', indicating that 'tyrosine' is part of a chemical entity. Therefore, the candidate is incomplete and should be rejected as a standalone entity."
+        "reason": "The proposed entity 'pupillary oscillation' is a biological process, not a disease. The label 'DISEASE' is incorrect."
       },
       {
-        "row_id": 24345882,
-        "start_char": 224,
-        "end_char": 236,
-        "text": "methotrexate",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
+        "row_id": 20034406,
+        "start_char": 1465,
+        "end_char": 1467,
+        "text": "SE",
+        "label": "DISEASE",
+        "weighted_score": 1.00479647,
         "decision": "REJECT",
         "is_exact_human_gold": true,
         "outcome": "FN",
-        "reason": "The proposed entity 'methotrexate' is not a disease or chemical entity in the context of the sentence. It is a specific drug name used in the context of leukemia treatment protocols."
-      },
-      {
-        "row_id": 24927617,
-        "start_char": 533,
-        "end_char": 541,
-        "text": "creatine",
-        "label": "CHEMICAL",
-        "weighted_score": 1.16884495,
-        "decision": "REJECT",
-        "is_exact_human_gold": true,
-        "outcome": "FN",
-        "reason": "MedGemma error; conservative reject: MedGemma API/JSON response failed after 3 attempts with token budgets [160, 320, 480]: MedGemma output reached the generation limit (num_predict=480, eval_count=480)."
+        "reason": "The proposed entity 'SE' is not a recognized biomedical entity in the context of the sentence. It appears to be an abbreviation or a typo, not a disease or chemical name."
       }
     ],
-    "audit_csv": "C:\\University\\Projects\\Biomedical NER\\results\\test\\medgemma_report\\candidate_decision_audit.csv"
+    "audit_csv": "C:\\University\\Projects\\spatial-human-anatomy\\results\\test\\medgemma_report\\candidate_decision_audit.csv"
   },
   "token_level_bio_confusion_matrices": {
     "medgemma_zero_shot": {
@@ -532,76 +448,76 @@
       ],
       "raw_counts": [
         [
-          83483,
-          278,
-          132,
-          55,
+          82931,
+          516,
+          335,
+          140,
+          29
+        ],
+        [
+          757,
+          3361,
+          286,
+          4,
           3
         ],
         [
-          1285,
-          3029,
-          93,
-          4,
-          0
-        ],
-        [
-          839,
-          111,
-          1470,
+          401,
+          55,
+          1963,
           3,
-          0
+          1
         ],
         [
-          1639,
-          4,
-          0,
-          3647,
-          7
+          751,
+          109,
+          2,
+          4412,
+          23
         ],
         [
-          191,
+          123,
           0,
-          0,
-          7,
-          203
+          1,
+          18,
+          259
         ]
       ],
       "row_normalized": [
         [
-          0.9944253195316316,
-          0.003311455491894081,
-          0.0015723457731295636,
-          0.0006551440721373182,
-          3.5735131207490086e-05
+          0.9878500553894534,
+          0.006146442567688294,
+          0.0039904229848363925,
+          0.0016676394563495372,
+          0.00034543960167240413
         ],
         [
-          0.2913171616413512,
-          0.6866923600090682,
-          0.021083654500113354,
+          0.17161641351167536,
+          0.7619587395148493,
+          0.06483790523690773,
           0.000906823849467241,
-          0.0
+          0.0006801178871004307
         ],
         [
-          0.3462649607924061,
-          0.045810978126289724,
-          0.6066859265373504,
+          0.16549731737515477,
+          0.02269913330581923,
+          0.810152703260421,
           0.0012381345439537762,
-          0.0
+          0.0004127115146512588
         ],
         [
-          0.3094204266565981,
-          0.0007551444213705871,
-          0.0,
-          0.6885029261846328,
-          0.0013215027373985274
+          0.14177836511232772,
+          0.0205776854823485,
+          0.00037757221068529355,
+          0.8329242967717576,
+          0.004342080422880876
         ],
         [
-          0.4763092269326683,
+          0.30673316708229426,
           0.0,
-          0.0,
-          0.017456359102244388,
-          0.5062344139650873
+          0.0024937655860349127,
+          0.04488778054862843,
+          0.6458852867830424
         ]
       ],
       "token_count": 96483,

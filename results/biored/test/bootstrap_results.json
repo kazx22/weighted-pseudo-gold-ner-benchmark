@@ -11,19 +11,19 @@
   "confidence_intervals": [
     {
       "system": "Majority Pseudo-Gold",
-      "precision": 0.8752556237218814,
-      "recall": 0.5122681029323758,
-      "f1": 0.6462816157040393,
-      "ci_low": 0.6081636342403672,
-      "ci_high": 0.6808461482453391
+      "precision": 0.887144259077527,
+      "recall": 0.5409934171154998,
+      "f1": 0.6721189591078067,
+      "ci_low": 0.6324648895270387,
+      "ci_high": 0.7082287497152742
     },
     {
       "system": "Weighted Pseudo-Gold",
-      "precision": 0.8135338345864662,
-      "recall": 0.6475164572112507,
-      "f1": 0.7210929690103299,
-      "ci_low": 0.6822715679772862,
-      "ci_high": 0.7556839606219503
+      "precision": 0.8073047858942065,
+      "recall": 0.7672052663076002,
+      "f1": 0.786744400122737,
+      "ci_low": 0.7526355111608763,
+      "ci_high": 0.8188822923183555
     },
     {
       "system": "scispaCy",
@@ -35,19 +35,19 @@
     },
     {
       "system": "BioBERT",
-      "precision": 0.3557242990654206,
+      "precision": 0.5688930406352172,
       "recall": 0.7289048473967684,
-      "f1": 0.47811579980372915,
-      "ci_low": 0.4429073139347004,
-      "ci_high": 0.5134948782458043
+      "f1": 0.6390346274921301,
+      "ci_low": 0.5931821957587861,
+      "ci_high": 0.6833383843194957
     },
     {
       "system": "PubMedBERT + OpenMed",
-      "precision": 0.2307277628032345,
-      "recall": 0.5122681029323758,
-      "f1": 0.31815647649135853,
-      "ci_low": 0.2813298798970704,
-      "ci_high": 0.35289263598309994
+      "precision": 0.40539436044135674,
+      "recall": 0.5936564931178935,
+      "f1": 0.4817872753763963,
+      "ci_low": 0.4273946571534172,
+      "ci_high": 0.5339952463210259
     },
     {
       "system": "ClinicalBERT",
@@ -70,7 +70,7 @@
     {
       "system_1": "Weighted Pseudo-Gold",
       "system_2": "Majority Pseudo-Gold",
-      "f1_difference": 0.07481135330629063,
+      "f1_difference": 0.11462544101493033,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.003996003996003996,
       "significant_holm_0.05": true
@@ -78,7 +78,7 @@
     {
       "system_1": "Weighted Pseudo-Gold",
       "system_2": "scispaCy",
-      "f1_difference": 0.0739087985384882,
+      "f1_difference": 0.13956022965089532,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.003996003996003996,
       "significant_holm_0.05": true
@@ -88,15 +88,15 @@
     {
       "model_1": "scispaCy",
       "model_2": "BioBERT",
-      "f1_difference": 0.1690683706681126,
-      "raw_p": 0.001998001998001998,
-      "holm_p": 0.01998001998001998,
-      "significant_holm_0.05": true
+      "f1_difference": 0.0081495429797116,
+      "raw_p": 0.7592407592407593,
+      "holm_p": 0.7592407592407593,
+      "significant_holm_0.05": false
     },
     {
       "model_1": "scispaCy",
       "model_2": "PubMedBERT + OpenMed",
-      "f1_difference": 0.3290276939804832,
+      "f1_difference": 0.16539689509544542,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
       "significant_holm_0.05": true
@@ -120,7 +120,7 @@
     {
       "model_1": "BioBERT",
       "model_2": "PubMedBERT + OpenMed",
-      "f1_difference": 0.15995932331237062,
+      "f1_difference": 0.15724735211573382,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
       "significant_holm_0.05": true
@@ -128,7 +128,7 @@
     {
       "model_1": "BioBERT",
       "model_2": "ClinicalBERT",
-      "f1_difference": 0.2460288592990321,
+      "f1_difference": 0.4069476869874331,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
       "significant_holm_0.05": true
@@ -136,7 +136,7 @@
     {
       "model_1": "BioBERT",
       "model_2": "D4Data NER (DistilBERT)",
-      "f1_difference": 0.3232057029849186,
+      "f1_difference": 0.4841245306733196,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
       "significant_holm_0.05": true
@@ -144,7 +144,7 @@
     {
       "model_1": "PubMedBERT + OpenMed",
       "model_2": "ClinicalBERT",
-      "f1_difference": 0.08606953598666148,
+      "f1_difference": 0.24970033487169926,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
       "significant_holm_0.05": true
@@ -152,7 +152,7 @@
     {
       "model_1": "PubMedBERT + OpenMed",
       "model_2": "D4Data NER (DistilBERT)",
-      "f1_difference": 0.163246379672548,
+      "f1_difference": 0.3268771785575858,
       "raw_p": 0.001998001998001998,
       "holm_p": 0.01998001998001998,
       "significant_holm_0.05": true
